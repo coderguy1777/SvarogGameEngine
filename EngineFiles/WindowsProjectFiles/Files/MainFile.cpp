@@ -39,7 +39,7 @@ namespace vectorshit {
 		return double(rand()) / (double(RAND_MAX) + 20.0);
 	}
 
-	void testrun() {
+	void vectorgenerator() {
 		for (unsigned int i = 0; i < 10; i++) {
 			double ii = doubleRand();
 			test1.push_back(ii);
@@ -60,8 +60,7 @@ void VectorPopulation() {
 	double i;
 	double j;
 	double k;
-	vector<veccoordinates>points;
-	vectorshit::testrun();
+	vectorshit::vectorgenerator();
 	for (unsigned int i2 = 0; i2 < vectorshit::test1.size(); i2++) {
 		i = vectorshit::test1[i2];
 		vertDef.vertset1.push_back(i);
@@ -78,6 +77,7 @@ void VectorPopulation() {
 }
 
 int main() {
+	VectorPopulation();
 	SetConsoleTitle(TEXT("Svarog Game Engine"));
 	system("pause");
     return 0;
