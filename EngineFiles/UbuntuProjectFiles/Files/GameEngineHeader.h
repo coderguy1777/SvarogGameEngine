@@ -20,3 +20,15 @@ struct veccoordinates {
 struct squarepoints {
     double p1, p2, p3, p4;
 };
+
+struct cameradimensions {
+    int w, h;
+};
+
+struct rotationalvalues {
+    double dx, dy, dz;
+};
+
+double incidentraycalcs(double input) {
+    return sin(input);
+};

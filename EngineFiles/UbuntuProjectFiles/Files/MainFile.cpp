@@ -64,28 +64,30 @@ void display(void)
 	VerticiesDefinition vectret;
 	for(unsigned int x = 0; x < vectret.vertset1.size(); x++) {
 		i = vectret.vertset1[x];
+		for(unsigned int y = 0; y < vectret.vertset2.size(); y++) {
+			j = vectret.vertset2[y];
+			for(unsigned int z = 0; z < vectret.vertset3.size(); z++) {
+				k = vectret.vertset3[z];
+			}
+		}
 	}
-	for(unsigned int y = 0; y < vectret.vertset2.size(); y++) {
-		j = vectret.vertset2[y];
-	}
-	for(unsigned int z = 0; z < vectret.vertset3.size(); z++) {
-		k = vectret.vertset3[z];
-	}
-	glClear(GL_COLOR_BUFFER_BIT);
+	glLoadIdentity();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glBegin(GL_POLYGON);
-	  glColor3f(0.0, 1.0, 0.1);
+	  glColor3f(0.0,  1.0, 0.0);
 	  glVertex3f(1.0, 0.0, 0.0);
 	  glVertex3f(1.0, -1.0, 1.0);
 	  glVertex3f(0.0, -1.0, 0.0);
-		glVertex3f(-1.0, -1.0, 0.0);
-		glColor3f(1.0, 0.0, 0.0);
-		glVertex3f(-1.0, 0.0, 0.0);
-		glVertex3f(-0.5, 0.0, -1.0);
-		glVertex3f(1.0, 0.0, -1.0);
-		glVertex3f(1.0, 0.0, 0.0);
+	  glColor3f(1.0, 0.0, 0.0);
+	  glVertex3f(-1.0, -1.0, 0.0);
+	  glVertex3f(-1.0, 0.0, 0.0);
+	  glVertex3f(-0.5, 0.0, -1.0);
+	  glVertex3f(1.0, 0.0, -1.0);
+	  glVertex3f(1.0, 0.0, 0.0);
 	glEnd();
 	glFlush();
 }
+
 
 void VectorPopulation() {
 	VerticiesDefinition vertDef;
@@ -111,12 +113,12 @@ void VectorPopulation() {
 
 int main(int argc, char ** argv) {
 	VectorPopulation();
-	glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE);
-    glutInitWindowSize(800, 600);
-    glutInitWindowPosition(100, 100);
-    glutCreateWindow("Svarog Game Engine");
+ 	glutInit(&argc, argv);
+ 	glutInitDisplayMode(GLUT_SINGLE);
+  glutInitWindowSize(800, 600);
+  glutInitWindowPosition(100, 100);
+  glutCreateWindow("Svarog Game Engine");
 	glutDisplayFunc(display);
-    glutMainLoop();
-    return 0;
+	glutMainLoop();
+  return 0;
 }
