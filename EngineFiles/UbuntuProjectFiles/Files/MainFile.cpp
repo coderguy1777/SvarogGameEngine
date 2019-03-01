@@ -100,24 +100,7 @@ void VectorPopulation() {
 int main(int nargin, char* varargin[]) {
 	SvarogEngineCamera camobj;
 	camobj.testmethod(2);
-	VectorPopulation(); 	
-	glutInit(&argc, argv);
- 	
-	glutInitDisplayMode(GLUT_SINGLE);
-  
-	glutInitWindowSize(800, 600);
-  
-	glutInitWindowPosition(100, 100);
-  
-	glutCreateWindow("Svarog Game Engine");
-	
-	glutDisplayFunc(display);
-	
-	glutMainLoop();
-  
-	return 0;
-
-}
+	VectorPopulation();
 	system("pause");
   	return 0;
 }
