@@ -9,6 +9,7 @@
 #include<cmath>
 #include<algorithm>
 #define PI 3.14
+const int speedoflight = 299792458;
 constexpr auto ABSOLUTECENTERX = 0;
 constexpr auto ABSOLUTECENTERY = 0;
 constexpr auto ABSOLUTECENTERZ = 0;
@@ -31,4 +32,14 @@ struct rotationalvalues {
 
 double incidentraycalcs(double input) {
     return sin(input);
+};
+
+
+double refraction(double medium) {
+    return speedoflight/medium;
+};
+
+double angleofincidence(double medium1, double medium2) {
+    double sinvar = medium1/medium2;
+    return sin(sinvar);  
 };
