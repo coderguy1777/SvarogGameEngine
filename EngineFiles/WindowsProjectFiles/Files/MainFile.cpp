@@ -1,4 +1,5 @@
 #include "GameEngineHeader.h"
+#include "EngineCamera.h"
 using namespace std;
 
 class VerticiesDefinition {
@@ -39,7 +40,7 @@ namespace vectorshit {
 		return double(rand()) / (double(RAND_MAX) + 20.0);
 	}
 
-	void vectorgenerator() {
+	void testrun() {
 		for (unsigned int i = 0; i < 10; i++) {
 			double ii = doubleRand();
 			test1.push_back(ii);
@@ -55,12 +56,32 @@ namespace vectorshit {
 	}
 }
 
+void display(void)
+{
+	double i;
+	double j;
+	double k;
+	vector<veccoordinates>points;
+	VerticiesDefinition vectret;
+	for(unsigned int x = 0; x < vectret.vertset1.size(); x++) {
+		i = vectret.vertset1[x];
+		for(unsigned int y = 0; y < vectret.vertset2.size(); y++) {
+			j = vectret.vertset2[y];
+			for(unsigned int z = 0; z < vectret.vertset3.size(); z++) {
+				k = vectret.vertset3[z];
+			}
+		}
+	}
+}
+
+
 void VectorPopulation() {
 	VerticiesDefinition vertDef;
 	double i;
 	double j;
 	double k;
-	vectorshit::vectorgenerator();
+	vector<veccoordinates>points;
+	vectorshit::testrun();
 	for (unsigned int i2 = 0; i2 < vectorshit::test1.size(); i2++) {
 		i = vectorshit::test1[i2];
 		vertDef.vertset1.push_back(i);
@@ -76,9 +97,10 @@ void VectorPopulation() {
 	vertDef.spacevectors();
 }
 
-int main() {
+int main(int nargin, char* varargin[]) {
+	SvarogEngineCamera camobj;
+	camobj.testmethod(2);
 	VectorPopulation();
-	SetConsoleTitle(TEXT("Svarog Game Engine"));
 	system("pause");
-    return 0;
+  	return 0;
 }

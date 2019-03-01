@@ -1,9 +1,13 @@
+#pragma once
+#ifdef GAMEENGINEHEADER_H
+#define GAMEENGINEHEADER_H
+#endif
 #include<string>
 #include<iostream>
 #include<vector>
 #include<random>
 #include<map>
-#include<GL/glut.h>
+#include<fstream>
 #include<cstdlib>
 #include<ctime>
 #include<cmath>
@@ -27,8 +31,4 @@ struct cameradimensions {
 
 struct rotationalvalues {
     double dx, dy, dz;
-};
-
-double incidentraycalcs(double input) {
-    return sin(input);
 };

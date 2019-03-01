@@ -1,16 +1,19 @@
-#include<Windows.h>
+#pragma once
+#ifdef GAMEENGINEHEADER_H
+#define GAMEENGINEHEADER_H
+#endif
 #include<string>
 #include<iostream>
 #include<vector>
 #include<random>
 #include<map>
-#include<cstdlib>
+#include<fstream>
 #include<Windows.h>
+#include<cstdlib>
 #include<ctime>
 #include<cmath>
-#include<conio.h>
 #include<algorithm>
-using namespace std;
+#define PI 3.14
 constexpr auto ABSOLUTECENTERX = 0;
 constexpr auto ABSOLUTECENTERY = 0;
 constexpr auto ABSOLUTECENTERZ = 0;
@@ -20,9 +23,13 @@ struct veccoordinates {
 };
 
 struct squarepoints {
-    double point1, point2, point3, point4;
+    double p1, p2, p3, p4;
 };
 
-struct trianglepoints {
-    double point1, point2, point3;  
+struct cameradimensions {
+    int w, h;
+};
+
+struct rotationalvalues {
+    double dx, dy, dz;
 };

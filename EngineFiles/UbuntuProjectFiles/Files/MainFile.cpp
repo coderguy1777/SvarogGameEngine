@@ -1,4 +1,5 @@
 #include "GameEngineHeader.h"
+#include "EngineCamera.h"
 using namespace std;
 
 class VerticiesDefinition {
@@ -71,21 +72,6 @@ void display(void)
 			}
 		}
 	}
-	glLoadIdentity();
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glBegin(GL_POLYGON);
-	  glColor3f(0.0,  1.0, 0.0);
-	  glVertex3f(1.0, 0.0, 0.0);
-	  glVertex3f(1.0, -1.0, 1.0);
-	  glVertex3f(0.0, -1.0, 0.0);
-	  glColor3f(1.0, 0.0, 0.0);
-	  glVertex3f(-1.0, -1.0, 0.0);
-	  glVertex3f(-1.0, 0.0, 0.0);
-	  glVertex3f(-0.5, 0.0, -1.0);
-	  glVertex3f(1.0, 0.0, -1.0);
-	  glVertex3f(1.0, 0.0, 0.0);
-	glEnd();
-	glFlush();
 }
 
 
@@ -111,14 +97,27 @@ void VectorPopulation() {
 	vertDef.spacevectors();
 }
 
-int main(int argc, char ** argv) {
-	VectorPopulation();
- 	glutInit(&argc, argv);
- 	glutInitDisplayMode(GLUT_SINGLE);
-  glutInitWindowSize(800, 600);
-  glutInitWindowPosition(100, 100);
-  glutCreateWindow("Svarog Game Engine");
+int main(int nargin, char* varargin[]) {
+	SvarogEngineCamera camobj;
+	camobj.testmethod(2);
+	VectorPopulation(); 	
+	glutInit(&argc, argv);
+ 	
+	glutInitDisplayMode(GLUT_SINGLE);
+  
+	glutInitWindowSize(800, 600);
+  
+	glutInitWindowPosition(100, 100);
+  
+	glutCreateWindow("Svarog Game Engine");
+	
 	glutDisplayFunc(display);
+	
 	glutMainLoop();
-  return 0;
+  
+	return 0;
+
+}
+	system("pause");
+  	return 0;
 }
