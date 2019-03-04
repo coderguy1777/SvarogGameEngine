@@ -13,6 +13,7 @@ class SvarogEngineCamera {
         double speedval = 5.0;
         vector<double>camerapos;
         vector<double>camerarotation;
+        double inversedmatrix[3][3];
         vector<cameradimensions>camera1;
         void initialcamera(int CAMERAHEIGHT, int CAMERAWIDTH);
         void cameradirection();

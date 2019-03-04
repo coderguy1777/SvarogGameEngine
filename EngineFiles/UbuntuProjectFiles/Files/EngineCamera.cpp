@@ -87,6 +87,10 @@ double SvarogEngineCamera::camerarot(int axis, double var1, double var2, double 
             cout << primesofxyz[i].y << endl;
             cout << primesofxyz[i].z << endl;
         }
+        inverseofmatrix(3, 3, inversemat);
+        double primex = x;
+        double primey = y * cos(y) - z * sin(z);
+        double primez = y * sin(y) + z * cos(z);
     }
 
     // If the axis is on the y axis for the rotation
@@ -116,6 +120,13 @@ double SvarogEngineCamera::camerarot(int axis, double var1, double var2, double 
             cout << primesofxyz[i].y << endl;
             cout << primesofxyz[i].z << endl;
         }
+        inverseofmatrix(3, 3, inversemat);
+        double primex = x * cos(x) - z * sin(z);
+        double primey = y;
+        double primez = -x * sin(x) + z * sin(z);
+        vector<primesofxyz>matrixroty;
+        matrixroty.push_back({primex, primey, primez});
+
     }
 
     if(axis == 3) {
@@ -144,11 +155,31 @@ double SvarogEngineCamera::camerarot(int axis, double var1, double var2, double 
             cout << primesofxyz[i].y << endl;
             cout << primesofxyz[i].z << endl;
         }
-
+        inverseofmatrix(3, 3, inversemat);
+        double primex = x * cos(x) - y * sin(y);
+        double primey = x * sin(x) + y * cos(y);
+        double primez = z;
+        vector<primesofxyz>matrixzrot;
+        matrixzrot.push_back({primex, primey, primez});
     }
 
 }
 
 void SvarogEngineCamera::inverseofmatrix(int a, int b, double matrix[3][3]) {
-
+    a = 3;
+    b = 3;
+    double finalmat[3][3];
+    float fracval;
+    for(unsigned int i = 0; i < a; i++) {
+        for(unsigned int x = 0;  x < b; x++) {
+            fracval = 1/matrix[i][x] * matrix[x][i] - matrix[i][x] * matrix[x][i];
+            finalmat[i][x] = fracval * (matrix[i][x]);
+            cout << "Final Matrix: " << finalmat[i][x] << endl;
+        }
+    }
+    for(unsigned int c = 0; c < a; c++) {
+        for(unsigned int d = 0; d < b; d++) {
+            inversedmatrix[c][d] = finalmat[c][d];
+        }
+    }
 }
