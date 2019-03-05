@@ -91,6 +91,8 @@ double SvarogEngineCamera::camerarot(int axis, double var1, double var2, double 
         double primex = x;
         double primey = y * cos(y) - z * sin(z);
         double primez = y * sin(y) + z * cos(z);
+        vector<veccoordinates>matrixrotx;
+        matrixrotx.push_back({primex, primey, primez});
     }
 
     // If the axis is on the y axis for the rotation
@@ -124,7 +126,7 @@ double SvarogEngineCamera::camerarot(int axis, double var1, double var2, double 
         double primex = x * cos(x) - z * sin(z);
         double primey = y;
         double primez = -x * sin(x) + z * sin(z);
-        vector<primesofxyz>matrixroty;
+        vector<veccoordinates>matrixroty;
         matrixroty.push_back({primex, primey, primez});
 
     }
@@ -159,7 +161,7 @@ double SvarogEngineCamera::camerarot(int axis, double var1, double var2, double 
         double primex = x * cos(x) - y * sin(y);
         double primey = x * sin(x) + y * cos(y);
         double primez = z;
-        vector<primesofxyz>matrixzrot;
+        vector<veccoordinates>matrixzrot;
         matrixzrot.push_back({primex, primey, primez});
     }
 
@@ -182,4 +184,39 @@ void SvarogEngineCamera::inverseofmatrix(int a, int b, double matrix[3][3]) {
             inversedmatrix[c][d] = finalmat[c][d];
         }
     }
+}
+
+void SvarogEngineCamera::matrixsubtract(double initialcameramatrix[3][3], double newposmatrix[3][3]) {
+    double finalcameramatrix[3][3];
+    for(unsigned int i = 0; i < 3; i++) {
+        for(unsigned int j = 0; j < 3; j++) {
+            finalcameramatrix[i][j] = initialcameramatrix[i][j] - newposmatrix[i][j];
+        }
+    }
+    for(unsigned int row = 0; row < 3; row++) {
+        for(unsigned int col = 0; col < 3; col++) {
+            cout << finalcameramatrix[row][col] << endl;
+        }
+    }
+}
+
+void SvarogEngineCamera::matrixadd(double cameramatrix[3][3], double newposmatrix[3][3]) {
+    double finalcameramatrix[3][3];
+    for(unsigned int i = 0; i < 3; i++) {
+        for(unsigned int j = 0; j < 3; j++) {
+            finalcameramatrix[i][j] = cameramatrix[i][j] + newposmatrix[i][j];
+        }
+    }
+}
+
+vector<veccoordinates> SvarogEngineCamera::unitvec(vector<veccoordinates>vectora, vector<veccoordinates>vectorb, double angle) {
+    vector<veccoordinates>newvecc;
+    for(unsigned int i = 0; i < vectora.size(); i++) {
+        for(unsigned int j = 0; j < vectorb.size(); j++) {
+            double xvar = vectora[i].x * vectorb[j].x;
+            double yvar = vectora[i].y * vectorb[j].y;
+
+        }
+    }
+    return vectorb;
 }

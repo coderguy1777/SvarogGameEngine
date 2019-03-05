@@ -32,3 +32,7 @@ struct cameradimensions {
 struct rotationalvalues {
     double dx, dy, dz;
 };
+
+struct primesofxyz {
+    double x, y, z;
+};
