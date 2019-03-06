@@ -12,7 +12,6 @@ class PolygonInputter {
     public:
         void polygondefintion();
         double polygoncoordinates(double x, double y, double z);
-        vector<veccoordinates>polygontris;
         double x, y, z;
         void polygondef(char* bin);
         void draw();

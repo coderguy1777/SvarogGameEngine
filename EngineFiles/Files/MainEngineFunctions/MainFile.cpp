@@ -100,6 +100,7 @@ void VectorPopulation() {
 int main(int nargin, char* varargin[]) {
 	SvarogEngineCamera camobj;
 	camobj.testmethod(2);
+	camobj.cameradirection();
 	VectorPopulation();
   	return 0;
 }

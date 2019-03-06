@@ -3,7 +3,7 @@
 using namespace std;
 
 void SvarogEngineCamera::initialcamera(int CAMERAHEIGHT, int CAMERAWIDTH) {
-    cout << "What would you like the camera height to be?" << endl;
+    std::cout << "What would you like the camera height to be?" << endl;
     int heightvalue;
     cin >> heightvalue;
     cout << "What would you like the camera width to be?" << endl;
@@ -19,35 +19,7 @@ void SvarogEngineCamera::initialcamera(int CAMERAHEIGHT, int CAMERAWIDTH) {
 }
 
 void SvarogEngineCamera::cameradirection() {
-    double cameraposx = 0.0;
-    double cameraposy = 0.0;
-    double cameraposz = 0.0;
-
-    char directioninput = getchar();
-
-    if(directioninput == 32) {
-        // Calculates the differentials for each axis on the input of space 
-        // in this case for the camera movement.
-        cameraposx += dx;
-        cameraposy += dy;
-        cameraposz += dz + speedval;
-        
-        // Adds the vector positions to a vector for the cameras position.
-        camerapos.push_back(cameraposx);
-        camerapos.push_back(cameraposy);
-        camerapos.push_back(cameraposz);
-    }
-
-    else if(directioninput == 32 && directioninput == 68) {
-        cameraposx += dx;
-        cameraposy += dy + speedval;
-        cameraposz += dz + speedval;
-
-        // Adds the vector positions to a vector for the cameras position.
-        camerapos.push_back(cameraposx);
-        camerapos.push_back(cameraposy);
-        camerapos.push_back(cameraposz);
-    }
+    
 }
 
 int SvarogEngineCamera::testmethod(int invar) {
@@ -87,6 +59,12 @@ double SvarogEngineCamera::camerarot(int axis, double var1, double var2, double 
             cout << primesofxyz[i].y << endl;
             cout << primesofxyz[i].z << endl;
         }
+        inverseofmatrix(3, 3, inversemat);
+        double primex = x;
+        double primey = y * cos(y) - z * sin(z);
+        double primez = y * sin(y) + z * cos(z);
+        vector<veccoordinates>matrixrotx;
+        matrixrotx.push_back({primex, primey, primez});
     }
 
     // If the axis is on the y axis for the rotation
@@ -116,6 +94,13 @@ double SvarogEngineCamera::camerarot(int axis, double var1, double var2, double 
             cout << primesofxyz[i].y << endl;
             cout << primesofxyz[i].z << endl;
         }
+        inverseofmatrix(3, 3, inversemat);
+        double primex = x * cos(x) - z * sin(z);
+        double primey = y;
+        double primez = -x * sin(x) + z * sin(z);
+        vector<veccoordinates>matrixroty;
+        matrixroty.push_back({primex, primey, primez});
+
     }
 
     if(axis == 3) {
@@ -144,11 +129,71 @@ double SvarogEngineCamera::camerarot(int axis, double var1, double var2, double 
             cout << primesofxyz[i].y << endl;
             cout << primesofxyz[i].z << endl;
         }
-
+        inverseofmatrix(3, 3, inversemat);
+        double primex = x * cos(x) - y * sin(y);
+        double primey = x * sin(x) + y * cos(y);
+        double primez = z;
+        vector<veccoordinates>matrixzrot;
+        matrixzrot.push_back({primex, primey, primez});
     }
 
 }
 
 void SvarogEngineCamera::inverseofmatrix(int a, int b, double matrix[3][3]) {
+    a = 3;
+    b = 3;
+    double finalmat[3][3];
+    float fracval;
+    for(unsigned int i = 0; i < a; i++) {
+        for(unsigned int x = 0;  x < b; x++) {
+            fracval = 1/matrix[i][x] * matrix[x][i] - matrix[i][x] * matrix[x][i];
+            finalmat[i][x] = fracval * (matrix[i][x]);
+            cout << "Final Matrix: " << finalmat[i][x] << endl;
+        }
+    }
+    for(unsigned int c = 0; c < a; c++) {
+        for(unsigned int d = 0; d < b; d++) {
+            inversedmatrix[c][d] = finalmat[c][d];
+        }
+    }
+}
 
+void SvarogEngineCamera::matrixsubtract(double initialcameramatrix[3][3], double newposmatrix[3][3]) {
+    double finalcameramatrix[3][3];
+    for(unsigned int i = 0; i < 3; i++) {
+        for(unsigned int j = 0; j < 3; j++) {
+            finalcameramatrix[i][j] = initialcameramatrix[i][j] - newposmatrix[i][j];
+        }
+    }
+    for(unsigned int row = 0; row < 3; row++) {
+        for(unsigned int col = 0; col < 3; col++) {
+            cout << finalcameramatrix[row][col] << endl;
+        }
+    }
+}
+
+void SvarogEngineCamera::matrixadd(double cameramatrix[3][3], double newposmatrix[3][3]) {
+    double finalcameramatrix[3][3];
+    for(unsigned int i = 0; i < 3; i++) {
+        for(unsigned int j = 0; j < 3; j++) {
+            finalcameramatrix[i][j] = cameramatrix[i][j] + newposmatrix[i][j];
+        }
+    }
+    for(int x = 0; x < 3; x++) {
+        for(int y = 0; y < 3; y++) {
+            cout << finalcameramatrix[x][y] << " " << endl;
+        }
+    }
+}
+
+vector<veccoordinates> SvarogEngineCamera::unitvec(vector<veccoordinates>vectora, vector<veccoordinates>vectorb, double angle) {
+    vector<veccoordinates>newvecc;
+    for(unsigned int i = 0; i < vectora.size(); i++) {
+        for(unsigned int j = 0; j < vectorb.size(); j++) {
+            double xvar = vectora[i].x * vectorb[j].x;
+            double yvar = vectora[i].y * vectorb[j].y;
+
+        }
+    }
+    return vectorb;
 }
