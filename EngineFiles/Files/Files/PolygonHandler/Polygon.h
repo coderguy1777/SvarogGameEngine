@@ -15,10 +15,3 @@ class Polygon {
         float getZ();
 };
 
-struct PolgyonMatrix {
-    Polygon i, j, k;
-};
-
-struct SinglePolygon {
-    Polygon coordinates;
-};

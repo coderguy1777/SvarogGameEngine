@@ -8,6 +8,8 @@
 #include<random>
 #include<map>
 #include<fstream>
+#include<GL/gl.h>
+#include<GL/glu.h>
 #include<cstdlib>
 #include<ctime>
 #include<cmath>

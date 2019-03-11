@@ -15,4 +15,6 @@ class Vectors {
         double vecDistance(Polygon a, Polygon b);
         Polygon vecDotProduct(Polygon a, Polygon b);
         Polygon vecAngle(Polygon a, Polygon b);
+        Polygon vecRotation(Polygon a, Polygon b);
+        Polygon vecUnitvector(Polygon a, Polygon b);
 };

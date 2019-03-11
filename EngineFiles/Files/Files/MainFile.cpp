@@ -1,5 +1,7 @@
 #include "GameEngineHeader.h"
 #include "EngineCamera.h"
+#include "PolygonMath.h"
+#include "Polygon.h"
 using namespace std;
 
 class VerticiesDefinition {
@@ -56,25 +58,6 @@ namespace vectorshit {
 	}
 }
 
-void display(void)
-{
-	double i;
-	double j;
-	double k;
-	vector<veccoordinates>points;
-	VerticiesDefinition vectret;
-	for(unsigned int x = 0; x < vectret.vertset1.size(); x++) {
-		i = vectret.vertset1[x];
-		for(unsigned int y = 0; y < vectret.vertset2.size(); y++) {
-			j = vectret.vertset2[y];
-			for(unsigned int z = 0; z < vectret.vertset3.size(); z++) {
-				k = vectret.vertset3[z];
-			}
-		}
-	}
-}
-
-
 void VectorPopulation() {
 	VerticiesDefinition vertDef;
 	double i;
@@ -97,10 +80,11 @@ void VectorPopulation() {
 	vertDef.spacevectors();
 }
 
-int main(int nargin, char* varargin[]) {
-	SvarogEngineCamera camobj;
-	camobj.testmethod(2);
-	camobj.cameradirection();
+void display(void) {
+	int i = 0;
+}
+
+int main(int argc, char **argv) {
 	VectorPopulation();
-  	return 0;
+	return 0;
 }
