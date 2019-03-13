@@ -10,8 +10,8 @@ class Polygon {
         float x, y, z;
         void setPolygon(Polygon p, float x1, float y1, float z1);
         Polygon getPolygon(Polygon p);
+        Polygon changePolygon(Polygon p, Polygon q);
         float getX();
         float getY();
         float getZ();
 };
-
