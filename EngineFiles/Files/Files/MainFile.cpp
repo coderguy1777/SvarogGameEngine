@@ -1,90 +1,144 @@
 #include "GameEngineHeader.h"
 #include "EngineCamera.h"
-#include "PolygonMath.h"
-#include "Polygon.h"
 using namespace std;
+float lz = 0.0f;
+float ly = 0.0f;
+float lx = 0.0f;
+bool delta = true;
 
-class VerticiesDefinition {
-public:
-	// Defines the verticies of the shape in x, y, z format.
-	// vertset1 being for x.
-	// vertset2 being for y.
-	// vertset3 being for z.
-	vector<double>vertset1;
-	vector<double>vertset2;
-	vector<double>vertset3;
-	float timevector;
-
-	void spacevectors() {
-		for (unsigned int i = 0; i < vertset1.size(); i++) {
-			cout << "Verticies for X: " << vertset1[i] << endl;
-		}
-		cout << '\n' << endl;
-		for (unsigned int j = 0; j < vertset2.size(); j++) {
-			cout << "Verticies for Y: " << vertset2[j] << endl;
-		}
-		cout << '\n' << endl;
-		for (unsigned int k = 0; k < vertset3.size(); k++) {
-			cout << "Verticies for Z: " << vertset3[k] << endl;
-		}
-	}
-
-};
-
-namespace vectorshit {
-	vector<double>test1;
-	vector<double>test2;
-	vector<double>test3;
-	double doubleRand() {
-		// 1.0 defined as max of the interval, with the for loop
-		// looping variable being defined as the low value of the interval,
-		// or can just be 0 in this case.
-		return double(rand()) / (double(RAND_MAX) + 20.0);
-	}
-
-	void testrun() {
-		for (unsigned int i = 0; i < 10; i++) {
-			double ii = doubleRand();
-			test1.push_back(ii);
-		}
-		for (unsigned int j = 0; j < 10; j++) {
-			double jj = doubleRand();
-			test2.push_back(jj);
-		}
-		for (unsigned int k = 0; k < 10; k++) {
-			double kk = doubleRand();
-			test3.push_back(kk);
-		}
+void keyboard(unsigned char key, int x, int y) {
+	switch(key) {
+		case 28:
+			glRotatef(20.0, 0.9, 0.6, 0.5);
 	}
 }
 
-void VectorPopulation() {
-	VerticiesDefinition vertDef;
-	double i;
-	double j;
-	double k;
-	vector<veccoordinates>points;
-	vectorshit::testrun();
-	for (unsigned int i2 = 0; i2 < vectorshit::test1.size(); i2++) {
-		i = vectorshit::test1[i2];
-		vertDef.vertset1.push_back(i);
+void drawshittyobj() {
+glBegin(GL_QUADS);
+	{
+		glColor3f(0.5, 0.0, 0.0);
+		glVertex3f(-0.5, 0.0, 0.0);
+		glVertex3f(0.5, 0.0, 0.5);
+		glVertex3f(0.5, 0.5, 0.0);
+		glVertex3f(-0.5, 0.5, 0.5);
+
+		glColor3f(0.5, 0.9, 0.2);
+		glVertex3f(0.5, -0.5, 0.0);
+		glVertex3f(0.5, 0.0, 0.0);
+		glVertex3f(-0.5, 0.0, 0.0);
+		glVertex3f(-0.5, -0.5, 0.0);
+		
+		// More of cube top side
+		glColor3f(0.1, 1.0, 0.627);
+		glVertex3f(-0.5, 0.5, 0.0);
+		glVertex3f(0.5, 0.5, 0.0);
+		glVertex3f(0.5, 0.8, -0.5);
+
+		glColor3f(0.1, 1.0, 0.627);
+		glVertex3f(-0.5, 0.5, 0.5); // Left side of top
+		glVertex3f(-0.3, 0.8, 0.0); // Corner 3 of top
+		glVertex3f(0.7, 0.8, 0.5); // Corner 2 of top
+		glVertex3f(0.5, 0.5, -0.5); // Right side of top.
+
+		// Patches for the top side of cube
+		glColor3f(0.1, 1.0, 0.627);
+		glVertex3f(-0.5, 0.5, 0.5);
+		glVertex3f(0.5, 0.5, 0.5); 
+		glVertex3f(0.0, 0.5, 0.0);
+
+
 	}
-	for (unsigned int j2 = 0; j2 < vectorshit::test2.size(); j2++) {
-		j = vectorshit::test2[j2];
-		vertDef.vertset2.push_back(j);
+	glEnd();
+	glBegin(GL_QUADS);
+	{
+		glColor3f(0.9, 0.2, 0.5);
+		glVertex3f(0.5, 0.0, 0.5);
+		glVertex3f(0.7, 0.8, 0.5);
+		glVertex3f(0.5, 0.5, 0.0);
+		glVertex3f(0.5, -0.5, 0.0);
 	}
-	for (unsigned int k2 = 0; k2 < vectorshit::test3.size(); k2++) {
-		k = vectorshit::test3[k2];
-		vertDef.vertset3.push_back(k);
-	}
-	vertDef.spacevectors();
+	glEnd();
 }
 
 void display(void) {
-	int i = 0;
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	GLfloat ambientLight[] = {0.3f, 0.3f, 0.3f, 1.0f};
+  	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
+	gluLookAt(0.0f, 0.0f, 0.0f, lx, lx + lz,  lz, -1.0f, -1.0f,  -1.0f);
+	drawshittyobj();
+	glPushMatrix();
+	glutSwapBuffers();
+	glFlush();
 }
 
+// Scales the window to fit the needed ibjects inside that window.
+void changeSize(int w, int h) {
+	if (h == 0) 
+		h = 1;
+	
+	float ratio =  w * 1.0 / h;
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glViewport(0, 0, w, h);
+	gluPerspective(45.0f, w/h, 1.0f, 100.0f);
+	glMatrixMode(GL_MODELVIEW);
+
+
+}
+
+void idlefunc() {
+	if(delta) {
+		
+	}
+}
+
+void processNormalKeys(unsigned char key, int x, int y) {
+	int mod;
+	cout << lx << endl;
+	cout << lz << endl;
+	if (key == 27) { 
+		exit(0);
+	}
+  if(key == 'd') {
+		lz = lz * 1.10;
+		glutPostRedisplay();
+	}
+
+	if(key == 'a') {
+		lz = lz - 5;
+		glutPostRedisplay();
+	}
+
+	if(key == 'w') {
+		ly = ly + 5;
+		glutPostRedisplay();
+	}
+
+	if(key == 's') {
+		ly = ly - 5;
+		glutPostRedisplay();
+	}
+}
+
+
+// Main method of the engine that launches 
+// the main window that will be displayed in the game
+// engine itself when opened by the user in this case
+// mainly due to the arguments being present, in 
+// this case argc, and argv, which allow for the game
+// engine to function as normal in this case.
 int main(int argc, char **argv) {
-	VectorPopulation();
-	return 0;
+	glutInit(&argc, argv);
+	glutInitDisplayMode ( GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH); 
+	glutInitWindowSize(800, 600);
+	glutCreateWindow("Svarog Game Engine");
+	glutDisplayFunc(display);
+	glutKeyboardFunc(processNormalKeys);
+	glutReshapeFunc(changeSize);
+	glMatrixMode(GL_MODELVIEW);
+	glEnable(GL_DEPTH_TEST | GL_LIGHT0 | GL_LIGHTING);
+	glutMainLoop();
+  	return 1;
 }

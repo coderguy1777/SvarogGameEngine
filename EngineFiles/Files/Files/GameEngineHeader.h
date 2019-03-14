@@ -10,10 +10,13 @@
 #include<fstream>
 #include<GL/gl.h>
 #include<GL/glu.h>
+#include<GL/freeglut.h>
+#include<GL/glut.h>
 #include<cstdlib>
 #include<ctime>
 #include<cmath>
 #include<algorithm>
+#include<GL/glut.h>
 #define PI 3.14
 constexpr auto ABSOLUTECENTERX = 0;
 constexpr auto ABSOLUTECENTERY = 0;
