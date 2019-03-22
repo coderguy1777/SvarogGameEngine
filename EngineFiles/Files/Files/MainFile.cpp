@@ -1,9 +1,13 @@
 #include "GameEngineHeader.h"
 #include "EngineCamera.h"
+#include "PredefinedShapes.h"
 using namespace std;
 float lz = 0.0f;
+float x  = 0.0f;
+float z = 5.0f;
 float ly = 0.0f;
-float lx = 0.0f;
+float lx = -1.0f;
+float angle = 0.0f;
 bool delta = true;
 
 void keyboard(unsigned char key, int x, int y) {
@@ -13,61 +17,18 @@ void keyboard(unsigned char key, int x, int y) {
 	}
 }
 
-void drawshittyobj() {
-glBegin(GL_QUADS);
-	{
-		glColor3f(0.5, 0.0, 0.0);
-		glVertex3f(-0.5, 0.0, 0.0);
-		glVertex3f(0.5, 0.0, 0.5);
-		glVertex3f(0.5, 0.5, 0.0);
-		glVertex3f(-0.5, 0.5, 0.5);
-
-		glColor3f(0.5, 0.9, 0.2);
-		glVertex3f(0.5, -0.5, 0.0);
-		glVertex3f(0.5, 0.0, 0.0);
-		glVertex3f(-0.5, 0.0, 0.0);
-		glVertex3f(-0.5, -0.5, 0.0);
-		
-		// More of cube top side
-		glColor3f(0.1, 1.0, 0.627);
-		glVertex3f(-0.5, 0.5, 0.0);
-		glVertex3f(0.5, 0.5, 0.0);
-		glVertex3f(0.5, 0.8, -0.5);
-
-		glColor3f(0.1, 1.0, 0.627);
-		glVertex3f(-0.5, 0.5, 0.5); // Left side of top
-		glVertex3f(-0.3, 0.8, 0.0); // Corner 3 of top
-		glVertex3f(0.7, 0.8, 0.5); // Corner 2 of top
-		glVertex3f(0.5, 0.5, -0.5); // Right side of top.
-
-		// Patches for the top side of cube
-		glColor3f(0.1, 1.0, 0.627);
-		glVertex3f(-0.5, 0.5, 0.5);
-		glVertex3f(0.5, 0.5, 0.5); 
-		glVertex3f(0.0, 0.5, 0.0);
-
-
-	}
-	glEnd();
-	glBegin(GL_QUADS);
-	{
-		glColor3f(0.9, 0.2, 0.5);
-		glVertex3f(0.5, 0.0, 0.5);
-		glVertex3f(0.7, 0.8, 0.5);
-		glVertex3f(0.5, 0.5, 0.0);
-		glVertex3f(0.5, -0.5, 0.0);
-	}
-	glEnd();
-}
-
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 	GLfloat ambientLight[] = {0.3f, 0.3f, 0.3f, 1.0f};
   	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
-	gluLookAt(0.0f, 0.0f, 0.0f, lx, lx + lz,  lz, -1.0f, -1.0f,  -1.0f);
-	drawshittyobj();
+	gluLookAt(0.0f + lx, 1.0f, 30.0f + lz, lx, 0.0f, lz, 0.0f, 1.0f,  lz);
+
+	Shapes ssss;
+	ssss.testerpolygon();
+	ssss.planepolygon();
+	glTranslatef(-30.0f, 0.0f, -30.0f);
 	glPushMatrix();
 	glutSwapBuffers();
 	glFlush();
@@ -101,24 +62,50 @@ void processNormalKeys(unsigned char key, int x, int y) {
 	if (key == 27) { 
 		exit(0);
 	}
-  if(key == 'd') {
-		lz = lz * 1.10;
+  	if(key == 'd') {
+		lx = lx - 1;
 		glutPostRedisplay();
 	}
 
 	if(key == 'a') {
-		lz = lz - 5;
+		lx = lx + 1;
 		glutPostRedisplay();
 	}
 
 	if(key == 'w') {
-		ly = ly + 5;
+		lz = lz + 1;
 		glutPostRedisplay();
 	}
 
 	if(key == 's') {
-		ly = ly - 5;
+		lz = lz - 1;
 		glutPostRedisplay();
+	}
+}
+
+void processSpecialKeys(int key, int xx, int yy) {
+
+	float fraction = 0.1f;
+
+	switch (key) {
+		case GLUT_KEY_LEFT :
+			angle -= 0.01f;
+			lx = sin(angle);
+			lz = -cos(angle);
+			break;
+		case GLUT_KEY_RIGHT :
+			angle += 0.01f;
+			lx = sin(angle);
+			lz = -cos(angle);
+			break;
+		case GLUT_KEY_UP :
+			x += lx * fraction;
+			z += lz * fraction;
+			break;
+		case GLUT_KEY_DOWN :
+			x -= lx * fraction;
+			z -= lz * fraction;
+			break;
 	}
 }
 
@@ -136,7 +123,9 @@ int main(int argc, char **argv) {
 	glutCreateWindow("Svarog Game Engine");
 	glutDisplayFunc(display);
 	glutKeyboardFunc(processNormalKeys);
+	glutSpecialFunc(processSpecialKeys);
 	glutReshapeFunc(changeSize);
+	glutIdleFunc(display);
 	glMatrixMode(GL_MODELVIEW);
 	glEnable(GL_DEPTH_TEST | GL_LIGHT0 | GL_LIGHTING);
 	glutMainLoop();
