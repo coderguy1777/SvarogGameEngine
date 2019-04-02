@@ -4,7 +4,6 @@
 #endif
 #include "GameEngineHeader.h"
 #include "Point.h"
-#include "Point.h"
 using namespace std;
 
 class SvarogEngineCamera {
@@ -19,11 +18,4 @@ class SvarogEngineCamera {
         }
         void QuaterionRotation(SvarogEngineCamera cam1, vector<float>location);
         void CameraTransform(SvarogEngineCamera cam1);
-        
-
-        
-
-
-        
-
 };
