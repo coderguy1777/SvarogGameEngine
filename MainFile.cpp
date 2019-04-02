@@ -1,36 +1,33 @@
-#include "Camera/EngineCamera.h"
-#include "PredefinedObjects/PredefinedShapes.h"
+#include "EngineCamera.h"
+#include "Point.h"
+#include "PredefinedShapes.h"
 using namespace std;
-float lz = 0.0f;
-float x  = 0.0f;
-float y = 0.0f;
-float z = 5.0f;
-float ly = 0.0f;
 float lx = 0.0f;
-float cameraz = 30.0f;
-float angle = 0.0f;
-int xOrgin = -1;
-float deltaAngle = 1.0f;
-bool delta = true;
-bool test = false;
-bool test2 = false;
-int a = 0;
+float ly = 0.0f;
+float lz = 5.0f;
+float camerax = 0.0f;
+float cameray = 0.0f;
+float cameraz = 0.0f;
+float theta, phi = 0.0f;
+float oldx, oldy = 0.0f;
+float eyex, eyey, eyez = 0.0f;
+bool rotate = false;
 
-static int menuid;
-static int submenu_id;
-static int value = 0;
-static int windowvar;
-
-void menu(int num) {
-	if(num == 0) {
-		glutDestroyWindow(0);
-		exit(0);
-	} else {
-		value = num;
+void OnMouseDown(int button, int state, int x, int y) {
+	if(button = GLUT_LEFT_BUTTON) {
+		if(state = GLUT_UP) {
+			camerax = lx * cos(phi) * sin(theta);
+		} else {
+			camerax = camerax;
+		}
 	}
-
 }
 
+void OnMouseMove(int x, int y) {
+
+	oldx = lx;
+	oldy = ly;
+}
 
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -38,22 +35,19 @@ void display(void) {
 	glMatrixMode(GL_MODELVIEW);
 	GLfloat ambientLight[] = {0.3f, 0.3f, 0.3f, 1.0f};
   	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
-	gluLookAt(lx, ly / 360, cameraz, lx, sin(ly), lz, lx, 12.0f, lz);
+	Vertex camerapoint((double)lx, (double)ly, (double)lz);
+	double normavg = camerapoint.MeanofPoints((double)lx, (double)ly, (double)lz);
+	Vertex translatedpoint(camerapoint.up1(camerapoint));
+	translatedpoint.printVertex(translatedpoint);
+	// Setting up of the camera matrix.
+	eyex = lx + 1.0f * cos(phi) * sin(theta);
+	eyey = ly + 1.0f * sin(phi) * sin(theta);
+	eyez = lz + 2 * 3.14 * sin(phi);
+	gluLookAt(lx, ly, cameraz, eyex, eyey, eyez, 0.0f, 1.0f, 0.0f);
 	Shapes ssss;
+	// Test Shape
+	ssss.testerpolygon();
 
-
-	// Intiates the tester polygon for this scene
-	int jumpcount = 0;
-	if(test == true) {
-		ssss.testerpolygon();
-	
-	}
-	if(test2 == true && test == true) {
-		glPushMatrix();
-		glRotatef(5, 0, 1, 0);
-		gluLookAt(cos(lx), ly / z, cameraz, lx, sin(ly), lz, cos(lx), 12.0f, lz);
-		glPopMatrix();
-	}
 	// for updating the scene with the polygons involved in this case.
 	glPushMatrix();
 	glutSwapBuffers();
@@ -65,132 +59,79 @@ void display(void) {
 void changeSize(int w, int h) {
 	if (h == 0) 
 		h = 1;
-	
 	float ratio =  w * 1.0 / h;
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glViewport(0, 0, w, h);
-
 	// Resizes the window for viewability by the camera.
 	gluPerspective(45.0f, w/h, 1.0f, 100.0f);
 	glMatrixMode(GL_MODELVIEW);
-
-
 }
 
 void processNormalKeys(unsigned char key, int x, int y) {
-
 	// Process the esc key, and ends the program.
+	unsigned char key2;
 	Shapes sssss;
 	if (key == 27) { 
 		exit(0);
 	}
+
   	if(key == 'd') {
 		lx = lx - 1;
+		camerax = camerax - 1.0f;
 		glutPostRedisplay();
 	}
 
 	if(key == 'a') {
 		lx = lx + 1;
 		glutPostRedisplay();
+		camerax = camerax + 1.0f;
 	}
 
 	if(key == 'w') {
 		lz = lz + 1;
-		z = sin(lz);
+		cameraz = cameraz - 1;
 		glutPostRedisplay();
-		cameraz = cameraz -1;
 	}
 
 	if(key == 's') {
 		lz = lz - 1;
-		a = 1;
-		glutPostRedisplay();
 		cameraz = cameraz + 1;
+		glutPostRedisplay();
 	}
-	if(key == 32) {
-		cout << "Space has been pressed!" << endl;
-		test = true;
-		ly = ly - 1;
-		cout << ly << endl;
-	}
-	if(key ==  'r') {
-		ly = ly + 1;
-	}
+
 	if(key == 'v') {
-		test = false;
-		test2 = false;
-		lx = 0.0f;
-		ly = 0.0f;
-		lz = 0.0f;
-		cout << "Ctrl has been pressed" << endl;
+		ly = ly + 1;
+		glutPostRedisplay();
+	}
+
+	if(key == 32) {
+		ly = ly - 1;
+		glutPostRedisplay();
 	}
 }
 
-void processSpecialKeys(int key, int xx, int yy) {
+void idle() {
+	glutPostRedisplay();
+}
 
-	float fraction = 0.1f;
-
-	switch (key) {
-		case GLUT_KEY_LEFT :
-			angle -= 0.001f;
-			lx = (angle);
-			lz = -(angle);
-			break;
-		case GLUT_KEY_RIGHT :
-			angle += 0.001f;
-			lx = -angle;
-			lz = angle;
-			break;
-		case GLUT_KEY_UP :
-			x += lx * fraction;
-			z += lz * fraction;
-			break;
-		case GLUT_KEY_DOWN :
-			x -= lx * fraction;
-			z -= lz * fraction;
-			break;
+void specialkey(int key, int x, int y) {
+	switch(key) {
+	case GLUT_KEY_RIGHT:
+		break;
+	case GLUT_KEY_LEFT:
+		glRotatef( -3, 0, 1, 0 );
+		cout << "Works!" << endl;
+		break;
 	}
 }
 
 void mouseMove(int x, int y) {
-
-	// this will only be true when the left button is down
-	if (xOrgin >= 0) {
-		deltaAngle = (x + xOrgin) * 0.001f;
-		lx = -(angle + deltaAngle);
-		lz = (angle- deltaAngle);
-	}
-	if(xOrgin <= 0) {
-		deltaAngle = (x + xOrgin) * 0.001f;
-		lx = -(angle + deltaAngle);
-		lz = (angle + deltaAngle);
-	}
-}
-
-void mouseButton(int button, int state, int x, int y) {
-
-	// only start motion if the left button is pressed
-	if (button == GLUT_LEFT_BUTTON) {
-
-		// when the button is released
-		if (state == GLUT_UP) {
-			angle += deltaAngle * 2;
-			xOrgin = -1;
-		}
-		else  {// state = GLUT_DOWN
-			xOrgin = -x;
-		}
-	}
-
-	if(button == GLUT_RIGHT_BUTTON) {
-		if(state == GLUT_UP) {
-			angle += deltaAngle / 2;
-			xOrgin = -1;
-		}
-		else {
-			xOrgin = -x;
-		}
+	if(camerax >= 0) {
+		lx = sin(camerax + theta);
+		lz = -cos(cameraz + phi);
+			theta += (lx - oldx)*0.01f;
+	phi += (ly - oldy) * 0.01f;
 	}
 }
 
@@ -202,18 +143,15 @@ void mouseButton(int button, int state, int x, int y) {
 // engine to function as normal in this case.
 int main(int argc, char **argv) {
 	glutInit(&argc, argv);
-	glutInitDisplayMode ( GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH); 
+	glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); 
 	glutInitWindowSize(800, 600);
 	glutCreateWindow("Svarog Game Engine");
 	glutDisplayFunc(display);
 	glutKeyboardFunc(processNormalKeys);
-	glutSpecialFunc(processSpecialKeys);
-	glutReshapeFunc(changeSize);
-	glutMouseFunc(mouseButton);
+	glutMouseFunc(OnMouseDown);
 	glutMotionFunc(mouseMove);
-	glutIdleFunc(display);
-	glutSpaceballRotateFunc(processSpecialKeys);
-	glutSpaceballMotionFunc(processSpecialKeys);
+	glutReshapeFunc(changeSize);
+	glutIdleFunc(idle);
 	glMatrixMode(GL_MODELVIEW);
 	glEnable(GL_DEPTH_TEST | GL_LIGHT0 | GL_LIGHTING);
 	glutMainLoop();
