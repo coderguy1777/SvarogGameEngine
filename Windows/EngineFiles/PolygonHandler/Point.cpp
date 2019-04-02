@@ -50,7 +50,7 @@ Vertex Vertex::XZPlaneAdd(Vertex x, Vertex z) {
 }
 
 // Prints the Vertex in 3d space
-void Vertex::printVertex(Vertex a) {
+Vertex Vertex::printVertex(Vertex a) {
     cout << "< " << a.x << " " << a.y << " " << a.z << " >" << endl;
 }
 
@@ -61,8 +61,9 @@ double Vertex::MeanofPoints(double x, double y, double z) {
     points.push_back(z);
     double mean = 0;
     for(unsigned int i = 0; i < points.size(); i++) {
-        mean += points[i]/points.size();
+        mean = points[i]/points.size();
     }
+    cout << mean << endl;
     return mean;
 }
 
@@ -78,6 +79,19 @@ Vertex Vertex::ScalarMove(Vertex in, double meanofpoints) {
     x = listofpoints[0];
     y = listofpoints[1];
     z = listofpoints[2];
+    if(x > 100 || y > 100 || z > 100) {
+        x = x/360;
+        y = y/360;
+        z = z/360;
+    }
+
     Vertex finalvert(x, y, z);
     return finalvert;
+}
+
+Vertex Vertex::up1(Vertex input) {
+    input.x = input.x + 1;
+    input.y = input.y + 1;
+    input.z = input.z + 1;
+    return input;
 }

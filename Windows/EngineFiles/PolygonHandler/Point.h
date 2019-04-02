@@ -41,7 +41,10 @@ class Vertex {
         Vertex ScalarMove(Vertex x, double avg);
 
         // for printing the vertex
-        void printVertex(Vertex inputa);
+        Vertex printVertex(Vertex inputa);
+
+        // Translates Vertex up 1
+        Vertex up1(Vertex input);
         
     
 };
