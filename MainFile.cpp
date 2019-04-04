@@ -4,7 +4,7 @@
 using namespace std;
 float lx = 0.0f;
 float ly = 0.0f;
-float lz = 5.0f;
+float lz = 0.0f;
 float camerax = 0.0f;
 float cameray = 0.0f;
 float cameraz = 0.0f;
@@ -38,15 +38,15 @@ void display(void) {
 	Vertex camerapoint((double)lx, (double)ly, (double)lz);
 	double normavg = camerapoint.MeanofPoints((double)lx, (double)ly, (double)lz);
 	Vertex translatedpoint(camerapoint.up1(camerapoint));
-	translatedpoint.printVertex(translatedpoint);
 	// Setting up of the camera matrix.
 	eyex = lx + 1.0f * cos(phi) * sin(theta);
 	eyey = ly + 1.0f * sin(phi) * sin(theta);
 	eyez = lz + 2 * 3.14 * sin(phi);
-	gluLookAt(lx, ly, cameraz, eyex, eyey, eyez, 0.0f, 1.0f, 0.0f);
+	gluLookAt(eyex, eyey, eyez, lx, 1.0f, lz, 0.0f, 1.0f, 0.0f);
 	Shapes ssss;
 	// Test Shape
 	ssss.testerpolygon();
+	glOrtho(90, 90, 90, 90, 90 , 2000);
 
 	// for updating the scene with the polygons involved in this case.
 	glPushMatrix();
@@ -83,30 +83,30 @@ void processNormalKeys(unsigned char key, int x, int y) {
 	}
 
 	if(key == 'a') {
-		lx = lx + 1;
+		lx = lx + -5.0f;
 		glutPostRedisplay();
 		camerax = camerax + 1.0f;
 	}
 
 	if(key == 'w') {
-		lz = lz + 1;
+		lz = lz + 5.0f;
 		cameraz = cameraz - 1;
 		glutPostRedisplay();
 	}
 
 	if(key == 's') {
-		lz = lz - 1;
+		lz = lz - 5.0f;
 		cameraz = cameraz + 1;
 		glutPostRedisplay();
 	}
 
 	if(key == 'v') {
-		ly = ly + 1;
+		ly = ly + 1.0f;
 		glutPostRedisplay();
 	}
 
 	if(key == 32) {
-		ly = ly - 1;
+		ly = ly - 1.0f;
 		glutPostRedisplay();
 	}
 }
@@ -118,9 +118,14 @@ void idle() {
 void specialkey(int key, int x, int y) {
 	switch(key) {
 	case GLUT_KEY_RIGHT:
-		break;
+		lx = cos(theta);
 	case GLUT_KEY_LEFT:
-		glRotatef( -3, 0, 1, 0 );
+		lx = -sin(theta);
+		ly = sin(theta);
+		lz = cos(theta);
+		glRotatef(200, 1, 0, 0);
+
+		glTranslatef(20, 20, 20);
 		cout << "Works!" << endl;
 		break;
 	}
@@ -128,10 +133,16 @@ void specialkey(int key, int x, int y) {
 
 void mouseMove(int x, int y) {
 	if(camerax >= 0) {
-		lx = sin(camerax + theta);
-		lz = -cos(cameraz + phi);
-			theta += (lx - oldx)*0.01f;
-	phi += (ly - oldy) * 0.01f;
+		theta += (lx - oldx)*0.01f;
+		phi += (ly - oldy) * 0.01f;
+	}
+	lx = sin(theta);
+	ly = sin(phi);
+	lz = sin(theta);
+	if(lx <= 1 || ly <= 1 || lz <= 1 || lx < 0 || ly < 0 || lz < 0) {
+		lx = sin(theta + phi);
+		ly = sin(theta + phi);
+		lz = sin(theta + phi);
 	}
 }
 
