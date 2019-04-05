@@ -1,5 +1,6 @@
-#include "GameEngineHeader.h"
 #include "PredefinedShapes.h"
+#include "GameEngineHeader.h"
+using namespace std; 
 
 void Shapes::testerpolygon() {
   glBegin(GL_POLYGON);
