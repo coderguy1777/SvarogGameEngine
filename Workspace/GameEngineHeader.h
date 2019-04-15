@@ -1,14 +1,15 @@
-
 #pragma once
 #ifndef GAMEENGINEHEADER1_H
 #define GAMEENGINEHEADER1_H
 #endif
+#include "ShapeClass.h"
 #include<string>
 #include<iostream>
 #include<vector>
 #include<random>
 #include<map>
 #include<fstream>
+#include<glm/integer.hpp>
 #include<GL/gl.h>
 #include<GL/glu.h>
 #include<GL/freeglut.h>
@@ -17,7 +18,6 @@
 #include<ctime>
 #include<cmath>
 #include<algorithm>
-#include<GL/glut.h>
 #define PI 3.14
 constexpr auto ABSOLUTECENTERX = 0;
 constexpr auto ABSOLUTECENTERY = 0;

@@ -18,3 +18,7 @@ class SvarogEngineCamera {
         void QuaterionRotation(SvarogEngineCamera cam1, vector<float>location);
         void CameraTransform(SvarogEngineCamera cam1);
 };
+
+struct structuretest {
+    GLdouble x, y, z;
+};
