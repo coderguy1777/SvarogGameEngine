@@ -1,0 +1,1 @@
+g++ MainFile.cpp PredefinedShapes.cpp EngineCamera.cpp -o C:\Users\lolzk\Documents\SvarogEngine\EngineBuilds\Version1.exe -lglu32 -lfreeglut -lopengl32 -lglew32
