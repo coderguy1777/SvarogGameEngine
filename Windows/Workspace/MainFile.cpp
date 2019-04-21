@@ -3,26 +3,16 @@
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
 #include "EngineCamera.h"
-#include<ctime>
 #include "PredefinedShapes.h"
 #include "FontClass.h"
 #include "ShapeMenus.h"
 #include "ShapeClass.h"
 using namespace std;
 float lx = 0.0f;
-int tester = 0;
 float ly = 0.0f;
 float lz = 0.0f;
 float camerax = 0.0f;
-float varx = 2.0f;
-float vary = -10.0f;
-float varz = -1.0f;
-float lfar = 100.0f;
-float cameray = 0.0f;
 float cameraz = 0.0f;
-float zoom = 0.0f;
-float zoomy = 0.0f;
-
 Shape shapeVar(20, 20, 20, 20);
 
 // Scales the window to fit the needed ibjects inside that window.
@@ -43,29 +33,38 @@ void changeSize(int w, int h) {
 	cout << cameraz << endl;
 }
 
-void randomShape() {
-	glColor3f(0.1, 0.9, 0.4);
-	glutSolidSphere(20.0, 20.0, 20.0);
-}
-
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
 	gluLookAt(0.0, 0.0, cameraz, lx, ly, -lz, 0.0f, 1.0f, 0.0f);
 	Sleep(1);
 
 	// Shape test
+	Shapes shaepe;
 	Shape *Shape;
 	ShapeStruct shapeVar(20, 20, 20, 20);
 	Shape = &shapeVar;
 	glPushMatrix();
 	keyInput();
-	Shape->drawShape();
 	keyInput2();
+	for(int i = -3; i < 60; i++) {
+		for(int j = -3; j < 60; j++) {
+			glPushMatrix();
+			glTranslatef(i * 10, 0.0f, j * 10);
+			shaepe.cube();
+			glPopMatrix();
+		}
+	}
 	glPopMatrix();
 	glutSwapBuffers();
 	glFlush();
+}
+
+void idle() {
+	Shapes ss;
+    ss.cube();
+	ss.cube();
+	glutPostRedisplay();
 }
 
 void processNormalKeys(unsigned char key, int x, int y) {
@@ -80,7 +79,6 @@ void processNormalKeys(unsigned char key, int x, int y) {
 	}
 
   	if(key == 'd') {
-		tester = tester + 1;
 		lx -= 1.0f;
 		camerax = camerax - 1.0f;
 		Shapesss.xsize += 1.0f;
@@ -88,16 +86,6 @@ void processNormalKeys(unsigned char key, int x, int y) {
 	}
 
 	if(key == 'a') {
-		float i = 1.0f;
-		for(int ij = 0; ij < i - 3; ij--) {
-			Sleep(i);
-			if(ij < i) {
-				break;
-			}
-		}
-		if(i == 0) {
-			cout << "I is 0!" << endl;
-		}
 		lx += 1.0f;
 		camerax = camerax + 1.0f;
 		glutPostRedisplay();
@@ -117,21 +105,13 @@ void processNormalKeys(unsigned char key, int x, int y) {
 
 	if(key == 'v') {
 		ly += 1.0f;
-		cameray = cameray - 1.0f;
 		glutPostRedisplay();
 	}
 
 	if(key == 32) {
 		ly -= 1.0f;
-		cameray = cameray - 1.0f;
 		glutPostRedisplay();
 	}
-}
-
-void idle() {
-	Shapes ss;
-	ss.cube();
-	glutPostRedisplay();
 }
 
 void init() {
@@ -148,7 +128,6 @@ void init() {
 	glCullFace (GL_BACK);
 	glFrontFace (GL_CW);
 	glClearDepth(1.0f);
-
 }
 
 // Main method of the engine that launches 

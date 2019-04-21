@@ -14,7 +14,6 @@ static int menuid;
 static int switchcase2 = 0;
 static int submenuid2;
 static int menuid2;
-float lxvar = 0.0f;
 
 void menu(int num) {
     switchcase = num;
@@ -66,7 +65,6 @@ void keyInput(void) {
         glFlush();
         glutSwapBuffers();
 
-
     } else if(switchcase == 3) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glPushMatrix();
@@ -75,10 +73,6 @@ void keyInput(void) {
         glPopMatrix();
         glutSwapBuffers();
         glFlush();
-
-    } else if(switchcase == 4) {
-        lxvar += 5.0f;
-        cout << lxvar << endl;
 
     } else if(switchcase == 5) {
         glClear(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);

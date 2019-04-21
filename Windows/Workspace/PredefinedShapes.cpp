@@ -1,5 +1,4 @@
 #include "PredefinedShapes.h"
-#include "GameEngineHeader.h"
 using namespace std; 
 
 void Shapes::testerpolygon() {

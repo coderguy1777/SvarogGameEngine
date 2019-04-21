@@ -3,6 +3,7 @@
 #define GAMEENGINEHEADER1_H
 #endif
 #include "ShapeClass.h"
+#include "PredefinedShapes.h"
 #include<string>
 #include<iostream>
 #include<vector>
