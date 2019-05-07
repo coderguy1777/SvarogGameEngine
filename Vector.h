@@ -7,23 +7,27 @@
 
 class Vector {
 private:
-	int x,  y,  z;
 
 public:
+	int x, y, z;
+
+	Vector(int xpos, int ypos, int zpos) {
+		this->x = xpos;
+		this->y = ypos;
+		this->z = zpos;
+	}
 	void setX(int x);
 	void setY(int y);
 	void setZ(int z);
 	
 	// gets vector x, y, z
 	int getX();
+	int getY();
+	int getZ();
 
-	Vector operator*(const Vector& vectes) {
-		Vector veca;
-		veca.x = this->x * vectes.x;
-		veca.y = this->y * vectes.y;
-		veca.z = this->z * vectes.z;
-		return veca;
-	}
-	Vector translatevec(Vector a);
+	// translates a vec
+	void printX();
+
+
 };
 #endif

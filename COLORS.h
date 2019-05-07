@@ -3,9 +3,12 @@
 #define COLORS_H
 #endif
 #include "EngineHeader.h"
+
+#include<initializer_list>
 #include <cmath>
 #include <algorithm>
 
+// rgba structure fo
 struct rgba {
 	float r, g, b;
 };
@@ -15,69 +18,30 @@ class Color {
 	private:
 		float redval, greenval,  blueval;
 	public:
-		Color(float x, float y, float z) {
-			this->redval = x/255;
-			this->greenval = y/255;
-			this->blueval = z/255;
-		}
-
 		void setRVal(float r);
-
 		void setGVal(float g);
-
 		void setBVal(float b);
 		float getRed();
 		float getGreen();
 		float getBlue();
-		void createColor();
-		
-		enum class COLORNAMES { RED, ORANGE, GREEN, YELLOW, BLUE, INDIGO, VIOLET};
+		void createColor(void);
+		enum COLORNAMES { RED = 1, ORANGE=2, GREEN=3, YELLOW=4, BLUE=5, INDIGO=6, VIOLET=7};
+		void getPresetColors(int color);
 };
-
 
 // HSV Class
 class HSV {
 	private:
 		float red, green, blue;
 	public:
-		float max(float x, float y, float z) {
-			float max = x;
-			if(y > max) {
-				max = y;
-			}
-
-			if(z > max) {
-				max = z;
-			}
-			return max;
-		}
-
-		float min(float x, float y, float z) {
-			float min = x;
-			if(y < min) {
-				min = y;
-			}
-			
-			if(z < min) {
-				min = z;
-			}
-			return min;
-		}
-
-		float min2(float x, float y) {
-			float min = x;
-			if(y < min) {
-				min = y;
-			}
-			return min;
-		}
 		float hue, saturation, value;
 		const float rprime = red/256;
 		const float gprime = green/256;
 		const float bprime = blue/256;
-		 float cmax = max(rprime, gprime, bprime);
-		 float cmin = min(rprime, gprime, bprime);
-		 float dChroma = cmax - cmin;
+		float cmax = std::max({ rprime, gprime, bprime });
+		float cmin = std::min({ rprime, gprime, bprime });
+		float dChroma = cmax - cmin;
+		float chroma = 0.0f;
 
 		HSV(float r, float g, float b) {
 			this->red = r;
@@ -87,8 +51,8 @@ class HSV {
 
 		float findHue();
 		float findSaturation();
-		float chromaVal();
-		float findValue();
+		float findHPrime();
+		void findValue();
 		float beta();
 		float alpha();
 		float findHue2();

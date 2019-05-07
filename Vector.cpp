@@ -1,9 +1,5 @@
 #include "Vector.h"
 
-Vector Vector::translatevec(Vector a) {
-	return Vector::operator*(a);
-}
-
 void Vector::setX(int x) {
 	this->x = x;
 }
@@ -18,4 +14,16 @@ void Vector::setZ(int z) {
 
 int Vector::getX() {
 	return x;
+}
+
+int Vector::getY() {
+	return y;
+}
+
+int Vector::getZ() {
+	return z;
+}
+
+void Vector::printX() {
+	std::cout << x << std::endl;
 }

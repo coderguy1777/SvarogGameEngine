@@ -2,42 +2,64 @@
 #include "COLORS.h"
 #include "Vector.h"
 #include <vector>
+#include <glm/glm.hpp>
+using namespace std;
 
+int fac = 0;
 std::vector<rgba>colors;
-void shapetest(int verts) {
-	glBegin(GL_POLYGON);
-	for (int i = 0; i <= verts; i++) {
-		glColor3f(i / 3, i / 2, i / 3);
-		for (int j = 0; j <= verts; j++) {
-			glVertex3f(i, j, i + j);
-			glVertex3f(-i, -j, -(i + j));
 
-		}
+Vector vec(0, 0, 0);
+void test(unsigned char key, int x, int y) {
+	Vector vec(0, 0, 0);
+	if (key == 'w') {
+		fac += 1;
+		vec.setX(fac);
+		vec.x += 1;
+		glTranslatef(vec.x, 0.0f, 0.0f);
+		glutPostRedisplay();
 	}
 
-	glEnd();
+	if (key == 's') {
+		fac -= sin(1);
+		vec.z -= sin(1);
+		vec.setX(fac);
+		glutPostRedisplay();
+	}
+
+
+	vec.printX();
 }
 
-void COlor() {
-	HSV bg(121 * -1, 77, 121);
-	bg.createHSV();
+void init() {
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glFrustum(-1, 1, -1.5, 1.5, 1, 2000);
 }
 
 void renderScene(void) {
+	Color wanted;
+	wanted.setRVal(220);
+	wanted.setGVal(100);
+	wanted.setBVal(92);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glMatrixMode(GL_MODELVIEW);
-	COlor();
+	glPushMatrix();
+
+	init();
+	wanted.createColor();
 	glutSwapBuffers();
 }
 
 
 int main(int argc, char **argv) {
-	colors.push_back({ 0.1, 0.2, 0.4 });
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glEnable(GL_DEPTH_TEST);
 	glutInitWindowSize(800, 600); //optional
 	glutCreateWindow("OpenGL First Window");
 	glutDisplayFunc(renderScene);
+	glutKeyboardFunc(test);
 	glutMainLoop();
 }
