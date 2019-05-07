@@ -39,16 +39,12 @@ void init() {
 }
 
 void renderScene(void) {
-	Color wanted;
-	wanted.setRVal(220);
-	wanted.setGVal(100);
-	wanted.setBVal(92);
+	HSV wanted(255, 20, 1);
+	wanted.findHue();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-
+	glMatrixMode(GL_MODELVIEW);	
+	wanted.createHSV();
 	init();
-	wanted.createColor();
 	glutSwapBuffers();
 }
 

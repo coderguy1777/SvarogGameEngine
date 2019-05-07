@@ -2,12 +2,11 @@
 #ifdef ENGINEHEADER_H
 #define ENGINEHEADER_H
 #endif
-#include<gl/glew.h>
-#include<gl/freeglut.h>
-#include<glfw3.h>
+#include<GL/glew.h>
+#include<GL/freeglut.h>
 #include<iostream>
-#include<gl/gl.h>
-#include<gl/glu.h>
+#include<GL/gl.h>
+#include<GL/glu.h>
 
 
 struct COLOR {

@@ -5,5 +5,5 @@ void Terrian::genTerrian() {
 }
 
 float Terrian::expandX() {
-	return 0.0f;
+	return Terrian::posx + 1;
 }
