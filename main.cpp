@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glEnable(GL_DEPTH_TEST);
 	glutInitWindowSize(800, 600); //optional
-	glutCreateWindow("OpenGL First Window");
+	glutCreateWindow("Svarog Game Engine");
 	glutDisplayFunc(renderScene);
 	glutKeyboardFunc(test);
 	glutMainLoop();
