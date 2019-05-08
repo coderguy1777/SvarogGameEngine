@@ -1,8 +1,7 @@
 #include "EngineHeader.h"
-#include "COLORS.h"
+#include "Color.h"
 #include "Vector.h"
 #include <vector>
-#include <glm/glm.hpp>
 using namespace std;
 
 int fac = 0;
@@ -39,8 +38,7 @@ void init() {
 }
 
 void renderScene(void) {
-	HSV wanted(255, 20, 1);
-	wanted.findHue();
+	HSV wanted(121, 212, 312);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glMatrixMode(GL_MODELVIEW);	
 	wanted.createHSV();
