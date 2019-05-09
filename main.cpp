@@ -1,6 +1,6 @@
 #include "EngineHeader.h"
 #include "Color.h"
-#include "Vector.h"
+#include "core/Vector.h"
 #include <vector>
 using namespace std;
 
@@ -24,10 +24,9 @@ void test(unsigned char key, int x, int y) {
 		vec.setX(fac);
 		glutPostRedisplay();
 	}
-
-
 	vec.printX();
 }
+
 
 void init() {
 	glEnable(GL_CULL_FACE);
@@ -38,10 +37,11 @@ void init() {
 }
 
 void renderScene(void) {
-	HSV wanted(121, 212, 312);
+	Color wanted(0.0f, 0.0f, 0.0f, 0.0f);
+	Color test(wanted.getPresetColors('G'));
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glMatrixMode(GL_MODELVIEW);	
-	wanted.createHSV();
+	test.createColor();
 	init();
 	glutSwapBuffers();
 }
@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glEnable(GL_DEPTH_TEST);
-	glutInitWindowSize(800, 600); //optional
+	glutInitWindowSize(800, 600); 
 	glutCreateWindow("Svarog Game Engine");
 	glutDisplayFunc(renderScene);
 	glutKeyboardFunc(test);

@@ -36,7 +36,7 @@ public:
 	float getAlpha();
 	float getGreen();
 	float getBlue();
-	void createColor(void);
+	void createColor();
 	enum COLORNAMES { RED = 1, ORANGE = 2, GREEN = 3, YELLOW = 4, BLUE = 5, INDIGO = 6, VIOLET = 7 };
 	Color getPresetColors(char color);
 	float* createGradient(float percentr, float percentg, float percentb);
@@ -57,78 +57,17 @@ public:
 		this->blue = b;
 	}
 
-	float setHue(float hval) {
-		float colorhue = 0.0f;
-		if(floor(hval) >= 0 || hval <= 60) {
-			colorhue = 255.0f;
-		}
+	HSV getPresetHSV(char hsv);
+	
+	void setHue(float h);
+	void setSaturation(float s);
+	void setValue(float v);
 
-		if(hval >= 60 || hval <= 120) {
-			colorhue = 125.0f;
-		}
+	float getHue();
+	float getSaturation();
+	float getValue();
+	HSV createHSV();
 
-		if(hval >= 120 || hval <= 180) {
-			colorhue = 90.0f;
-		}
-
-		if(hval >= 180 || floor(hval) <= 240) {
-			colorhue = 190.0f;
-		}
-
-		if(hval >= 240 || hval <= 300) {
-			colorhue = 165.0f;
-		}
-
-		if(hval >= 300 || hval <= 360) {
-			colorhue = 255.0f;
-		}
-		return colorhue;
-	}
-
-	float getHue() {
-		return hue;
-	}
-
-	float getValue() {
-		return value;
-	}
-
-	float getSaturation() {
-		return saturation;
-	}
-
-	void createHSV() {
-		float primer = red / 255;
-		float primeg = green / 255;
-		float primeb = blue / 255;
-		float max = std::max(std::max(primer, primeg), primeb);
-		float min = std::min(std::min(primer, primeg), primeb);
-		float delta = max - min;
-	    value = max;
-	    hue, saturation = 0.0f;
-
-		if (max == primer) {
-			hue = 60.0 * (primeg - primeb) / delta;
-		}
-
-		if (max == primeg) {
-			hue = 60.0 * (((primeb - primer) / delta) + 2);
-		}
-
-		if (max == primeb) {
-			hue = 60.0 * (((primer - primeg) / delta) + 4);
-		}
-		hue = setHue(hue)* 0.001;
-
-		if (max == 0) {
-			saturation = 0.0f;
-		}
-
-		if (max != 0) {
-			saturation = delta / max;
-		}
-		glClearColor(hue, saturation, value, 0.0f);
-	}
 };
 
 class HexColorCodes :public Color {
@@ -150,14 +89,51 @@ public:
 		YELLOWCODE,
 		ORANGECODE
 	};
+	void getPredefinedcode(int code);
+};
 
-	void getPredefinedcode(int code) {
-		switch(code) {
-			case 1:
-				hexcode = HEXSTART + hexcodes[5] + hexcodes[5] + hexcodes[5] + hexcodes[5] + hexcodes[5];
-				
-			case 2:
-				hexcode = HEXSTART + '0' + '0' + '0' + '0' + '0';
+struct cmyk {
+	float c, m, y, k;
+};
+class CMYKVALS {
+	private: 
+		float c, m, y, k;
+	public:
+		CMYKVALS(float cyan, float magenta, float yellow, float black) {
+			this->c = cyan;
+			this->m = magenta;
+			this->y = yellow;
+			this->k = black;
 		}
-	}
+
+		float* RGBtoCMYK(float scales[4]);
+		float* CMYKtoRGB(float scales[4]);
+		void setCyan(float c);
+		void setBlack(float b);
+		void setYellow(float y);
+		void setMagenta(float m);
+
+		// gets cmyk vals
+		float getCyan();
+		float getMagenta();
+		float getYellow();
+		float getKblack();
+
+		// prime vals
+		float findRPrime(float red);
+		float findGPrime(float green);
+		float findBPrime(float blue);
+
+		// CMYK vals
+		float findK(float primer, float primeg, float primeb);
+		float findC(float primer, float kval);
+		float findM(float primeg, float kval);
+		float findY(float primeb, float kval);
+
+		// finding RGB Vals
+		float findR(float cval, float kval);
+		float findG(float mval, float kval);
+		float findB(float yval, float kval);
+
+		// float val creation
 };
