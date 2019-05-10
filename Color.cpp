@@ -12,14 +12,6 @@ float Color::getGreen() {
     return greenval;
 }
 
-float Color::getAlpha() {
-    return alphaval;
-}
-
-void Color::setAlphaVal(float a) {
-    alphaval = a;
-}
-
 void Color::setRVal(float r) {
     redval = r;
 }
@@ -33,11 +25,11 @@ void Color::setBVal(float b) {
 }
 
 void Color::createColor() {
-    glClearColor(redval, greenval, blueval, alphaval);
+    glClearColor(redval, greenval, blueval, 0.0f);
 }
 
 Color Color::getPresetColors(char color) {
-    Color returnval(0.0f, 0.0f, 0.0f, 0.0f);
+    Color returnval(0.0f, 0.0f, 0.0f);
     if(color == 'R') {
         returnval.setRVal(255.0f);
         returnval.setGVal(0.0f);
@@ -103,6 +95,10 @@ void HSV::setHue(float h) {
     hue = h;
 }
 
+void HSV::setSaturation(float s) {
+    saturation = s;
+}
+
 HSV HSV::createHSV() {
     HSV newHSV(0.0f, 0.0f, 0.0f);
     float primer = red / 255;
@@ -131,7 +127,7 @@ HSV HSV::createHSV() {
 	}
 
 	if (max != 0) {
-		saturation = delta / max;
+		saturation = delta/max;
 	}
 
     newHSV.setHue(hue);
@@ -185,6 +181,65 @@ HSV HSV::getPresetHSV(char hsv) {
     }
 
     return predefhsv;
+}
+
+Color HSV::HSVtoRGB(HSV test) {
+    Color primeColor(0.0f, 0.0f, 0.0f);
+    Color finalColor(0.0f, 0.0f, 0.0f);
+    float c = test.saturation * test.value;
+    float X = c * (1 - (test.hue/60));
+    float x = abs((int)x);
+    float m = test.value - c;
+    std::cout << X << std::endl;
+    if(hue >= 0.0f || hue <= 60.0f) {
+        primeColor.setRVal(c);
+        primeColor.setGVal(x);
+        primeColor.setBVal(0.0f);
+        std::cout << "degree 40" << std::endl;
+    }
+
+    if(hue >= 60.0f || hue <= 120.0f) {
+        primeColor.setRVal(x);
+        primeColor.setGVal(c);
+        primeColor.setBVal(0.0f);
+    }
+
+    if(hue >= 120.0f || hue <= 180.0f) {
+        primeColor.setRVal(0.0f);
+        primeColor.setGVal(c);
+        primeColor.setBVal(x);
+    }
+
+    if(hue >= 180.0f || hue <= 240.0f) {
+        primeColor.setRVal(0.0f);
+        primeColor.setGVal(x);
+        primeColor.setBVal(c);
+    }
+
+    if(hue >= 240.0f || hue <= 300.0f) {
+        primeColor.setRVal(x);
+        primeColor.setGVal(0.0f);
+        primeColor.setBVal(c);
+    }
+
+    if(hue >= 300.0f || hue <= 360.0f) {
+        primeColor.setRVal(c);
+        primeColor.setGVal(0.0f);
+        primeColor.setBVal(x);
+    }
+
+    float primeR = primeColor.getRed() * 1;
+    float primeG = primeColor.getGreen() * 1;
+    float primeB = primeColor.getBlue() * 1;
+    primeColor.setRVal((primeR+m) * 255);
+    primeColor.setGVal((primeG+m) * 255);
+    primeColor.setBVal((primeB + m));
+    std::cout << primeColor.getRed()<< primeColor.getGreen() << primeColor.getBlue() * 255 <<  std::endl;
+    return primeColor;
+}
+
+void Color::newColor() {
+    glClearColor(redval, greenval, blueval, 0.0f);
 }
 
 float CMYKVALS::getCyan() {
@@ -254,14 +309,42 @@ float CMYKVALS::findY(float primeb, float kval) {
     return yellowval;
 }
 
-float* CMYKVALS::CMYKtoRGB(float colorvals[4]) {
-    float colors[4];
-    return colors;
+Color CMYKVALS::CMYKtoRGB(float cval, float mval, float yval, float kval) {
+    Color newColor(0.0f, 0.0f, 0.0f);
+    float redVal = 0.0f;
+    float greenVal = 0.0f;
+    float blueVal = 0.0f;
+    
+    redVal = 255 * (1-cval) * (1-kval);
+    greenVal = 255 * (1-mval) * (1-kval);
+    blueVal = 255 * (1-yval) * (1-kval);
+
+    newColor.setRVal(redVal);
+    newColor.setGVal(greenVal);
+    newColor.setBVal(blueVal);
+
+    return newColor;
 }
 
-float* CMYKVALS::RGBtoCMYK(float colorvals[4]) {
-    float test[4];
-    return test;
+CMYKVALS CMYKVALS::RGBtoCMYK(float rval, float gval, float bval) {
+    CMYKVALS newCMYK(0.0f, 0.0f, 0.0f, 0.0f);
+    float primer = findRPrime(rval);
+    float primeg = findGPrime(gval);
+    float primeb = findBPrime(bval);
+
+    float blackval = findK(primer, primeg, primeb);
+    newCMYK.setBlack(blackval);
+
+    float cyanval = findC(primer, blackval);
+    newCMYK.setCyan(cyanval);
+
+    float magentaval = findM(primeg, blackval);
+    newCMYK.setMagenta(magentaval);
+
+    float yellowval = findY(primeb, blackval);
+    newCMYK.setYellow(yellowval);
+
+    return newCMYK;
 }
 
 float CMYKVALS::findR(float cval, float kval) {

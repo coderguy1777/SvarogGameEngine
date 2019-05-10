@@ -20,13 +20,13 @@ struct hsvval{
 // Color Class
 class Color {
 private:
-	float redval, greenval, blueval, alphaval;
 public:
-	Color(float r, float g, float b, float alph) {
+	float redval, greenval, blueval;
+
+	Color(float r, float g, float b) {
 		this->redval = r;
 		this->greenval = g;
 		this->blueval = b;
-		this->alphaval = alph;
 	}
 	void setRVal(float r);
 	void setGVal(float g);
@@ -40,6 +40,8 @@ public:
 	enum COLORNAMES { RED = 1, ORANGE = 2, GREEN = 3, YELLOW = 4, BLUE = 5, INDIGO = 6, VIOLET = 7 };
 	Color getPresetColors(char color);
 	float* createGradient(float percentr, float percentg, float percentb);
+	void newColor();
+
 };
 
 // HSV Class
@@ -58,7 +60,6 @@ public:
 	}
 
 	HSV getPresetHSV(char hsv);
-	
 	void setHue(float h);
 	void setSaturation(float s);
 	void setValue(float v);
@@ -67,12 +68,13 @@ public:
 	float getSaturation();
 	float getValue();
 	HSV createHSV();
+	Color HSVtoRGB(HSV test);
 
 };
 
 class HexColorCodes :public Color {
 public:
-	HexColorCodes(float redval, float greenval, float blueval, float alpha) :Color(redval, greenval, blueval, alpha) {}
+	HexColorCodes(float redval, float greenval, float blueval) :Color(redval, greenval, blueval) {}
 	const char HEXSTART = '#';
 	char hexcodes[26] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
 							   'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
@@ -95,10 +97,10 @@ public:
 struct cmyk {
 	float c, m, y, k;
 };
+
 class CMYKVALS {
-	private: 
-		float c, m, y, k;
 	public:
+		float c, m, y, k;
 		CMYKVALS(float cyan, float magenta, float yellow, float black) {
 			this->c = cyan;
 			this->m = magenta;
@@ -106,8 +108,6 @@ class CMYKVALS {
 			this->k = black;
 		}
 
-		float* RGBtoCMYK(float scales[4]);
-		float* CMYKtoRGB(float scales[4]);
 		void setCyan(float c);
 		void setBlack(float b);
 		void setYellow(float y);
@@ -135,5 +135,7 @@ class CMYKVALS {
 		float findG(float mval, float kval);
 		float findB(float yval, float kval);
 
-		// float val creation
+		// float val creation 
+		CMYKVALS RGBtoCMYK(float rval, float gval, float bval);
+		Color CMYKtoRGB(float cval, float mval, float yval, float kval);
 };

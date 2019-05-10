@@ -2,8 +2,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include "CoordinateStructs.h"
-#include "EngineHeader.h"
 
 class Vector {
 private:
@@ -26,8 +24,6 @@ public:
 	int getZ();
 
 	// translates a vec
-	void printX();
-
 
 };
 #endif

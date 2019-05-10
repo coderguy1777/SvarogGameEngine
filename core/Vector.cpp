@@ -23,7 +23,3 @@ int Vector::getY() {
 int Vector::getZ() {
 	return z;
 }
-
-void Vector::printX() {
-	std::cout << x << std::endl;
-}

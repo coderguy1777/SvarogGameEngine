@@ -24,7 +24,6 @@ void test(unsigned char key, int x, int y) {
 		vec.setX(fac);
 		glutPostRedisplay();
 	}
-	vec.printX();
 }
 
 
@@ -37,11 +36,15 @@ void init() {
 }
 
 void renderScene(void) {
-	Color wanted(0.0f, 0.0f, 0.0f, 0.0f);
-	Color test(wanted.getPresetColors('G'));
+	HSV test(212, 90, 10);
+	test.createHSV();
+		std::cout << test.hue << std::endl;
+		std::cout << test.saturation << std::endl;
+
+	Color newColor(test.HSVtoRGB(test));
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glMatrixMode(GL_MODELVIEW);	
-	test.createColor();
+	newColor.newColor();
 	init();
 	glutSwapBuffers();
 }
