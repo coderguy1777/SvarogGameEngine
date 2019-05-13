@@ -36,11 +36,8 @@ void init() {
 }
 
 void renderScene(void) {
-	HSV test(212, 90, 10);
+	HSV test(19, 31, 211);
 	test.createHSV();
-		std::cout << test.hue << std::endl;
-		std::cout << test.saturation << std::endl;
-
 	Color newColor(test.HSVtoRGB(test));
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glMatrixMode(GL_MODELVIEW);	

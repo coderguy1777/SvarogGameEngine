@@ -40,7 +40,7 @@ public:
 	enum COLORNAMES { RED = 1, ORANGE = 2, GREEN = 3, YELLOW = 4, BLUE = 5, INDIGO = 6, VIOLET = 7 };
 	Color getPresetColors(char color);
 	float* createGradient(float percentr, float percentg, float percentb);
-	void newColor();
+	Color newColor();
 
 };
 
@@ -92,6 +92,8 @@ public:
 		ORANGECODE
 	};
 	void getPredefinedcode(int code);
+	void RGBtoHEX(float redval, float greenval, float blueval);
+	
 };
 
 struct cmyk {
@@ -134,6 +136,9 @@ class CMYKVALS {
 		float findR(float cval, float kval);
 		float findG(float mval, float kval);
 		float findB(float yval, float kval);
+
+		// returns cmyk
+		CMYKVALS newCMYK();
 
 		// float val creation 
 		CMYKVALS RGBtoCMYK(float rval, float gval, float bval);

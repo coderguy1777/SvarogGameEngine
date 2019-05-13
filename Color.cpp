@@ -190,12 +190,10 @@ Color HSV::HSVtoRGB(HSV test) {
     float X = c * (1 - (test.hue/60));
     float x = abs((int)x);
     float m = test.value - c;
-    std::cout << X << std::endl;
     if(hue >= 0.0f || hue <= 60.0f) {
         primeColor.setRVal(c);
         primeColor.setGVal(x);
         primeColor.setBVal(0.0f);
-        std::cout << "degree 40" << std::endl;
     }
 
     if(hue >= 60.0f || hue <= 120.0f) {
@@ -233,13 +231,12 @@ Color HSV::HSVtoRGB(HSV test) {
     float primeB = primeColor.getBlue() * 1;
     primeColor.setRVal((primeR+m) * 255);
     primeColor.setGVal((primeG+m) * 255);
-    primeColor.setBVal((primeB + m));
-    std::cout << primeColor.getRed()<< primeColor.getGreen() << primeColor.getBlue() * 255 <<  std::endl;
+    primeColor.setBVal((primeB+m) * 255);
     return primeColor;
 }
 
-void Color::newColor() {
-    glClearColor(redval, greenval, blueval, 0.0f);
+Color Color::newColor() {
+    return Color(redval, greenval, blueval);
 }
 
 float CMYKVALS::getCyan() {
@@ -360,4 +357,8 @@ float CMYKVALS::findG(float mval, float kval)  {
 float CMYKVALS::findB(float yval, float kval) {
     float blue = 255 * (1-yval) * (1-kval);
     return blue;
+}
+
+CMYKVALS CMYKVALS::newCMYK() {
+    return CMYKVALS(c, y, m, k);
 }
