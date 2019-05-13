@@ -1,29 +1,86 @@
 #pragma once
-#ifndef VECTOR_H
+#ifdef VECTOR_H
 #define VECTOR_H
+#endif
+#include<iostream>
+#include<vector>
+using namespace std;
 
+struct vecclass {
+	float x, y, z;
+	Vector a;
+};
 
 class Vector {
-private:
+	private:
+		float x, y, z;
+	public:
+		Vector(float pointx, float pointy, float pointz) {
+			this->x = pointx;
+			this->y = pointy;
+			this->z = pointz;
+		}
 
-public:
-	int x, y, z;
+		float translateX();
+		float translateY();
+		float translateZ();
 
-	Vector(int xpos, int ypos, int zpos) {
-		this->x = xpos;
-		this->y = ypos;
-		this->z = zpos;
-	}
-	void setX(int x);
-	void setY(int y);
-	void setZ(int z);
-	
-	// gets vector x, y, z
-	int getX();
-	int getY();
-	int getZ();
+		float getX();
+		float getY();
+		float getZ();
+		
+		void changeX(float xval);
+		void changeY(float yval);
+		void changeZ(float zval);
+		
+		float vecMag(Vector a);
+		
+		Vector newVec(float x, float y, float z);
 
-	// translates a vec
+		void * operator new(size_t size) {
+			void * vec = ::new Vector(0.0f, 0.0f, 0.0f);
+			return vec;
+		}
+
+		Vector translateEntireVec();
+		Vector getVector();
+		Vector addVec(Vector addtional, Vector initial);
+
+		Vector operator+(const Vector& b) {
+			Vector vec(0.0f, 0.0f, 0.0f);
+			vec.x += this->x + b.x;
+			vec.y += this->y + b.y;
+			vec.z += this->z + b.z;
+			return vec;
+		}
+
+		Vector operator*(const Vector& x) {
+			Vector vec(0.0f, 0.0, 0.0f);
+			vec.x *= this->x * x.x;
+			vec.y *= this->y * x.y;
+			vec.z *= this->z * x.z;
+			return vec;
+		}
+
+		Vector operator-(const Vector &vector) {
+			Vector vec(0.0f, 0.0f, 0.0f);
+			vec.x -= this->x - vector.x;
+			vec.y -= this->y - vector.y;
+			vec.z -= this->z - vector.z;
+			return vec;
+		}
+ 
+	 	Vector operator/(const Vector &vector) {
+			 Vector vec(0.0f, 0.0f, 0.0f);
+			 vec.x /= this->x / vector.x;
+			 vec.y /= this->y / vector.y;
+			 vec.z /= this->z / vector.z;
+			 return vec;
+		}
+
+
+		~Vector();
+
+
 
 };
-#endif
