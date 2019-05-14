@@ -12,16 +12,11 @@ void test(unsigned char key, int x, int y) {
 	Vector vec(0, 0, 0);
 	if (key == 'w') {
 		fac += 1;
-		vec.setX(fac);
-		vec.x += 1;
-		glTranslatef(vec.x, 0.0f, 0.0f);
 		glutPostRedisplay();
 	}
 
 	if (key == 's') {
 		fac -= sin(1);
-		vec.z -= sin(1);
-		vec.setX(fac);
 		glutPostRedisplay();
 	}
 }
@@ -36,12 +31,12 @@ void init() {
 }
 
 void renderScene(void) {
-	HSV test(19, 31, 211);
-	test.createHSV();
-	Color newColor(test.HSVtoRGB(test));
+	HSV newColor(90, 30, 30);
+	newColor.createHSV();
+	Color newColor2(newColor.HSVtoRGB(newColor));
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glMatrixMode(GL_MODELVIEW);	
-	newColor.newColor();
+	newColor2.createColor();
 	init();
 	glutSwapBuffers();
 }
@@ -56,4 +51,5 @@ int main(int argc, char **argv) {
 	glutDisplayFunc(renderScene);
 	glutKeyboardFunc(test);
 	glutMainLoop();
+	return 0;
 }

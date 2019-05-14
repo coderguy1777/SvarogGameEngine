@@ -21,3 +21,15 @@ int square(int fac, int num) {
     }
     return result;
 }
+
+float pow2(float num) {
+    return num * num;
+}
+
+int pow2(int num) {
+    return num * num;
+}
+
+double pow2(double num) {
+    return num * num;
+}

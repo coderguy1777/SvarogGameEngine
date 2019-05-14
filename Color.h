@@ -19,81 +19,80 @@ struct hsvval{
 
 // Color Class
 class Color {
-private:
-public:
-	float redval, greenval, blueval;
+	public:
+		float redval, greenval, blueval;
 
-	Color(float r, float g, float b) {
-		this->redval = r;
-		this->greenval = g;
-		this->blueval = b;
-	}
-	void setRVal(float r);
-	void setGVal(float g);
-	void setBVal(float b);
-	void setAlphaVal(float a);
-	float getRed();
-	float getAlpha();
-	float getGreen();
-	float getBlue();
-	void createColor();
-	enum COLORNAMES { RED = 1, ORANGE = 2, GREEN = 3, YELLOW = 4, BLUE = 5, INDIGO = 6, VIOLET = 7 };
-	Color getPresetColors(char color);
-	float* createGradient(float percentr, float percentg, float percentb);
-	Color newColor();
+		Color(float r, float g, float b) {
+			this->redval = r;
+			this->greenval = g;
+			this->blueval = b;
+		}
+		void setRVal(float r);
+		void setGVal(float g);
+		void setBVal(float b);
+		void setAlphaVal(float a);
+		float getRed();
+		float getAlpha();
+		float getGreen();
+		float getBlue();
+		void createColor();
+		enum COLORNAMES { RED = 1, ORANGE = 2, GREEN = 3, YELLOW = 4, BLUE = 5, INDIGO = 6, VIOLET = 7 };
+		Color getPresetColors(char color);
+		float* createGradient(float percentr, float percentg, float percentb);
+		Color newColor();
 
 };
 
 // HSV Class
 class HSV {
-private:
-	float red, green, blue;
-public:
-	float hue = 0.0f;
-	float saturation = 0.0f;
-	float value = 0.0f;
+	private:
+		float red, green, blue;
+	public:
+		float hue = 0.0f;
+		float saturation = 0.0f;
+		float value = 0.0f;
 
-	HSV(float r, float g, float b) {
-		this->red = r;
-		this->green = g;
-		this->blue = b;
-	}
+		HSV(float r, float g, float b) {
+			this->red = r;
+			this->green = g;
+			this->blue = b;
+		}
 
-	HSV getPresetHSV(char hsv);
-	void setHue(float h);
-	void setSaturation(float s);
-	void setValue(float v);
+		HSV getPresetHSV(char hsv);
+		void setHue(float h);
+		void setSaturation(float s);
+		void setValue(float v);
 
-	float getHue();
-	float getSaturation();
-	float getValue();
-	HSV createHSV();
-	Color HSVtoRGB(HSV test);
+		float getHue();
+		float getSaturation();
+		float getValue();
+		HSV createHSV();
+		Color HSVtoRGB(HSV test);
 
 };
 
-class HexColorCodes :public Color {
-public:
-	HexColorCodes(float redval, float greenval, float blueval) :Color(redval, greenval, blueval) {}
-	const char HEXSTART = '#';
-	char hexcodes[26] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-							   'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+class HexColorCodes : public Color {
+	public:
+		HexColorCodes(float redval, float greenval, float blueval) :Color(redval, greenval, blueval) {}
+		const char HEXSTART = '#';
+		char hexcodes[26] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+								'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
-	const int MAXLENOFCODE = 6;
-	std::string hexcode;
-	enum predefcodes {
-		WHITECODE,
-		BLACKCODE,
-		GREENCODE,
-		GRAYCODE,
-		REDCODE,
-		BLUECODE,
-		YELLOWCODE,
-		ORANGECODE
-	};
-	void getPredefinedcode(int code);
-	void RGBtoHEX(float redval, float greenval, float blueval);
-	
+		const int MAXLENOFCODE = 6;
+		std::string hexcode;
+		enum predefcodes {
+			WHITECODE,
+			BLACKCODE,
+			GREENCODE,
+			GRAYCODE,
+			REDCODE,
+			BLUECODE,
+			YELLOWCODE,
+			ORANGECODE
+		};
+		void getPredefinedcode(int code);
+		void RGBtoHEX(float redval, float greenval, float blueval);
+		
 };
 
 struct cmyk {

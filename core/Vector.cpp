@@ -18,10 +18,6 @@ Vector Vector::translateEntireVec() {
 	return Vector(x + translateX(), y + translateY(), z + translateZ());
 }
 
-Vector::~Vector() {
-	cout << "Vector destroyed" << endl;
-}
-
 Vector Vector::addVec(Vector additional, Vector inital) {
 	return inital + additional;
 }

@@ -8,7 +8,6 @@ using namespace std;
 
 struct vecclass {
 	float x, y, z;
-	Vector a;
 };
 
 class Vector {
@@ -78,8 +77,6 @@ class Vector {
 			 return vec;
 		}
 
-
-		~Vector();
 
 
 

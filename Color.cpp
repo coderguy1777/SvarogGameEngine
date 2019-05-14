@@ -222,16 +222,10 @@ Color HSV::HSVtoRGB(HSV test) {
 
     if(hue >= 300.0f || hue <= 360.0f) {
         primeColor.setRVal(c);
-        primeColor.setGVal(0.0f);
+        primeColor.setGVal(0.0f + 0.5f);
         primeColor.setBVal(x);
     }
-
-    float primeR = primeColor.getRed() * 1;
-    float primeG = primeColor.getGreen() * 1;
-    float primeB = primeColor.getBlue() * 1;
-    primeColor.setRVal((primeR+m) * 255);
-    primeColor.setGVal((primeG+m) * 255);
-    primeColor.setBVal((primeB+m) * 255);
+    std::cout << primeColor.redval << std::endl;
     return primeColor;
 }
 
