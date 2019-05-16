@@ -136,6 +136,10 @@ HSV HSV::createHSV() {
     return newHSV;
 }
 
+HSV HSV::makeHSV(double h, float s, float v) {
+    return HSV((float)h, s, v);
+}
+
 HSV HSV::getPresetHSV(char hsv) {
     HSV predefhsv(0.0f, 0.0f, 0.0f);
     if(hsv == 'B') {
@@ -226,6 +230,8 @@ Color HSV::HSVtoRGB(HSV test) {
         primeColor.setBVal(x);
     }
     std::cout << primeColor.redval << std::endl;
+    primeColor.redval = primeColor.redval/255;
+    primeColor.greenval = primeColor.greenval/255;
     return primeColor;
 }
 
@@ -355,4 +361,28 @@ float CMYKVALS::findB(float yval, float kval) {
 
 CMYKVALS CMYKVALS::newCMYK() {
     return CMYKVALS(c, y, m, k);
+}
+
+double HSL::getHue() {
+    return this->h;
+}
+
+float HSL::getSaturation() {
+    return this->s;
+}
+
+float HSL::getLightness() {
+    return this->l;
+}
+
+void HSL::setHue(double hue) {
+    this->h = hue;
+}
+
+void HSL::setSaturation(float saturation) {
+    this->s = saturation;
+}
+
+void HSL::setLightness(float lightness) {
+    this->l = lightness;
 }

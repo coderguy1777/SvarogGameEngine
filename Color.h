@@ -7,6 +7,7 @@
 #include<initializer_list>
 #include <cmath>
 #include <algorithm>
+#include<vector>
 
 // rgba structure fo
 struct rgba {
@@ -14,7 +15,9 @@ struct rgba {
 };
 
 struct hsvval{
-	float h, s, v;
+	double h;
+	float s;
+	float v;
 };
 
 // Color Class
@@ -40,6 +43,7 @@ class Color {
 		Color getPresetColors(char color);
 		float* createGradient(float percentr, float percentg, float percentb);
 		Color newColor();
+		std::vector<hsvval>ytes;
 
 };
 
@@ -62,11 +66,15 @@ class HSV {
 		void setHue(float h);
 		void setSaturation(float s);
 		void setValue(float v);
+		
+		HSV makeHSV(double h, float s, float v);
 
 		float getHue();
 		float getSaturation();
 		float getValue();
 		HSV createHSV();
+		
+
 		Color HSVtoRGB(HSV test);
 
 };
@@ -142,4 +150,32 @@ class CMYKVALS {
 		// float val creation 
 		CMYKVALS RGBtoCMYK(float rval, float gval, float bval);
 		Color CMYKtoRGB(float cval, float mval, float yval, float kval);
+};
+
+template<class H, class S, class L>
+	struct hsl {
+		double h;
+		float s,l;
+	};
+class HSL {
+	private:
+		double h;
+		float s, l;
+	
+	public:
+		HSL(double hue, float saturation, float lightness) {
+			this->h = hue;
+			this->s = saturation;
+			this->l = lightness;
+		}
+		double getHue();
+		float getSaturation();
+		float getLightness();
+
+		void setHue(double hue);
+		void setSaturation(float saturation);
+		void setLightness(float lightness);
+		Color HSLtoRGB();
+		HSL RGBtoHSL(Color rgb);
+		HSL makeHSL(HSL hsl);
 };
