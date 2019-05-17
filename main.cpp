@@ -3,10 +3,8 @@
 #include "core/Vector.h"
 #include <vector>
 using namespace std;
-
 int fac = 0;
 std::vector<rgba>colors;
-
 Vector vec(0, 0, 0);
 void test(unsigned char key, int x, int y) {
 	Vector vec(0, 0, 0);

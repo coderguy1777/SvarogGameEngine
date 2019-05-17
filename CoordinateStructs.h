@@ -7,7 +7,3 @@ struct vector3d {
 struct objectpos {
 	float xobj, yobj, zobj;
 };
-
-struct hsv {
-	GLfloat h, s, v;
-};
