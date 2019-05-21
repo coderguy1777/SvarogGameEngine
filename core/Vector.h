@@ -4,6 +4,7 @@
 #endif
 #include<iostream>
 #include<vector>
+#include "main/EngineHeader.h"
 using namespace std;
 
 struct vecclass {
