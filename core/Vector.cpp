@@ -1,6 +1,7 @@
 #include "Vector.h"
 #include<cmath>
 #include "math.h"
+Math globalvar;
 
 float Vector::translateX() {
 	return x + 5.0f;
@@ -51,6 +52,6 @@ void Vector::changeZ(float z) {
 }
 
 float Vector::vecMag(Vector a) {
-	float mag = sqrt(square(1, a.x - x) + square(1, a.y - y) + square(1, a.z - z));
+	float mag = sqrt(globalvar.square(1, a.x - x) + globalvar.square(1, a.y - y) + globalvar.square(1, a.z - z));
 	return mag;
 }
