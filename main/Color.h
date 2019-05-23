@@ -49,17 +49,15 @@ class Color {
 
 // HSV Class
 class HSV {
-	private:
-		float red, green, blue;
 	public:
-		float hue = 0.0f;
+		double hue = 0.0;
 		float saturation = 0.0f;
 		float value = 0.0f;
 
-		HSV(float r, float g, float b) {
-			this->red = r;
-			this->green = g;
-			this->blue = b;
+		HSV(double h, float s, float vb) {
+			this->hue = h;
+			this->saturation = s;
+			this->value = vb;
 		}
 
 		HSV getPresetHSV(char hsv);
@@ -69,19 +67,23 @@ class HSV {
 		
 		HSV makeHSV(double h, float s, float v);
 
-		float getHue();
+		double getHue();
 		float getSaturation();
-		float getValue();
-		HSV createHSV();
-		
+		float getValue();		
 
-		Color HSVtoRGB(HSV test);
+		Color HSVtoRGB();
 
 };
 
-class HexColorCodes : public Color {
+class HexColorCodes {
 	public:
-		HexColorCodes(float redval, float greenval, float blueval) :Color(redval, greenval, blueval) {}
+		float r,  g,  b;
+		HexColorCodes(float redval, float greenval, float blueval) {
+			this->r = redval;
+			this->g = greenval;
+			this->b = blueval;
+		}
+		
 		const char HEXSTART = '#';
 		char hexcodes[26] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
 								'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
@@ -152,11 +154,6 @@ class CMYKVALS {
 		Color CMYKtoRGB(float cval, float mval, float yval, float kval);
 };
 
-template<class H, class S, class L>
-	struct hsl {
-		double h;
-		float s,l;
-	};
 class HSL {
 	private:
 		double h;

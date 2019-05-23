@@ -1,4 +1,16 @@
 #include "Color.h"
+#include <vector>
+
+struct Colortest {
+    Color a;
+} mine;
+
+std::vector<Colortest>test;
+void coloorts(Colortest color);
+void coloorts(Colortest color) {
+    color.a.getAlpha();
+    Color aa(0.0f, 0.0f, 0.0f);
+}
 
 float Color::getBlue() {
     return blueval;
@@ -75,7 +87,7 @@ Color Color::getPresetColors(char color) {
     return returnval;
 }
 
-float HSV::getHue() {
+double HSV::getHue() {
     return hue;
 }
 
@@ -99,42 +111,6 @@ void HSV::setSaturation(float s) {
     saturation = s;
 }
 
-HSV HSV::createHSV() {
-    HSV newHSV(0.0f, 0.0f, 0.0f);
-    float primer = red / 255;
-	float primeg = green / 255;
-	float primeb = blue / 255;
-	float max = std::max(std::max(primer, primeg), primeb);
-	float min = std::min(std::min(primer, primeg), primeb);
-	float delta = max - min;
-	value = max;
-	hue, saturation = 0.0f;
-
-	if (max == primer) {
-		hue = 60.0 * (primeg - primeb) / delta;
-	}
-
-	if (max == primeg) {
-		hue = 60.0 * (((primeb - primer) / delta) + 2);
-	}
-
-	if (max == primeb) {
-		hue = 60.0 * (((primer - primeg) / delta) + 4);
-	}
-
-	if (max == 0) {
-		saturation = 0.0f;
-	}
-
-	if (max != 0) {
-		saturation = delta/max;
-	}
-
-    newHSV.setHue(hue);
-    newHSV.setSaturation(saturation);
-    newHSV.setValue(value);
-    return newHSV;
-}
 
 HSV HSV::makeHSV(double h, float s, float v) {
     return HSV((float)h, s, v);
@@ -187,51 +163,34 @@ HSV HSV::getPresetHSV(char hsv) {
     return predefhsv;
 }
 
-Color HSV::HSVtoRGB(HSV test) {
+Color HSV::HSVtoRGB() {
+    float p, t, q, val = 0.0f;
+
     Color primeColor(0.0f, 0.0f, 0.0f);
-    Color finalColor(0.0f, 0.0f, 0.0f);
-    float c = test.saturation * test.value;
-    float X = c * (1 - (test.hue/60));
-    float x = abs((int)x);
-    float m = test.value - c;
-    if(hue >= 0.0f || hue <= 60.0f) {
-        primeColor.setRVal(c);
-        primeColor.setGVal(x);
-        primeColor.setBVal(0.0f);
+    double hi = floor(fmod(hue / 60, 6));
+    float f = hue/60 - hi;
+    p = value * (1-saturation);
+    q = value * (1-f*saturation);
+    t = value * (1-(1-f)*saturation);
+
+    if(floor(hi) == 0) {
+        primeColor.redval = value;
+        primeColor.greenval = t;
+        primeColor.blueval = p;
     }
 
-    if(hue >= 60.0f || hue <= 120.0f) {
-        primeColor.setRVal(x);
-        primeColor.setGVal(c);
-        primeColor.setBVal(0.0f);
+    if(floor(hi) == 1) {
+        primeColor.redval = q;
+        primeColor.greenval = value;
+        primeColor.blueval = p;
     }
 
-    if(hue >= 120.0f || hue <= 180.0f) {
-        primeColor.setRVal(0.0f);
-        primeColor.setGVal(c);
-        primeColor.setBVal(x);
+    if(floor(hi) == 2) {
+        primeColor.redval = p;
+        primeColor.greenval = floor(value * 255)/255;
+        primeColor.blueval = t;
+        std::cout << floor(primeColor.redval * 255) << " " << primeColor.greenval <<  " " << primeColor.blueval << std::endl;
     }
-
-    if(hue >= 180.0f || hue <= 240.0f) {
-        primeColor.setRVal(0.0f);
-        primeColor.setGVal(x);
-        primeColor.setBVal(c);
-    }
-
-    if(hue >= 240.0f || hue <= 300.0f) {
-        primeColor.setRVal(x);
-        primeColor.setGVal(0.0f);
-        primeColor.setBVal(c);
-    }
-
-    if(hue >= 300.0f || hue <= 360.0f) {
-        primeColor.setRVal(c);
-        primeColor.setGVal(0.0f + 0.5f);
-        primeColor.setBVal(x);
-    }
-    std::cout << primeColor.redval << std::endl;
-    primeColor.redval = primeColor.redval/255;
-    primeColor.greenval = primeColor.greenval/255;
     return primeColor;
 }
 
