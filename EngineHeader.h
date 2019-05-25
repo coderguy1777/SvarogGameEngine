@@ -6,6 +6,9 @@
 #include<iostream>
 #include<GL/gl.h>
 #include<GL/glu.h>
+#include "core\Vector.h"
+#include "main\Color.h"
+#include "main\HSV.h"
 
 
 struct COLOR {

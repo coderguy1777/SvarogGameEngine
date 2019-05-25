@@ -20,5 +20,8 @@ class Vector2 {
         void setPosX(float newx);
         void setPosY(float newy);
 
+        Vector2 operator*(const Vector2 &b);
+        Vector2 operator+(const Vector2 &b);
+        Vector2 operator-(const Vector2 &b);
         void resetXY(char choice);
 };

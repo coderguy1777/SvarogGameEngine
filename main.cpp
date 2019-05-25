@@ -1,10 +1,10 @@
+#include "main\Color.h"
+#include "core\Vector.h"
 #include "EngineHeader.h"
-#include "Color.h"
-#include "core/Vector.h"
 #include <vector>
 using namespace std;
+
 int fac = 0;
-std::vector<rgba>colors;
 Vector vec(0, 0, 0);
 void test(unsigned char key, int x, int y) {
 	Vector vec(0, 0, 0);
@@ -30,7 +30,7 @@ void init() {
 
 void renderScene(void) {
 	HSV newColor(165, 0.96, 0.65);
-	Color newColor2(newColor.HSVtoRGB());
+	Rgb newColor2(newColor.HSVtoRGB());
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glMatrixMode(GL_MODELVIEW);
 	glClearColor(newColor2.redval, newColor2.greenval, newColor2.blueval, 0.0f);
