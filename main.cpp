@@ -1,6 +1,7 @@
-#include "main\Color.h"
-#include "core\Vector.h"
+#include "main/Color.h"
+#include "core/Vector.h"
 #include "EngineHeader.h"
+#include "main.h"
 #include <vector>
 using namespace std;
 
@@ -18,7 +19,6 @@ void test(unsigned char key, int x, int y) {
 		glutPostRedisplay();
 	}
 }
-
 
 void init() {
 	glEnable(GL_CULL_FACE);
