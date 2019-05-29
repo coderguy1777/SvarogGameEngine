@@ -1,35 +1,23 @@
-#include<string>
+#pragma once
+#ifdef STRING_H
+#define STRING_H
+#endif
 #include<iostream>
 #include<vector>
 using namespace std;
 
 class String {
-     private:        
-        string input;
-     public:
-        String(string str) {
-            this->input = str;
+    public:
+        const char* str;
+        String(const char* strn) {
+            this->str = strn;
         }
 
-        char* parse(char parseit[8]);
-        void *operator new(size_t size) {
-           void *p = ::new String("");
-        }
         int length();
-        char findChar();
+        vector<char>substring(int start, int end);
+        vector<char>substring(int index);
         bool equals(String i);
-        String setStr(int index, char newChar);
-        String setRangeStr(int start, int end, string change);
-        bool emptyStr(string input2);
-        String get();
-        String set(vector<char>newstr);
-        ~String();
-        String add(String i);
-        char get(int index);
-        char add(int index);
-        String concat(String i, String j);
-        String substring(int start, int end);
-        
+        bool isEmpty();
+        bool contains(String sequence);
+        char* toCharArray(String i);
 };
-
-
