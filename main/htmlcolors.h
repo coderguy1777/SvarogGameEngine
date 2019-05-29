@@ -33,5 +33,4 @@ class HexColorCodes {
 		};
 		void getPredefinedcode(int code);
 		void RGBtoHEX(float redval, float greenval, float blueval);
-		String newHexCode(float r, float g, float b);
 };

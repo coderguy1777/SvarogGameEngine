@@ -101,7 +101,6 @@ Rgb HSV::HSVtoRGB() {
         primeColor.redval = p;
         primeColor.greenval = floor(value * 255)/255;
         primeColor.blueval = t;
-        std::cout << floor(primeColor.redval * 255) << " " << primeColor.greenval <<  " " << primeColor.blueval << std::endl;
     }
     return primeColor;
 }

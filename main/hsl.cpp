@@ -22,3 +22,8 @@ void HSL::setSaturation(float saturation) {
 void HSL::setLightness(float lightness) {
     this->l = lightness;
 }
+
+Rgb HSL::HSLtoRGB() {
+    Rgb newRgb(0.0f, 0.0f, 0.0f);
+    
+}
