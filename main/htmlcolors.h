@@ -8,20 +8,17 @@
 using namespace std;
 
 class HexColorCodes {
+	private:
+		String code;
 	public:
-		float r,  g,  b;
-		HexColorCodes(float redval, float greenval, float blueval) {
-			this->r = redval;
-			this->g = greenval;
-			this->b = blueval;
+		HexColorCodes(String str) {
+			code = str;
 		}
-		
-		const char HEXSTART = '#';
-		char hexcodes[26] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-								'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
-		const int MAXLENOFCODE = 6;
-		String hexcode;
+		void changecode(String newstr);
+		String getcode();
+		Rgb hexcodetorgb();
+
 		enum predefcodes {
 			WHITECODE,
 			BLACKCODE,
@@ -33,10 +30,11 @@ class HexColorCodes {
 			ORANGECODE
 		};
 
-		void setRval(float r);
-		void setGval(float g);
-		void setBval(float b);
-
-		void getPredefinedcode(int code); 
-		void RGBtoHEX(float redval, float greenval, float blueval);
+		HexColorCodes getPredefinedcode(int code); 
+		codegroup* makecodelist(String *codes);
+		int gethexval(char letter);
 };
+
+struct codegroup {
+	HexColorCodes a[3];
+} hexcode1, hexcode2, hexcode3;
