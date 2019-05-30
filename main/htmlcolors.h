@@ -5,6 +5,7 @@
 #include "EngineHeader.h"
 #include "Color.h"
 #include "core/String.h"
+using namespace std;
 
 class HexColorCodes {
 	public:
@@ -20,7 +21,7 @@ class HexColorCodes {
 								'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
 		const int MAXLENOFCODE = 6;
-		std::string hexcode;
+		String hexcode;
 		enum predefcodes {
 			WHITECODE,
 			BLACKCODE,
@@ -31,6 +32,11 @@ class HexColorCodes {
 			YELLOWCODE,
 			ORANGECODE
 		};
-		void getPredefinedcode(int code);
+
+		void setRval(float r);
+		void setGval(float g);
+		void setBval(float b);
+
+		void getPredefinedcode(int code); 
 		void RGBtoHEX(float redval, float greenval, float blueval);
 };

@@ -32,10 +32,10 @@ class CMYKVALS {
 		float findBPrime(float blue);
 
 		// CMYK vals
-		float findK(float primer, float primeg, float primeb);
 		float findC(float primer, float kval);
 		float findM(float primeg, float kval);
 		float findY(float primeb, float kval);
+		float findK(float primer, float primeg, float primeb);
 
 		// finding RGB Vals
 		float findR(float cval, float kval);
@@ -44,6 +44,11 @@ class CMYKVALS {
 
 		// returns cmyk
 		CMYKVALS newCMYK();
+		void * operator new(size_t size) {
+			void * p = ::new CMYKVALS(0, 0, 0, 0);
+			return p;
+		}
+
 
 		// float val creation 
 		CMYKVALS RGBtoCMYK(float rval, float gval, float bval);
