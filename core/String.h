@@ -19,5 +19,8 @@ class String {
         bool equals(String i);
         bool isEmpty();
         bool contains(String sequence);
+        bool startsWith(char check);
+        bool endsWith(char check);
+        void setstr(int index, char newstr);
         char* toCharArray(String i);
 };

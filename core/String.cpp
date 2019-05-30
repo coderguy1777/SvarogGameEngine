@@ -44,12 +44,15 @@ bool String::isEmpty() {
 bool String::contains(String sequence) {
     bool doescontain = false;
     for(int i = 0; i < String::length(); i++) {
-        if(str[i] == sequence.str[i]) {
-            doescontain = true;
-        } else {
-            doescontain = false;
-        }
+        (str[i] == sequence.str[i]) ? doescontain = true: doescontain = false;
     }
-
     return doescontain;
+}
+
+bool String::startsWith(char wanted) {
+    return (wanted == str[0]) ? true : false;
+}
+
+bool String::endsWith(char wanted) {
+    return (wanted == str[String::length() - 1]) ? true : false;
 }

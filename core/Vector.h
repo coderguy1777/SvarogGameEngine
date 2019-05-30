@@ -77,8 +77,4 @@ class Vector {
 			 vec.z /= this->z / vector.z;
 			 return vec;
 		}
-
-
-
-
 };
