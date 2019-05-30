@@ -12,10 +12,12 @@ class String {
         String(const char* strn) {
             this->str = strn;
         }
+        String() {};
 
         int length();
         vector<char>substring(int start, int end);
         vector<char>substring(int index);
+        void del(char unwanted);
         bool equals(String i);
         bool isEmpty();
         bool contains(String sequence);

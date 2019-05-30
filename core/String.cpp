@@ -56,3 +56,23 @@ bool String::startsWith(char wanted) {
 bool String::endsWith(char wanted) {
     return (wanted == str[String::length() - 1]) ? true : false;
 }
+
+void String::del(char unwanted) {
+    int unwantedid = 0;
+    for(int i = 0; i < String::length(); i++) {
+        if(str[i] == unwanted) {
+            unwantedid = i;
+        } else {
+            continue;
+        }
+    }
+    setstr(unwantedid, '\0');
+}
+
+char* String::toCharArray(String i) {
+    char strchar[i.length()];
+    for(int j = 0; j < i.length(); j++) {
+        strchar[j] = i.str[j];
+    }
+    return strchar;
+}
