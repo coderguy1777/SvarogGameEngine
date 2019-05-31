@@ -24,58 +24,90 @@ HexColorCodes HexColorCodes::getPredefinedcode(int code) {
             wantedcolor.changecode("#FFFF00");
         case ORANGECODE:
             wantedcolor.changecode("#FF4500");
-        default:
-            wantedcolor.changecode("#000000");
+    
     }
     return wantedcolor;
 }
 
-Rgb HexColorCodes::hexcodetorgb() {
+Rgb HexColorCodes::hexcodetorgb(vector<int>vals) {
     Rgb converted(0.0f, 0.0f, 0.0f);
     int convertedbaser1, convertedbaser2, convertedbaser3 = 0;
     code.del('#');
-    char* codearr = code.toCharArray(code);
-    vector<int>decvals;    
-    for(int i = 0; i < code.length(); i++) {
-        decvals.push_back(gethexval(codearr[i]));
-    }
+    int sum = 0; 
+	int sumprev = 0;
+	vector<int>sumvals;
+	for(unsigned int i = 1; i <= vals.size() - 1; i++) {
+		int temp = vals[i - 1];
+		sumprev = temp * pow((double)16.0, 0);
+		sum  = vals[i] * pow((double)16.0, 1);
+		cout << sum << " : " << sumprev << endl;
+	}
 }
 
 int HexColorCodes::gethexval(char letter) {
     int value = 0;
-    switch(letter) {
-        case '0':
-            value = 0;
-        case '1':
-            value = 1;
-        case '2':
-            value = 2;
-        case '3':
-            value = 3;
-        case '4':
-            value = 4;
-        case '5':
-            value = 5;
-        case '6':
-            value = 6;
-        case '7':
-            value = 7;
-        case '8':
-            value = 8;
-        case '9':
-            value = 9;
-        case 'A':
-            value = 10;
-        case 'B':
-            value = 11;
-        case 'C':
-            value = 12;
-        case 'D':
-            value = 13;
-        case 'E':
-            value = 14;
-        case 'F':
-            value = 15;
-    }
-    return value;
+	if(letter == '0') {
+		value = 0;
+	}
+
+	if(letter == '1') {
+		value = 1;
+	}
+
+	if(letter == '2') {
+		value = 2;
+	}
+
+	if(letter == '3') {
+		value = 3;
+	} 
+
+	if(letter == '4') {
+		value = 4;
+	}
+	
+	if(letter == '5') {
+		value = 5;
+	}
+
+	if(letter == '6') {
+		value = 6;
+	}
+
+	if(letter == '7') {
+		value = 7;
+	}
+
+	if(letter == '8') {
+		value = 8;
+	}
+
+	if(letter == '9') {
+		value = 9;
+	}
+
+	if(letter == 'A') {
+		value = 10;
+	}
+
+	if(letter == 'B') {
+		value = 11;
+	}
+
+	if(letter == 'C') {
+		value = 12;
+	} 
+
+	if(letter == 'D') {
+		value = 13;
+	}
+
+	if(letter == 'E') {
+		value = 14;
+	}
+
+	if(letter == 'F') {
+		value = 15;
+	}
+	return value;
 }
