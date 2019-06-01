@@ -29,19 +29,16 @@ HexColorCodes HexColorCodes::getPredefinedcode(int code) {
     return wantedcolor;
 }
 
-Rgb HexColorCodes::hexcodetorgb(vector<int>vals) {
+Rgb HexColorCodes::hexcodetorgb(ArrayList<int>vals) {
     Rgb converted(0.0f, 0.0f, 0.0f);
-    int convertedbaser1, convertedbaser2, convertedbaser3 = 0;
-    code.del('#');
-    int sum = 0; 
-	int sumprev = 0;
-	vector<int>sumvals;
-	for(unsigned int i = 1; i <= vals.size() - 1; i++) {
-		int temp = vals[i - 1];
-		sumprev = temp * pow((double)16.0, 0);
-		sum  = vals[i] * pow((double)16.0, 1);
-		cout << sum << " : " << sumprev << endl;
-	}
+    int convertedbase1, convertedbase2, convertedbase3 = 0;
+	convertedbase1 = vals.get(0);
+	convertedbase2 = vals.get(1);
+	convertedbase3 = vals.get(2);
+	converted.setRVal(convertedbase1);
+	converted.setGVal(convertedbase2);
+	converted.setBVal(convertedbase3);
+	return converted;
 }
 
 int HexColorCodes::gethexval(char letter) {

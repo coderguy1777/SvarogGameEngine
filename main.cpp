@@ -41,6 +41,8 @@ void renderScene(void) {
 
 int main(int argc, char **argv) {
 	glutInit(&argc, argv);
+	String title("Hello world");
+	enginecore::initializeWindow(800, 600, title.str);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glEnable(GL_DEPTH_TEST);
 	glutInitWindowSize(800, 600); 

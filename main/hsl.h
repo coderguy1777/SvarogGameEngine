@@ -2,29 +2,35 @@
 #ifdef HSL_H
 #define HSL_H
 #endif
-#include "Color.h"
+#include "color.h"
 #include "EngineHeader.h"
 using namespace std;
 
-class HSL {
+class hsl {
 	private:
 		double h;
 		float s, l;
 	
 	public:
-		HSL(double hue, float saturation, float lightness) {
+		hsl(double hue, float saturation, float lightness) {
 			this->h = hue;
 			this->s = saturation;
 			this->l = lightness;
+			if(this->s > 1) {
+				this->s = 1;
+			}
+
+			if(this->l > 1) {
+				this->l = 1;
+			}
 		}
 		double getHue();
 		float getSaturation();
 		float getLightness();
-
 		void setHue(double hue);
 		void setSaturation(float saturation);
 		void setLightness(float lightness);
 		Rgb HSLtoRGB();
-		HSL RGBtoHSL(Rgb rgb);
-		HSL makeHSL(HSL hsl);
+		hsl RGBtoHSL(Rgb rgb);
+		hsl makeHSL(hsl hsl);
 };

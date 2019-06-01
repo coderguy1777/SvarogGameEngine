@@ -1,4 +1,4 @@
-#include "Color.h"
+#include "color.h"
 #include <vector>
 
 float Rgb::getBlue() {

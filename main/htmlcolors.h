@@ -3,8 +3,8 @@
 #define HTMLCOLORS_H
 #endif
 #include "EngineHeader.h"
-#include "core/ArrayList.hpp"
-#include "Color.h"
+#include "core/ArrayList.h"
+#include "color.h"
 #include "core/String.h"
 using namespace std;
 
@@ -18,7 +18,7 @@ class HexColorCodes {
 
 		void changecode(String newstr);
 		String getcode();
-		Rgb hexcodetorgb(vector<int>vals);
+		Rgb hexcodetorgb(ArrayList<int>vals);
 
 		enum predefcodes {
 			WHITECODE,
@@ -34,20 +34,27 @@ class HexColorCodes {
 		HexColorCodes getPredefinedcode(int code); 
 		codegroup* makecodelist(String *codes);
 		int gethexval(char letter);
+
 		ArrayList<int>findDecVals(String code) {
 			code.del('#');
-			int sum1 = 0;
-			int sum2 = 0;
+			int sum1, sum2, finalsum = 0;
 			double base16 = 16.0;
 			ArrayList<int>convertedvals;
+			ArrayList<int>summedvalues;
 			for(int i = 0; i <= code.length(); i++) {
 				convertedvals.add(gethexval(code.str[i]));
 			}
 
-			for(unsigned int j = 0; j <= convertedvals.size(); j++) {
-
+			for(unsigned int j = 1; j <= convertedvals.size() - 1; j++) {
+				int temp = convertedvals.get(j - 1);
+				sum1 = convertedvals.get(j) * pow(base16, (double)1);
+				sum2 = temp * pow(base16, 0);
+				finalsum = sum1 + sum2;
+				summedvalues.add(finalsum);
 			}
+			return summedvalues;
 		}
+
 };
 
 struct codegroup {
