@@ -4,6 +4,7 @@
 #endif
 #define PI 3.14
 #include <vector>
+#include <cmath>
 namespace matheq
 {
     float square(int fac, float num)
@@ -124,9 +125,9 @@ namespace matheq
 
     float cos(float angle)
     {
-        float rad_angle = (angle)*PI / 180;
-
-        return angle;
+        float rad_angle, solvedang = 0.0f;
+        rad_angle=(angle)*PI / 180;
+        return cosf(rad_angle);
     }
 
 } // namespace matheq
