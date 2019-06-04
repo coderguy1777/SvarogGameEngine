@@ -32,5 +32,8 @@ class Vector2 {
         void resetY();
         Vector2 dotProduct(Vector2 veca, Vector2 vecb);
         Vector2 dotProductAngle(Vector2 veca, Vector2 vecb, double angle);
-
+        float dist_twoVectors(Vector2 veca, Vector2 vecb);
+        float angle_distVector(Vector2 distvec);
+        float xToAngle(float pointX);
+        float yToAngle(float pointY);
 };

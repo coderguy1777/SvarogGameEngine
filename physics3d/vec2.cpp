@@ -74,3 +74,20 @@ Vector2 Vector2::dotProductAngle(Vector2 veca, Vector2 vecb, double angle) {
     vec_c.setPosY(y_c);
     return vec_c;
 }
+
+float Vector2::dist_twoVectors(Vector2 veca, Vector2 vecb) {
+    Vector2 distvec(veca-vecb);
+    return abs(distvec.inity) - abs(distvec.inity);
+}
+
+float Vector2::angle_distVector(Vector2 distvec) {
+    return atan2(distvec.initx, distvec.inity);
+}
+
+float Vector2::xToAngle(float pointX) {
+    return cos(pointX);
+}
+
+float Vector2::yToAngle(float pointY) {
+    return sin(pointY);
+}
