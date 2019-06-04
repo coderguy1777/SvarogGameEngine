@@ -3,7 +3,7 @@
 #define CMYK_H
 #endif
 using namespace std;
-#include "color.h"
+#include "Color.h"
 
 class CMYKVALS {
 	public:

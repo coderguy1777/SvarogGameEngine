@@ -77,7 +77,6 @@ HSV HSV::getPresetHSV(char hsv) {
 
 Rgb HSV::HSVtoRGB() {
     float p, t, q, val = 0.0f;
-
     Rgb primeColor(0.0f, 0.0f, 0.0f);
     double hi = floor(fmod(hue / 60, 6));
     float f = hue/60 - hi;

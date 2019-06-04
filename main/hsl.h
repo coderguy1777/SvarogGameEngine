@@ -2,8 +2,7 @@
 #ifdef HSL_H
 #define HSL_H
 #endif
-#include "color.h"
-#include "EngineHeader.h"
+#include "Color.h"
 using namespace std;
 
 class hsl {
@@ -31,6 +30,7 @@ class hsl {
 		void setSaturation(float saturation);
 		void setLightness(float lightness);
 		Rgb HSLtoRGB();
+		hsl getPredefinedHSL(char color);
 		hsl RGBtoHSL(Rgb rgb);
 		hsl makeHSL(hsl hsl);
 };

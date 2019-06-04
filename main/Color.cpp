@@ -1,4 +1,5 @@
-#include "color.h"
+#include "Color.h"
+#include<GL/gl.h>
 #include <vector>
 
 float Rgb::getBlue() {
@@ -23,10 +24,6 @@ void Rgb::setGVal(float g) {
 
 void Rgb::setBVal(float b) {
     blueval = b;
-}
-
-void Rgb::createColor() {
-    glClearColor(redval, greenval, blueval, 0.0f);
 }
 
 Rgb Rgb::newColor() {
@@ -77,6 +74,63 @@ Rgb Rgb::getPresetColors(char rgb) {
         returnval.setGVal(255.0f);
         returnval.setBVal(255.0f);
     }
-
     return returnval;
+}
+
+void eightbit::setR(float red) {
+    r = red;
+}
+
+void eightbit::setG(float green) {
+    g = green;
+}
+
+void eightbit::setB(float blue) {
+    b = blue;
+}
+
+eightbit eightbit::RgbtoEightbit(Rgb color) {
+    eightbit convertedrgb(0.0f, 0.0f, 0.0f);
+    float primer, primeg, primeb = 0.0f;
+    primer = color.redval/255;
+    primeg = color.greenval/255;
+    primeb = color.blueval/255;
+    convertedrgb.setR(primer);
+    convertedrgb.setG(primeg);
+    convertedrgb.setB(primeb);
+    return convertedrgb;
+}
+
+float eightbit::getRed() {
+    return r;
+}
+
+float eightbit::getGreen() {
+    return g;
+}
+
+float eightbit::getBlue() {
+    return b;
+}
+
+void adobeRGB::setR(float red) {
+    r = red;
+} 
+
+void adobeRGB::setG(float green) {
+    g = green;
+} 
+
+void adobeRGB::setB(float blue) {
+    b = blue;
+}
+
+adobeRGB adobeRGB::RGBtoAdobeRGB(Rgb color) {
+    float primer, primeg, primeb = 0.0f;
+    primer = 255 * pow(color.redval, (float)1/2.199);
+    primeg = 255 * pow(color.greenval, (float)1/2.199);
+    primeb = 255 * pow(color.blueval, (float)1/2.199);
+
+    adobeRGB *converted = new adobeRGB(primer, primeg, primeb);
+    return *converted;
 }

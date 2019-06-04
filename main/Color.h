@@ -2,7 +2,7 @@
 #ifdef COLORS_H
 #define COLORS_H
 #endif
-#include "EngineHeader.h"
+#include "core/ArrayList.h"
 #include<string>
 #include<initializer_list>
 #include <cmath>
@@ -33,4 +33,32 @@ class Rgb {
 		float* createGradient(float percentr, float percentg, float percentb);
 		Rgb newColor();
 
+};
+
+class eightbit: public Rgb {
+	public:
+		float r,  g,  b;
+		eightbit(float r, float b, float g):Rgb(r, g, b) {};
+		eightbit RgbtoEightbit(Rgb wantedEightbit);
+		float getRed();
+		float getGreen();
+		float getBlue();
+		void setR(float r);
+		void setG(float g);
+		void setB(float b);
+
+};
+
+class adobeRGB: public Rgb {
+	public:
+		float r, g, b;
+		adobeRGB(float r, float g, float b):Rgb(r, g, b){};
+		adobeRGB RGBtoAdobeRGB(Rgb color);
+		void setR(float r);
+		void setG(float g);
+		void setB(float b);
+		void * operator new(size_t size) {
+			void * p = new ::adobeRGB(0.0f, 0.0f, 0.0f);
+			return p;
+		}
 };

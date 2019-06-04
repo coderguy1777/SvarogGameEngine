@@ -82,3 +82,43 @@ Rgb hsl::HSLtoRGB() {
     newRgb.setBVal(newb);
     return newRgb;
 }
+
+hsl hsl::getPredefinedHSL(char color) {
+    hsl wantedHSL(0.0, 0.0f, 0.0f);
+    if(color == 'R') {
+        wantedHSL.setHue(0.0);
+        wantedHSL.setSaturation(1.0f);
+        wantedHSL.setLightness(0.50f);
+    }
+
+    if(color == 'G') {
+        wantedHSL.setHue(120.0);
+        wantedHSL.setSaturation(1.0f);
+        wantedHSL.setLightness(0.25f);
+    }
+
+    if(color == 'B') {
+        wantedHSL.setHue(240.0);
+        wantedHSL.setSaturation(1.0f);
+        wantedHSL.setLightness(0.50f);    
+    }
+
+    if(color == 'Y') {
+        wantedHSL.setHue(60.0);
+        wantedHSL.setSaturation(1.0f);
+        wantedHSL.setLightness(0.50f);
+    }
+
+    if(color == 'O') {
+        wantedHSL.setHue(39.0);
+        wantedHSL.setSaturation(1.0f);
+        wantedHSL.setLightness(0.50f);
+    }
+     
+    else {
+        wantedHSL.setHue(0.0);
+        wantedHSL.setSaturation(0.0f);
+        wantedHSL.setLightness(0.0f);
+    }
+    return wantedHSL;
+}

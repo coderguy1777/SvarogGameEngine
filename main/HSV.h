@@ -3,7 +3,7 @@
 #define HSV_H
 #endif
 using namespace std;
-#include "color.h"
+#include "Color.h"
 // HSV Class
 class HSV {
 	public:

@@ -2,9 +2,7 @@
 #ifdef HTMLCOLORS_H
 #define HTMLCOLORS_H
 #endif
-#include "EngineHeader.h"
-#include "core/ArrayList.h"
-#include "color.h"
+#include "Color.h"
 #include "core/String.h"
 using namespace std;
 
@@ -32,7 +30,6 @@ class HexColorCodes {
 		};
 
 		HexColorCodes getPredefinedcode(int code); 
-		codegroup* makecodelist(String *codes);
 		int gethexval(char letter);
 
 		ArrayList<int>findDecVals(String code) {
@@ -56,7 +53,3 @@ class HexColorCodes {
 		}
 
 };
-
-struct codegroup {
-	HexColorCodes a[3];
-} hexcode1, hexcode2, hexcode3;
