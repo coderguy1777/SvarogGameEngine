@@ -1,3 +1,7 @@
+#pragma once
+#ifdef ARRAYLIST_H
+#define ARRAYLIST_H
+#endif
 #include<iostream>
 #include<vector>
 #include<string>

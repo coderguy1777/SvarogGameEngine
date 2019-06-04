@@ -25,4 +25,8 @@ class String {
         bool endsWith(char check);
         void setstr(int index, char newstr);
         char* toCharArray(String i);
+        void * operator new(size_t size) {
+            void * str = :: new String("");
+            return str;
+        }
 };
