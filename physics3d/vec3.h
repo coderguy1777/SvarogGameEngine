@@ -2,7 +2,7 @@
 #ifdef VEC3_H
 #define VEC3_H
 #endif
-#include "core/Vector.h"
+#include<iostream>
 using namespace std;
 
 class Vector3 {
@@ -24,6 +24,30 @@ class Vector3 {
             input.inity = this->inity * b.inity;
             input.initz = this->initz * b.initz;
             return input;
+        }
+
+        Vector3 operator+(const Vector3& b) {
+            Vector3 addvec(0.0f, 0.0f, 0.0f);
+            addvec.initx = b.initx + this->initx;
+            addvec.inity = b.inity + this->inity;
+            addvec.initz = b.initz + this->initz;
+            return addvec;
+        }
+
+        Vector3 operator-(const Vector3& b) {
+            Vector3 subvec(0.0f, 0.0f, 0.0f);
+            subvec.initx = b.initx - this->initx;
+            subvec.inity = b.inity - this->inity;
+            subvec.initz = b.initz - this->initz;
+            return subvec;
+        }
+
+        Vector3 operator/(const Vector3& b) {
+            Vector3 divvec(0.0f, 0.0f, 0.0f);
+            divvec.initx = b.initx / this->initx;
+            divvec.inity = b.inity / this->inity;
+            divvec.initz = b.initz / this->initz;
+            return divvec;
         }
 
         float getComponentX();

@@ -1,5 +1,5 @@
 #include "vec2.h"
-
+#include "core/math.h"
 float Vector2::getPosX() {
     return this->initx;
 }
@@ -22,4 +22,55 @@ void Vector2::resetXY(char choice) {
     } else if(choice == 'y' || choice == 'Y') {
         this->inity = 0.0f;
     }
+}
+
+Vector2 Vector2::operator+(const Vector2 &b) {
+    Vector2 addvec(0.0f, 0.0f);
+    addvec.initx = b.initx + this->initx;
+    addvec.inity = b.inity + this->inity;
+    return addvec;
+}
+
+Vector2 Vector2::operator-(const Vector2 &b) {
+    Vector2 subvec(0.0f, 0.0f);
+    subvec.initx = b.initx - this->initx;
+    subvec.inity = b.inity - this->inity;
+    return subvec;
+}
+
+Vector2 Vector2::operator*(const Vector2 &b) {
+    Vector2 multvec(0.0f, 0.0f);
+    multvec.initx = b.initx * this->initx;
+    multvec.inity = b.inity * this->inity;
+    return multvec;
+}
+
+Vector2 Vector2::operator/(const Vector2 &b) {
+    Vector2 divvec(0.0f, 0.0f);
+    divvec.initx = b.initx/this->initx;
+    divvec.inity = b.inity/this->inity;
+    return divvec;
+}
+
+void Vector2::resetX() {
+    initx = 0.0f;
+}
+
+void Vector2::resetY() {
+    inity = 0.0f;
+}
+
+Vector2 Vector2::dotProduct(Vector2 veca, Vector2 vecb) {
+    return veca * vecb;
+}
+
+Vector2 Vector2::dotProductAngle(Vector2 veca, Vector2 vecb, double angle) {
+    Vector2 vec_c(0.0f, 0.0f);
+    float x_c, y_c, angle_c = 0.0f;
+    x_c = matheq::abs(veca.initx * vecb.initx);
+    y_c = matheq::abs(veca.inity * vecb.inity);
+    angle_c = matheq::cos((float)angle);
+    vec_c.setPosX(x_c);
+    vec_c.setPosY(y_c);
+    return vec_c;
 }
