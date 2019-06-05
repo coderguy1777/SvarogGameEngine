@@ -1,9 +1,9 @@
 # Prerequisites
 *.d
+*.h
 
 # Object files
 *.o
-*.h
 *.ko
 *.obj
 *.elf
