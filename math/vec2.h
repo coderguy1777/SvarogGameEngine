@@ -36,4 +36,8 @@ class Vector2 {
         float angle_distVector(Vector2 distvec);
         float xToAngle(float pointX);
         float yToAngle(float pointY);
+        float xAxisChange(float translationSize);
+        float yAxisChange(float translationSize);
+        Vector2 divScalar(Vector2 scaleprod, int scalar);
+        Vector2 addScaledVec(Vector2 a, Vector2 b, int scale);
 };

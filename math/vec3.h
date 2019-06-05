@@ -18,6 +18,11 @@ class Vector3 {
         float vec3Mag(Vector3 b);
         float* vec3Scalar(int scalar);
 
+        void * operator new(size_t t) {
+            void * vec3mat = new Vector3(0.0f, 0.0f, 0.0f);
+            return vec3mat;
+        }
+        
         Vector3 operator*(const Vector3& b) {
             Vector3 input(0.0f, 0.0f, 0.0f);
             input.initx = this->initx * b.initx;
@@ -53,13 +58,14 @@ class Vector3 {
         float getComponentX();
         float getComponentY();
         float getComponentZ();
-
         void setComponentX(float x);
         void setComponentY(float y);
         void setComponentZ(float z);
-
         void resetXYZ(char choice);
-
-
-
+        void toOrigin();
+        Vector3 mult(Vector3 a, Vector3 b);
+        Vector3 add(Vector3 a, Vector3 b);
+        Vector3 sub(Vector3 a, Vector3 b);
+        Vector3 div(Vector3 a, Vector3 b);
+        Vector3 scalarMult(Vector3 a, int scalar);
 };

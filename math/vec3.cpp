@@ -1,5 +1,5 @@
 #include "vec3.h"
-#include "core/math.h"
+#include "math/math.h"
 using namespace std;
 
 float Vector3::getComponentX() {
@@ -50,3 +50,34 @@ void Vector3::resetXYZ(char choice) {
         cout << "Your choice character: " << choice << " is not a valid option, fix the character inputted to fix this!" << endl;
     }
 }
+
+void Vector3::toOrigin() {
+    initx = 0.0f;
+    inity = 0.0f;
+    initz = 0.0f;
+}
+
+Vector3 Vector3::mult(Vector3 veca, Vector3 vecb) {
+    return veca * vecb;
+}
+
+Vector3 Vector3::add(Vector3 veca, Vector3 vecb) {
+    return veca + vecb;
+}
+
+Vector3 Vector3::sub(Vector3 veca, Vector3 vecb) {
+    return veca - vecb;
+}
+
+Vector3 Vector3::div(Vector3 veca, Vector3 vecb) {
+    return veca/vecb;
+}
+
+Vector3 Vector3::scalarMult(Vector3 veca, int scalar) {
+    Vector3 scaled(veca);
+    scaled.setComponentX(scaled.initx * scalar);
+    scaled.setComponentY(scaled.inity * scalar);
+    scaled.setComponentZ(scaled.initz * scalar);
+    return scaled;
+}
+

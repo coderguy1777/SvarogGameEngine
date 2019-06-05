@@ -3,14 +3,7 @@
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 namespace enginecore {
-    Rgb bgcolor(0.0f, 0.0f, 0.0f);
     int width, height = 0;
-
-    void setBGcolor_vals(float r, float g, float b) {
-        bgcolor.setRVal(r);
-        bgcolor.setGVal(g);
-        bgcolor.setBVal(b);
-    }
     
     void framebuffersizecallback(GLFWwindow* window, int width, int height) {
         glViewport(0, 0, width, height);
@@ -19,6 +12,10 @@ namespace enginecore {
     void processInput(GLFWwindow* window) {
         if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, true);
+        }
+
+        if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+            std::cout << "A Key pressed?" << std::endl;
         }
     }
 

@@ -4,13 +4,13 @@
 #include<GL/glu.h>
 #include<iostream>
 #include "main.h"
-#include "physics/vec3.h"
+#include "math/vec3.h"
 #include "main/Color.h"
 #include "main/HSV.h"
 #include "main/cmyk.h"
 #include "main/hsl.h"
 #include "main/htmlcolors.h"
-#include "core/math.h"
+#include "math/math.h"
 #include "core/ArrayList.h"
 using namespace std;
 

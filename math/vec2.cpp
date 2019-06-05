@@ -1,5 +1,6 @@
 #include "vec2.h"
-#include "core/math.h"
+#include "math/math.h"
+
 float Vector2::getPosX() {
     return this->initx;
 }
@@ -90,4 +91,32 @@ float Vector2::xToAngle(float pointX) {
 
 float Vector2::yToAngle(float pointY) {
     return sin(pointY);
+}
+
+float Vector2::xAxisChange(float translationSize) {
+    float x1 = translationSize + initx;
+    float x0 = initx;
+    return x1 - x0;
+}
+
+float Vector2::yAxisChange(float translationSize) {
+    float y1 = translationSize + inity;
+    float y0 = inity;
+    return y1 - y0;
+}
+
+Vector2 Vector2::divScalar(Vector2 scaleprod, int scalar) {
+    Vector2 div(scaleprod);
+    float divX = initx/scalar;
+    float divY = inity/scalar;
+    div.setPosX(divX);
+    div.setPosY(divY);
+    return div;
+}    
+
+Vector2 Vector2::addScaledVec(Vector2 a, Vector2 b, int scale) {
+    Vector2 scaledvec(b);
+    scaledvec.setPosX(scaledvec.initx * scale);
+    scaledvec.setPosY(scaledvec.inity * scale);
+    return a + scaledvec;
 }
