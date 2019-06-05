@@ -9,6 +9,7 @@
 *.elf
 
 # Linker output
+*.c
 *.ilk
 *.map
 *.exp
