@@ -15,6 +15,7 @@
 using namespace std;
 
 int main() {
+	cout << "Yes yes yes yes yes yes yes." << endl;
 	String title("Svarog Game Engine");
 	enginecore::initializeWindow(800, 600, title.str);
 	return 0;
