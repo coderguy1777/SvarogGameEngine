@@ -26,12 +26,12 @@ void Vector3::setComponentZ(float z) {
     this->initz = z;
 }
 
-float* Vector3::vec3Scalar(int scalar) {
-    float vecscale[3];
-    vecscale[0] = scalar * this->initx;
-    vecscale[1] = scalar * this->inity;
-    vecscale[2] = scalar * this->initz;
-    return vecscale;
+Vector3 Vector3::vec3ScalarSub(Vector3 a, int scalar) {
+    return a - scalar;
+}
+
+Vector3 Vector3::vec3ScalarMult(Vector3 a, int scalar) {
+    return a*scalar;
 }
 
 float Vector3::vec3Mag(Vector3 b) {

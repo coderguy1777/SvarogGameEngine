@@ -14,6 +14,8 @@ class Vector2 {
             this->initx = x;
             this->inity = y;
         }
+
+        Vector2(){};
         float getPosX();
         float getPosY();
         void setPosX(float newx);
@@ -27,6 +29,34 @@ class Vector2 {
         Vector2 operator+(const Vector2 &b);
         Vector2 operator-(const Vector2 &b);
         Vector2 operator/(const Vector2 &b);
+        friend Vector2 operator+(const Vector2 &b, int &sclr) {
+            b.initx += sclr;
+            b.inity += sclr;
+            return b;
+        }
+
+        friend Vector2 operator-(const Vector2 &b, int &sclr) {
+            b.initx -= sclr;
+            b.inity -= sclr;
+            return b;
+        }
+
+        friend Vector2 operator*(const Vector2 &b, int &sclr) {
+            b.initx *= sclr;
+            b.inity *= sclr;
+            return b;
+        }
+
+        friend Vector2 operator/(const Vector2 &b, int &sclr) {
+            b.initx /= sclr;
+            b.inity /= sclr;
+            return b;
+        }
+        Vector2 scalarAdd(Vector2 a, int sclr);
+        Vector2 scalarSub(Vector2 a, int sclr);
+        Vector2 scalarMult(Vector2 a, int sclr);
+        Vector2 scalarDiv(Vector2 a, int sclr);
+
         void resetXY(char choice);
         void resetX();
         void resetY();
@@ -38,6 +68,6 @@ class Vector2 {
         float yToAngle(float pointY);
         float xAxisChange(float translationSize);
         float yAxisChange(float translationSize);
-        Vector2 divScalar(Vector2 scaleprod, int scalar);
-        Vector2 addScaledVec(Vector2 a, Vector2 b, int scale);
+        float find_eulervec2d_norm(Vector2 a);
+        Vector2 unitVector2d(Vector2 a);
 };

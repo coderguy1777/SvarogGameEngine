@@ -105,18 +105,30 @@ float Vector2::yAxisChange(float translationSize) {
     return y1 - y0;
 }
 
-Vector2 Vector2::divScalar(Vector2 scaleprod, int scalar) {
-    Vector2 div(scaleprod);
-    float divX = initx/scalar;
-    float divY = inity/scalar;
-    div.setPosX(divX);
-    div.setPosY(divY);
-    return div;
-}    
+float Vector2::find_eulervec2d_norm(Vector2 a) {
+    return sqrtf((pow(a.initx, 2) + (pow(a.inity, 2))));
+}
 
-Vector2 Vector2::addScaledVec(Vector2 a, Vector2 b, int scale) {
-    Vector2 scaledvec(b);
-    scaledvec.setPosX(scaledvec.initx * scale);
-    scaledvec.setPosY(scaledvec.inity * scale);
-    return a + scaledvec;
+Vector2 Vector2::unitVector2d(Vector2 a) {
+    float h = atan2(a.inity, a.initx);
+    float s = a.find_eulervec2d_norm(a);
+    a.setPosX(cos(h));
+    a.setPosY(sin(h));
+    return a;
+}
+
+Vector2 Vector2::scalarAdd(Vector2 a, int sclr) {
+    return a + sclr;
+}
+
+Vector2 Vector2::scalarSub(Vector2 a, int sclr) {
+    return a - sclr;
+}
+
+Vector2 Vector2::scalarMult(Vector2 a, int sclr) {
+    return a * sclr;
+}
+
+Vector2 Vector2::scalarDiv(Vector2 a, int sclr) {
+    return a / sclr;
 }

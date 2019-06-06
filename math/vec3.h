@@ -15,8 +15,6 @@ class Vector3 {
             this->inity = ly;
             this->initz = lz;
         }
-        float vec3Mag(Vector3 b);
-        float* vec3Scalar(int scalar);
 
         void * operator new(size_t t) {
             void * vec3mat = new Vector3(0.0f, 0.0f, 0.0f);
@@ -55,9 +53,41 @@ class Vector3 {
             return divvec;
         }
 
+        friend Vector3 operator*(const Vector3&b, int &str) {
+            b.initx *= str;
+            b.inity *= str;
+            b.initz *= str;
+            return b;
+        }
+
+        friend Vector3 operator-(const Vector3&b, int &str) {
+            b.initx -= str;
+            b.inity -= str;
+            b.initz -= str;
+            return b;
+        }
+
+        friend Vector3 operator+(const Vector3&b, int &str) {
+            b.initx += str;
+            b.inity += str;
+            b.initz += str;
+            return b;
+        }
+
+        friend Vector3 operator/(const Vector3&b, int &str) {
+            b.initx/=str;
+            b.inity/=str;
+            b.initz/=str;
+            return b;
+        }
+
         float getComponentX();
         float getComponentY();
         float getComponentZ();
+        float vec3Mag(Vector3 b);
+        Vector3 vec3ScalarMult(Vector3 veca, int scalar);
+        Vector3 vec3ScalarSub(Vector3 veca, int scalar);
+        Vector3 vec3ScalarAdd(Vector3 veca, int scalar);
         void setComponentX(float x);
         void setComponentY(float y);
         void setComponentZ(float z);
