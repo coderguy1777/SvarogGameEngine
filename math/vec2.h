@@ -3,7 +3,7 @@
 #define VEC2_H
 #endif
 #include<iostream>
-
+#include "Point.h"
 using namespace std;
 
 class Vector2 {
@@ -15,6 +15,12 @@ class Vector2 {
             this->inity = y;
         }
 
+        Vector2(Point2D point) {
+            this->initx = point.x;
+            this->inity = point.y;
+            point.originx = 0.0f;
+            point.originy = 0.0f;
+        }
         Vector2(){};
         float getPosX();
         float getPosY();
@@ -24,7 +30,6 @@ class Vector2 {
             void * vec2 = ::new Vector2(0.0f, 0.0f);
             return vec2;
         }
-        
         Vector2 operator*(const Vector2 &b);
         Vector2 operator+(const Vector2 &b);
         Vector2 operator-(const Vector2 &b);
@@ -52,6 +57,13 @@ class Vector2 {
             b.inity /= sclr;
             return b;
         }
+
+        friend Vector2 operator*(const Vector2 &b, float &sclr) {
+            b.initx *= sclr;
+            b.inity *= sclr;
+            return b;
+        }
+
         Vector2 scalarAdd(Vector2 a, int sclr);
         Vector2 scalarSub(Vector2 a, int sclr);
         Vector2 scalarMult(Vector2 a, int sclr);
@@ -69,5 +81,6 @@ class Vector2 {
         float xAxisChange(float translationSize);
         float yAxisChange(float translationSize);
         float find_eulervec2d_norm(Vector2 a);
+        float vec2Mag();
         Vector2 unitVector2d(Vector2 a);
 };

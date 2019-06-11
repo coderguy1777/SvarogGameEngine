@@ -4,6 +4,7 @@
 #endif
 #include<iostream>
 using namespace std;
+#include "Point.h"
 
 class Vector3 {
     private:
@@ -15,6 +16,17 @@ class Vector3 {
             this->inity = ly;
             this->initz = lz;
         }
+
+        Vector3(Point3D init) {
+            this->initx = init.x;
+            this->inity = init.y;
+            this->initz = init.z;
+            init.originx = 0;
+            init.originy = 0;
+            init.originz = 0;
+        }
+
+        Vector3(){};
 
         void * operator new(size_t t) {
             void * vec3mat = new Vector3(0.0f, 0.0f, 0.0f);
@@ -78,6 +90,27 @@ class Vector3 {
             b.initx/=str;
             b.inity/=str;
             b.initz/=str;
+            return b;
+        }
+
+        friend Vector3 operator+(const Vector3&b, float &str) {
+            b.initx+=str;
+            b.inity+=str;
+            b.initz+=str;
+            return b;
+        }
+
+        friend Vector3 operator-(const Vector3&b, float &str) {
+            b.initx -= str;
+            b.inity -= str;
+            b.initz -= str;
+            return b;
+        }
+
+        friend Vector3 operator*(const Vector3&b, float &str) {
+            b.initx *= str;
+            b.inity *= str;
+            b.initz *= str;
             return b;
         }
 

@@ -132,3 +132,7 @@ Vector2 Vector2::scalarMult(Vector2 a, int sclr) {
 Vector2 Vector2::scalarDiv(Vector2 a, int sclr) {
     return a / sclr;
 }
+
+float Vector2::vec2Mag() {
+    return sqrt((pow(initx, 2) + (pow(inity, 2))));
+}

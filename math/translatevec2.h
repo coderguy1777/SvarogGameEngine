@@ -14,14 +14,11 @@ class Translate2D {
         Translate2D(Vector2 veca) {
             this->translateVec2d = veca;
         }
+        Translate2D(){};
 
-        float calculateVectorVelocity();
-        float calculateInitialVelX();
-        float calculateFinalVelX();
-        float findDeltaX();        
-        float calculateVectorVelocityY();
-        float calculateInitialVelY();
-        float calculateFinalVelY();
+        Vector2 calculateVectorVelocity(int directionunit, float rate);
         float findDeltaY();
-        float findDeltaTime();
+        float findDeltaX();        
+        float findDeltaTime(float time, float fps);
+        Vector2 calculateDirection(int units);
 };
