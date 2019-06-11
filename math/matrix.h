@@ -73,6 +73,6 @@ class Matrix {
         int* getMatRow(int row);
         int* getMatCol(int col);
         void setValue_num(int numval);
-        Matrix scalarmult(Matrix a, int scalar);\
+        Matrix scalarmult(Matrix a, int scalar);
         Matrix transpose(Matrix a);
 };

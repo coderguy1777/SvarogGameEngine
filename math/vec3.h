@@ -4,7 +4,7 @@
 #endif
 #include<iostream>
 using namespace std;
-#include "Point.h"
+#include "core/Point.h"
 
 class Vector3 {
     private:
@@ -65,53 +65,60 @@ class Vector3 {
             return divvec;
         }
 
-        friend Vector3 operator*(const Vector3&b, int &str) {
-            b.initx *= str;
-            b.inity *= str;
-            b.initz *= str;
-            return b;
+        friend Vector3 operator*(const Vector3&b, const int &str) {
+            Vector3 newVec(0.0f, 0.0f, 0.0f);
+            newVec.initx = b.initx * str;
+            newVec.inity = b.inity * str;
+            newVec.initz = b.initz * str;
+            return newVec;
         }
 
-        friend Vector3 operator-(const Vector3&b, int &str) {
-            b.initx -= str;
-            b.inity -= str;
-            b.initz -= str;
-            return b;
+        friend Vector3 operator-(const Vector3&b,const int &str) {
+            Vector3 newVec(0.0f, 0.0f, 0.0f);
+            newVec.initx = b.initx - str;
+            newVec.inity = b.inity - str;
+            newVec.initz = b.initz - str;
+            return newVec;
         }
 
-        friend Vector3 operator+(const Vector3&b, int &str) {
-            b.initx += str;
-            b.inity += str;
-            b.initz += str;
-            return b;
+        friend Vector3 operator+(const Vector3&b, const int &str) {
+            Vector3 newVec(0.0f, 0.0f, 0.0f);
+            newVec.initx = b.initx + str;
+            newVec.inity = b.inity + str;
+            newVec.initz = b.initz + str;
+            return newVec;
         }
 
-        friend Vector3 operator/(const Vector3&b, int &str) {
-            b.initx/=str;
-            b.inity/=str;
-            b.initz/=str;
-            return b;
+        friend Vector3 operator/(const Vector3&b, const int &str) {
+            Vector3 newVec(0.0f, 0.0f, 0.0f);
+            newVec.initx = b.initx/str;
+            newVec.inity = b.inity/str;
+            newVec.initz = b.initz/str;
+            return newVec;
         }
 
-        friend Vector3 operator+(const Vector3&b, float &str) {
-            b.initx+=str;
-            b.inity+=str;
-            b.initz+=str;
-            return b;
+        friend Vector3 operator+(const Vector3&b, const float &str) {
+            Vector3 newVec(0.0f, 0.0f, 0.0f);
+            newVec.initx = b.initx + str;
+            newVec.inity = b.inity + str;
+            newVec.initz = b.initz + str;
+            return newVec;
         }
 
-        friend Vector3 operator-(const Vector3&b, float &str) {
-            b.initx -= str;
-            b.inity -= str;
-            b.initz -= str;
-            return b;
+        friend Vector3 operator-(const Vector3&b, const float &str) {
+            Vector3 newVec(0.0f, 0.0f, 0.0f);
+            newVec.initx = b.initx - str;
+            newVec.inity = b.inity - str;
+            newVec.initz = b.initz - str;
+            return newVec;
         }
 
-        friend Vector3 operator*(const Vector3&b, float &str) {
-            b.initx *= str;
-            b.inity *= str;
-            b.initz *= str;
-            return b;
+        friend Vector3 operator*(const Vector3&b, const float &str) {
+            Vector3 newVec(0.0f, 0.0f, 0.0f);
+            newVec.initx = b.initx * str;
+            newVec.inity = b.inity * str;
+            newVec.initz = b.initz * str;
+            return newVec;
         }
 
         float getComponentX();

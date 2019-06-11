@@ -3,7 +3,7 @@
 #define VEC2_H
 #endif
 #include<iostream>
-#include "Point.h"
+#include "core/Point.h"
 using namespace std;
 
 class Vector2 {

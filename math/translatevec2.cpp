@@ -1,5 +1,5 @@
 #include "translatevec2.h"
-#include "Point.h"
+#include "core/Point.h"
 float Translate2D::findDeltaX() {
     float delt_x = translateVec2d.getPosX() - translateVec2d.getPosY();
     return delt_x;

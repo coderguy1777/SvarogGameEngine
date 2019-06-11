@@ -5,11 +5,11 @@
 #include<iostream>
 #include "main.h"
 #include "math/vec3.h"
-#include "main/Color.h"
-#include "main/HSV.h"
-#include "main/cmyk.h"
-#include "main/hsl.h"
-#include "main/htmlcolors.h"
+#include "main/color/Color.h"
+#include "main/color/HSV.h"
+#include "main/color/cmyk.h"
+#include "main/color/hsl.h"
+#include "main/color/htmlcolors.h"
 #include "math/math.h"
 #include "core/ArrayList.h"
 using namespace std;
