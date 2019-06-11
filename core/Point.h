@@ -6,7 +6,7 @@
 typedef struct {
     float x, y, z;
     int originx, originy, originz;
-} Point;
+} Point3D;
 
 typedef struct {
     float x, y;
@@ -17,3 +17,5 @@ typedef struct {
     float x;
     int originx;
 } Point1D;
+
+
