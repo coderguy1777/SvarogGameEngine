@@ -68,6 +68,10 @@ class Matrix {
             return mat;
         }
 
+        friend Matrix operator+(Matrix const&addmat, Point3D const&point) {
+
+        }
+
         void setSpot(int row, int col, int value);
         int getSpot(int r, int c);
         int* getMatRow(int row);

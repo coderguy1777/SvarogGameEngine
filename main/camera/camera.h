@@ -29,4 +29,10 @@ class Camera {
         void setCameraWidth(int width);
         int getCameraHeight();
         int getCameraWidth();
+        Point3D getOrigin();
+        void setPos(Point3D point);
+        Point3D rotateX(float angle);
+        Point3D rotateY(float angle);
+        Point3D rotateZ(float angle);
+        Point3D translateX(float dist);
 };

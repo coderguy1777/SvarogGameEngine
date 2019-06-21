@@ -15,3 +15,23 @@ int Camera::getCameraHeight() {
 int Camera::getCameraWidth() {
     return cameraw;
 }
+
+void Camera::setPos(Point3D point) {
+    this->camera = point;
+}
+
+Point3D Camera::getOrigin() {
+    return origin;
+}
+
+Point3D Camera::rotateX(float angle) {
+
+}
+
+Point3D Camera::rotateY(float angle) {
+
+}
+
+Point3D Camera::rotateZ(float angle) {
+    
+}
