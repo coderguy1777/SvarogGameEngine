@@ -3,11 +3,13 @@
 #define MATERIAL_H
 #endif
 #include<iostream>
+#include<fstream>
 #include "color/Color.h"
 #include "core/String.h"
 #include "core/ArrayList.h"
 #include "math/vec2.h"
 #include "math/vec3.h"
+#include "math/vec4.h"
 using namespace std;
 
 class Material {
@@ -33,5 +35,7 @@ class Material {
                 ID = 2; // means fragment shader
             }
         }
-
+        template<typename T>
+        ArrayList<T>createShader();
+        void writeShader(ArrayList<String>file, String filepath, String filename);
 };
