@@ -1,0 +1,8 @@
+
+// gets shader log
+if(logLength > 0)
+{
+    std::string shaderlog(logLength, 0);
+    glGetShaderInfoLog(shader, logLength, 0, &shaderlog[0]);
+    std::cout << "Shader compilation log: " << shaderlog << std::endl;
+}
