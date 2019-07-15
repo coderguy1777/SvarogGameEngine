@@ -35,33 +35,38 @@ class Vector2 {
         Vector2 operator-(const Vector2 &b);
         Vector2 operator/(const Vector2 &b);
         friend Vector2 operator+(const Vector2 &b, int &sclr) {
-            b.initx += sclr;
-            b.inity += sclr;
-            return b;
+            Vector2 newVec(0.0f, 0.0f);
+            newVec.initx = b.initx + sclr;
+            newVec.inity = b.inity + sclr;
+            return newVec;
         }
 
         friend Vector2 operator-(const Vector2 &b, int &sclr) {
-            b.initx -= sclr;
-            b.inity -= sclr;
-            return b;
+            Vector2 newVec(0.0f, 0.0f);
+            newVec.initx = b.initx - sclr;
+            newVec.inity = b.inity - sclr;
+            return newVec;
         }
 
         friend Vector2 operator*(const Vector2 &b, int &sclr) {
-            b.initx *= sclr;
-            b.inity *= sclr;
-            return b;
+            Vector2 newVec(0.0f, 0.0f);
+            newVec.initx = b.initx * sclr;
+            newVec.inity = b.inity * sclr;
+            return newVec;
         }
 
         friend Vector2 operator/(const Vector2 &b, int &sclr) {
-            b.initx /= sclr;
-            b.inity /= sclr;
-            return b;
+            Vector2 newVec(0.0f, 0.0f);
+            newVec.initx = b.initx / sclr;
+            newVec.inity = b.inity / sclr;
+            return newVec;
         }
 
-        friend Vector2 operator*(const Vector2 &b, float &sclr) {
-            b.initx *= sclr;
-            b.inity *= sclr;
-            return b;
+        friend Vector2 operator*(const Vector2 &b, int &sclr) {
+            Vector2 newVec(0.0f, 0.0f);
+            newVec.initx = b.initx * sclr;
+            newVec.inity = b.inity * sclr;
+            return newVec; 
         }
 
         Vector2 scalarAdd(Vector2 a, int sclr);

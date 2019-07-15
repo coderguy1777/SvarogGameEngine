@@ -5,12 +5,10 @@
 #include<iostream>
 using namespace std;
 #include "core/Point.h"
-
+#include <cmath>
 class Vector3 {
-    private:
-        float initx, inity, initz;
-    
     public:
+        float initx, inity, initz;
         Vector3(float lx, float ly, float lz) {
             this->initx = lx;
             this->inity = ly;
@@ -128,6 +126,7 @@ class Vector3 {
         Vector3 vec3ScalarMult(Vector3 veca, int scalar);
         Vector3 vec3ScalarSub(Vector3 veca, int scalar);
         Vector3 vec3ScalarAdd(Vector3 veca, int scalar);
+        float dotProd(Vector3 a, Vector3 b);
         void setComponentX(float x);
         void setComponentY(float y);
         void setComponentZ(float z);
@@ -137,5 +136,8 @@ class Vector3 {
         Vector3 add(Vector3 a, Vector3 b);
         Vector3 sub(Vector3 a, Vector3 b);
         Vector3 div(Vector3 a, Vector3 b);
+        Vector3 dotProd_andAngle(Vector3 a, Vector3 b, float angle);
         Vector3 scalarMult(Vector3 a, int scalar);
+        float twoVecAngle(Vector3 a, Vector3 b);
+        Vector3 unitVecAngles(Vector3 u, float iangle, float jangle, float kangle);
 };

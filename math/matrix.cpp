@@ -1,44 +1,31 @@
 #include "matrix.h"
 
-void Matrix::setSpot(int row, int col, int value) {
-    matrix[row][col] = value;
+inline Vector3 Matrix::getXComponent() {
+    return this->xcolumn;    
 }
 
-int Matrix::getSpot(int r, int c) {
-    int spot = matrix[r][c];
-    return spot;
+inline Vector3 Matrix::getYComponent() {
+    return this->ycolumn;
 }
 
-void Matrix::setValue_num(int numval) {
-    valnum = numval;
+inline Vector3 Matrix::getZComponent() {
+    return this->zcolumn;
 }
 
-Matrix Matrix::scalarmult(Matrix a, int scalar) {
-    return a * scalar;
+void Matrix::setXColumnComponents(float x0, float x1, float x2) {
+    xcolumn.initx = x0;
+    xcolumn.inity = x1;
+    xcolumn.initz = x2;
 }
 
-int* Matrix::getMatRow(int row) {
-    int *rvals;
-    for(int i = 0; i < row; i++) {
-        rvals[i] = matrix[i][0];
-    }
-    return rvals;
+void Matrix::setYColumnComponents(float y0, float y1, float y2) {
+    ycolumn.initx = y0;
+    ycolumn.inity = y1;
+    ycolumn.initz = y2;
 }
 
-int* Matrix::getMatCol(int col) {
-    int *cvals;
-    for(int i = 0; i < col; i++) {
-        cvals[i] = matrix[0][i];
-    }
-    return cvals;
-}
-
-Matrix Matrix::transpose(Matrix a) {
-    Matrix b(a);
-    for(int i = 0; i < b.valnum; i++) {
-        for(int j = 0; j < b.valnum; j++) {
-            b.matrix[i][j] = b.matrix[j][i];
-        }
-    }
-    return b;
+void Matrix::setZColumnComponents(float z0, float z1, float z2) {
+    zcolumn.initx = z0;
+    zcolumn.inity = z1;
+    zcolumn.initz = z2;
 }
