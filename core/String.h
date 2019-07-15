@@ -7,6 +7,9 @@
 using namespace std;
 
 class String {
+    private:
+        char* data;
+        size_t data_length;
     public:
         const char* str;
         String(const char* strn) {
@@ -23,10 +26,14 @@ class String {
         bool contains(String sequence);
         bool startsWith(char check);
         bool endsWith(char check);
-        void setstr(int index, char newstr);
+        String setstr(int index, char newstr, String a);
         char* toCharArray(String i);
         void * operator new(size_t size) {
             void * str = :: new String("");
             return str;
+        }
+
+        const char* c_str() const {
+            return data;
         }
 };

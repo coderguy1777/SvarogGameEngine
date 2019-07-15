@@ -66,7 +66,13 @@ void String::del(char unwanted) {
             continue;
         }
     }
-    setstr(unwantedid, '\0');
+    String a;
+    setstr(unwantedid, '\0',a);
+}
+
+String String::setstr(int index, char stringval, String val) {
+    val.str[index] == stringval;
+    return val;
 }
 
 char* String::toCharArray(String i) {
