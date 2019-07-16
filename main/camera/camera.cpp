@@ -1,37 +1,38 @@
 #include "camera.h"
-
-void Camera::setCameraHeight(int height) {
-    this->camerah = height;
+inline void Camera::changeDimensions(int newW, int newH) {
+    this->cameraW = newW;
+    this->cameraH = newH;
 }
 
-void Camera::setCameraWidth(int width) {
-    this->cameraw = width;
+int Camera::getCameraW() {
+    return cameraW;
 }
 
-int Camera::getCameraHeight() {
-    return camerah;
+int Camera::getCameraH() {
+    return cameraH;
 }
 
-int Camera::getCameraWidth() {
-    return cameraw;
+void Camera::setCameraPos(Point3D pos) {
+    camorigin = pos;
 }
 
-void Camera::setPos(Point3D point) {
-    this->camera = point;
+inline Matrix Camera::findEulerXMat(float angle) {
+    Matrix rotMat(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
+    rotMat.setXColumnComponents(1.0f, 0.0f, 0.0f);
+    rotMat.setYColumnComponents(0.0f, cos(angle), -sin(angle));
+    rotMat.setZColumnComponents(0.0f, sin(angle), cos(angle));
+    return rotMat;
 }
 
-Point3D Camera::getOrigin() {
-    return origin;
+inline Matrix Camera::findEulerYMat(float angle) {
+    Matrix rotMat(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
+    rotMat.setXColumnComponents(cos(angle), 0.0f, sin(angle));
+    rotMat.setYColumnComponents(0.0f, 1.0f, 0.0f);
+    rotMat.setZColumnComponents(-sin(angle), 0.0f, cos(angle));
+    return rotMat;
 }
 
-Point3D Camera::rotateX(float angle) {
+inline Matrix Camera::findEulerZMat(float angle) {
+    Matrix rotMat(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f,0.0f,0.0f), Vector3(0.0f, 0.0f, 0.0f));
 
-}
-
-Point3D Camera::rotateY(float angle) {
-
-}
-
-Point3D Camera::rotateZ(float angle) {
-    
 }
