@@ -1,31 +1,19 @@
 #include "matrix.h"
 
-inline Vector3 Matrix::getXComponent() {
-    return this->xcolumn;    
+void Matrix::setC1Parts(float x0, float x1, float x2) {
+    row1.r0 = x0;
+    row2.r0 = x1;
+    row3.r0 = x2;
 }
 
-inline Vector3 Matrix::getYComponent() {
-    return this->ycolumn;
-}
+void Matrix::setC2Parts(float y0, float y1, float y2) {
+    row1.r1 = y0;
+    row2.r1 = y1;
+    row3.r1 = y2;
+} 
 
-inline Vector3 Matrix::getZComponent() {
-    return this->zcolumn;
-}
-
-void Matrix::setXColumnComponents(float x0, float x1, float x2) {
-    xcolumn.initx = x0;
-    xcolumn.inity = x1;
-    xcolumn.initz = x2;
-}
-
-void Matrix::setYColumnComponents(float y0, float y1, float y2) {
-    ycolumn.initx = y0;
-    ycolumn.inity = y1;
-    ycolumn.initz = y2;
-}
-
-void Matrix::setZColumnComponents(float z0, float z1, float z2) {
-    zcolumn.initx = z0;
-    zcolumn.inity = z1;
-    zcolumn.initz = z2;
+void Matrix::setC3Parts(float z0, float z1, float z2) {
+    row1.r2 = z0;
+    row2.r2 = z1;
+    row3.r2 = z2;
 }

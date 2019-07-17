@@ -4,7 +4,6 @@
 #endif
 #include "libs.h"
 #include "math/matrix.h"
-
 using namespace std;
 class Camera {
     public:

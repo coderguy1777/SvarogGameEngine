@@ -1,5 +1,7 @@
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
+#include "math/vec2.h"
+#include "math/vec3.h"
 #include "core/String.h"
 #include "core/events/InputEvent.h"
 #include "main/keyboard.h"
