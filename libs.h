@@ -1,6 +1,7 @@
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 #include "core/String.h"
+#include "core/events/InputEvent.h"
 #include "main/keyboard.h"
 #include "main/color/Color.h"
 #include "main/shaders/material.h"

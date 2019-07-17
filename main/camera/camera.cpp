@@ -34,5 +34,8 @@ inline Matrix Camera::findEulerYMat(float angle) {
 
 inline Matrix Camera::findEulerZMat(float angle) {
     Matrix rotMat(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f,0.0f,0.0f), Vector3(0.0f, 0.0f, 0.0f));
-
+    rotMat.setXColumnComponents(cos(angle), -sin(angle), 0.0f);
+    rotMat.setYColumnComponents(sin(angle), cos(angle), 0.0f);
+    rotMat.setZColumnComponents(0.0f, 0.0f, 1.0f);
+    return rotMat;
 }

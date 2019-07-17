@@ -1,8 +1,6 @@
-#include "core/String.h"
-#include "main/color/Color.h"
-#include "main/shaders/material.h"
 #include "libs.h"
 namespace enginecore {
+    KeyEvt event;
     int width, height = 0;
     void framebuffersizecallback(GLFWwindow* window, int width, int height) {
         glViewport(0, 0, width, height);
@@ -14,7 +12,7 @@ namespace enginecore {
         }
 
         if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-            std::cout << "A Key pressed?" << std::endl;
+            cout << event.KEY_PRESSED(0) << endl;
         }
     }
 
