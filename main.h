@@ -1,8 +1,7 @@
 #include "core/String.h"
 #include "main/color/Color.h"
 #include "main/shaders/material.h"
-#include<glad/glad.h>
-#include<GLFW/glfw3.h>
+#include "libs.h"
 namespace enginecore {
     int width, height = 0;
     void framebuffersizecallback(GLFWwindow* window, int width, int height) {
@@ -28,14 +27,15 @@ namespace enginecore {
         glfwInit();
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-        
-        GLFWwindow* window = glfwCreateWindow(width, height, title.str, NULL, NULL);
+        glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+        GLFWwindow* window;
+        window = glfwCreateWindow(width, height, title.str, NULL, NULL);
+        glfwMakeContextCurrent(window);
+        glfwSetFramebufferSizeCallback(window, framebuffersizecallback);
         if(window == NULL) {
             glfwTerminate();
         }
-        glfwMakeContextCurrent(window);
-        glfwSetFramebufferSizeCallback(window, framebuffersizecallback);
         if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
             cout << "glad not processed" << endl;
             glfwTerminate();
@@ -63,12 +63,14 @@ namespace enginecore {
             processInput(window);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             glClearColor(1.0, 0.0, 1.0, 1.0);
-            test3.use();
+            glUseProgram(test3.shaderID);
             glBindVertexArray(VAO);
             glDrawArrays(GL_TRIANGLES, 0, 3);
             glfwSwapBuffers(window);
             glfwPollEvents();
         }
+        glDeleteVertexArrays(1, &VAO);
+        glDeleteVertexArrays(1, &VBO);
         glfwTerminate();
     }
 }

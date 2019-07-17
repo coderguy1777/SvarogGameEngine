@@ -9,7 +9,6 @@
 #include<glad/glad.h>
 #include "core/String.h"
 #include "core/ArrayList.h"
-#include "math/vec4.h"
 using namespace std;
 
 class Material {
@@ -88,18 +87,18 @@ class Material {
         // shader compile check
         void checkcomperrors(unsigned int fragment, string type) {
             int success;
-            char info[1024];
+            char info[512];
             if(type != "Main") {
                 glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
                 if(!success) {
-                    glGetShaderInfoLog(fragment, 1024, NULL, info);
+                    glGetShaderInfoLog(fragment, 512, NULL, info);
                     cout << "Shader type: " << type << "had an error on compile" << endl;
                     cout << "Error info: " << info << endl;
                 } 
             } else {
                 glGetShaderiv(fragment, GL_LINK_STATUS, &success);
                 if(!success) {
-                    glGetProgramInfoLog(fragment, 1024, NULL, info);
+                    glGetProgramInfoLog(fragment, 512, NULL, info);
                     cout << "Error! Shader program failed to compile" << endl;
                     cout << "Error info: " << info[0] << endl;
                 }
