@@ -33,6 +33,7 @@ namespace enginecore {
         glfwSetFramebufferSizeCallback(window, framebuffersizecallback);
         if(window == NULL) {
             glfwTerminate();
+        
         }
         if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
             cout << "glad not processed" << endl;
