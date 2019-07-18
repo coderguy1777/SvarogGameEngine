@@ -1,5 +1,6 @@
 #include "Queue.h"
 template<class T>
+// adds item to queue
 void EventQueue<T>::addToQueue(T const& event) {
     Node *temp = new Node;
     temp->data = event;

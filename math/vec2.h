@@ -48,13 +48,6 @@ class Vector2 {
             return newVec;
         }
 
-        friend Vector2 operator*(const Vector2 &b, int &sclr) {
-            Vector2 newVec(0.0f, 0.0f);
-            newVec.initx = b.initx * sclr;
-            newVec.inity = b.inity * sclr;
-            return newVec;
-        }
-
         friend Vector2 operator/(const Vector2 &b, int &sclr) {
             Vector2 newVec(0.0f, 0.0f);
             newVec.initx = b.initx / sclr;

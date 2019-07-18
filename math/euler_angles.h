@@ -33,4 +33,11 @@ class EulerAngle {
             rotZ.setC3Parts(0.0f, 0.0f, 1.0f);
             return rotZ;
         }
+
+        enum class ROTCASES {
+            axis_X = 1,
+            axis_Y = 2,
+            axis_Z = 3,
+        };
+        Point3D rotatedPoints(Point3D pos, int caseAxis);
 };

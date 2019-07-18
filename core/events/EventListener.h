@@ -3,6 +3,14 @@
 #define EVENTLISTENER_H
 #endif
 using namespace std;
-class EventListener {
+#include "libs.h"
 
+class EventListener {
+    public: 
+        EventListener(){};
+        void * operator new(size_t size) {
+            EventListener * listener = new EventListener;
+            return listener;
+        }
+        inline void getEvent(Event e);
 };

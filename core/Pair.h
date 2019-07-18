@@ -13,6 +13,7 @@ class Pair {
             this->itema = b;
             this->itemb = c;
         }
+        Pair(){};
         A getitemA();
         B getitemB();
         void setitemA(A const& newitem);

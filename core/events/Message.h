@@ -5,26 +5,26 @@
 #include "core/String.h"
 #include "core/ArrayList.h"
 #include "core/Pair.h"
-struct Information {
+#include "Event.h"
+typedef struct {
     int ID;
-    int Priority;
+    Event event;
     const char* type;
-};
-template<class T>
+} Information;
 class Message {
     private:
         String msgLog;
-        T const& information;
+        Information info;
     public:
-        Message(T const& info, String log) {
+        Message(Information information, String log) {
             this->msgLog = log;
-            this->information = info;
+            this->info = information;
         }
-        template<class A, class B>
-        Pair createMSG() {
-            Pair<T, String>msg;
-            msg.setitemA(T const& information);
-            msg.setitemB(String msgLog);
+        
+        Pair<Information, String> createMSG() {
+            Pair<Information, String>msg;
+            msg.setitemA(this->info);
+            msg.setitemB(msgLog);
             return msg;
         }
 };

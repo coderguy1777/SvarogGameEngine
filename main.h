@@ -2,6 +2,12 @@
 namespace enginecore {
     KeyEvt event;
     int width, height = 0;
+    float num = 0.0f;
+
+    void increaseNum(int fac) {
+        num += fac;
+        cout << "NUM is: " << num << endl;
+    }
     void framebuffersizecallback(GLFWwindow* window, int width, int height) {
         glViewport(0, 0, width, height);
     }
@@ -12,7 +18,12 @@ namespace enginecore {
         }
 
         if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-            cout << event.KEY_PRESSED(0) << endl;
+            KeyBoard::keyProcess(0);
+        }
+
+        if(glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS) {
+            KeyBoard::keyProcess(1);
+            randoms();
         }
     }
 
