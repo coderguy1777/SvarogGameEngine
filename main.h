@@ -51,6 +51,7 @@ namespace enginecore {
             glfwTerminate();
         }
 
+        // shaders
         String vertexpath("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl");
         String fragmentpath("/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
         Material test3(vertexpath.str, fragmentpath.str);
