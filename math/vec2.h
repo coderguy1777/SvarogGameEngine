@@ -8,8 +8,9 @@ using namespace std;
 
 class Vector2 {
     private:
-        float initx, inity;
     public:
+            float initx, inity;
+
         Vector2(float x, float y) {
             this->initx = x;
             this->inity = y;

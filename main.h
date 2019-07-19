@@ -3,6 +3,7 @@ namespace enginecore {
     KeyEvt event;
     int width, height = 0;
     float num = 0.0f;
+    Matrix4f rotMat;
 
     void increaseNum(int fac) {
         num += fac;
@@ -24,7 +25,7 @@ namespace enginecore {
 
         if(glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS) {
             KeyBoard::keyProcess(1);
-            num += 0.1f;
+            rotMat.rotateMat(0.01f);
             randoms();
         }
     }
@@ -70,6 +71,9 @@ namespace enginecore {
             0, 1, 3,
             1, 2, 3
         };
+
+        // Element Buffer, Vertex Buffer, and Vertex 
+        // Attributes genned.
         unsigned int VBO, VAO, EBO;
         glGenVertexArrays(1, &VAO);
         glBindVertexArray(VAO);
@@ -83,20 +87,23 @@ namespace enginecore {
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
-
-        // shader transform
       
         // window loop
         while(!glfwWindowShouldClose(window)) {
             processInput(window);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             glClearColor(1.0, 0.0, 1.0, 1.0);
-            glm::mat4 translae = glm::mat4(1.0f);
-            translae = glm::translate(translae, glm::vec3(-0.5f, 0.0f, num));
-            translae = glm::rotate(translae, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
             glUseProgram(test3.shaderID);
+            // matrix test
+            Matrix4f rotTest;
+            Vector3 vec3(1.0f, 1.0f, 0.5f);
+            rotTest.mat[0][0] = 1.0f;
+            rotTest.mat[1][1] = 1.0f;
+            rotTest.mat[2][2] = 1.0f;
+            rotTest.mat[3][3] = 1.0f;
             unsigned int trans = glGetUniformLocation(test3.shaderID, "transform");
-            glUniformMatrix4fv(trans, 1, GL_FALSE, glm::value_ptr(translae));
+            test3.setMatrix4f("transform", rotTest);
+            test3.setVec3f("pos", vec3.initx, vec3.inity, vec3.initz);
             glBindVertexArray(VAO);
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
             glfwSwapBuffers(window);

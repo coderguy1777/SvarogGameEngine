@@ -7,8 +7,7 @@
 #include<fstream>
 #include<string>
 #include<glad/glad.h>
-#include "core/String.h"
-#include "core/ArrayList.h"
+#include "libs.h"
 using namespace std;
 
 class Material {
@@ -82,6 +81,14 @@ class Material {
         void setFloat(const string &name, float val) const {
             glUniform1i(glGetUniformLocation(shaderID, name.c_str()), val);
         }
+
+        void setVec2f(const string &name, float x, float y) {
+            glUniform2f(glGetUniformLocation(shaderID, name.c_str()), x, y);
+        }
+
+        void setVec2f(const string &name, const Vector2 &vec2) const {
+            glUniform2fv(glGetUniformLocation(shaderID, name.c_str()), GL_FALSE, &vec2.initx);
+        }
         
         void setVec3f(const string &name, const Vector3 &vec3) const {
             glUniform3fv(glGetUniformLocation(shaderID, name.c_str()), GL_FALSE, &vec3.initx);
@@ -99,17 +106,16 @@ class Material {
             glUniform4f(glGetUniformLocation(shaderID, name.c_str()), x, y, z, w);
         }
 
-        void setMatrix2f(const string &name, const Matrix &matrix2) const {
-            glUniformMatrix2fv(glGetUniformLocation(shaderID, name.c_str()), GL_FALSE, 1, &matrix2.row1.r0);
+        void setMatrix2f(const string &name, const Matrix2f &matrix2) const {
+            glUniformMatrix2fv(glGetUniformLocation(shaderID, name.c_str()), GL_FALSE, 1, &matrix2.matrix[0][0]);
         }
 
-        void setMatrix3f(const string &name, const Matrix &matrix3) const {
-            glUniformMatrix3fv(glGetUniformLocation(shaderID, name.c_str()), GL_FALSE, 1, &matrix3.row1.r0);
+        void setMatrix3f(const string &name, const Matrix3f &matrix3) const {
+            glUniformMatrix3fv(glGetUniformLocation(shaderID, name.c_str()), GL_FALSE, 1, &matrix3.matrix[0][0]);
         }
 
-        void setMatrix4f(const string &name, const Matrix &matrix4) const {
-            GLfloat mat0 = matrix4.row1.r0;
-            glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), 1, GL_FALSE, &mat0);
+        void setMatrix4f(const string &name, const Matrix4f &matrix4) const {
+            glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), 1, GL_FALSE, &matrix4.mat[0][0]);
         }
 
     private:

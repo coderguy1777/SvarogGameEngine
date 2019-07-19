@@ -130,4 +130,11 @@ namespace matheq
         return cosf(rad_angle);
     }
 
+    float radians(float degrees) {
+        return degrees * (PI/180.0f);
+    }
+
+    float degrees(float radians) {
+        return radians * (180.0f/PI);
+    }
 }
