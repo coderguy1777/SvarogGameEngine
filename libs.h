@@ -8,6 +8,7 @@
 #include<iostream>
 #include "core/keyboard.h"
 #include "main/color/Color.h"
+#include "math/matrix.h"
 #include "main/shaders/material.h"
 #include "core/Point.h"
 #include <glm/gtc/matrix_transform.hpp>

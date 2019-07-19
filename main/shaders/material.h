@@ -82,6 +82,35 @@ class Material {
         void setFloat(const string &name, float val) const {
             glUniform1i(glGetUniformLocation(shaderID, name.c_str()), val);
         }
+        
+        void setVec3f(const string &name, const Vector3 &vec3) const {
+            glUniform3fv(glGetUniformLocation(shaderID, name.c_str()), GL_FALSE, &vec3.initx);
+        }
+
+        void setVec3f(const string &name, float x, float y, float z) const {
+            glUniform3f(glGetUniformLocation(shaderID, name.c_str()), x, y, z);
+        }
+
+        void setVec4f(const string &name, const Vector3 &vec4) const {
+            glUniform4fv(glGetUniformLocation(shaderID, name.c_str()), GL_FALSE, &vec4.initx);
+        }
+
+        void setVec4f(const string &name, float x, float y, float z, float w) const {
+            glUniform4f(glGetUniformLocation(shaderID, name.c_str()), x, y, z, w);
+        }
+
+        void setMatrix2f(const string &name, const Matrix &matrix2) const {
+            glUniformMatrix2fv(glGetUniformLocation(shaderID, name.c_str()), GL_FALSE, 1, &matrix2.row1.r0);
+        }
+
+        void setMatrix3f(const string &name, const Matrix &matrix3) const {
+            glUniformMatrix3fv(glGetUniformLocation(shaderID, name.c_str()), GL_FALSE, 1, &matrix3.row1.r0);
+        }
+
+        void setMatrix4f(const string &name, const Matrix &matrix4) const {
+            GLfloat mat0 = matrix4.row1.r0;
+            glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), 1, GL_FALSE, &mat0);
+        }
 
     private:
         // shader compile check

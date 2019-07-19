@@ -19,10 +19,12 @@ namespace enginecore {
 
         if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
             KeyBoard::keyProcess(0);
+            num -= 0.01f;
         }
 
         if(glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS) {
             KeyBoard::keyProcess(1);
+            num += 0.1f;
             randoms();
         }
     }
@@ -82,12 +84,19 @@ namespace enginecore {
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
 
+        // shader transform
+      
         // window loop
         while(!glfwWindowShouldClose(window)) {
             processInput(window);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             glClearColor(1.0, 0.0, 1.0, 1.0);
+            glm::mat4 translae = glm::mat4(1.0f);
+            translae = glm::translate(translae, glm::vec3(-0.5f, 0.0f, num));
+            translae = glm::rotate(translae, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
             glUseProgram(test3.shaderID);
+            unsigned int trans = glGetUniformLocation(test3.shaderID, "transform");
+            glUniformMatrix4fv(trans, 1, GL_FALSE, glm::value_ptr(translae));
             glBindVertexArray(VAO);
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
             glfwSwapBuffers(window);
