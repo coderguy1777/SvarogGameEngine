@@ -8,10 +8,16 @@ class Vector4 {
     public:
         // x coord, y coord, z coord, w time coord.
         float x, y, z, w;
+        Vector4(){};
         Vector4(float xpos, float ypos, float zpos, float wpos) {
             this->x = xpos;
             this->y = ypos;
             this->z = zpos;
             this->w = wpos;
         }
+
+        void printPos() {
+            cout << "X: " << this->x << ", Y: " << this->y << ", Z: " << this->z << endl;
+        }
+
 };

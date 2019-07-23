@@ -16,8 +16,7 @@
 #include "math/matrix2f.h"
 #include "math/matrix3f.h"
 #include "math/matrix4f.h"
+#include "math/vec4.h"
+#include "math/translatematrix.h"
 #include "core/Point.h"
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/glm.hpp>
 using namespace std;

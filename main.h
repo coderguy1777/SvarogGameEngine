@@ -3,12 +3,7 @@ namespace enginecore {
     KeyEvt event;
     int width, height = 0;
     float num = 0.0f;
-    Matrix4f rotMat;
 
-    void increaseNum(int fac) {
-        num += fac;
-        cout << "NUM is: " << num << endl;
-    }
     void framebuffersizecallback(GLFWwindow* window, int width, int height) {
         glViewport(0, 0, width, height);
     }
@@ -20,13 +15,15 @@ namespace enginecore {
 
         if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
             KeyBoard::keyProcess(0);
-            num -= 0.01f;
+            num-= 0.01f;
+        }
+
+        if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+            num += 0.01f;
         }
 
         if(glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS) {
             KeyBoard::keyProcess(1);
-            rotMat.rotateMat(0.01f);
-            randoms();
         }
     }
 
@@ -40,7 +37,6 @@ namespace enginecore {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
         GLFWwindow* window;
         window = glfwCreateWindow(width, height, title.str, NULL, NULL);
         glfwMakeContextCurrent(window);
@@ -92,18 +88,14 @@ namespace enginecore {
         while(!glfwWindowShouldClose(window)) {
             processInput(window);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            Matrix4f a;
+            a.identity();
+            Vector3 test(num, 0.0f, 0.0f);;
             glClearColor(1.0, 0.0, 1.0, 1.0);
             glUseProgram(test3.shaderID);
-            // matrix test
-            Matrix4f rotTest;
-            Vector3 vec3(1.0f, 1.0f, 0.5f);
-            rotTest.mat[0][0] = 1.0f;
-            rotTest.mat[1][1] = 1.0f;
-            rotTest.mat[2][2] = 1.0f;
-            rotTest.mat[3][3] = 1.0f;
-            unsigned int trans = glGetUniformLocation(test3.shaderID, "transform");
-            test3.setMatrix4f("transform", rotTest);
-            test3.setVec3f("pos", vec3.initx, vec3.inity, vec3.initz);
+            a.translate(test);
+            test3.setMatrix4f("transform", a);
+            a.print();
             glBindVertexArray(VAO);
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
             glfwSwapBuffers(window);

@@ -4,85 +4,90 @@
 #endif
 #include "libs.h"
 using namespace std;
-class Matrix4f {
-    public: 
-        float mat[4][4];
-        // sets all vals in matrix 2d arr to 0
-        Matrix4f(){
-            for(int i = 0; i < 4; i++) {
-                for(int j = 0; j < 4; j++) {
-                    mat[i][j] = 0.0f;
+class Matrix4f { 
+        public: 
+            float mat[4][4];
+            Matrix4f() {
+                for(int i = 0; i < 4; i++) {
+                    for(int j = 0; j < 4; j++) {
+                        this->mat[i][j] = 0.0f;
+                    }
                 }
             }
-        }
 
-        void setVal(int row, int col, float val) {
-            if(row > 4 || col > 4) {
-                Exception::printException("Row or Column is too big, change values to set val.");
-            } else if(row < 0 || col < 0) {
-                Exception::printException("Row or Column is too small, change values to set val.");
-            }
-            mat[row][col] = val;
-        }
-
-        void setAll(float value) {
-            for(int i = 0; i < 4; i++) {
-                for(int j = 0; j < 4; j++) {
-                    mat[i][j] = value;
+            inline void transpose() {
+                for(int i = 0; i < 4; i++) {
+                    for(int j = 0; j < 4; j++) {
+                        this->mat[i][j] = this->mat[j][i];
+                    }
                 }
             }
-        }
 
-        float getVal(int row, int col) {
-            if(row > 4 || col > 4) {
-                Exception::printException("Row or Column is too big, change values to get val.");
-            } else if(row < 0 || col < 0) {
-                Exception::printException("Row or Column is too small, change values to get val.");
+
+            inline void setScaleFAC(float scalefac) {
+                this->mat[0][0] = scalefac;
+                this->mat[1][1] = scalefac;
+                this->mat[2][2] = scalefac;
+                this->mat[3][3] = scalefac;
             }
-            return (float)mat[row][col];
-        }
 
-        Matrix4f operator+(const Matrix4f& b) {
-            Matrix4f a;
-            for(int i = 0; i < 4; i++) {
-                for(int j = 0; j < 4; j++) {
-                    a.mat[i][j] = b.mat[i][j] + this->mat[i][j];
+            inline void transScale(Matrix4f scale) {
+                for(int i = 0; i < 4; i++) {
+                    for(int j =  0; j < 4; j++) {
+                        this->mat[i][j] = this->mat[i][j] *2;
+                    }
+
                 }
             }
-            return a;
-        }
-        
-        Matrix4f operator-(const Matrix4f& b) {
-            Matrix4f a;
-            for(int i = 0; i < 4; i++) {
-                for(int j = 0; j < 4; j++) {
-                    a.mat[i][j] = b.mat[i][j] - this->mat[i][j];
+
+            inline void translateFunc(Vector3 a) {
+                this->mat[0][3] = (this->mat[0][0] * a.initx) + (this->mat[0][1] * a.inity) + (this->mat[0][2] * a.initz);
+                this->mat[1][3] = (this->mat[1][0] * a.initx) + (this->mat[1][1] * a.inity) + (this->mat[1][2] * a.initz);
+                this->mat[2][3] = (this->mat[2][0] * a.initx) + (this->mat[2][1] * a.inity) + (this->mat[2][2] * a.initz);
+                this->mat[3][3] = (this->mat[0][0] * a.initx) + (this->mat[3][1] * a.inity) + (this->mat[3][2] * a.initz);
+            }
+
+            void setVal(int row, int col, float val) {
+                if(row <= 0 || row >= 4) {
+                    std::invalid_argument("Spot for val placement is too big, fix");
+                }
+                if(col <= 0 || col >= 0) {
+                    std::invalid_argument("Col spot too small");
+                }
+                this->mat[row][col] = val;
+            }
+
+            Matrix4f operator+(const Matrix4f& b) {
+                Matrix4f c;
+                for(int i = 0; i < 4; i++) {
+                    for(int j = 0; j < 4; j++) {
+                        c.mat[i][j] = b.mat[i][j] + this->mat[i][j];
+                    }
+                }
+                return c;
+            }
+
+            inline void identity() {
+                this->mat[0][0] = 0.5f;
+                this->mat[1][1] = 1.0f;
+                this->mat[2][2] = 1.0f;
+                this->mat[3][3] = 1.0f;
+            }
+
+            Matrix4f& translate(float x, float y, float z, float w);
+            inline void print() {
+                for(int i = 0; i < 4; i++) {
+                    cout << '\n';
+                    for(int j = 0; j < 4; j++) {
+                        cout << this->mat[i][j];
+                    }
+                    cout << '\n';
                 }
             }
-            return a;
-        }
 
-        Matrix4f operator*(const Matrix4f& b) {
-            Matrix4f a;
-            for(int i = 0; i < 4; i++) {
-                for(int j = 0; j < 4; j++) {
-                    a.mat[i][j] = b.mat[i][j] * this->mat[i][j];
-                }
+            inline void translate(Vector3 x) {
+                this->mat[0][3] = x.initx;
+                this->mat[1][3] = x.inity;
             }
-            return a;
-        }
-
-        Matrix4f operator/(const Matrix4f& b) {
-            Matrix4f a;
-            for(int i = 0; i < 4; i++) {
-                for(int j = 0; j < 4; j++) {
-                    a.mat[i][j] = b.mat[i][j] + this->mat[i][j];
-                }
-            }
-            return a;
-        }
-
-        void rotateMat(float radians) {
-            this->mat[0][0] = this->mat[0][0] + radians;
-        }
 };
+
