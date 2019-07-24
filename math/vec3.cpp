@@ -1,5 +1,4 @@
 #include "vec3.h"
-#include "math/math.h"
 using namespace std;
 
 float Vector3::getComponentX() {
@@ -103,4 +102,21 @@ inline Vector3 Vector3::unitVecAngles(Vector3 u, float iangle, float jangle, flo
     float u_y = u.inity * 1 * cos(jangle);
     float u_z = u.initz * 1 * cos(kangle);
     return Vector3(u_x, u_y, u_z);
+}
+
+
+Vector3 Vector3::normalize(Vector3 a) {
+    float normalvecmag = 0.0f;
+    normalvecmag = a.vec3Mag(a);
+    cout << normalvecmag << endl;
+    a.initx = a.initx / normalvecmag;
+    a.inity = a.inity / normalvecmag;
+    a.initz = a.initz / normalvecmag;
+    return a;
+}
+
+Vector3 Vector3::crossProduct(Vector3 fac, Vector3 fac2) {
+    this->initx = (fac.inity * fac2.initz) - (fac2.initz * fac.inity);
+    this->inity = (fac.initx * fac2.initz) - (fac2.initz * fac.initx);
+    return Vector3(((fac.inity * fac2.initz) - (fac2.initz * fac.inity)), ((fac.initx * fac2.initz) - (fac2.initz * fac.initx)), ((fac2.initx * fac.inity) - (fac.inity * fac2.initz)));
 }

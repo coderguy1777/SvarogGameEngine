@@ -73,4 +73,14 @@ class Matrix2f {
             }
             return a;
         }
+
+        inline void identity() {
+            this->matrix[0][0] = 1.0f;
+            this->matrix[1][1] = 1.0f;
+        }
+
+        inline void translate(Vector2 a) {
+            this->matrix[0][1] = a.initx;
+            this->matrix[1][1] = a.inity;
+        }
 };

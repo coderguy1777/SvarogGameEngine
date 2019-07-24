@@ -115,7 +115,7 @@ class Material {
         }
 
         void setMatrix4f(const string &name, const Matrix4f &matrix4) const {
-            glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), 1, GL_TRUE, &matrix4.mat[0][0]);
+            glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), GL_TRUE, 1, &matrix4.mat[0][0]);
         }
 
     private:

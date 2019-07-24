@@ -15,9 +15,4 @@ class Vector4 {
             this->z = zpos;
             this->w = wpos;
         }
-
-        void printPos() {
-            cout << "X: " << this->x << ", Y: " << this->y << ", Z: " << this->z << endl;
-        }
-
 };

@@ -2,9 +2,9 @@
 #ifdef MATRIX_H
 #define MATRIX_H
 #endif 
-#include "math/math.h"
+#include "math.h"
 #include "core/Point.h"
-#include "math/vec3.h"
+#include "vec3.h"
 #include "core/ArrayList.h"
 #include<iostream>
 #include<bits/stdc++.h>

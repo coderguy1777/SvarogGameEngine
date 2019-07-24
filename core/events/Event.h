@@ -22,6 +22,7 @@ enum class KEY_EVENT_TYPES {
     KEY_HOLD = 4,
 };
 
+
 struct Event{
     EVENT_TYPE typer;
     int PRIOITY;

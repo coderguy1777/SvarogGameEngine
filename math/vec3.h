@@ -119,6 +119,7 @@ class Vector3 {
             return newVec;
         }
 
+
         float getComponentX();
         float getComponentY();
         float getComponentZ();
@@ -136,6 +137,9 @@ class Vector3 {
         Vector3 add(Vector3 a, Vector3 b);
         Vector3 sub(Vector3 a, Vector3 b);
         Vector3 div(Vector3 a, Vector3 b);
+        Vector3 crossProduct(Vector3 fac, Vector3 fac2);
+
+        Vector3 normalize(Vector3 a);
         Vector3 dotProd_andAngle(Vector3 a, Vector3 b, float angle);
         Vector3 scalarMult(Vector3 a, int scalar);
         float twoVecAngle(Vector3 a, Vector3 b);

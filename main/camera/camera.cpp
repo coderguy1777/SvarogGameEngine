@@ -11,7 +11,3 @@ int Camera::getCameraW() {
 int Camera::getCameraH() {
     return cameraH;
 }
-
-void Camera::setCameraPos(Point3D pos) {
-    camorigin = pos;
-}

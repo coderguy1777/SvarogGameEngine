@@ -20,14 +20,6 @@ class LinkedList {
         Node temp;
         Node head;
     public: 
-        LinkedList(Node Head) {
-            this->head = Head;
-            if(Head == NULL) {
-                lst.add(NULL);
-            } else {
-                lst.add(Head);
-            }
-        }
         Node traverseList();
         void addNode(T const& item);
         void createNode(T const& item);
