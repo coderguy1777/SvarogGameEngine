@@ -33,9 +33,8 @@ Vector3 Vector3::vec3ScalarMult(Vector3 a, int scalar) {
     return a*scalar;
 }
 
-float Vector3::vec3Mag(Vector3 b) {
-    float mag =  (b.initx - this->initx) + (b.inity - this->inity) + (b.initz - this->initz);
-    return mag;
+float Vector3::vec3Mag() {
+    return (sqrtf(powf(this->initx, (float)(2)) + powf(this->inity, (float)(2)) + powf(this->initz, (float)(2))));
 }
 
 void Vector3::resetXYZ(char choice) {
@@ -91,8 +90,8 @@ inline float dotProd(Vector3 a, Vector3 b) {
 
 inline float Vector3::twoVecAngle(Vector3 a, Vector3 b) {
     float dotprod = dotProd(a, b);
-    float mag = vec3Mag(a);
-    float magb = vec3Mag(b);
+    float mag = a.vec3Mag();
+    float magb = b.vec3Mag();
     float finalmag = mag*magb;
     return acos(dotProd(a,b)/finalmag);
 }
@@ -107,7 +106,7 @@ inline Vector3 Vector3::unitVecAngles(Vector3 u, float iangle, float jangle, flo
 
 Vector3 Vector3::normalize(Vector3 a) {
     float normalvecmag = 0.0f;
-    normalvecmag = a.vec3Mag(a);
+    normalvecmag = a.vec3Mag();
     cout << normalvecmag << endl;
     a.initx = a.initx / normalvecmag;
     a.inity = a.inity / normalvecmag;
@@ -116,7 +115,6 @@ Vector3 Vector3::normalize(Vector3 a) {
 }
 
 Vector3 Vector3::crossProduct(Vector3 fac, Vector3 fac2) {
-    this->initx = (fac.inity * fac2.initz) - (fac2.initz * fac.inity);
-    this->inity = (fac.initx * fac2.initz) - (fac2.initz * fac.initx);
+
     return Vector3(((fac.inity * fac2.initz) - (fac2.initz * fac.inity)), ((fac.initx * fac2.initz) - (fac2.initz * fac.initx)), ((fac2.initx * fac.inity) - (fac.inity * fac2.initz)));
 }

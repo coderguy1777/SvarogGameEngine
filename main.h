@@ -1,10 +1,11 @@
 #include "libs.h"
 namespace enginecore {
     KeyEvt event;
-    Camera engineCamera(Vector3(0.0f, 0.0f, 0.0f), Vector3(1.0f, 0.0f, 0.0f));
-    int width, height = 0;
     float num = 0.0f;
     float num2 = 0.0f;
+    float x1, y1, z1 = 1.0f;
+    Camera engineCamera(Vector3(0.0f, 2.0f, 1.0f), Vector3(1.0f, 0.0f, 0.0f));
+    int width, height = 0;
 
     void framebuffersizecallback(GLFWwindow* window, int width, int height) {
         glViewport(0, 0, width, height);
@@ -13,6 +14,12 @@ namespace enginecore {
     void processInput(GLFWwindow* window) {
         if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, true);
+        }
+
+        if(glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+            x1 = 0.0f;
+            y1 = 0.0f;
+            z1 = 0.0f;
         }
 
         if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
@@ -62,18 +69,43 @@ namespace enginecore {
             1, 2, 3
         };
 
-        // engine cam
-        Vector3 normalTest;
-        normalTest.normalize(engineCamera.camorigin - engineCamera.cameraTarget);
-        Vector3 directionVector(directionVector.normalize(engineCamera.camorigin - engineCamera.cameraTarget));
-        engineCamera.setUpVector(Vector3(0.0f, 1.0f, 0.0f));
-        Vector3 rightVector(rightVector.normalize(rightVector.crossProduct(engineCamera.upVector,directionVector )));
+        Debugger cameraOrigin("CamOriginVec.txt");
+        cameraOrigin.streamVector3(engineCamera.camorigin - engineCamera.cameraTarget);
+        cameraOrigin.writeVector3("Origin Vector 3");
 
+        // debuggers
+        Debugger vectorDebug("CameraVectors.txt");
+        // engine cam
+        Vector3 normalTest(engineCamera.camorigin - engineCamera.cameraTarget);
+        normalTest.normalize(normalTest);
+        Vector3 directionVector(directionVector.normalize(engineCamera.camorigin - engineCamera.cameraTarget));
+        engineCamera.setUpVector(Vector3(0.0f, 0.0f, 0.0f));
+        Debugger directionVec("DirectionVec.txt");
+        directionVec.streamVector3(directionVector);
+        directionVec.writeVector3("Direction Vector:");
+        Vector3 rightVector(rightVector.crossProduct(engineCamera.upVector,directionVector));
+
+        
+        vectorDebug.streamVector3(Vector3(normalTest.normalize(normalTest)));
+        vectorDebug.writeVector3("Normal test vec3");
+
+        Debugger rightVec("RightVector.txt");
+        rightVec.streamVector3(rightVector);
+        rightVec.writeVector3("Right Vec data");
+
+        // setting up of look at matrix.
         Matrix4f lookAtMat;
         lookAtMat.identity();
         lookAtMat.setVectorRows(0, rightVector);
         lookAtMat.setVectorRows(1, engineCamera.upVector);
         lookAtMat.setVectorRows(2, directionVector);
+        Debugger debug("lookAtMat.txt");
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                debug.streamFloatArr(lookAtMat.mat[i][j]);
+            }
+        }
+        debug.writeFloatArr("Look at matrix");
         // Element Buffer, Vertex Buffer, and Vertex 
         // Attributes genned.
         unsigned int VBO, VAO, EBO;
@@ -89,21 +121,18 @@ namespace enginecore {
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
-        cout << rightVector.initx << endl;
-        cout << engineCamera.upVector.inity << endl;
+
         // window loop
         while(!glfwWindowShouldClose(window)) {
             processInput(window);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            // simple matrix translation tests
             Matrix4f a;
             a.identity();
-            Matrix4f b;
-            b.identity();
+            a.translateMat(num, x1, 0.0f);
+            a.scaleMat(0.5f, 0.5f, 0.5f);
             glClearColor(1.0, 0.0, 1.0, 1.0);
             glUseProgram(test3.shaderID);
-            a.translateMat(0.0f, 0.0f, 0.0f);
-            a.scaleMat(0.5f, 0.5f, 0.5f);
-            a.rotateMat((num * PI/180),1);
             test3.setMatrix4f("transform", a);
             glBindVertexArray(VAO);
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

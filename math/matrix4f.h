@@ -53,12 +53,12 @@ class Matrix4f {
                 setVal(row, 2, vec.initz);
             }
 
-            inline void lookAt(Matrix4f view, Matrix4f model) {
-                this->mat[0][0] = view.mat[0][0];
-                this->mat[0][1] = view.mat[0][1];
-                this->mat[0][2] = view.mat[0][2];
-                this->mat[1][0] = view.mat[1][0];
-                this->mat[1][1] = view.mat[1][1];
+            void lookAtFunc(Matrix4f view, Matrix4f model) {
+                lookAt(view, model);
+            }
+
+            inline Matrix4f lookAt(Matrix4f view, Matrix4f model) {
+                return view * model;
             }
         
             void setVal(int row, int col, float val) {
@@ -83,11 +83,22 @@ class Matrix4f {
 
             Matrix4f operator*(const Matrix4f& b) {
                 Matrix4f c;
-                for(int i = 0; i < 4; i++) {
-                    for(int j = 0; j < 4; j++) {
-                        c.mat[i][j] = b.mat[i][j] * this->mat[i][j];
-                    }
-                }
+                c.mat[0][0] = b.mat[0][0] * this->mat[0][0];
+                c.mat[0][1] = b.mat[0][1] * this->mat[1][0];
+                c.mat[0][2] = b.mat[0][2] * this->mat[2][0];
+                c.mat[0][3] = b.mat[0][3] * this->mat[3][0];
+                c.mat[1][0] = b.mat[1][0] * this->mat[0][1];
+                c.mat[1][1] = b.mat[1][1] * this->mat[1][1];
+                c.mat[1][2] = b.mat[1][2] * this->mat[2][1];
+                c.mat[1][3] = b.mat[1][3] * this->mat[3][1];
+                c.mat[2][0] = b.mat[2][0] * this->mat[0][2];
+                c.mat[2][1] = b.mat[2][1] * this->mat[1][2];
+                c.mat[2][2] = b.mat[2][2] * this->mat[2][2];
+                c.mat[2][3] = b.mat[2][3] * this->mat[3][2];
+                c.mat[3][0] = b.mat[3][0] * this->mat[0][3];
+                c.mat[3][1] = b.mat[3][1] * this->mat[1][3];
+                c.mat[3][2] = b.mat[3][2] * this->mat[2][3];
+                c.mat[3][3] = b.mat[3][3] * this->mat[3][3];
                 return c;
             }
             
@@ -113,18 +124,10 @@ class Matrix4f {
             }
 
             inline void rotate(float angle, int axis) {
-                if(axis == 1) {
-                    this->mat[0][0] = 1;
-                    this->mat[0][1] = 0;
-                    this->mat[0][2] = 0;
-                    this->mat[0][3] = 0;
-                    this->mat[1][1] = cosf(angle);
-                    this->mat[1][2] = sinf(angle);
-                    this->mat[1][3] = 0;
-                    this->mat[2][1] = sinf(angle);
-                    this->mat[2][2] = cosf(angle);
-                    this->mat[2][3] = 0;
-                }
+                this->mat[1][1] = cosf(angle) + 2;
+                this->mat[1][2] = -sinf(angle) + 1;
+                this->mat[2][1] = sinf(angle) +1;
+                this->mat[2][2] = cosf(angle) + 1;
             }
 
             void scaleMat(float scalex, float scaley, float scalez) {
@@ -144,6 +147,12 @@ class Matrix4f {
             inline void translate(Vector3 x) {
                 this->mat[0][3] = x.initx;
                 this->mat[1][3] = x.inity;
+                this->mat[2][3] = x.initz;
+            }
+            
+
+            void returnToOrigin(float x, float y, float z) {
+                translate(Vector3(x, y, z));
             }
 };
 

@@ -123,7 +123,7 @@ class Vector3 {
         float getComponentX();
         float getComponentY();
         float getComponentZ();
-        float vec3Mag(Vector3 b);
+        float vec3Mag();
         Vector3 vec3ScalarMult(Vector3 veca, int scalar);
         Vector3 vec3ScalarSub(Vector3 veca, int scalar);
         Vector3 vec3ScalarAdd(Vector3 veca, int scalar);

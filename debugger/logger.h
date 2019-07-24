@@ -8,7 +8,11 @@
 #include<string>
 #include<iostream>
 #include<vector>
+#include "math/vec3.h"
 using namespace std;
+struct Vector3Debug {
+    string vector;
+};
 
 class Debugger {
     public:
@@ -16,6 +20,7 @@ class Debugger {
         vector<float>floatarrdebug;
         vector<double>doublearrdebug;
         vector<int>intarrdebug;
+        vector<float>vec3debug;
         Debugger(string classfilename) {
             this->filename = classfilename;
         }
@@ -34,7 +39,7 @@ class Debugger {
 
         void writeFloatArr(const char* arrTitle) {
             ofstream floatArrdata;
-            floatArrdata.open(this->filename);
+            floatArrdata.open("~Documents/SvarogGameEngine/debugger/debuglogs/"  + this->filename);
             floatArrdata << arrTitle << endl;
             for(unsigned int i = 0; i < floatarrdebug.size(); i++) {
                 floatArrdata << floatarrdebug[i] << endl;
@@ -44,7 +49,7 @@ class Debugger {
 
         void writeDoubleArr(const char* arrTitle) {
             ofstream doubleArrdata;
-            doubleArrdata.open(this->filename);
+            doubleArrdata.open("~Documents/SvarogGameEngine/debugger/debuglogs/" + this->filename);
             doubleArrdata << arrTitle << endl;
             for(unsigned int i = 0; i < doublearrdebug.size(); i++) {
                 doubleArrdata << doublearrdebug[i] << endl;
@@ -54,12 +59,14 @@ class Debugger {
 
         void writeIntArr(const char* arrTitle) {
             ofstream intArrdata;
-            intArrdata.open(this->filename);
+            intArrdata.open("~Documents/SvarogGameEngine/debugger/debuglogs/"  + this->filename);
             intArrdata << arrTitle << endl;
             for(unsigned int i = 0; i < intarrdebug.size(); i++) {
                 intArrdata << intarrdebug[i] << endl;
             }
             intArrdata.close();
-
         }
+
+        void streamVector3(Vector3 x);
+        void writeVector3(const char* vec3Title);
 };

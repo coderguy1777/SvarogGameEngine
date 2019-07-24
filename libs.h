@@ -16,6 +16,7 @@
 #include "math/vec4.h"
 #include "math/matrix2f.h"
 #include "math/matrix3f.h"
+#include "debugger/logger.h"
 #include "core/events/Queue.h"
 #include "math/matrix4f.h"
 #include "core/Point.h"
