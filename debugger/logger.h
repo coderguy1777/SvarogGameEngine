@@ -46,5 +46,20 @@ class Debugger {
             ofstream doubleArrdata;
             doubleArrdata.open(this->filename);
             doubleArrdata << arrTitle << endl;
+            for(unsigned int i = 0; i < doublearrdebug.size(); i++) {
+                doubleArrdata << doublearrdebug[i] << endl;
+            }
+            doubleArrdata.close();
+        }
+
+        void writeIntArr(const char* arrTitle) {
+            ofstream intArrdata;
+            intArrdata.open(this->filename);
+            intArrdata << arrTitle << endl;
+            for(unsigned int i = 0; i < intarrdebug.size(); i++) {
+                intArrdata << intarrdebug[i] << endl;
+            }
+            intArrdata.close();
+
         }
 };
