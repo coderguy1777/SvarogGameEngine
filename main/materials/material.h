@@ -13,6 +13,7 @@ using namespace std;
 class Material {
     public:
         unsigned int shaderID;
+        Material(){};
         Material(String vertexShaderPath, String fragmentShaderPath) {
             // shader info
             string vertshader;
@@ -116,6 +117,10 @@ class Material {
 
         void setMatrix4f(const string &name, const Matrix4f &matrix4) const {
             glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), GL_TRUE, 1, &matrix4.mat[0][0]);
+        }
+
+        void * operator new(size_t size) {
+            void * p = new ::Material();
         }
 
     private:

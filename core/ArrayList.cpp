@@ -42,6 +42,26 @@ void ArrayList<T>::printli() {
 }
 
 template<class T>
-T get(int index) {
-    return ArrayList::items[index];
+T ArrayList<T>::get(int index) {
+    T item = ArrayList<T>::items[index];
+    return item;
 }
+
+template <class T>
+T ArrayList<T>::Max(const T& a, const T& b) {
+    return (a > b) ? a : b;
+}
+
+template <class T>
+T ArrayList<T>::min(const T& a, const T& b) {
+    return (b < a) ? b : a;
+}
+
+template class ArrayList<int>;
+template class ArrayList<double>;
+template class ArrayList<float>;
+template class ArrayList<Rgb>;
+template class ArrayList<String>;
+template class ArrayList<Vector3>;
+template class ArrayList<Vector2>;
+template class ArrayList<Matrix4f>;

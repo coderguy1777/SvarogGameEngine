@@ -17,3 +17,25 @@ void Debugger::writeVector3(const char* vec3title) {
     }
     floatVec3data.close();
 }
+
+/*
+Vector2 Debug stream
+ */
+
+
+//void Debugger::streamVector2(Vector2 vec2) {
+  //  vec2debug.push_back(vec2.initx);
+  //  vec2debug.push_back(vec2.inity);
+  //  vec2debug.push_back(vec2.vec2Mag());
+//}
+
+//void Debugger::writeVector2(const char* vec2Title) {
+  //  ofstream floatVec2data;
+   // floatVec2data.open("/home/jordan/Documents/SvarogGameEngine/debugger/debuglogs/" + this->filename);
+    //floatVec2data << vec2Title << endl;
+    //char coordid[3] = {'X', 'Y', 'M'};
+   // for(unsigned int i = 0; i < vec2debug.size(); i++) {
+   //     floatVec2data << coordid[i] << vec2debug[i] << endl;
+  //  }
+   // floatVec2data.close();
+//}

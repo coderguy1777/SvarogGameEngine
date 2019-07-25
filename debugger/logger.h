@@ -9,6 +9,7 @@
 #include<iostream>
 #include<vector>
 #include "math/vec3.h"
+#include "math/vec2.h"
 using namespace std;
 struct Vector3Debug {
     string vector;
@@ -21,6 +22,7 @@ class Debugger {
         vector<double>doublearrdebug;
         vector<int>intarrdebug;
         vector<float>vec3debug;
+        vector<float>vec2debug;
         Debugger(string classfilename) {
             this->filename = classfilename;
         }
@@ -69,4 +71,6 @@ class Debugger {
 
         void streamVector3(Vector3 x);
         void writeVector3(const char* vec3Title);
+        void streamVector2(Vector2 x);
+        void writeVector2(const char* vec2Title);
 };

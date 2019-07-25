@@ -6,6 +6,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include "libs.h"
 using namespace std;
 
 template<class T>
@@ -18,11 +19,13 @@ class ArrayList {
         void clear();
         void remove(int index);                     
         T get(int index);
-
         void printli();
-
         int size();
-
         bool isEmpty();
+        T Max (const T& a, const T& b);
+        T min (const T& a, const T& b);
+        T lessThan(const T& a, const T& b);
+        T greaterThan(const T& a, const T& b);
+
 };
 

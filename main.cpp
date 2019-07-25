@@ -1,20 +1,20 @@
-#include<glad/glad.h>
-#include<GLFW/glfw3.h>
-#include<GL/gl.h>
-#include<GL/glu.h>
-#include<iostream>
 #include "main.h"
-#include "math/vec3.h"
-#include "main/color/Color.h"
-#include "main/color/HSV.h"
-#include "main/color/cmyk.h"
-#include "main/color/hsl.h"
-#include "main/color/htmlcolors.h"
-#include "math/math.h"
-#include "core/ArrayList.h"
 using namespace std;
 
+void doCompare() {
+	ArrayList<int>testLi;
+	for(int i = 0; i < 4; i++) {
+		testLi.add(i);
+	}
+
+	int temp1 = testLi.get(0);
+	int temp2 = testLi.get(1);
+	int temp3 = testLi.Max(temp1, temp2);
+	cout << "Max is: " << temp3 << endl;
+}
+
 int main() {
+	doCompare();
 	String title("Svarog Game Engine");
 	enginecore::initializeWindow(800, 600, title.str);
 	return 0;

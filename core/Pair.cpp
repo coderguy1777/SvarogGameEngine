@@ -25,3 +25,9 @@ void * Pair<A,B>::operator new(size_t size) {
     void * newpair = new ::Pair<A, B>;
     return newpair;
 }
+
+template class Pair<int, int>;
+template class Pair<int, double>;
+template class Pair<int, float>;
+template class Pair<int, char>;
+template class Pair<int, String>;

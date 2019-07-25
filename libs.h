@@ -7,12 +7,17 @@
 #include "core/events/Message.h"
 #include<iostream>
 #include <stdexcept>
+#include <ostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <memory>
 #include "main/exception.h"
 #include "core/keyboard.h"
 #include "main/color/Color.h"
 #include "main/camera/camera.h"
 #include "math/matrix.h"
-#include "main/shaders/material.h"
+#include "main/materials/material.h"
 #include "math/vec4.h"
 #include "math/matrix2f.h"
 #include "math/matrix3f.h"

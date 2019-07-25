@@ -115,6 +115,5 @@ Vector3 Vector3::normalize(Vector3 a) {
 }
 
 Vector3 Vector3::crossProduct(Vector3 fac, Vector3 fac2) {
-
     return Vector3(((fac.inity * fac2.initz) - (fac2.initz * fac.inity)), ((fac.initx * fac2.initz) - (fac2.initz * fac.initx)), ((fac2.initx * fac.inity) - (fac.inity * fac2.initz)));
 }

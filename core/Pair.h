@@ -2,6 +2,7 @@
 #ifdef PAIR_HPP
 #define PAIR_HPP
 #endif
+#include "libs.h"
 #include <iostream>
 
 template<class A, class B>
