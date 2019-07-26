@@ -17,6 +17,7 @@
 #include "main/color/Color.h"
 #include "main/camera/camera.h"
 #include "math/matrix.h"
+#include <GL/gl.h>
 #include "main/materials/material.h"
 #include "math/vec4.h"
 #include "math/matrix2f.h"

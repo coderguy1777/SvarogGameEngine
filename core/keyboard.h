@@ -3,15 +3,13 @@
 #define KEYBOARD_H
 #endif
 #include "libs.h"
-using namespace Events;
 
 namespace KeyBoard {
-    EventQueue<Event>keyboardEvents;
     void keyProcess(int state) {
         KeyEvt e;
         switch(state) {
             case KeyEvt::KEY_A :
-                
+                cout << "X"<<endl;
                 break;
             default : 
                 break;

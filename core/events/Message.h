@@ -8,7 +8,6 @@
 #include "Event.h"
 typedef struct {
     int ID;
-    Event event;
     const char* type;
 } Information;
 class Message {

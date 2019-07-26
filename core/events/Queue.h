@@ -1,7 +1,6 @@
 #pragma once 
-#ifdef QUEUE_H
+#ifndef QUEUE_H
 #define QUEUE_H
-#endif
 #include "Message.h"
 #include "LinkedList.h"
 template<class T> 
@@ -19,7 +18,24 @@ class EventQueue {
             evtQueue.head.next = NULL;
         }
         EventQueue(){};
-        void addToQueue(T const& event);
+        // adds item to queue
+        void addToQueue(T const& event) {
+            Node *temp = new Node;
+            temp->data = event;
+            temp->next = evtQueue.tail;
+            if(evtQueue.head == NULL) {
+                evtQueue.head = temp;
+                evtQueue.tail = temp;
+                temp = NULL;
+            } else {
+                temp->next = evtQueue.tail;
+                evtQueue.tail = temp;
+                evtQueue.addNode(temp);
+            }
+        }
         int checkOpenQueueSlots();
-        Node getNextEvent();
+        Node getNextEvent() {
+            return evtQueue.curr;
+        }
 };
+#endif

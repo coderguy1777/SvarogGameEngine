@@ -1,7 +1,4 @@
-#pragma once
-#ifdef EVENT_H
-#define EVENT_H
-#endif
+
 using namespace std;
 
 enum EVENT_TYPE {
@@ -23,18 +20,12 @@ enum class KEY_EVENT_TYPES {
 };
 
 
-struct Event{
-    EVENT_TYPE typer;
-    int PRIOITY;
-    const char* cause;
-};
-
-template<typename Event>
-void printEvent(Event const& event) {
-    cout << "Event type: " << event.type << endl;
-}
-
 namespace Events { 
+    struct Event{
+        EVENT_TYPE typer;
+        int PRIOITY;
+        const char* cause;
+    };
     int evtType(int category) {
         return category;
     }
