@@ -3,3 +3,4 @@ debugger/debuglogs/CameraVectors.txt
 debugger/debuglogs/CamOriginVec.txt
 debugger/debuglogs/DirectionVec.txt
 debugger/debuglogs/RightVector.txt
+.vscode/c_cpp_properties.json
