@@ -3,5 +3,9 @@ debugger/debuglogs/CameraVectors.txt
 debugger/debuglogs/CamOriginVec.txt
 debugger/debuglogs/DirectionVec.txt
 debugger/debuglogs/RightVector.txt
+<<<<<<< HEAD
 glad/glad.c
 .vscode/launch.json
+=======
+.vscode/c_cpp_properties.json
+>>>>>>> cca21f86a1d922c14ad7b981d8a1c5f1744787c6
