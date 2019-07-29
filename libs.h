@@ -5,6 +5,7 @@
 #include "core/String.h"
 #include "core/events/InputEvent.h"
 #include "core/events/Message.h"
+#include "math/camera_matrix.h"
 #include<iostream>
 #include <stdexcept>
 #include <ostream>

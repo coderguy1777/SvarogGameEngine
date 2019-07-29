@@ -2,9 +2,8 @@
 namespace enginecore {
     KeyEvt event;
     float num = 0.0f;
-    float num2 = 0.0f;
-    float x1, y1, z1 = 1.0f;
     Camera engineCamera(Vector3(0.0f, 2.0f, 1.0f), Vector3(1.0f, 0.0f, 0.0f));
+
     int width, height = 0;
 
     void framebuffersizecallback(GLFWwindow* window, int width, int height) {
@@ -14,12 +13,6 @@ namespace enginecore {
     void processInput(GLFWwindow* window) {
         if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, true);
-        }
-
-        if(glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
-            x1 = 0.0f;
-            y1 = 0.0f;
-            z1 = 0.0f;
         }
 
         if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
@@ -55,7 +48,8 @@ namespace enginecore {
         String vertexpath("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl");
         String fragmentpath("/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
         Material test3(vertexpath.str, fragmentpath.str);
-        
+        Frustrum a{1.0f, 1.0f, 0.0f, 1.0f, -1.0f, 2.0f};
+        CameraMatrix matA(a, 800.0f, 600.0f, 0.1f);
         // verticies
         float verticies[] {
             0.5f,  0.5f, 0.0f,
@@ -108,6 +102,16 @@ namespace enginecore {
         debug.writeFloatArr("Look at matrix");
         // Element Buffer, Vertex Buffer, and Vertex 
         // Attributes genned.
+
+        Debugger cameraMat("CameraMatrix.txt");
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                cameraMat.streamFloatArr(matA.perspec.mat[i][j]);
+            }
+        }
+        matA.perspec.identity();
+
+        cameraMat.writeFloatArr("Camera matrix");
         unsigned int VBO, VAO, EBO;
         glGenVertexArrays(1, &VAO);
         glBindVertexArray(VAO);
@@ -129,11 +133,18 @@ namespace enginecore {
             // simple matrix translation tests
             Matrix4f a;
             a.identity();
-            a.translateMat(num, x1, 0.0f);
+            a.translateMat(num, 1.0f, 0.0f);
             a.scaleMat(0.5f, 0.5f, 0.5f);
+            Matrix4f b;
+            b.identity();
+            b.translateMat(-num, 1.0f, 0.0f);
+            b.scaleMat(0.5f, -1.0f, -10.5f);
+            matA.create_perspecMatrix();
+            test3.setMatrix4f("model", a);
+            test3.setMatrix4f("view", b);
+            test3.setMatrix4f("projection", matA.perspec);
             glClearColor(1.0, 0.0, 1.0, 1.0);
             glUseProgram(test3.shaderID);
-            test3.setMatrix4f("transform", a);
             glBindVertexArray(VAO);
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
             glfwSwapBuffers(window);
