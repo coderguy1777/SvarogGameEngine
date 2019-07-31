@@ -1,7 +1,7 @@
 #include "libs.h"
 namespace enginecore {
     KeyEvt event;
-    float num = 0.0f;
+    float num, numx= 0.0f;
     Camera engineCamera(Vector3(0.0f, 2.0f, 1.0f), Vector3(1.0f, 0.0f, 0.0f));
 
     int width, height = 0;
@@ -17,6 +17,14 @@ namespace enginecore {
 
         if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
             num+= 0.01f;
+        }
+
+        if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+            num-=0.01f;
+        }
+
+        if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+            num = sin(num);
         }
     }
 
@@ -45,17 +53,25 @@ namespace enginecore {
         }
 
         // shaders
-        String vertexpath("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl");
-        String fragmentpath("/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
+        String vertexpath("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.vert");
+        String fragmentpath("/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.frag");
         Material test3(vertexpath.str, fragmentpath.str);
-        Frustrum a{1.0f, 1.0f, 0.0f, 1.0f, -1.0f, 2.0f};
-        CameraMatrix matA(a, 800.0f, 600.0f, 0.1f);
+        Frustrum a{1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 2.0f};
+        CameraMatrix matA(a, 800.0f, 600.0f, 1.0f);
         // verticies
         float verticies[] {
             0.5f,  0.5f, 0.0f,
             0.5f, -0.5f, 0.0f,
            -0.5f, -0.5f, 0.0f,
-           -0.5f,  0.5f, 0.0f 
+           -0.5f,  0.5f, 0.0f,
+            0.5f, -0.5f, 0.0f,
+        };
+
+        float arrPos[] {
+            1.0f, 0.0f, 1.0f,
+            0.0f, 1.0f, 0.0f, 
+            1.0f, 0.0f, 1.0f, 
+            1.0f, -1.0f, 0.0f,
         };
         // triangle indicies
         unsigned int indicies[] {
@@ -87,29 +103,18 @@ namespace enginecore {
         rightVec.streamVector3(rightVector);
         rightVec.writeVector3("Right Vec data");
 
-        // setting up of look at matrix.
-        Matrix4f lookAtMat;
-        lookAtMat.identity();
-        lookAtMat.setVectorRows(0, rightVector);
-        lookAtMat.setVectorRows(1, engineCamera.upVector);
-        lookAtMat.setVectorRows(2, directionVector);
-        Debugger debug("lookAtMat.txt");
-        for(int i = 0; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
-                debug.streamFloatArr(lookAtMat.mat[i][j]);
-            }
-        }
-        debug.writeFloatArr("Look at matrix");
         // Element Buffer, Vertex Buffer, and Vertex 
         // Attributes genned.
+        matA.perspec.identity();
+        matA.create_perspecMatrix();
+        Matrix4f ab;
 
         Debugger cameraMat("CameraMatrix.txt");
         for(int i = 0; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
+            for(int j = 0; j < 4;  j++) {
                 cameraMat.streamFloatArr(matA.perspec.mat[i][j]);
             }
         }
-        matA.perspec.identity();
 
         cameraMat.writeFloatArr("Camera matrix");
         unsigned int VBO, VAO, EBO;
@@ -137,12 +142,13 @@ namespace enginecore {
             a.scaleMat(0.5f, 0.5f, 0.5f);
             Matrix4f b;
             b.identity();
-            b.translateMat(-num, 1.0f, 0.0f);
-            b.scaleMat(0.5f, -1.0f, -10.5f);
-            matA.create_perspecMatrix();
+            b.translateMat(-num, 1.0f, num);
+            matA.setVal(0, 0, 1.0f);
+            b.scaleMat(0.5f, -1.0f, -1.5f);
+            matA.perspec.setVectorRows(0, directionVector);
+            test3.setMatrix4f("projection", (engineCamera.lookAt(b, a) * matA.perspec));
             test3.setMatrix4f("model", a);
             test3.setMatrix4f("view", b);
-            test3.setMatrix4f("projection", matA.perspec);
             glClearColor(1.0, 0.0, 1.0, 1.0);
             glUseProgram(test3.shaderID);
             glBindVertexArray(VAO);

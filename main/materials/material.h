@@ -119,6 +119,7 @@ class Material {
             glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), GL_TRUE, 1, &matrix4.mat[0][0]);
         }
 
+
         void * operator new(size_t size) {
             void * p = new ::Material();
         }

@@ -19,7 +19,6 @@ class CameraMatrix : public Matrix4f {
 
     public: 
         Matrix4f perspec;
-        Matrix4f orthoPerspec;
         // 6 view cooordinates for projection matrix
         Frustrum frust;
         // clip vec coords.
@@ -43,10 +42,6 @@ class CameraMatrix : public Matrix4f {
             this->width = w;
             this->height = h;
             this->aspect = this->width/this->height;
-            frust.top = frust.near * tan(PI/180 * this->fov/2);
-            frust.bottom = -frust.top;
-            frust.right = frust.top * aspect;
-            frust.left = -frust.right;
         }
 
         void * operator new(size_t size) {
@@ -67,7 +62,8 @@ class CameraMatrix : public Matrix4f {
             return (lipVec.initx < -w_c || lipVec.initx > w_c || lipVec.inity < -w_c || lipVec.inity > w_c || lipVec.initz < -w_c || lipVec.initz > w_c) ? true : false;
         }
 
-
+        
+        // creates perspective matrix
         void create_perspecMatrix() {
             // row 0
             this->perspec.mat[0][0] = 2 * this->frust.near / this->frust.right - this->frust.left;
@@ -85,12 +81,12 @@ class CameraMatrix : public Matrix4f {
             this->perspec.mat[2][0] = 0.0f;
             this->perspec.mat[2][1] = 0.0f;
             this->perspec.mat[2][2] = -(this->frust.far + this->frust.near/this->frust.far - this->frust.near);
-            this->perspec.mat[2][3] = -(2 * this->frust.far *  this->frust.near / this->frust.far - this->frust.near);
+            this->perspec.mat[2][3] = -(2 * this->frust.far *  this->frust.near) / this->frust.far - this->frust.near;
 
             // row 3
             this->mat[3][0] = 0.0f;
             this->mat[3][1] = 0.0f;
-            this->mat[3][2] = -1.0f;
+            this->mat[3][2] = ( 2* this->frust.far * this->frust.near)/this->frust.near - this->frust.far;
             this->mat[3][3] = 0.0f;
         }
 

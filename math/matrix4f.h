@@ -10,7 +10,7 @@ class Matrix4f {
             Matrix4f() {
                 for(int i = 0; i < 4; i++) {
                     for(int j = 0; j < 4; j++) {
-                        this->mat[i][j] = 0.0f;
+                        this->mat[i][j] = 1.0f;
                     }
                 }
             }
@@ -23,6 +23,7 @@ class Matrix4f {
                 }
             }
 
+            // gets a matrix value
             float getVal(int row, int col) {
                 return this->mat[row][col];
             }
@@ -35,6 +36,7 @@ class Matrix4f {
                 this->mat[3][3] = scalefac;
             }
 
+            // scaling matrix operation
             inline void transScale(Matrix4f scale) {
                 for(int i = 0; i < 4; i++) {
                     for(int j =  0; j < 4; j++) {
@@ -44,6 +46,7 @@ class Matrix4f {
                 }
             }
 
+            // sets matrix rows based on vectors
             void setVectorRows(int row, Vector3 vec) {
                 if(row <= 0 || row >= 4) {
                     std::invalid_argument("Spot for placement is invalid.");
@@ -53,6 +56,7 @@ class Matrix4f {
                 setVal(row, 2, vec.initz);
             }
 
+            // intiates look at function
             void lookAtFunc(Matrix4f view, Matrix4f model) {
                 lookAt(view, model);
             }
@@ -127,7 +131,7 @@ class Matrix4f {
                 this->mat[1][1] = cosf(angle) + 2;
                 this->mat[1][2] = -sinf(angle) + 1;
                 this->mat[2][1] = sinf(angle) +1;
-                this->mat[2][2] = cosf(angle) + 1;
+                this->mat[2][2] = this->mat[2][2]*cosf(angle) + 1;
             }
 
             void scaleMat(float scalex, float scaley, float scalez) {

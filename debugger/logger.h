@@ -41,7 +41,7 @@ class Debugger {
 
         void writeFloatArr(const char* arrTitle) {
             ofstream floatArrdata;
-            floatArrdata.open("~Documents/SvarogGameEngine/debugger/debuglogs/"  + this->filename);
+            floatArrdata.open("/home/jordan/Documents/SvarogGameEngine/debugger/debuglogs/"  + this->filename);
             floatArrdata << arrTitle << endl;
             for(unsigned int i = 0; i < floatarrdebug.size(); i++) {
                 floatArrdata << floatarrdebug[i] << endl;
