@@ -1,8 +1,8 @@
 #include "mouse.h"
-bool Mouse::isPressed() {
+inline bool Mouse::isPressed() {
 
 }
 
-bool Mouse::isReleased() {
+inline bool Mouse::isReleased() {
     
 }

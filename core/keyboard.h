@@ -1,7 +1,7 @@
 #pragma once
-#ifdef KEYBOARD_H
+#ifndef KEYBOARD_H
 #define KEYBOARD_H
-#endif
+
 #include "libs.h"
 // basic special char keys
 #define KEY_SPACE 32
@@ -17,7 +17,7 @@
 #define KEY_MULT_SYM 42
 #define KEY_ADD_SYM 43
 #define KEY_COMMA 44
-#define KEY_DASH 45
+#define KEY_DASH_1 45
 #define KEY_PERIOD 46
 #define KEY_BACK_SLASH 47
 #define KEY_NUM_1 48
@@ -106,9 +106,9 @@
 class Keyboard {
     public:
         static int *keycode;
-        inline static void findKey(int keyCode) {(*keycode)=keyCode;}
-        inline bool keyPressed(int keystate);
-        inline bool keyReleased(int keystate);
+        inline static void findKey(int keyCode);
+        inline bool keyPressed(int keystate) {return (keystate==1) ? true : false;}
+        inline bool keyReleased(int keystate) {return (keystate==2) ? true : false;};
         bool currentKeyState();
     protected:
         virtual bool currKey() = 0;
@@ -310,4 +310,5 @@ namespace KeyBoard {
 
         }
     }
-};
+}
+#endif

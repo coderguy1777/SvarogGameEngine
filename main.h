@@ -15,6 +15,10 @@ namespace enginecore {
             glfwSetWindowShouldClose(window, true);
         }
 
+        if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+            cout << "A Pressed" << endl;
+        }
+
         if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
             num+= 0.01f;
         }

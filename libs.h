@@ -15,7 +15,6 @@
 #include <string>
 #include <memory>
 #include "main/exception.h"
-#include "core/keyboard.h"
 #include "main/color/Color.h"
 #include "main/camera/camera.h"
 #include "math/matrix.h"
