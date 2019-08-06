@@ -1,22 +1,20 @@
 #include "libs.h"
 namespace enginecore {
-    KeyEvt event;
     float num, numx= 0.0f;
     Camera engineCamera(Vector3(0.0f, 2.0f, 1.0f), Vector3(1.0f, 0.0f, 0.0f));
 
+    // cam width and height
     int width, height = 0;
 
+    // view port update method
     void framebuffersizecallback(GLFWwindow* window, int width, int height) {
         glViewport(0, 0, width, height);
     }
 
+    // key input method
     void processInput(GLFWwindow* window) {
         if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, true);
-        }
-
-        if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-            cout << "A Pressed" << endl;
         }
 
         if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
@@ -32,6 +30,7 @@ namespace enginecore {
         }
     }
 
+    // initalizes glfw
     void initializeWindow(int w, int h, String title) {
         #ifdef __APPLE__ 
             glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -71,6 +70,7 @@ namespace enginecore {
             0.5f, -0.5f, 0.0f,
         };
 
+        // positions for the array
         float arrPos[] {
             1.0f, 0.0f, 1.0f,
             0.0f, 1.0f, 0.0f, 
@@ -107,20 +107,21 @@ namespace enginecore {
         rightVec.streamVector3(rightVector);
         rightVec.writeVector3("Right Vec data");
 
-        // Element Buffer, Vertex Buffer, and Vertex 
-        // Attributes genned.
+        // matrix for perspective
         matA.perspec.identity();
         matA.create_perspecMatrix();
-        Matrix4f ab;
 
+        // debug stream for the camera matrix
         Debugger cameraMat("CameraMatrix.txt");
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4;  j++) {
                 cameraMat.streamFloatArr(matA.perspec.mat[i][j]);
             }
         }
-
         cameraMat.writeFloatArr("Camera matrix");
+
+        // making of vbo, vao, and ebos for shape
+        // buffers.
         unsigned int VBO, VAO, EBO;
         glGenVertexArrays(1, &VAO);
         glBindVertexArray(VAO);
@@ -150,6 +151,7 @@ namespace enginecore {
             matA.setVal(0, 0, 1.0f);
             b.scaleMat(0.5f, -1.0f, -1.5f);
             matA.perspec.setVectorRows(0, directionVector);
+            // setting of projection, model, and view matrix
             test3.setMatrix4f("projection", (engineCamera.lookAt(b, a) * matA.perspec));
             test3.setMatrix4f("model", a);
             test3.setMatrix4f("view", b);

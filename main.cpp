@@ -14,7 +14,6 @@ void doCompare() {
 }
 
 int main() {
-	doCompare();
 	String title("Svarog Game Engine");
 	enginecore::initializeWindow(800, 600, title.str);
 	return 0;

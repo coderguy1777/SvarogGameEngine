@@ -1,307 +1,324 @@
 #pragma once
-#ifndef KEYBOARD_H
+#ifdef KEYBOARD_H
 #define KEYBOARD_H
-
+#endif
 #include "libs.h"
-// basic special char keys
-#define KEY_SPACE 32
-#define KEY_EXCL_PT 33
-#define KEY_QUOTATION 34
-#define KEY_HASHTAG 35
-#define KEY_DLR_SIGN 36
-#define KEY_PCT_SIGN 37
-#define KEY_AND_SIGN 38
-#define KEY_APST_SIGN 39
-#define KEY_OPN_PTH 40
-#define KEY_CLSE_PTH 41
-#define KEY_MULT_SYM 42
-#define KEY_ADD_SYM 43
-#define KEY_COMMA 44
-#define KEY_DASH_1 45
-#define KEY_PERIOD 46
-#define KEY_BACK_SLASH 47
-#define KEY_NUM_1 48
-#define KEY_NUM_2 49
-#define KEY_NUM_3 50
-#define KEY_NUM_4 51
-#define KEY_NUM_5 52 
-#define KEY_NUM_6 53 
-#define KEY_NUM_7 54
-#define KEY_NUM_8 55
-#define KEY_NUM_9 56
-#define KEY_NUM_0 57
-#define KEY_DB_DT 58
-#define KEY_SMI_CLN 59
-#define KEY_LSN_SYM 60 // <
-#define KEY_EQ_SYM 61 // =
-#define KEY_GRN_SYM 62 // >
-#define KEY_QS_SYM 63 // ? 
-#define KEY_AT_SYM 64 // @ 
-#define KEY_A 65
-#define KEY_B 66
-#define KEY_C 67
-#define KEY_D 68
-#define KEY_E 69
-#define KEY_F 70
-#define KEY_G 71 
-#define KEY_H 72
-#define KEY_I 73
-#define KEY_J 74 
-#define KEY_K 75
-#define KEY_L 76
-#define KEY_M 77
-#define KEY_N 78
-#define KEY_O 79
-#define KEY_P 80 
-#define KEY_Q 81
-#define KEY_R 82
-#define KEY_S 83
-#define KEY_T 84
-#define KEY_U 85 
-#define KEY_V 86
-#define KEY_W 87
-#define KEY_X 88
-#define KEY_Y 89
-#define KEY_Z 90
-// puncation keycodes 
-#define KEY_FORWARD_BRACKET 91
-#define KEY_FORWARD_SLASH 92
-#define KEY_BACKWARDS_BRACKET 93
-#define KEY_PW_SYM 94
-#define KEY_DASH 95
-#define KEY_APSTROPHE 96
-// lowercase keycodes
-#define KEY_l_A 97
-#define KEY_l_B 98
-#define KEY_l_C 99 
-#define KEY_l_D 100
-#define KEY_l_E 101
-#define KEY_l_F 102 
-#define KEY_l_G 103
-#define KEY_l_H 104
-#define KEY_l_I 105
-#define KEY_l_J 106
-#define KEY_l_K 107
-#define KEY_l_L 108
-#define KEY_l_M 109
-#define KEY_l_N 110
-#define KEY_l_O 111 
-#define KEY_l_P 112
-#define KEY_l_Q 113
-#define KEY_l_R 114
-#define KEY_l_S 115
-#define KEY_l_T 116
-#define KEY_l_U 117
-#define KEY_l_V 118
-#define KEY_l_W 119
-#define KEY_l_X 120
-#define KEY_l_Y 121
-#define KEY_l_Z 122
-// more puncation keycodes
-#define KEY_BRACKET_1 123
-#define KEY_DIV_SEP 124
-#define KEY_BRACKET_2 125
-#define KEY_SQUIGGLY 126 // Key refers to the ~ key
-
-class Keyboard {
+// keyboard class
+class Input {
     public:
-        static int *keycode;
-        inline static void findKey(int keyCode);
-        inline bool keyPressed(int keystate) {return (keystate==1) ? true : false;}
-        inline bool keyReleased(int keystate) {return (keystate==2) ? true : false;};
-        bool currentKeyState();
+        Input(){};
+        virtual ~Input();
+        virtual int currKey(int* key) = 0;
+        virtual bool isCurrKeyRelased(int key) = 0;
+        virtual bool isCurrKeyPressed(int key) = 0;
+};
+class Keyboard : public Input {
+    public:
+        inline static int getCode(char key) {
+            return static_cast<int>(key);
+        }
+
+        union Key {
+            char key;
+            int code = Keyboard::getCode(key);
+        };
+        int *keycode;
+        inline void findKey(int keyCode) {keycode = &keyCode;}
+        bool isKeyPressed(int key) {return input_instace->isCurrKeyPressed(key);}
+        bool isKeyReleased(int key) {return input_instace->isCurrKeyRelased(key);}
+        int keyIs(int* key) {return input_instace->currKey(keycode);}
     protected:
-        virtual bool currKey() = 0;
-        virtual bool isCurrKeyRelased() = 0;
-        virtual bool isCurrKeyPressed() = 0;
+        ~Keyboard();
+        virtual int currKey(int* key) = 0;
+        virtual bool isCurrKeyRelased(int key) = 0;
+        virtual bool isCurrKeyPressed(int key) = 0;
     private:
         static Keyboard* input_instace;
 }; 
 
 namespace KeyBoard {
-    void keyProcess(int state) {
+    /* void keyProcess(int state) {
         switch(state) {
-            case KEY_A: 
+            case SVAROG_KEY_A: 
                 Keyboard::findKey(state);
                 break;
-            case KEY_B:
+            case SVAROG_KEY_B:
                 Keyboard::findKey(state);
                 break;
-            case KEY_C:
+            case SVAROG_KEY_C:
                 Keyboard::findKey(state);
                 break;
-            case KEY_D:
+            case SVAROG_KEY_D:
                 Keyboard::findKey(state);
                 break;
-            case KEY_E:
+            case SVAROG_KEY_E:
                 Keyboard::findKey(state);
                 break;
-            case KEY_F:
+            case SVAROG_KEY_F:
                 Keyboard::findKey(state);
                 break;
-            case KEY_G:
+            case SVAROG_KEY_G:
                 Keyboard::findKey(state);
                 break;
-            case KEY_H:
+            case SVAROG_KEY_H:
                 Keyboard::findKey(state);
                 break;
-            case KEY_I:
+            case SVAROG_KEY_I:
                 Keyboard::findKey(state);
                 break;
-            case KEY_J:
+            case SVAROG_KEY_J:
                 Keyboard::findKey(state);
                 break;
-            case KEY_K: 
+            case SVAROG_KEY_K: 
                 Keyboard::findKey(state);
                 break;
-            case KEY_L:
+            case SVAROG_KEY_L:
                 Keyboard::findKey(state);
                 break;
-            case KEY_M:
+            case SVAROG_KEY_M:
                 Keyboard::findKey(state);
                 break;
-            case KEY_N: 
+            case SVAROG_KEY_N: 
                 Keyboard::findKey(state);
                 break;
-            case KEY_O:
+            case SVAROG_KEY_O:
                 Keyboard::findKey(state);
                 break;
-            case KEY_P:
+            case SVAROG_KEY_P:
                 Keyboard::findKey(state);
                 break;
-            case KEY_Q:
+            case SVAROG_KEY_Q:
                 Keyboard::findKey(state);
                 break;
-            case KEY_R:
+            case SVAROG_KEY_R:
                 Keyboard::findKey(state);
                 break;
-            case KEY_S:
+            case SVAROG_KEY_S:
                 Keyboard::findKey(state);
                 break;
-            case KEY_T:
+            case SVAROG_KEY_T:
                 Keyboard::findKey(state);
                 break;
-            case KEY_U:
+            case SVAROG_KEY_U:
                 Keyboard::findKey(state);
                 break;
-            case KEY_V:
+            case SVAROG_KEY_V:
                 Keyboard::findKey(state);
                 break;
-            case KEY_W:
+            case SVAROG_KEY_W:
                 Keyboard::findKey(state);
                 break;
-            case KEY_X:
+            case SVAROG_KEY_X:
                 Keyboard::findKey(state);
                 break;
-            case KEY_Y:
+            case SVAROG_KEY_Y:
                 Keyboard::findKey(state);
                 break;
-            case KEY_Z:
+            case SVAROG_KEY_Z:
                 Keyboard::findKey(state);
                 break;
-            case KEY_FORWARD_BRACKET:
+            case SVAROG_KEY_FORWARD_BRACKET:
                 Keyboard::findKey(state);
                 break;
-            case KEY_FORWARD_SLASH:
+            case SVAROG_KEY_FORWARD_SLASH:
                 Keyboard::findKey(state);
                 break;
-            case KEY_BACKWARDS_BRACKET:
+            case SVAROG_KEY_BACKWARDS_BRACKET:
                 Keyboard::findKey(state);
                 break;
-            case KEY_PW_SYM:
+            case SVAROG_KEY_PW_SYM:
                 Keyboard::findKey(state);
                 break;
-            case KEY_DASH: 
+            case SVAROG_KEY_DASH: 
                 Keyboard::findKey(state);
                 break;
-            case KEY_APSTROPHE:
+            case SVAROG_KEY_APSTROPHE:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_A:
+            case SVAROG_KEY_l_A:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_B:
+            case SVAROG_KEY_l_B:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_C:
+            case SVAROG_KEY_l_C:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_D:
+            case SVAROG_KEY_l_D:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_E:
+            case SVAROG_KEY_l_E:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_F:
+            case SVAROG_KEY_l_F:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_G:
+            case SVAROG_KEY_l_G:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_H:
+            case SVAROG_KEY_l_H:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_I:
+            case SVAROG_KEY_l_I:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_K:
+            case SVAROG_KEY_l_K:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_L:
+            case SVAROG_KEY_l_L:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_M:
+            case SVAROG_KEY_l_M:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_N:
+            case SVAROG_KEY_l_N:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_O:
+            case SVAROG_KEY_l_O:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_P:
+            case SVAROG_KEY_l_P:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_Q:
+            case SVAROG_KEY_l_Q:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_R:
+            case SVAROG_KEY_l_R:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_S:
+            case SVAROG_KEY_l_S:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_T: 
+            case SVAROG_KEY_l_T: 
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_U:
+            case SVAROG_KEY_l_U:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_V:
+            case SVAROG_KEY_l_V:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_W:
+            case SVAROG_KEY_l_W:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_X:
+            case SVAROG_KEY_l_X:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_Y:
+            case SVAROG_KEY_l_Y:
                 Keyboard::findKey(state);
                 break;
-            case KEY_l_Z:
+            case SVAROG_KEY_l_Z:
                 Keyboard::findKey(state);
                 break;
-            case KEY_BRACKET_1:
+            case SVAROG_KEY_BRACKET_1:
                 Keyboard::findKey(state);
                 break;
-            case KEY_DIV_SEP:
+            case SVAROG_KEY_DIV_SEP:
                 Keyboard::findKey(state);
                 break;
-            case KEY_BRACKET_2:
+            case SVAROG_KEY_BRACKET_2:
                 Keyboard::findKey(state);
                 break;
-            case KEY_SQUIGGLY:
+            case SVAROG_KEY_SQUIGGLY:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_SPACE:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_EXCL_PT:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_QUOTATION:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_HASHTAG:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_DLR_SIGN:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_PCT_SIGN:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_AND_SIGN:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_APST_SIGN:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_OPN_PTH:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_CLSE_PTH:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_MULT_SYM:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_ADD_SYM:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_COMMA:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_DASH_1:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_PERIOD:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_BACK_SLASH:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_NUM_1:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_NUM_2:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_NUM_3:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_NUM_4:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_NUM_5:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_NUM_6:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_NUM_7:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_NUM_8:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_NUM_9:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_NUM_0:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_DB_DT:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_SMI_CLN:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_LSN_SYM:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_EQ_SYM:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_GRN_SYM:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_QS_SYM:
+                Keyboard::findKey(state);
+                break;
+            case SVAROG_KEY_AT_SYM:
                 Keyboard::findKey(state);
                 break;
             default:
@@ -309,6 +326,6 @@ namespace KeyBoard {
                 break;
 
         }
-    }
+    */
+
 }
-#endif
