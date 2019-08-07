@@ -8,7 +8,6 @@
 #include<sstream>
 #include<string>
 #include<memory>
-#include<ncurses.h>
 #include<GL/gl.h>
 #include "core/keycodes.h"
 #include "core/keyboard.h"

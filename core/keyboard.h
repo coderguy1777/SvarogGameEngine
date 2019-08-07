@@ -3,41 +3,37 @@
 #define KEYBOARD_H
 #endif
 #include "libs.h"
-// keyboard class
-class Input {
-    public:
-        Input(){};
-        virtual ~Input();
-        virtual int currKey(int* key) = 0;
-        virtual bool isCurrKeyRelased(int key) = 0;
-        virtual bool isCurrKeyPressed(int key) = 0;
+#define KEY_BIND(X) {}
+
+// input class
+union Key {
+    char key;
+    int code;
 };
-class Keyboard : public Input {
+class Keyboard {
     public:
+    
         inline static int getCode(char key) {
             return static_cast<int>(key);
         }
-
-        union Key {
-            char key;
-            int code = Keyboard::getCode(key);
-        };
         int *keycode;
         inline void findKey(int keyCode) {keycode = &keyCode;}
         bool isKeyPressed(int key) {return input_instace->isCurrKeyPressed(key);}
         bool isKeyReleased(int key) {return input_instace->isCurrKeyRelased(key);}
         int keyIs(int* key) {return input_instace->currKey(keycode);}
+       //~Keyboard() {
+       //   delete this;
+       //}
     protected:
-        ~Keyboard();
-        virtual int currKey(int* key) = 0;
-        virtual bool isCurrKeyRelased(int key) = 0;
-        virtual bool isCurrKeyPressed(int key) = 0;
+        int currKey(int* key) const {return *(key);}
+        bool isCurrKeyRelased(int key) const {return (key == 1) ? true : false;}
+        bool isCurrKeyPressed(int key) const {return (key == 2) ? true : false;}
     private:
         static Keyboard* input_instace;
 }; 
 
-namespace KeyBoard {
-    /* void keyProcess(int state) {
+/* namespace KeyBoard {
+     void keyProcess(int state) {
         switch(state) {
             case SVAROG_KEY_A: 
                 Keyboard::findKey(state);
@@ -325,7 +321,7 @@ namespace KeyBoard {
                 Keyboard::findKey(static_cast<int>(NULL));
                 break;
 
+      
         }
+    }
     */
-
-}

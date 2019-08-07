@@ -89,11 +89,15 @@ namespace enginecore {
 
         // debuggers
         Debugger vectorDebug("CameraVectors.txt");
-        // engine cam
+        // engine cam vectors
+
+        // normal test vec
         Vector3 normalTest(engineCamera.camorigin - engineCamera.cameraTarget);
         normalTest.normalize(normalTest);
+        //direction vec
         Vector3 directionVector(directionVector.normalize(engineCamera.camorigin - engineCamera.cameraTarget));
         engineCamera.setUpVector(Vector3(0.0f, 0.0f, 0.0f));
+        // direction vec debug
         Debugger directionVec("DirectionVec.txt");
         directionVec.streamVector3(directionVector);
         directionVec.writeVector3("Direction Vector:");
@@ -111,6 +115,11 @@ namespace enginecore {
         matA.perspec.identity();
         matA.create_perspecMatrix();
 
+        Keyboard keyboard;
+        Key space;
+        space.key = static_cast<char>(SVAROG_KEY_A);
+        space.code =  Keyboard::getCode(SVAROG_KEY_A);
+        cout << space.code << endl;
         // debug stream for the camera matrix
         Debugger cameraMat("CameraMatrix.txt");
         for(int i = 0; i < 4; i++) {

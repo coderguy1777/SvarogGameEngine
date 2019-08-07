@@ -8,8 +8,21 @@ class Mouse {
     public:
         inline bool isPressed();
         inline bool isReleased();
-        inline float getMouseX();
-        inline float getMouseY();
+        inline float getMouseX() const {
+            return x;
+        }
+
+        inline float getMouseY() const {
+            return y;
+        }
+
+        inline float setMouseX(float newX) {
+            x = newX;
+        }
+
+        inline float setMouseY(float newY) {
+            y = newY;
+        }
         inline Pair<float, float>getmouseCoords() {
             return Pair(getMouseX(), getMouseY());
         }
