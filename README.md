@@ -1,5 +1,5 @@
 # Svarog Game Engine
-## A Path Tracing Game engine made with GLFW and OpenGL, using C++ for the main language for the engine.
+## A Path Tracing Game engine made with GLFW and OpenGL, using C++.
 
 # How to build Svarog Engine
 ## Step 1: clone the repository to your machine.
