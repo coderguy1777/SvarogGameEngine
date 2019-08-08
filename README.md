@@ -21,8 +21,11 @@ To make sure the header for `glad.h` is included properly on your machine, run t
   `git clone https://github.com/Dav1dde/glad.git`
   
   `cmake ./`
+  
   `make`
+  
   `sudo cp -a include /usr/local/`
+  
 
 Once you have all that done and built with cmake, you should be good to go and ready to build the engine.
 
