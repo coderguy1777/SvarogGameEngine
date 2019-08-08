@@ -30,7 +30,7 @@ Once you have all that done and built with cmake, you should be good to go and r
 As of right now, Svarog Engine is not built with cmake due to the low amount of files used within the project, having no
 need for the use of cmake in my opinion. This may change in the future however for building the engine.
 
-But anyway, to start out, use gedit or any text editor and enter into the cloned engine directory, and find the bash script: compile.sh. Once you find this file, edit the paths of where some of the source files are located to be up to date with your machine. 
+But anyway, to start out, use gedit or any text editor and enter into the cloned engine directory, and find the bash script: compile.sh. Once you find this file, open the file with `gedit compile.sh` to edit the paths of where some of the source files are located to be up to date with your machine. 
 
 If you are using windows terminal to build the engine, then don't make the paths to them as they would be written on linux. But, once you are done fixing the paths, you are now able to build the engine. 
 
