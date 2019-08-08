@@ -115,7 +115,6 @@ namespace enginecore {
         matA.perspec.identity();
         matA.create_perspecMatrix();
 
-        Keyboard keyboard;
         Key space;
         space.key = static_cast<char>(SVAROG_KEY_A);
         space.code =  Keyboard::getCode(SVAROG_KEY_A);

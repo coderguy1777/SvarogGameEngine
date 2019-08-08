@@ -2,7 +2,10 @@
 #ifdef WINDOW_H
 #define WINDOW_H
 #endif
-#include "libs.h"
+#include "core/String.h"
+#include "main/exception.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #define GLFWFAILSTATE -1
 #define GLFWGOODSTATE 0
 

@@ -29,4 +29,7 @@
 #include "core/events/Queue.h"
 #include "math/matrix4f.h"
 #include "core/Point.h"
+#include "main/application/app.h"
+#include "main/window/window.h"
+#include "main/windowhandling/windowinput.h"
 using namespace std;
