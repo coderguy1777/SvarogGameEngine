@@ -44,4 +44,5 @@ When you make new classes to add into the functionallity itself, you should incl
 serves to make it easier to include in other files and stay orgainzed. To compile the new .cpp files for the class if it has 
 any, add the path to it in the compile.sh script, and you should be good to go. You then can update your engine build by using
 the following command, similar to the initial build process, but you can do it that way or this way as follows: `
+
 ./compile.sh && ./run.sh`
