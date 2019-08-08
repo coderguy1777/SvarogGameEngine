@@ -1,6 +1,5 @@
 # Svarog Game Engine
-A Path Tracing Game engine made with GLFW and OpenGL, using C++ for the main language for the engine.
-## ---------------------------------------------------
+## A Path Tracing Game engine made with GLFW and OpenGL, using C++ for the main language for the engine.
 
 # How to build Svarog Engine
 ## Step 1: clone the repository to your machine.
@@ -20,10 +19,10 @@ when downloading glad. Once you have glad downloaded, you'll have to configure t
 if you're on linux. With Windows, the new linux terminal that's in microsofts new Terminal, Windows terminal, this process should work on windows as well.
 To make sure the header for glad.h is included properly on your machine, run the following commands in order:
 
-1. git clone https://github.com/Dav1dde/glad.git
-2. cmake ./
-3. make
-4. sudo cp -a include /usr/local/
+  git clone https://github.com/Dav1dde/glad.git
+  cmake ./
+  make
+  sudo cp -a include /usr/local/
 
 Once you have all that done and built with cmake, you should be good to go and ready to build the engine.
 
