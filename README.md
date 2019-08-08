@@ -18,7 +18,8 @@ and the profile to Core instead of compatibility. You are also going to want to 
 also. Once you download glad, you'll need to configure the header file to be on your machine locally if you run linux. With Windows, the new linux terminal that's in microsofts new Terminal, Windows terminal, this process should work on windows as well.
 To make sure the header for `glad.h` is included properly on your machine, run the following commands in order:
 
-  `git clone https://github.com/Dav1dde/glad.git` '\n'
+  `git clone https://github.com/Dav1dde/glad.git`
+  
   `cmake ./`
   `make`
   `sudo cp -a include /usr/local/`
