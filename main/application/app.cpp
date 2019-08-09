@@ -15,10 +15,6 @@ void Application::ChangeCurrWindow(SvarogWindow::Window newWin) {
     winA = newWin;
 }
 
-void framebuffersizecallback(GLFWwindow* window, int width, int height) {
-    glViewport(0, 0, width, height);
-}
-
 void Application::createWindowContext() {
     glfwMakeContextCurrent(appWindow);
     glfwSetFramebufferSizeCallback(appWindow, framebuffersizecallback);
@@ -34,28 +30,30 @@ void Application::createWindowContext() {
 }
 
 void Application::SvarogAppLoop() {
-    if(engineState) {
-        while(!(glfwWindowShouldClose(appWindow))) {
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            glClearColor(1.0, 0.0, 0.0, 1.0);
-            glUseProgram(shaderToUse());
-            glfwSwapBuffers(appWindow);
-            glfwPollEvents();
+    if(appWindow == NULL) {
+        glfwTerminate();
+    } 
+
+    if(!appWindow == NULL) {
+        if(engineState) {
+            while(!(glfwWindowShouldClose(appWindow))) {
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+                glClearColor(1.0, 0.0, 0.0, 1.0);
+                glUseProgram(shaderToUse());
+                glfwSwapBuffers(appWindow);
+                glfwPollEvents();
+            }
+            glfwTerminate();
         }
-        glfwTerminate();
-    }
 
-    if(!engineState) {
-        glfwTerminate();
+        if(!engineState) {
+            glfwTerminate();
+        }
     }
 }
 
-Material  Application::getInputShader(int index) {
+Material Application::getInputShader(int index) {
     return wantedShaders.get(index);
-}
-
-void Application::setInputShader(int listIndex, Material material) {
-    wantedShaders.set(listIndex, material);
 }
 
 ArrayList<Material>Application::getShaderli() const {

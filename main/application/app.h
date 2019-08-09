@@ -9,13 +9,18 @@ using namespace SvarogWindow;
 class Material;
 class Application {
     public: 
-        Window winA;
-        bool engineState;
-        GLFWwindow* appWindow = winA.initliazeWindow();
-        ArrayList<Material>wantedShaders;
+        static Window winA;
+        static bool engineState;
+        static GLFWwindow* appWindow;
+        static ArrayList<Material>wantedShaders;
         Application(){};
         Application(Window w, bool eState) {
             winA = w;
+            engineState = eState;
+        }
+
+        Application(GLFWwindow* window, bool eState) {
+            appWindow = window;
             engineState = eState;
         }
         // getters
@@ -23,15 +28,20 @@ class Application {
         bool getLoopState() const;
         Material getInputShader(int listIndex);
         ArrayList<Material>getShaderli() const;
-
+        static void setInputShader(int listIndex, Material material) {
+            wantedShaders.set(listIndex, material);
+        }
         // setters
         void ChangeCurrWindow(Window win);
         void ChangeLoopState(bool newState);
-        void setInputShader(int listIndex, Material material);
-
         // window context
-        unsigned int shaderToUse();
-        friend void framebuffersizecallback(GLFWwindow* window, int width, int height);
-        void createWindowContext();
-        void SvarogAppLoop();
+        static unsigned int shaderToUse();
+        static inline void frameFunc(GLFWwindow* window, int width, int height) {
+            framebuffersizecallback(window, width, height);
+        }
+        static void framebuffersizecallback(GLFWwindow* window, int width, int height) {
+            glViewport(0, 0, width, height);
+        }
+        static void createWindowContext();
+        static void SvarogAppLoop();
 };

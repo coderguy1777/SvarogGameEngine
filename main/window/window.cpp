@@ -17,7 +17,15 @@ String SvarogWindow::Window::getTitle() const {
 }
 
 bool SvarogWindow::Window::isGladLoaded() {
-    return (GLAD_STATE==0) ? true : (GLAD_STATE==-1) ? false : true;
+    bool isLoaded = NULL;
+    if(GLAD_STATE == 0) {
+        isLoaded = true;
+    }
+
+    if(GLAD_STATE == -1) {
+        isLoaded = false;
+    }
+    return isLoaded;
 }
 
 void SvarogWindow::Window::changeWidth(int w) {

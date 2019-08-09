@@ -34,10 +34,4 @@ class Event {
         EVENT_TYPE get_typeof_event() const;
         int get_priority() const;
         const char* get_cause() const;
-
-        void * operator new(size_t size) {
-            void * event = new ::Event();
-            return event;
-        }
-
 };
