@@ -14,16 +14,12 @@ namespace SvarogEngineCore {
         return Application(window, wantedEState);
     }
 
-    void streamShaders(int spot, Material material) {
-        Application::setInputShader(spot, material);
-    }
-
     void doFrameBuffer(GLFWwindow* window, int w, int h) {
         Application::frameFunc(window, w, h);
     }
     
-    void runApplication() {
-        Application::createWindowContext();
-        Application::SvarogAppLoop();
-    }
+    void runApplication(); //{
+        //Application::createWindowContext();
+        //Application::SvarogAppLoop();
+    //}
 }

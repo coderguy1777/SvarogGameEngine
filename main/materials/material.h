@@ -10,6 +10,7 @@
 #include "libs.h"
 using namespace std;
 
+class Material;
 class Material {
     public:
         unsigned int shaderID;

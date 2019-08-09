@@ -39,7 +39,8 @@ void Application::SvarogAppLoop() {
             while(!(glfwWindowShouldClose(appWindow))) {
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 glClearColor(1.0, 0.0, 0.0, 1.0);
-                glUseProgram(shaderToUse());
+                unsigned int shaderid = this->shaderToUse();
+                glUseProgram(shaderid);
                 glfwSwapBuffers(appWindow);
                 glfwPollEvents();
             }
@@ -56,8 +57,8 @@ Material Application::getInputShader(int index) {
     return wantedShaders.get(index);
 }
 
-ArrayList<Material>Application::getShaderli() const {
-    return wantedShaders;
+ArrayList<Material> Application::getShaderli() const {
+    return (wantedShaders);
 }
 
 unsigned int Application::shaderToUse() {

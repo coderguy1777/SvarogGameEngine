@@ -1,0 +1,1 @@
+#define FORWARD_DEC(CLASS_VAL) class CLASS_VAL;

@@ -1,18 +1,20 @@
 #pragma once 
-#ifdef APP_H
+#ifndef APP_H
 #define APP_H
-#endif
 #include "main/materials/material.h"
 #include "main/window/window.h"
+#include "core/ArrayList.h"
+#include "macrodefs.h"
+#include<bits/stdc++.h>
 namespace SvarogWindow{}
 using namespace SvarogWindow;
-class Material;
+FORWARD_DEC(Material);
 class Application {
     public: 
         static Window winA;
         static bool engineState;
         static GLFWwindow* appWindow;
-        static ArrayList<Material>wantedShaders;
+        ArrayList<Material> wantedShaders;
         Application(){};
         Application(Window w, bool eState) {
             winA = w;
@@ -28,20 +30,21 @@ class Application {
         bool getLoopState() const;
         Material getInputShader(int listIndex);
         ArrayList<Material>getShaderli() const;
-        static void setInputShader(int listIndex, Material material) {
-            wantedShaders.set(listIndex, material);
+        void setInputShader(int listIndex, Material material) {
+            wantedShaders.add(material);
         }
         // setters
         void ChangeCurrWindow(Window win);
         void ChangeLoopState(bool newState);
         // window context
-        static unsigned int shaderToUse();
+        unsigned int shaderToUse();
         static inline void frameFunc(GLFWwindow* window, int width, int height) {
             framebuffersizecallback(window, width, height);
         }
         static void framebuffersizecallback(GLFWwindow* window, int width, int height) {
             glViewport(0, 0, width, height);
         }
-        static void createWindowContext();
-        static void SvarogAppLoop();
+        void createWindowContext();
+        void SvarogAppLoop();
 };
+#endif
