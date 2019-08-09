@@ -1,7 +1,10 @@
-#include "main.h"
+#include "libs.h"
 using namespace std;
 int main() {
 	String title("Svarog Game Engine");
-	enginecore::initializeWindow(800, 600, title.str);
+	int w = 800;
+	int h = 600;
+	Application a(Window(w, h, title), true);
+	a.SvarogAppLoop();
 	return 0;
 }

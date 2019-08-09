@@ -1,5 +1,5 @@
 #include "app.h"
-SvarogWindow::Window Application::getWindow() const {
+Window Application::getWindow() const {
     return winA;
 }
 
@@ -11,42 +11,46 @@ void Application::ChangeLoopState(bool newState) {
     engineState = newState;
 }
 
-void Application::ChangeCurrWindow(SvarogWindow::Window newWin) {
+void Application::ChangeCurrWindow(Window newWin) {
     winA = newWin;
 }
 
-void Application::createWindowContext() {
-    glfwMakeContextCurrent(appWindow);
-    glfwSetFramebufferSizeCallback(appWindow, framebuffersizecallback);
-
-    if(appWindow == NULL) {
-        glfwTerminate();
-    }
-
-    if(winA.getGladState() == -1) {
-        glfwTerminate();
-    }
-
+void framebuffersizecallback(GLFWwindow* window, int width, int height) {
+    glViewport(0, 0, width, height);
 }
 
 void Application::SvarogAppLoop() {
+    // frame buffer
+    #ifdef __APPLE__
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    #endif
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    appWindow = glfwCreateWindow(winA.width, winA.height, winA.windowTitle.str, NULL, NULL);
+    glfwMakeContextCurrent(appWindow);
+    glfwSetFramebufferSizeCallback(appWindow, framebuffersizecallback);
+
+
     if(appWindow == NULL) {
+        cout << "SVAROG_WINDOW IS NULL, ENDING NOW" << endl;
         glfwTerminate();
-    } 
-
-    if(!appWindow == NULL) {
-        if(engineState) {
-            while(!(glfwWindowShouldClose(appWindow))) {
-                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-                glClearColor(1.0, 0.0, 0.0, 1.0);
-                glfwSwapBuffers(appWindow);
-                glfwPollEvents();
-            }
-            glfwTerminate();
-        }
-
-        if(!engineState) {
-            glfwTerminate();
-        }
     }
+    if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        throw std::invalid_argument("GLAD FAILURE.");
+        winA.GLAD_STATE = GLFWFAILSTATE;
+        glfwTerminate();
+    } else {
+        cout << "GLAD SUCCESS TO LOAD." << endl;
+        winA.GLAD_STATE = GLFWGOODSTATE;
+    }
+
+    while(!glfwWindowShouldClose(appWindow)) {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClearColor(1.0, 0.0, 0.0, 1.0);
+        glfwSwapBuffers(appWindow);
+        glfwPollEvents();
+    }
+    glfwTerminate();
 }
