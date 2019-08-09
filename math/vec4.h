@@ -2,7 +2,6 @@
 #ifdef VEC4_H
 #define VEC4_H
 #endif 
-#include "libs.h"
 using namespace std;
 class Vector4 {
     public:

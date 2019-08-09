@@ -32,13 +32,6 @@ T ArrayList<T>::get(int index) {
 }
 
 template<class T>
-void ArrayList<T>::print() {
-    for(unsigned int i = 0; i < items.size(); i++) {
-        std::cout << std::items[i]; << std::endl;
-    }
-}
-
-template<class T>
 int ArrayList<T>::size() {
     return items.size();
 }

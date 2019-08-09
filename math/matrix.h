@@ -2,7 +2,6 @@
 #ifdef MATRIX_H
 #define MATRIX_H
 #endif 
-#include "math.h"
 #include "core/Point.h"
 #include "vec3.h"
 #include "core/ArrayList.h"

@@ -15,7 +15,6 @@ class ArrayList {
         void clear();
         void remove(int index);
         T get(int index);
-        void print();
         int size();
         bool isEmpty();
         T Max (const T& a, const T& b);

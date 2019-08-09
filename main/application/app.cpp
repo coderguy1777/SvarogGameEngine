@@ -39,8 +39,6 @@ void Application::SvarogAppLoop() {
             while(!(glfwWindowShouldClose(appWindow))) {
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 glClearColor(1.0, 0.0, 0.0, 1.0);
-                unsigned int shaderid = this->shaderToUse();
-                glUseProgram(shaderid);
                 glfwSwapBuffers(appWindow);
                 glfwPollEvents();
             }
@@ -51,22 +49,4 @@ void Application::SvarogAppLoop() {
             glfwTerminate();
         }
     }
-}
-
-Material Application::getInputShader(int index) {
-    return wantedShaders.get(index);
-}
-
-ArrayList<Material> Application::getShaderli() const {
-    return (wantedShaders);
-}
-
-unsigned int Application::shaderToUse() {
-    unsigned int shaderLI = 0;
-    if(wantedShaders.size() == 1) {
-        shaderLI = wantedShaders.get(0).shaderID;
-    } else {
-        shaderLI = 0;
-    }
-    return shaderLI;
 }

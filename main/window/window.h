@@ -3,12 +3,12 @@
 #define WINDOW_H
 #endif
 #include "core/String.h"
-#include "main/exception.h"
+#include<stdexcept>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #define GLFWFAILSTATE -1
 #define GLFWGOODSTATE 0
-
+namespace Exception{}
 namespace SvarogWindow {
     class Window {
         private:
@@ -17,10 +17,10 @@ namespace SvarogWindow {
             String windowTitle;
             void loadGlad() {
                 if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-                    Exception::printException("GLAD FAILURE.");
+                    throw std::invalid_argument("GLAD FAILURE.");
                     GLAD_STATE = GLFWFAILSTATE;
                 } else {
-                    Exception::printException("GLAD SUCCESS TO LOAD.");
+                    throw std::invalid_argument("GLAD SUCCESS TO LOAD.");
                     GLAD_STATE = GLFWGOODSTATE;
                 }
             }

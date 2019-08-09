@@ -18,18 +18,18 @@ class Matrix2f {
 
         void setVal(int row, int col, float val) {
             if(row > 2 || col > 2) {
-                Exception::printException("Row or Column to big for selection of value setting.");
+                throw std::invalid_argument("Row or Column to big for selection of value setting.");
             } else if(row < 0 || col < 0) {
-                Exception::printException("Row or Column selection to small for value setting.");
+                throw std::invalid_argument("Row or Column selection to small for value setting.");
             }
             matrix[row][col] = val;
         }
 
         float getVal(int row, int col) {
             if(row > 2 || col > 2) {
-                Exception::printException("Row or Column selection too big for mat3 dimensions.");
+                throw std::invalid_argument("Row or Column selection too big for mat3 dimensions.");
             } else if(row < 0 || col < 0) {
-                Exception::printException("Row or Column selection too small for wanted value spot.");
+                throw std::invalid_argument("Row or Column selection too small for wanted value spot.");
             }
             return (float)matrix[row][col];
         }
