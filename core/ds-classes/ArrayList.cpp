@@ -1,5 +1,4 @@
 #include "ArrayList.h"
-#include "main/materials/material.h"
 
 template<class T>
 void ArrayList<T>::set(int index, T const& item) {
@@ -43,6 +42,5 @@ bool ArrayList<T>::isEmpty() {
 
 
 // class types
-ARRAYLIST_TYPE(Material);
 ARRAYLIST_TYPE(int);
 ARRAYLIST_TYPE(float);
