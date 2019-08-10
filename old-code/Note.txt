@@ -1,3 +1,0 @@
-This folder exists so old code for now, rather than being pushed into a new github branch,
-can be instead put here for later on use. Once the alpha of the engine releases however,
-this folder will no longer exist with old files of code once used.

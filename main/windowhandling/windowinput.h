@@ -3,7 +3,9 @@
 #define WINDOWINPUT_H
 #endif
 #include "main/window/window.h"
-#include "core/keyboard.h"
+#include "macrodefs.h"
+#include "core/Input/keyboard.h"
+#include "core/Input/keycodes.h"
 #define STATE_KEY_PRESS 1
 #define STATE_KEY_RELEASE -1
 #define DEFINEMOVE_KEY(X, X1)(SvarogWindowInput::MOVE_KEYS[X1] == X)
@@ -18,13 +20,13 @@ namespace SvarogWindowInput {
         KEY_RIGHT = SVAROG_KEY_D,
         KEY_JUMP = SVAROG_KEY_SPACE,
     };
+
     class Keyboard;
-    class WindowInput {
+    class WindowInput  {
         private: 
             Window keyWindow;
             GLFWwindow* keyWin;
-        public: 
-        
+        public:
             Window keywindow() const;
             static void handleKey(unsigned int keyCode);
     };

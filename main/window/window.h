@@ -2,9 +2,9 @@
 #ifdef WINDOW_H
 #define WINDOW_H
 #endif
-#include<GLFW/glfw3.h>
+#include <GLFW/glfw3.h>
 #include "core/String.h"
-#include<stdexcept>
+#include <stdexcept>
 #define GLFWFAILSTATE -1
 #define GLFWGOODSTATE 0
 class Window {

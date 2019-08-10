@@ -2,7 +2,6 @@
 #ifdef KEYBOARD_H
 #define KEYBOARD_H
 #endif
-#include "libs.h"
 #define KEY_BIND(X) {}
 
 // input class
@@ -22,6 +21,7 @@ class Keyboard {
         bool isKeyPressed(int key) {return input_instace->isCurrKeyPressed(key);}
         bool isKeyReleased(int key) {return input_instace->isCurrKeyReleased(key);}
         int keyIs(int key) {return input_instace->currKey(key);}
+    protected:
         virtual int currKey(int keyCode) = 0;
         virtual bool isCurrKeyReleased(int key) = 0;
         virtual bool isCurrKeyPressed(int key) = 0;

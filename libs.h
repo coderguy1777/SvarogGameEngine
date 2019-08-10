@@ -9,8 +9,8 @@
 #include<string>
 #include<memory>
 #include<GL/gl.h>
-#include "core/keycodes.h"
-#include "core/keyboard.h"
+#include "core/Input/keycodes.h"
+#include "core/Input/keyboard.h"
 #include "core/String.h"
 #include "core/events/InputEvent.h"
 #include "core/events/Message.h"
@@ -29,7 +29,7 @@
 #include "core/events/Queue.h"
 #include "core/Point.h"
 #include "main/application/app.h"
+#include "macrodefs.h"
 #include "main/window/window.h"
-#include "core/ArrayList.h"
-#include "main/windowhandling/windowinput.h"
+#include "core/ds-classes/ArrayList.h"
 using namespace std;

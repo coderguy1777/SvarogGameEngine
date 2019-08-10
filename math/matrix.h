@@ -4,7 +4,7 @@
 #endif 
 #include "core/Point.h"
 #include "vec3.h"
-#include "core/ArrayList.h"
+#include "core/ds-classes/ArrayList.h"
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;

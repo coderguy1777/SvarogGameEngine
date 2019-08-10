@@ -1,11 +1,11 @@
 #pragma once 
 #ifndef APP_H
 #define APP_H
-#include<glad/glad.h>
+#include <glad/glad.h>
 #include "main/window/window.h"
 #include "core/ArrayList.h"
 #include "macrodefs.h"
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 class Application {
     public: 
         Window winA;

@@ -15,7 +15,7 @@ bool SvarogWindowInput::WindowInput::isCurrKeyPressed(Key key) {
 
 bool SvarogWindowInput::WindowInput::isCurrKeyReleased(Key key) {
     bool isReleased = NULL;
-    if(glfwGetKey(keyWin, key.code) == GLFW_RELEASE) {
+    if(glfwGetKey(this->keyWin, key.code) == GLFW_RELEASE) {
         isReleased = true;
     } else if(!glfwGetKey(keyWin, key.code) == GLFW_RELEASE) {
         isReleased = false;
