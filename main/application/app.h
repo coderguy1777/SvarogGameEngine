@@ -3,7 +3,7 @@
 #define APP_H
 #include <glad/glad.h>
 #include "main/window/window.h"
-#include "core/ArrayList.h"
+#include "core/ds-classes/ArrayList.h"
 #include "macrodefs.h"
 #include <bits/stdc++.h>
 class Application {

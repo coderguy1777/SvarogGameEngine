@@ -2,7 +2,7 @@
 #ifdef COLORS_H
 #define COLORS_H
 #endif
-#include "core/ArrayList.h"
+#include "core/ds-classes/ArrayList.h"
 #include<string>
 #include<initializer_list>
 #include <cmath>

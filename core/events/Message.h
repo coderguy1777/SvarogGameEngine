@@ -3,8 +3,8 @@
 #define MESSAGE_H
 #endif
 #include "core/String.h"
-#include "core/ArrayList.h"
-#include "core/Pair.h"
+#include "core/ds-classes/ArrayList.h"
+#include "core/ds-classes/Pair.h"
 #include "Event.h"
 typedef struct {
     int ID;

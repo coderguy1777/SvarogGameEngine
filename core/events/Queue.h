@@ -2,7 +2,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 #include "Message.h"
-#include "LinkedList.h"
+#include "ds-classes/LinkedList.h"
 template<class T> 
 class EventQueue {
     private: 

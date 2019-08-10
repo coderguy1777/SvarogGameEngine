@@ -9,6 +9,8 @@
 #include<string>
 #include<memory>
 #include<GL/gl.h>
+#include "core/ds-classes/ArrayList.h"
+
 #include "core/Input/keycodes.h"
 #include "core/Input/keyboard.h"
 #include "core/String.h"
@@ -31,5 +33,4 @@
 #include "main/application/app.h"
 #include "macrodefs.h"
 #include "main/window/window.h"
-#include "core/ds-classes/ArrayList.h"
 using namespace std;
