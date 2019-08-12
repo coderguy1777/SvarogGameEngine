@@ -2,63 +2,52 @@
 #ifdef NODE_H
 #define NODE_H
 #endif 
-#include "core/String.h"
+#include "macrodefs.h"
 #define NODE_INT int
 #define NODE_DOUBLE double
 #define NODE_FLOAT float
 #define NODE_CHAR char
 #define NODE_SHORT short
 #define NODE_LONG long
-#define NODE_UINT32 uint32_t
-#define NODE_UINT16 uint16_t
-#define NODE_UINT8 uint8_t
-#define NODE_BYTE BYTE
-#define NODE_STRING String
-
-union Node
+#define NODE_UINT32 std::uint32_t
+#define NODE_UINT16 std::uint16_t
+#define NODE_UINT8 std::uint8_t
+struct Node
 {
     Node *next;
     struct {
-        NODE_INT data;
+        NODE_INT data_int;
     };
 
     struct {
-        NODE_DOUBLE data;
+        NODE_DOUBLE data_double;
     };
 
     struct {
-        NODE_FLOAT data;
+        NODE_FLOAT data_float;
     };
 
     struct {
-        NODE_STRING data;
+        NODE_CHAR data_char;
     };
 
     struct {
-        NODE_CHAR data;
+        NODE_SHORT data_short;
     };
 
     struct {
-        NODE_SHORT data;
+        NODE_LONG data_long;
     };
 
     struct {
-        NODE_LONG data;
+        NODE_UINT32 data_uint32;
     };
 
     struct {
-        NODE_UINT32 data;
+        NODE_UINT16 data_uint16;
     };
 
     struct {
-        NODE_UINT16 data;
-    };
-
-    struct {
-        NODE_UINT8 data;
-    };
-    
-    struct {
-        NODE_BYTE data;
+        NODE_UINT8 data_uint8;
     };
 };

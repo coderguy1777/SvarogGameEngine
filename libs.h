@@ -10,7 +10,6 @@
 #include<memory>
 #include<GL/gl.h>
 #include "core/ds-classes/ArrayList.h"
-
 #include "core/Input/keycodes.h"
 #include "core/Input/keyboard.h"
 #include "core/String.h"
@@ -28,7 +27,7 @@
 #include "math/matrix3f.h"
 #include "math/matrix4f.h"
 #include "debugger/logger.h"
-#include "core/events/Queue.h"
+#include "core/ds-classes/Queue.h"
 #include "core/Point.h"
 #include "main/application/app.h"
 #include "macrodefs.h"

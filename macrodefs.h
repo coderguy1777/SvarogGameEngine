@@ -8,4 +8,3 @@
 #define ASSERT_NONEQ(OBJECT, PARAM) assert(OBJECT!=PARAM)
 #define EXCEPTION(MSG) throw std::invalid_argument(MSG)
 #define BIT(X) (1>>X)
-typedef bitset<8>BYTE;
