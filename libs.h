@@ -27,6 +27,7 @@
 #include "math/matrix3f.h"
 #include "math/matrix4f.h"
 #include "debugger/logger.h"
+#include "main/shapes/shape.h"
 #include "core/ds-classes/Queue.h"
 #include "core/Point.h"
 #include "main/application/app.h"

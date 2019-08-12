@@ -32,7 +32,6 @@ void Application::SvarogAppLoop() {
     glfwMakeContextCurrent(appWindow);
     glfwSetFramebufferSizeCallback(appWindow, framebuffersizecallback);
 
-
     if(appWindow == NULL) {
         cout << "SVAROG_WINDOW IS NULL, ENDING NOW" << endl;
         glfwTerminate();
@@ -45,10 +44,18 @@ void Application::SvarogAppLoop() {
         cout << "GLAD SUCCESS TO LOAD." << endl;
         winA.GLAD_STATE = GLFWGOODSTATE;
     }
+    Material matB("/home/jordan/Documents/SvarogGameEngine/shaders/VertexShader.glsl", "/home/jordan/Documents/SvarogGameEngine/shaders/FragementShader.glsl");
 
+    // vert test
+	float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f,0.0f,  0.5f, 0.0f     }; 
+    int pos[] = {0, 0, 0,0, 0, 0,};
+    
+    Shape drawer2(vertices, pos);
     while(!glfwWindowShouldClose(appWindow)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
+        glUseProgram(matB.shaderID);
+        drawer2.draw();
         glfwSwapBuffers(appWindow);
         glfwPollEvents();
     }

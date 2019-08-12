@@ -1,3 +1,7 @@
+#pragma once 
+#ifdef EVENT_H
+#define EVENT_H
+#endif
 enum EVENT_TYPE {
     nullevt = 0,
     KeyEvent,
@@ -16,11 +20,13 @@ enum class KEY_EVENT_TYPES {
     KEY_HOLD = 4,
 };
 
+template<class E>
 class Event {
     private:  
         EVENT_TYPE evt_type;
         int PRIORITY;
         const char* cause;
+        E const &type;
     public: 
         // constructor
         Event(EVENT_TYPE event_type, int prty, const char* cse) {
@@ -31,7 +37,11 @@ class Event {
         Event(){}
 
         // getters
+        bool findQueue();
         EVENT_TYPE get_typeof_event() const;
         int get_priority() const;
         const char* get_cause() const;
+        static void event_type(E const &type) {
+            type = type;
+        }
 };

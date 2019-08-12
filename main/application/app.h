@@ -3,13 +3,16 @@
 #define APP_H
 #include <glad/glad.h>
 #include "main/window/window.h"
+#include "main/materials/material.h"
 #include "core/ds-classes/ArrayList.h"
+#include "main/shapes/shape.h"
 #include "macrodefs.h"
 #include <bits/stdc++.h>
 class Application {
     public: 
         Window winA;
         bool engineState;
+        Shape drawer;
         GLFWwindow* appWindow;
         Application(){};
         Application(Window w, bool eState) {
