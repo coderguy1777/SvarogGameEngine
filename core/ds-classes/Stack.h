@@ -1,11 +1,11 @@
 #pragma once 
 #ifndef STACK_H
 #define STACK_H
+#include "Pair.h"
 #include "core/String.h"
 #include "ArrayList.h"
+#include "core/events/Event.h"
 #include "macrodefs.h"
-template<class S>
-class Stack;
 
 template<class S>
 class Stack {
@@ -22,6 +22,9 @@ class Stack {
         S pop();
 };
 
+TMP_TYPE(Stack, Queue<Event*>);
+TMP_TYPE(Stack, Event);
+TMP_TYPE(Stack, Event*);
 TMP_TYPE(Stack, double);
 TMP_TYPE(Stack, float);
 TMP_TYPE(Stack, int);

@@ -26,6 +26,8 @@ void * Pair<A,B>::operator new(size_t size) {
     return newpair;
 }
 
+MULT_TMP_TYPE(Pair, Queue<Event *>, int)
+
 MULT_TMP_TYPE(Pair, int, int)
 MULT_TMP_TYPE(Pair, int, double)
 MULT_TMP_TYPE(Pair, int, float)

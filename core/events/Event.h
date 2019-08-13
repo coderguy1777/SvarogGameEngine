@@ -15,13 +15,6 @@ enum EVENT_TYPE {
     ErrorEvent, 
 };
 
-enum class KEY_EVENT_TYPES {
-    KEY_PRESS = 1,
-    KEY_RELEASE = 2,
-    KEY_DOUBLE_PRESS = 3,
-    KEY_HOLD = 4,
-};
-
 class Event {
     private:  
         EVENT_TYPE evt_type;

@@ -13,17 +13,17 @@ bool processTest(GLFWwindow* window) {
 void processStuff(GLFWwindow* window) {
     EventDispatcher *dispat;
 
-    Event e;
-    e.setEventType(EVENT_TYPE::KeyEvent);
-    e.setPriority(10); 
-    e.setCause("Key Press");
+    Event* e;
+    e->setEventType(EVENT_TYPE::KeyEvent);
+    e->setPriority(10); 
+    e->setCause("Key Press");
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwTerminate();
     }
 
     if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-        Queue<Event>queue = dispat->makeNewQueue(e);
-        std::cout << queue.size() << std::endl;
+        Queue<Event*>queue = dispat->makeNewQueue(e);
+        dispat->sendToEventLayer(queue);
     }
 }
 
