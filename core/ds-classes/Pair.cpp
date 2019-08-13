@@ -26,8 +26,8 @@ void * Pair<A,B>::operator new(size_t size) {
     return newpair;
 }
 
-template class Pair<int, int>;
-template class Pair<int, double>;
-template class Pair<int, float>;
-template class Pair<int, char>;
-template class Pair<int, String>;
+MULT_TMP_TYPE(Pair, int, int)
+MULT_TMP_TYPE(Pair, int, double)
+MULT_TMP_TYPE(Pair, int, float)
+MULT_TMP_TYPE(Pair, int, char)
+MULT_TMP_TYPE(Pair, int, String)

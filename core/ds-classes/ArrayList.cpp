@@ -43,4 +43,6 @@ bool ArrayList<T>::isEmpty() {
 
 // class types
 ARRAYLIST_TYPE(int);
+ARRAYLIST_TYPE(Event);
+ARRAYLIST_TYPE(Event*);
 ARRAYLIST_TYPE(float);

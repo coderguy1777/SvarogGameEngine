@@ -100,3 +100,4 @@
 #define SVAROG_KEY_DIV_SEP 124
 #define SVAROG_KEY_BRACKET_2 125
 #define SVAROG_KEY_SQUIGGLY 126 // Key refers to the ~ key
+#define SVAROG_KEY_ESC 256

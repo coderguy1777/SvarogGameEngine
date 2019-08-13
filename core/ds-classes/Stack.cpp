@@ -2,25 +2,27 @@
 
 template<class S>
 void Stack<S>::push(S const& item) {
-    Stack.add(item);
+    stack.add(item);
 }
 
 template<class S>
 S Stack<S>::pop() {
-    return Stack.remove(topPiece);
+    S item = stack.remove(topPiece);
+    return item;
 }
 
 template <class S>
 S Stack<S>::top() {
-    return Stack.get(topPiece);
+    S item =  stack.get(topPiece);
+    return item;
 }
 
 template<class S>
 void Stack<S>::clear() {
-    Stack.clear();
+    stack.clear();
 }
 
 template<class S>
 bool Stack<S>::isEmpty() {
-    return (Stack.size() == 0) ? true : false;
+    return stack.size() == 0;
 }

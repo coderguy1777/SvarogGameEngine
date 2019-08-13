@@ -1,19 +1,17 @@
 #pragma once 
 #ifndef APP_H
 #define APP_H
-#include <glad/glad.h>
+#include<glad/glad.h>
+#include <GLFW/glfw3.h>
+#include "core/events/EventDispatch.h"
 #include "main/window/window.h"
-#include "main/materials/material.h"
-#include "core/ds-classes/ArrayList.h"
-#include "main/shapes/shape.h"
-#include "macrodefs.h"
-#include <bits/stdc++.h>
+#include "core/Input/keyboard.h"
 class Application {
     public: 
         Window winA;
         bool engineState;
-        Shape drawer;
         GLFWwindow* appWindow;
+
         Application(){};
         Application(Window w, bool eState) {
             winA = w;
@@ -25,13 +23,14 @@ class Application {
             engineState = eState;
         }
         // getters
-        Window getWindow() const;
-        bool getLoopState() const;
+        Window getWindow();
+        bool getLoopState();
         // setters
-        void ChangeCurrWindow(Window win);
+        void ChangeCurrWindow(const Window &win);
         void ChangeLoopState(bool newState);
         // window context
         void createWindowContext();
         void SvarogAppLoop();
+        void processInput();
 };
 #endif

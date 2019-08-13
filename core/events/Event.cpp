@@ -1,15 +1,29 @@
 #include "Event.h"
-template<class E>
-EVENT_TYPE Event<E>::get_typeof_event() const {
+void Event::setCause(const char* causee) {
+    cause = causee;
+}
+
+void Event::setEventType(EVENT_TYPE typee) {
+    evt_type=typee;
+}
+
+void Event::setPriority(int pri) {
+    PRIORITY = pri;
+}
+
+EVENT_TYPE Event::get_typeof_event() const {
     return evt_type;
 }
 
-template<class E>
-int Event<E>::get_priority() const {
+int Event::get_priority() const {
     return PRIORITY;
 }
 
-template<class E>
-const char* Event<E>::get_cause() const {
+const char* Event::get_cause() const {
     return cause;
+}
+
+std::ostream& operator<<(std::ostream& os, const Event &event) {
+    os << event.evt_type << '\"' << event.PRIORITY << '\"' << event.cause << '\"';
+    return os;
 }

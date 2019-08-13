@@ -1,6 +1,7 @@
 #pragma once
 #ifndef ARRAYLIST_H
 #define ARRAYLIST_H
+#include "core/events/Event.h"
 #include<iostream>
 #include<vector>
 #include<string>

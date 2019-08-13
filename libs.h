@@ -5,10 +5,11 @@
 #include<ostream>
 #include<fstream>
 #include<stdexcept>
+#include <bits/stdc++.h>
 #include<sstream>
 #include<string>
 #include<memory>
-#include<GL/gl.h>
+#include <GL/gl.h>
 #include "core/ds-classes/ArrayList.h"
 #include "core/Input/keycodes.h"
 #include "core/Input/keyboard.h"
@@ -31,6 +32,9 @@
 #include "core/ds-classes/Queue.h"
 #include "core/Point.h"
 #include "main/application/app.h"
+#include "main/materials/material.h"
+#include "core/ds-classes/ArrayList.h"
+#include "main/shapes/shape.h"
 #include "macrodefs.h"
 #include "main/window/window.h"
 using namespace std;

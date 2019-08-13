@@ -1,23 +1,14 @@
 #include "windowinput.h"
-Window SvarogWindowInput::WindowInput::keywindow() const {
-    return keyWindow;
-}
-
-bool SvarogWindowInput::WindowInput::isCurrKeyPressed(Key key) {
-    bool isPressed = NULL;
-    if(glfwGetKey(keyWin, key.code) == GLFW_PRESS) {
-        isPressed = true;
-    } else if(!glfwGetKey(keyWin, key.code) == GLFW_PRESS) {
-        isPressed = false;
+void WindowHandler::processEvents() {
+    if(engineKeyboard.isKeyPressed(SVAROG_KEY_W) == true) {
+        cout << "Key W is pressed!" << endl;
     }
-    return isPressed;
-}
 
-bool SvarogWindowInput::WindowInput::isCurrKeyReleased(Key key) {
-    bool isReleased = NULL;
-    if(glfwGetKey(this->keyWin, key.code) == GLFW_RELEASE) {
-        isReleased = true;
-    } else if(!glfwGetKey(keyWin, key.code) == GLFW_RELEASE) {
-        isReleased = false;
+    if(engineKeyboard.isKeyRepeat(SVAROG_KEY_A) == true) {
+        cout << "Key A is repeated!" << endl;
+    }
+
+    if(engineKeyboard.isKeyReleased(SVAROG_KEY_O) == true) {
+        cout << "Key O is released!" << endl;
     }
 }

@@ -2,12 +2,13 @@
 #ifdef SHAPE_H
 #define SHAPE_H
 #endif
-#include <glad/glad.h>
+#include "libs.h"
 class Shape {
     public:
 
         float VertexData[9];
         int positions[6];
+
 
         Shape(float verts[9], int pos[6]) {
             for(int i = 0; i < 9; i++) {
@@ -19,7 +20,8 @@ class Shape {
             }
             createMesh();
         }
-        Shape(){};
+        
+        Shape(){}
         void setVerts(float vert[9]);
         void genVertexArrays();
         void draw();

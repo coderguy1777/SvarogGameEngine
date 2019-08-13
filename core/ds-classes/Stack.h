@@ -10,8 +10,8 @@ class Stack;
 template<class S>
 class Stack {
     private: 
-        ArrayList<S>Stack;
-        const int topPiece = Stack.size() - 1;
+        ArrayList<S>stack;
+        const int topPiece = stack.size() - 1;
         const int bottomPiece = 0;
     public:
         Stack() {}

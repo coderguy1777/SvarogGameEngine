@@ -1,10 +1,8 @@
 #pragma once
-#ifdef WINDOW_H
+#ifndef WINDOW_H
 #define WINDOW_H
-#endif
 #include <GLFW/glfw3.h>
 #include "core/String.h"
-#include <stdexcept>
 #define GLFWFAILSTATE -1
 #define GLFWGOODSTATE 0
 class Window {
@@ -18,6 +16,7 @@ class Window {
             windowTitle = title;
         }
         Window(){};
+
         void * operator new(size_t size) {
             void * p = new ::Window();
             return p;
@@ -34,3 +33,4 @@ class Window {
         // glfw window setup
         GLFWwindow* initliazeWindow();
 };
+#endif

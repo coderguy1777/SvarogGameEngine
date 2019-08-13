@@ -19,11 +19,4 @@ class Message {
             this->msgLog = log;
             this->info = information;
         }
-        
-        Pair<Information, String> createMSG() {
-            Pair<Information, String>msg;
-            msg.setitemA(this->info);
-            msg.setitemB(msgLog);
-            return msg;
-        }
 };

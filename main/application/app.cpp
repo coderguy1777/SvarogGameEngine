@@ -1,19 +1,32 @@
 #include "app.h"
-Window Application::getWindow() const {
-    return winA;
-}
-
-bool Application::getLoopState() const {
-    return engineState;
-}
-
 void Application::ChangeLoopState(bool newState) {
     engineState = newState;
 }
 
-void Application::ChangeCurrWindow(Window newWin) {
-    winA = newWin;
+bool processTest(GLFWwindow* window) {
+    auto windowKey = window;
+    auto keyVal = SVAROG_KEY_A;
+    auto state = glfwGetKey(windowKey, keyVal);
+    return state == GLFW_PRESS || state == GLFW_RELEASE;
 }
+
+void processStuff(GLFWwindow* window) {
+    EventDispatcher *dispat;
+
+    Event e;
+    e.setEventType(EVENT_TYPE::KeyEvent);
+    e.setPriority(10); 
+    e.setCause("Key Press");
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+        glfwTerminate();
+    }
+
+    if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        Queue<Event>queue = dispat->makeNewQueue(e);
+        std::cout << queue.size() << std::endl;
+    }
+}
+
 
 void framebuffersizecallback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
@@ -44,17 +57,16 @@ void Application::SvarogAppLoop() {
         cout << "GLAD SUCCESS TO LOAD." << endl;
         winA.GLAD_STATE = GLFWGOODSTATE;
     }
-    Material matB("/home/jordan/Documents/SvarogGameEngine/shaders/VertexShader.glsl", "/home/jordan/Documents/SvarogGameEngine/shaders/FragementShader.glsl");
 
     // vert test
-	float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f,0.0f,  0.5f, 0.0f     }; 
+	float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f,0.0f,  0.5f, 0.0f,}; 
     int pos[] = {0, 0, 0,0, 0, 0,};
-    
+
     Shape drawer2(vertices, pos);
     while(!glfwWindowShouldClose(appWindow)) {
+        processStuff(appWindow);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        glUseProgram(matB.shaderID);
         drawer2.draw();
         glfwSwapBuffers(appWindow);
         glfwPollEvents();

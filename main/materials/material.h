@@ -1,16 +1,13 @@
 #pragma once
-#ifdef MATERIAL_H
+#ifndef MATERIAL_H
 #define MATERIAL_H
-#endif
+#include "libs.h"
 #include<iostream>
 #include<sstream>
 #include<fstream>
 #include<string>
-#include<glad/glad.h>
-#include "libs.h"
 using namespace std;
 
-class Material;
 class Material {
     public:
         unsigned int shaderID;
@@ -147,3 +144,4 @@ class Material {
             }
         }
 };
+#endif
