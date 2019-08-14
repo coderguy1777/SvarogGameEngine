@@ -10,6 +10,7 @@
 #include<string>
 #include<memory>
 #include <GL/gl.h>
+#include "main/materials/material.h"
 #include "core/ds-classes/ArrayList.h"
 #include "core/Input/keycodes.h"
 #include "core/Input/keyboard.h"
