@@ -9,8 +9,10 @@
 template<class T>
 class ArrayList {
     private:
+        T * itemLI;
         std::vector<T>items;
     public:
+        
         void set(int index, T const& item);
         void add(T const& item);
         void clear();
