@@ -5,6 +5,11 @@
 #include "core/String.h"
 #define GLFWFAILSTATE -1
 #define GLFWGOODSTATE 0
+struct WindowProp {
+    unsigned int w, h;
+    String title;
+    WindowProp(unsigned int width, unsigned int height, String winTitle) : w(width), h(height), title(title){}
+};
 class Window {
     public:
         int GLAD_STATE = 0;

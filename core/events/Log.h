@@ -7,10 +7,6 @@ class Logger {
     private: 
         ArrayList<Pair<Information, String>>msgs;
     public:
-        inline void addToMsgLi(Message e) {
-            Pair<Information, String>MSG = e.createMSG();
-            msgs.add(MSG);
-        }
 
         inline Information getInfo() {
             return msgs.get(0).getitemA();

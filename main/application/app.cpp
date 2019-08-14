@@ -1,28 +1,34 @@
 #include "app.h"
-void Application::ChangeLoopState(bool newState) {
-    engineState = newState;
+void Application::createWindowContext() {
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
 
-bool processTest(GLFWwindow* window) {
-    auto windowKey = window;
-    auto keyVal = SVAROG_KEY_A;
-    auto state = glfwGetKey(windowKey, keyVal);
-    return state == GLFW_PRESS || state == GLFW_RELEASE;
+void Application::OnUpdate() {
+    glfwPollEvents();
+    glfwSwapBuffers(appWindow);
 }
 
-void processStuff(GLFWwindow* window) {
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-        glfwTerminate();
-    }
-
-    if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-        std::cout << "A Pressed" << std::endl;
-    }
+void Application::FrameBufferCallBack() {
+    glfwGetFramebufferSize(appWindow, &winA.width, &winA.height);
+    glViewport(0, 0, winA.width, winA.height);
 }
 
+void Application::VSYNC_on() {
+    isVsyncOn = true;
+}
 
-void framebuffersizecallback(GLFWwindow* window, int width, int height) {
-    glViewport(0, 0, width, height);
+void Application::VSYNC_off() {
+    isVsyncOn = false;
+}
+
+bool Application::isVSYNCon() {
+    return isVsyncOn;
+}
+
+void Application::makeContextCurr() {
+    glfwMakeContextCurrent(appWindow);
 }
 
 void Application::SvarogAppLoop() {
@@ -31,17 +37,15 @@ void Application::SvarogAppLoop() {
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     #endif
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    createWindowContext();
     appWindow = glfwCreateWindow(winA.width, winA.height, winA.windowTitle.str, NULL, NULL);
-    glfwMakeContextCurrent(appWindow);
-    glfwSetFramebufferSizeCallback(appWindow, framebuffersizecallback);
+    makeContextCurr();
 
     if(appWindow == NULL) {
         cout << "SVAROG_WINDOW IS NULL, ENDING NOW" << endl;
         glfwTerminate();
     }
+
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         throw std::invalid_argument("GLAD FAILURE.");
         winA.GLAD_STATE = GLFWFAILSTATE;
@@ -51,18 +55,24 @@ void Application::SvarogAppLoop() {
         winA.GLAD_STATE = GLFWGOODSTATE;
     }
 
-    // vert test
-	float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f,0.0f,  0.5f, 0.0f,}; 
-    int pos[] = {0, 0, 0,0, 0, 0,};
+    auto vsync_check = isVSYNCon();
+    if(vsync_check) {
+        glfwSwapInterval(1);
+    } else if(!vsync_check) {
+        glfwSwapInterval(0);
+    }
 
+    Material matA("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl", "/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
+	float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f,  0.5f, 0.0f,}; 
+    int pos[] = {0, 0, 0,0, 0, 0,};
     Shape drawer2(vertices, pos);
     while(!glfwWindowShouldClose(appWindow)) {
-        processStuff(appWindow);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
+        FrameBufferCallBack();
+        glUseProgram(matA.shaderID);
         drawer2.draw();
-        glfwSwapBuffers(appWindow);
-        glfwPollEvents();
+        OnUpdate();
     }
     glfwTerminate();
 }

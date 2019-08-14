@@ -2,13 +2,15 @@
 #ifdef SHAPE_H
 #define SHAPE_H
 #endif
-#include "libs.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include "core/String.h"
 class Shape {
+    private:
+        bool needEBO;
     public:
-
         float VertexData[9];
         int positions[6];
-
 
         Shape(float verts[9], int pos[6]) {
             for(int i = 0; i < 9; i++) {
@@ -22,9 +24,11 @@ class Shape {
         }
         
         Shape(){}
-        void setVerts(float vert[9]);
         void genVertexArrays();
         void draw();
+        void useEBO();
+        void noEBO();
+        bool checkEBONEED();
     private: 
         GLuint VAO, VBO, EBO;
 

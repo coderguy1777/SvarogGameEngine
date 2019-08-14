@@ -23,6 +23,10 @@ const char* Event::get_cause() const {
     return cause;
 }
 
+bool Event::findQueue() {
+    // TODO: Make queue finding system
+}
+
 std::ostream& operator<<(std::ostream& os, const Event &event) {
     os << event.evt_type << '\"' << event.PRIORITY << '\"' << event.cause << '\"';
     return os;

@@ -1,7 +1,14 @@
 #pragma once
 #ifndef MATERIAL_H
 #define MATERIAL_H
-#include "libs.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include "math/vec2.h"
+#include "math/vec3.h"
+#include "math/matrix.h"
+#include "math/matrix2f.h"
+#include "math/matrix3f.h"
+#include "math/matrix4f.h"
 #include<iostream>
 #include<sstream>
 #include<fstream>
@@ -11,8 +18,8 @@ using namespace std;
 class Material {
     public:
         unsigned int shaderID;
-        Material(){};
-        Material(String vertexShaderPath, String fragmentShaderPath) {
+        Material(){}
+        Material(const char* vertexShaderPath, const char* fragmentShaderPath) {
             // shader info
             string vertshader;
             string fragshader;
@@ -25,8 +32,8 @@ class Material {
 
             // reads file for shader info
             try {
-                vertexShader.open(vertexShaderPath.str);
-                fragmentShader.open(fragmentShaderPath.str);
+                vertexShader.open(vertexShaderPath);
+                fragmentShader.open(fragmentShaderPath);
                 std::stringstream vertShaderStream, fragShaderStream;
                 vertShaderStream << vertexShader.rdbuf();
                 fragShaderStream << fragmentShader.rdbuf();
@@ -117,10 +124,6 @@ class Material {
             glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), GL_TRUE, 1, &matrix4.mat[0][0]);
         }
 
-
-        void * operator new(size_t size) {
-            void * p = new ::Material();
-        }
 
     private:
         // shader compile check

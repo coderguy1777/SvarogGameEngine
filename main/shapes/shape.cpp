@@ -15,8 +15,14 @@ void Shape::draw() {
     glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
-void Shape::setVerts(float verts[9]) {
-    for(int i = 0; i < 9; i++) {
-        VertexData[i] = verts[i];
-    }
+void Shape::useEBO() {
+    needEBO = true;
+}
+
+void Shape::noEBO() {
+    needEBO = false;
+}
+
+bool Shape::checkEBONEED() {
+    return needEBO;
 }

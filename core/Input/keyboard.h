@@ -9,7 +9,6 @@
 class Keyboard {
     public:
         Window winNN;
-        GLFWwindow* keywin = winNN.initliazeWindow();
         Keyboard(Window win) {
             winNN = win;
         }
