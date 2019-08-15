@@ -11,8 +11,8 @@ void Application::OnUpdate() {
 }
 
 void Application::FrameBufferCallBack() {
-    glfwGetFramebufferSize(appWindow, &winA.width, &winA.height);
-    glViewport(0, 0, winA.width, winA.height);
+    glfwGetFramebufferSize(appWindow, &winA.prop.w, &winA.prop.h);
+    glViewport(0, 0, winA.prop.w, winA.prop.h);
 }
 
 void Application::VSYNC_on() {
@@ -32,13 +32,12 @@ void Application::makeContextCurr() {
 }
 
 void Application::SvarogAppLoop() {
-    // frame buffer
     #ifdef __APPLE__
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     #endif
     glfwInit();
     createWindowContext();
-    appWindow = glfwCreateWindow(winA.width, winA.height, winA.windowTitle.str, NULL, NULL);
+    appWindow = glfwCreateWindow((int)winA.prop.w, (int)winA.prop.h, (const char*)winA.prop.title.str, NULL, NULL);
     makeContextCurr();
 
     if(appWindow == NULL) {
@@ -63,9 +62,21 @@ void Application::SvarogAppLoop() {
     }
 
     Material matA("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl", "/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
-	float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f,  0.5f, 0.0f,}; 
-    int pos[] = {0, 0, 0,0, 0, 0,};
+            
+    float vertices[] = {
+        0.5f,  0.5f, 0.0f, 
+        0.5f, -0.5f, 0.0f,
+        -0.5f, -0.5f, 0.0f,
+        -0.5f, 0.5f, 0.0f 
+    };
+
+    unsigned int pos[] = {  
+        0, 1, 3,  
+        1, 2, 3   
+    };
+
     Shape drawer2(vertices, pos);
+    drawer2.useEBO();
     while(!glfwWindowShouldClose(appWindow)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);

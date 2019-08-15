@@ -10,15 +10,15 @@ class Application {
     private: 
         bool isVsyncOn;
         GLFWwindow* appWindow;
+        WindowProp window;
     public: 
         Window winA;
         bool engineState;
 
+        // TODO, create event handler functions for classes
+        static void KeyEventTrigger(GLFWwindow* window, int x, int y, int code, int scancode);
+        static void MouseEventTrigger(GLFWwindow* window, int x, int y, int mousecode);
         Application(){}
-        Application(Window w, bool eState):
-            winA(w), engineState(eState)
-        {}
-
         void OnUpdate();
         void FrameBufferCallBack();
         void VSYNC_on();
@@ -27,6 +27,5 @@ class Application {
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();
-
 };
 #endif

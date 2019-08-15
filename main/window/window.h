@@ -6,36 +6,23 @@
 #define GLFWFAILSTATE -1
 #define GLFWGOODSTATE 0
 struct WindowProp {
-    unsigned int w, h;
+    int w, h;
     String title;
-    WindowProp(unsigned int width, unsigned int height, String winTitle) : w(width), h(height), title(title){}
+    WindowProp(int width=800, int height=600, String winTitle="Svarog Game Engine") : w(width), h(height), title(winTitle){}
 };
 class Window {
     public:
-        int GLAD_STATE = 0;
-        int width, height;
-        String windowTitle;
-        Window(int w, int h, String title) {
-            width = w;
-            height = h;
-            windowTitle = title;
-        }
-        Window(){};
+        WindowProp prop;
 
-        void * operator new(size_t size) {
-            void * p = new ::Window();
-            return p;
-        }
+        int GLAD_STATE = 0;
+        Window(){};
         // getter functions
-        int getWidth() const;
-        int getHeight() const;
-        String getTitle() const;
+        int getWidth();
+        int getHeight();
+        String getTitle();
         // setter functions
         void changeHeight(int h);
         void changeWidth(int w);
         void changeTitle(String newTitle);
-
-        // glfw window setup
-        GLFWwindow* initliazeWindow();
 };
 #endif
