@@ -1,24 +1,28 @@
 #include "window.h"
 int Window::getWidth() {
-    return prop.w;
+    return prop->w;
 }
 
 int Window::getHeight()  {
-    return prop.h;
+    return prop->h;
 }
 
 String Window::getTitle()  {
-    return prop.title;
+    return prop->title;
 }
 
 void Window::changeWidth(int newW) {
-    prop.w = newW;
+    prop->w = newW;
 }
 
 void Window::changeHeight(int newH) {
-    prop.h = newH;
+    prop->h = newH;
 }
 
 void Window::changeTitle(String newTitle) {
-    prop.title = newTitle;
+    prop->title = newTitle;
+}
+
+void* Window::getWindow() {
+    return prop;
 }

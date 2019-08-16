@@ -12,7 +12,8 @@ struct WindowProp {
 };
 class Window {
     public:
-        WindowProp prop;
+        WindowProp props;
+        WindowProp* prop = &props;
 
         int GLAD_STATE = 0;
         Window(){};
@@ -24,5 +25,6 @@ class Window {
         void changeHeight(int h);
         void changeWidth(int w);
         void changeTitle(String newTitle);
+        void* getWindow();
 };
 #endif

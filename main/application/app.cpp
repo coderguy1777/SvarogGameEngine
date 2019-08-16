@@ -11,8 +11,8 @@ void Application::OnUpdate() {
 }
 
 void Application::FrameBufferCallBack() {
-    glfwGetFramebufferSize(appWindow, &winA.prop.w, &winA.prop.h);
-    glViewport(0, 0, winA.prop.w, winA.prop.h);
+    glfwGetFramebufferSize(appWindow, &winA.prop->w, &winA.prop->h);
+    glViewport(0, 0, winA.prop->w, winA.prop->h);
 }
 
 void Application::VSYNC_on() {
@@ -37,7 +37,7 @@ void Application::SvarogAppLoop() {
     #endif
     glfwInit();
     createWindowContext();
-    appWindow = glfwCreateWindow((int)winA.prop.w, (int)winA.prop.h, (const char*)winA.prop.title.str, NULL, NULL);
+    appWindow = glfwCreateWindow((int)winA.prop->w, (int)winA.prop->h, (const char*)winA.prop->title.str, NULL, NULL);
     makeContextCurr();
 
     if(appWindow == NULL) {
@@ -70,11 +70,45 @@ void Application::SvarogAppLoop() {
         -0.5f, 0.5f, 0.0f 
     };
 
+    float vertices2[] = {
+        1.0,  1.5f, 0.0f, 
+        0.5f, -0.5f, 0.0f,
+        -0.5f, -0.5f, 0.0f,
+        -0.5f, 0.5f, 0.0f 
+    };
+
+
     unsigned int pos[] = {  
         0, 1, 3,  
         1, 2, 3   
     };
+    
+    unsigned int pos2[] = {  
+        0, 1, 3,  
+        1, 2, 3   
+    };
+    
+    Array<int>arrayTest(20);
+    int len = arrayTest.length();
+    if(len > 0) {
+        std::cout << "Array works" << std::endl;
+    } else {
+        std::cout << "Array failed " << std::endl;
+    }
 
+    int * p = arrayTest.returnArray();
+    if(p != NULL) {
+        std::cout << "Array returned" << std::endl;
+    }
+    delete p;
+
+    arrayTest.add(2);
+    arrayTest.add_pos(213, 3);
+    int * g = arrayTest.returnArray();
+    for(int i = 0; i < 21; i++) {
+        std::cout << g[i] << std::endl;
+    }
+    delete g;
     Shape drawer2(vertices, pos);
     drawer2.useEBO();
     while(!glfwWindowShouldClose(appWindow)) {

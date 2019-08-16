@@ -9,23 +9,19 @@ class Shape {
     private:
         bool needEBO;
     public:
-        int vertSize, posSize;
         float VertexData[12];
         unsigned int positions[6];
-
         // TODO: get pointers working for dynamic array size;
         Shape(float verts[], unsigned int pos[]) {
             for(int i = 0; i < 12; i++) {
                 VertexData[i] = verts[i];
             }
-
             for(int j = 0; j < 6; j++) {
                 positions[j] = pos[j];
             }
             createMesh();
         }
         
-        Shape(){}
         void genVertexArrays();
         void draw();
         void useEBO();
@@ -34,8 +30,8 @@ class Shape {
 
     private: 
         GLuint VAO, VBO, EBO;
-
         void createMesh() {
+            std::cout << VertexData[0] << std::endl;
             bool eboCheck = checkEBONEED();
             if(eboCheck == true) {
                 glGenVertexArrays(1, &VAO);
@@ -63,5 +59,6 @@ class Shape {
                 glBindVertexArray(0);
             }
         }
+
 
 };
