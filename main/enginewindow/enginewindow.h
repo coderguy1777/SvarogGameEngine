@@ -16,10 +16,15 @@ class Application {
         Window winA;
         bool engineState;
 
+        void* getWindow() const;
         // TODO, create event handler functions for classes
         static void KeyEventTrigger(GLFWwindow* window, int x, int y, int code, int scancode);
         static void MouseEventTrigger(GLFWwindow* window, int x, int y, int mousecode);
         Application(){}
+        ~Application() {
+            end();
+        }
+        void end();
         void OnUpdate();
         void FrameBufferCallBack();
         void VSYNC_on();

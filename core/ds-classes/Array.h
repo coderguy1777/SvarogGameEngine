@@ -28,11 +28,19 @@ template<typename T> class Array {
             return size;
         }
 
+        T* resize() {
+            T* newArr = nullptr;
+            newArr = array;
+
+        }
+
         T* returnArray() {
             return array;
         }
 
-        bool isEmpty();
+        bool isEmpty() {
+            return length() == 0 || length() == nullptr;
+        }
     private: 
         T *array;
         size_t size;
