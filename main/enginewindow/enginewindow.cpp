@@ -10,7 +10,6 @@ void Application::OnUpdate() {
     glfwPollEvents();
     glfwSwapBuffers(appWindow);
 }
-
 void Application::FrameBufferCallBack() {
     glfwGetFramebufferSize(appWindow, &winA.prop->w, &winA.prop->h);
     glViewport(0, 0, winA.prop->w, winA.prop->h);
@@ -35,11 +34,6 @@ void Application::makeContextCurr() {
 void Application::end() {
     glfwDestroyWindow(appWindow);
 }
-
-void* Application::getWindow() const {
-    return appWindow;
-}
-
 void Application::SvarogAppLoop() {
     #ifdef __APPLE__
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -48,16 +42,11 @@ void Application::SvarogAppLoop() {
     createWindowContext();
     appWindow = glfwCreateWindow((int)winA.prop->w, (int)winA.prop->h, (const char*)winA.prop->title.str, NULL, NULL);
     makeContextCurr();
-
     if(appWindow == NULL) {
         cout << "SVAROG_WINDOW IS NULL, ENDING NOW" << endl;
         glfwTerminate();
     }
 
-    auto windowVar = getWindow();
-    if(windowVar != NULL)  {
-        std::cout << "Window is not null" << std::endl;
-    }
 
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         throw std::invalid_argument("GLAD FAILURE.");
@@ -91,6 +80,11 @@ void Application::SvarogAppLoop() {
 
     Shape drawer2(vertices, pos);
     drawer2.useEBO();
+    glfwSetKeyCallback(appWindow, [](GLFWwindow* window, int key, int action, int scancode, int mods) {
+
+
+    });
+
     while(!glfwWindowShouldClose(appWindow)) {
         x+=0.01f;
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

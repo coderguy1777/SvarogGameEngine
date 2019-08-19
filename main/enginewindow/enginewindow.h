@@ -1,28 +1,27 @@
 #pragma once 
-#ifndef APP_H
+#ifdef APP_H
 #define APP_H
+#endif
 #include<glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "core/ds-classes/Array.h"
 #include "core/events/EventDispatch.h"
 #include "main/window/window.h"
-#include "core/Input/keyboard.h"
 class Application {
-    private: 
-        bool isVsyncOn;
-        GLFWwindow* appWindow;
-        WindowProp window;
     public: 
         Window winA;
         bool engineState;
-
-        void* getWindow() const;
+        void* getWindow() {return appWindow;};
         // TODO, create event handler functions for classes
         static void KeyEventTrigger(GLFWwindow* window, int x, int y, int code, int scancode);
         static void MouseEventTrigger(GLFWwindow* window, int x, int y, int mousecode);
         Application(){}
         ~Application() {
             end();
+        }
+
+        void test() {
+            s_instance->end();
         }
         void end();
         void OnUpdate();
@@ -33,5 +32,9 @@ class Application {
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();
+        private: 
+            bool isVsyncOn;
+            GLFWwindow* appWindow;
+            WindowProp window;
+            static Application* s_instance;
 };
-#endif
