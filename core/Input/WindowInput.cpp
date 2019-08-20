@@ -1,5 +1,4 @@
 #include "WindowInput.h"
-
 #include "main/enginewindow/enginewindow.h"
 Application* app;
 bool WindowInput::checkKeyPressed(int keystate) {
