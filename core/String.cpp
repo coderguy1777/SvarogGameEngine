@@ -8,7 +8,6 @@ int String::length() {
             break;
         }
     }
-
     return length;
 }
 
@@ -76,9 +75,56 @@ String String::setstr(int index, char stringval, String val) {
 }
 
 char* String::toCharArray(String i) {
-    char strchar[i.length()];
+    char * strarr = new char[i.length()];
     for(int j = 0; j < i.length(); j++) {
-        strchar[j] = i.str[j];
+        strarr[j] = i.str[j];
     }
-    return strchar;
+    return strarr;
+}
+
+String String::int_toString(int a) {
+    stringstream ss;
+    ss << a;
+    string temp = ss.str();
+    return String(static_cast<const char*>(temp.c_str()));
+}
+
+String String::char_toString(char a) {
+    stringstream ss;
+    string temp;
+    ss << a;
+    temp = ss.str();
+    return String(static_cast<const char*>(temp.c_str()));
+}
+
+String String::float_toString(float a) {
+    stringstream ss;
+    string temp;
+    ss << a;
+    temp = ss.str();
+    return String(static_cast<const char*>(temp.c_str()));
+}
+
+String String::double_toString(double a) {
+    stringstream ss;
+    string temp;
+    ss << a;
+    temp = ss.str();
+    return String(static_cast<const char*>(temp.c_str()));
+}
+
+String String::long_toString(long a) {
+    stringstream ss;
+    string temp;
+    ss << a;
+    temp = ss.str();
+    return String(static_cast<const char*>(temp.c_str()));
+}
+
+String String::short_toString(short a) {
+    stringstream ss;
+    string temp;
+    ss << a;
+    temp = ss.str();
+    return String(static_cast<const char*>(temp.c_str()));
 }

@@ -80,13 +80,20 @@ void Application::SvarogAppLoop() {
 
     Shape drawer2(vertices, pos);
     drawer2.useEBO();
+    // TODO: make mouse and key callback more functional
     glfwSetKeyCallback(appWindow, [](GLFWwindow* window, int key, int action, int scancode, int mods) {
+        if(glfwGetKey(window, key) == GLFW_PRESS) {
+            std::cout << "Key pressed" << std::endl;
+        }
+    });
 
-
+    glfwSetMouseButtonCallback(appWindow, [](GLFWwindow* window, int mousebtn, int action, int scancode) {
+        if(glfwGetMouseButton(window, mousebtn) == GLFW_PRESS) {
+            std::cout << "Mouse button pressed" << std::endl;
+        }
     });
 
     while(!glfwWindowShouldClose(appWindow)) {
-        x+=0.01f;
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         FrameBufferCallBack();

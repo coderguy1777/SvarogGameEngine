@@ -9,6 +9,5 @@ class WindowInput : public Keyboard{
         virtual bool checkKeyPressed(int keycode) override;
         virtual bool checkKeyReleased(int keycode) override;
         virtual bool checkKeyHeld(int keycode) override;
-
 };
 #endif

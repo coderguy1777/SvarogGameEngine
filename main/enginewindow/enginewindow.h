@@ -4,6 +4,7 @@
 #endif
 #include<glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "core/Input/mousecodes.h"
 #include "core/ds-classes/Array.h"
 #include "core/events/EventDispatch.h"
 #include "main/window/window.h"
@@ -13,16 +14,11 @@ class Application {
         bool engineState;
         void* getWindow() {return appWindow;};
         // TODO, create event handler functions for classes
-        static void KeyEventTrigger(GLFWwindow* window, int x, int y, int code, int scancode);
-        static void MouseEventTrigger(GLFWwindow* window, int x, int y, int mousecode);
         Application(){}
         ~Application() {
             end();
         }
-
-        void test() {
-            s_instance->end();
-        }
+        // engine core methods
         void end();
         void OnUpdate();
         void FrameBufferCallBack();
