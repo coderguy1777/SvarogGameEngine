@@ -24,14 +24,13 @@ template<typename T> class Array {
             }
         }
 
-        int length() const {
+        size_t length() const {
             return size;
         }
 
         T* resize() {
             T* newArr = nullptr;
             newArr = array;
-
         }
 
         T* returnArray() {
@@ -41,6 +40,9 @@ template<typename T> class Array {
         bool isEmpty() {
             return length() == 0 || length() == nullptr;
         }
+
+        void copyarr();
+
     private: 
         T *array;
         size_t size;
