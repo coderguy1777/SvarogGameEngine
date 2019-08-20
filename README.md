@@ -1,4 +1,4 @@
-# Svarog Engine
+# Svarog Game Engine
 ## An open source C++ path tracing game engine, made with GLFW and OpenGL.
 
 # How to build Svarog Engine
