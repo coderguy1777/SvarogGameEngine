@@ -1,4 +1,5 @@
 #include "enginewindow.h"
+#include "core/events/Event.h"
 float x = 0.0f;
 void Application::createWindowContext() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -34,6 +35,7 @@ void Application::makeContextCurr() {
 void Application::end() {
     glfwDestroyWindow(appWindow);
 }
+
 void Application::SvarogAppLoop() {
     #ifdef __APPLE__
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -64,35 +66,40 @@ void Application::SvarogAppLoop() {
         glfwSwapInterval(0);
     }
     Material matA("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl", "/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
-            
-    float vertices[] = {
-        0.5f,  0.5f, 0.0f, 
-        0.5f, -0.5f, 0.0f,
-        -0.5f, -0.5f, 0.0f,
-        -0.5f, 0.5f , 0.0f 
-    };        
 
+    float vertices[] = {
+        0.5f,  0.5f, -0.5f, 
+        0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,
+        -0.5f, 0.5f , -0.5f, 
+        0.5f, -0.5f , 0.5f, 
+        0.5f, 0.5f , 0.5f, 
+    };        
+    
     unsigned int poss[] = {  
         0, 1, 3,  
-        1, 2, 3   
+        1, 2, 3,
+        0, 1, 2,
     };
-    Array<float>vertexdata(12);
-    Array<unsigned int>posdata(6);
-    std::cout << poss[0] << std::endl;
-    for(int i = 0; i < vertexdata.length(); i++) {
-        vertexdata.add(vertices[i]);
+
+    std::vector<float>vertexdata;
+    std::vector<unsigned int>posdata;
+    std::cout << poss[1] << std::endl;
+    for(int i = 0; i < 18; i++) {
+        vertexdata.push_back(vertices[i]);
     }
-    for(int j = 0; j < posdata.length(); j++) {
-        posdata.add(poss[j]);
+
+    for(int j = 0; j < 9; j++) {
+        posdata.push_back(poss[j]);
     }
 
     Shape drawer2(vertexdata, posdata);
-    drawer2.useEBO();
-        drawer2.mesh();
-
+    drawer2.noEBO();
     // TODO: make mouse and key callback more functional
     glfwSetKeyCallback(appWindow, [](GLFWwindow* window, int key, int action, int scancode, int mods) {
+        Event e(EVENT_TYPE::KeyEvent, 10, "Key Press");
         if(glfwGetKey(window, key) == GLFW_PRESS) {
+            std::cout << e.get_typeof_event() << " " << e.get_priority() << " " << e.get_cause() << std::endl;
             std::cout << "Key pressed" << std::endl;
         }
     });
@@ -102,12 +109,14 @@ void Application::SvarogAppLoop() {
             std::cout << "Mouse button pressed" << std::endl;
         }
     });
+
     while(!glfwWindowShouldClose(appWindow)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         FrameBufferCallBack();
+        matA.setFloat("xPOs", 0.5f);
+        drawer2.drawFunc();
         glUseProgram(matA.shaderID);
-        drawer2.draw();
         OnUpdate();
     }
     glfwTerminate();

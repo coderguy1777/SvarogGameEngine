@@ -7,17 +7,18 @@ void SvarogEngine::changeState(bool newState) {
     state = newState;
 }
 
-Application* SvarogEngine::getApplicationWindow() const {
+Application SvarogEngine::getApplicationWindow() const {
     return SvarogWindow;
 }
 
 void SvarogEngine::RunEngine() {
-    if(state == false) {
-        SvarogWindow->end();
-    } else if(state != false) {
-        while(state) {
-            SvarogWindow->VSYNC_on();
-            SvarogWindow->SvarogAppLoop();
-        }
+    if(state) {
+        SvarogWindow.VSYNC_on();
+        SvarogWindow.SvarogAppLoop();
+        SvarogWindow.OnUpdate();
+    }
+
+    if(!state) {
+        SvarogWindow.end();
     }
 }

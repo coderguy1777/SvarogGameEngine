@@ -4,15 +4,15 @@
 #include "main/enginewindow/enginewindow.h"
 class SvarogEngine {
     private:
-        bool state;
-        Application* SvarogWindow;
+        bool state = true;
+        Application SvarogWindow;
     public:
         ~SvarogEngine() {
             state=false;
-            SvarogWindow->end();
+            SvarogWindow.end();
         }
         bool getState() const;
-        Application* getApplicationWindow() const;
+        Application getApplicationWindow() const;
         void changeState(bool newState);
         void RunEngine();
 };

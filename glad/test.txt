@@ -1,1 +1,0 @@
-            posdata.setSize(size_pos);

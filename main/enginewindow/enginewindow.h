@@ -4,7 +4,6 @@
 #endif
 #include<glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "core/Input/mousecodes.h"
 #include "core/ds-classes/Array.h"
 #include "core/events/EventDispatch.h"
 #include "main/window/window.h"

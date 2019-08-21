@@ -13,8 +13,6 @@
 #include<sstream>
 #include<fstream>
 #include<string>
-using namespace std;
-
 class Material {
     public:
         unsigned int shaderID;
@@ -127,7 +125,7 @@ class Material {
 
     private:
         // shader compile check
-        void checkcomperrors(unsigned int fragment, string type) {
+        void checkcomperrors(unsigned int fragment, const char* type) {
             int success;
             char info[512];
             if(type != "Main") {

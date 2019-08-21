@@ -1,7 +1,6 @@
 #pragma once
 #ifndef ARRAY_H
 #define ARRAY_H
-
 #include<memory>
 #include<memory.h>
 #include<algorithm>
@@ -13,7 +12,7 @@ template<typename T> class Array {
         Array(){}
         Array(int arrsize) {
             size = arrsize;
-            initArray();
+            array = new T[size * 2];
             setZeros();
         }
 
@@ -70,6 +69,7 @@ template<typename T> class Array {
         bool isEmpty() {
             return length() == 0;
         }
+        
 
         void copyarr();
 
