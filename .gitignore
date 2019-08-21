@@ -5,3 +5,4 @@ debugger/debuglogs/DirectionVec.txt
 debugger/debuglogs/RightVector.txt
 .vscode/launch.json
 .vscode/tasks.json
+cmake-build-debug/

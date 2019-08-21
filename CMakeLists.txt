@@ -1,0 +1,116 @@
+cmake_minimum_required(VERSION 3.14)
+project(SvarogGameEngine)
+
+set(CMAKE_CXX_STANDARD 14)
+set(SOURCE_FILES glad.c main.cpp)
+include_directories(.)
+include_directories(glad)
+include_directories(core)
+include_directories(core/ds-classes)
+include_directories(core/events)
+include_directories(core/events/event-types)
+include_directories(core/Input)
+include_directories(debugger)
+include_directories(glad)
+include_directories(main)
+include_directories(main/camera)
+include_directories(main/color)
+include_directories(main/enginewindow)
+include_directories(main/materials)
+include_directories(main/shapes)
+include_directories(main/svarogengine)
+include_directories(main/terrian)
+include_directories(main/window)
+include_directories(main/windowhandling)
+include_directories(math)
+
+add_executable(SvarogGameEngine
+        glad/glad.c
+        core/ds-classes/Array.h
+        core/ds-classes/ArrayList.cpp
+        core/ds-classes/ArrayList.h
+        core/ds-classes/LinkedList.cpp
+        core/ds-classes/LinkedList.h
+        core/ds-classes/Node.h
+        core/events/event-types/keyevent.cpp
+        core/events/event-types/keyevent.h
+        core/events/event-types/mouseevent.h
+        core/events/event-types/mousevent.cpp
+        core/events/Event.cpp
+        core/events/Event.h
+        core/events/EventDispatch.cpp
+        core/events/EventDispatch.h
+        core/events/EventListener.cpp
+        core/events/EventListener.h
+        core/events/EventTypes.h
+        core/events/InputEvent.cpp
+        core/events/InputEvent.h
+        core/events/Log.h
+        core/events/Message.h
+        core/Input/keyboard.h
+        core/Input/keycodes.h
+        core/Input/keymap.h
+        core/Input/mouse.h
+        core/Input/mousecodes.h
+        core/Point.h
+        core/String.cpp
+        core/String.h
+        debugger/logger.cpp
+        debugger/logger.h
+        glad/glad.c
+        main/camera/camera.cpp
+        main/camera/camera.h
+        main/color/cmyk.cpp
+        main/color/cmyk.h
+        main/color/Color.cpp
+        main/color/Color.h
+        main/color/hsl.cpp
+        main/color/hsl.h
+        main/color/HSV.cpp
+        main/color/HSV.h
+        main/color/htmlcolors.cpp
+        main/color/htmlcolors.h
+        main/enginewindow/enginewindow.cpp
+        main/enginewindow/enginewindow.h
+        main/materials/material.h
+        main/materials/shadergen.cpp
+        main/materials/shadergen.h
+        main/shapes/shape.cpp
+        main/shapes/shape.h
+        main/svarogengine/svarogengine.cpp
+        main/svarogengine/svarogengine.h
+        main/terrian/noisemap.cpp
+        main/terrian/noisemap.h
+        main/terrian/perlin.cpp
+        main/terrian/perlin.h
+        main/window/window.cpp
+        main/window/window.h
+        math/camera_matrix.cpp
+        math/camera_matrix.h
+        math/euler_angles.cpp
+        math/euler_angles.h
+        math/math.h
+        math/matrix.cpp
+        math/matrix.h
+        math/matrix2f.h
+        math/matrix3f.h
+        math/matrix4f.h
+        math/vec2.cpp
+        math/vec2.h
+        math/vec3.cpp
+        math/vec3.h
+        math/vec4.h
+        libs.h
+        macrodefs.h
+        main.cpp)
+find_package(glfw3 REQUIRED)
+find_package(X11 REQUIRED)
+find_package(OpenGL REQUIRED)
+target_link_libraries(${PROJECT_NAME}
+        GL
+        GLU
+        glfw
+        X11
+        Xxf86vm
+        Xrandr
+        pthread Xi dl Xinerama Xcursor assimp)
