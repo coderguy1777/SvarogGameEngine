@@ -63,23 +63,33 @@ void Application::SvarogAppLoop() {
     } else if(!vsync_check) {
         glfwSwapInterval(0);
     }
-
     Material matA("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl", "/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
             
     float vertices[] = {
         0.5f,  0.5f, 0.0f, 
         0.5f, -0.5f, 0.0f,
         -0.5f, -0.5f, 0.0f,
-        -0.5f, 0.5f + x, 0.0f 
-    };
+        -0.5f, 0.5f , 0.0f 
+    };        
 
-    unsigned int pos[] = {  
+    unsigned int poss[] = {  
         0, 1, 3,  
         1, 2, 3   
     };
+    Array<float>vertexdata(12);
+    Array<unsigned int>posdata(6);
+    std::cout << poss[0] << std::endl;
+    for(int i = 0; i < vertexdata.length(); i++) {
+        vertexdata.add(vertices[i]);
+    }
+    for(int j = 0; j < posdata.length(); j++) {
+        posdata.add(poss[j]);
+    }
 
-    Shape drawer2(vertices, pos);
+    Shape drawer2(vertexdata, posdata);
     drawer2.useEBO();
+        drawer2.mesh();
+
     // TODO: make mouse and key callback more functional
     glfwSetKeyCallback(appWindow, [](GLFWwindow* window, int key, int action, int scancode, int mods) {
         if(glfwGetKey(window, key) == GLFW_PRESS) {
@@ -92,7 +102,6 @@ void Application::SvarogAppLoop() {
             std::cout << "Mouse button pressed" << std::endl;
         }
     });
-
     while(!glfwWindowShouldClose(appWindow)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);

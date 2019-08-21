@@ -1,36 +1,66 @@
 #pragma once
-#ifdef ARRAY_H
+#ifndef ARRAY_H
 #define ARRAY_H
-#endif
+
+#include<memory>
+#include<memory.h>
+#include<algorithm>
 #include "macrodefs.h"
 template<typename T> FORWARD_DEC(Array);
 template<typename T> class Array {
     public: 
-        Array(size_t arrsize) {
+        T *array;
+        Array(){}
+        Array(int arrsize) {
             size = arrsize;
             initArray();
             setZeros();
         }
 
+        void setSize(int newSize) {
+            size = newSize;
+        }
+
         void add(const T &data) {
-            array[0] = data;
+            MIN_LEN = MIN_LEN + 1;
+            array[MIN_LEN] = data;
+            if(MIN_LEN > size) {
+                throw std::invalid_argument("Pos too big");
+            }
+        }
+
+        T get_pos(int pos) {
+            return array[pos];
+        }
+
+        T get() {
+            MAX_LEN = MAX_LEN - 1;
+            if(MAX_LEN < 0) {
+                throw std::invalid_argument("To small a spot");
+            }
+            return array[MAX_LEN];
         }
 
         void add_pos(const T &data, int pos) {
-            if(pos > size) {
+            if(pos > size || pos < MIN_LEN) {
                 throw std::invalid_argument("Out of bounds");
             } else if(pos < size) {
+                resize();
                 array[pos] = data;
             }
         }
 
-        size_t length() const {
+        int length() const {
             return size;
         }
 
-        T* resize() {
-            T* newArr = nullptr;
-            newArr = array;
+        void resize() {
+            size_t newSize = size + 1;
+            T* newArr = new T[newSize];
+            memcpy(newArr, array, size*sizeof(int));
+            size=newSize;
+            delete[]array;
+            array = newArr;
         }
 
         T* returnArray() {
@@ -38,14 +68,15 @@ template<typename T> class Array {
         }
 
         bool isEmpty() {
-            return length() == 0 || length() == nullptr;
+            return length() == 0;
         }
 
         void copyarr();
 
     private: 
-        T *array;
-        size_t size;
+        int size;
+        mutable int MAX_LEN = length() - 1;
+        mutable int MIN_LEN = 0;
         void initArray() {
             array = new T[size];
         }
@@ -56,3 +87,4 @@ template<typename T> class Array {
             }
         }
 };
+#endif
