@@ -1,2 +1,0 @@
-g++ core/ds-classes/ArrayList.cpp main/window/window.cpp debugger/logger.cpp  math/vec3.cpp core/events/InputEvent.cpp core/events/Event.cpp main/shapes/shape.cpp main/enginewindow/enginewindow.cpp core/Input/WindowInput.cpp main/svarogengine/svarogengine.cpp main.cpp  glad/glad.c -o /home/jordan/Documents/SvarogGameEngine/builds/SvarogEngine -lglfw -lm -lX11 -lXxf86vm  -lpthread -ldl   -I.
-exit 0
