@@ -1,5 +1,11 @@
 #include "String.h"
-
+String* String::concat(Array<string>strings) {
+    String *result = nullptr;
+    for(int i = 0; i < strings.length() + 1; i++) {
+        result = new String(strings.get_pos(i) + strings.get_pos(i + 1));
+    }
+    return result;
+}
 int String::length() {
     int length = 0;
     for(int i = 0; i < 1000; i++) {

@@ -2,6 +2,7 @@
 #ifdef STRING_H
 #define STRING_H
 #endif
+#include "core/ds-classes/Array.h"
 #include<iostream>
 #include<vector>
 #include<sstream>
@@ -33,6 +34,7 @@ class String {
         bool startsWith(char check);
         bool endsWith(char check);
         String setstr(int index, char newstr, String a);
+        String* concat(Array<string>list);
         char* toCharArray(String i);
         String int_toString(int a);
         String char_toString(char a);

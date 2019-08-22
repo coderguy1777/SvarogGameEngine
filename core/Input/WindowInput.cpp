@@ -16,5 +16,11 @@ bool WindowInput::checkKeyReleased(int keystate) {
 bool WindowInput::checkKeyHeld(int keystate) {
     auto appWin = static_cast<GLFWwindow*>(app->getWindow());
     auto key = glfwGetKey(appWin, keystate);
+    return key == GLFW_REPEAT || key==GLFW_PRESS;
+}
+
+bool WindowInput::checkKeyRepeat(int keystate) {
+    auto appWin = static_cast<GLFWwindow*>(app->getWindow());
+    auto key = glfwGetKey(appWin, keystate);
     return key == GLFW_REPEAT;
 }

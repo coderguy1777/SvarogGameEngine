@@ -1,9 +1,11 @@
 #pragma once
 #ifndef KEYEVENT_H
 #define KEYEVENT_H
+#include <string>
 #include "core/String.h"
 #include "core/Input/keycodes.h"
 #include "core/events/Event.h"
+#include "core/Input/WindowInput.h"
 enum class KeyEventTypes {
     KEY_PRESS_EVT,
     KEY_HELD_EVT,
@@ -18,88 +20,37 @@ struct KeyBind {
 
 class KeyEvent {
     private:
-        KeyBind Key;
+    WindowInput* input = new WindowInput();
+
+        String *log;
+        KeyBind *keyBt;
     public:
-        KeyEvent(){}
-        inline int getKeyCode(char key) {
-            int keyCode = 0;
-            switch(key) {
-                case 'A':
-                    keyCode = SVAROG_KEY_A;
-                    break;
-                case 'B':
-                    keyCode = SVAROG_KEY_B;
-                    break;
-                case 'C':
-                    keyCode = SVAROG_KEY_C;
-                    break;
-                case 'D':
-                    keyCode = SVAROG_KEY_D;
-                    break;
-                case 'E':
-                    keyCode = SVAROG_KEY_E;
-                    break;
-                case 'F':
-                    keyCode = SVAROG_KEY_F;
-                    break;
-                case 'G':
-                    keyCode = SVAROG_KEY_G;
-                    break;
-                case 'H':
-                    keyCode = SVAROG_KEY_H;
-                    break;
-                case 'I':
-                    keyCode = SVAROG_KEY_I;
-                    break;
-                case 'J':
-                    keyCode = SVAROG_KEY_J;
-                    break;
-                case 'K':
-                    keyCode = SVAROG_KEY_K;
-                    break;
-                case 'L':
-                    keyCode = SVAROG_KEY_L;
-                    break;
-                case 'M':
-                    keyCode = SVAROG_KEY_M;
-                    break;
-                case 'N':
-                    keyCode = SVAROG_KEY_N;
-                    break;
-                case 'O':
-                    keyCode = SVAROG_KEY_O;
-                    break;
-                case 'P':
-                    keyCode = SVAROG_KEY_P;
-                    break;
-                case 'Q':
-                    keyCode = SVAROG_KEY_Q;
-                    break;
-                case 'R':
-                    keyCode = SVAROG_KEY_R;
-                    break;
-                case 'S':
-                    keyCode = SVAROG_KEY_S;
-                    break;
-                case 'T':
-                    keyCode = SVAROG_KEY_T;
-                    break;
-                case 'U':
-                    keyCode = SVAROG_KEY_U;
-                    break;
-                case 'V':
-                    keyCode = SVAROG_KEY_V;
-                    break;
-                case 'W':
-                    keyCode = SVAROG_KEY_W;
-                    break;
-                
-            }
+        KeyEvent(unsigned int code, char keyChar) {
+            keyBt->key = keyChar;
+            keyBt->ascii_code = code;
         }
-        String logKeyPressEvent(Event e, char key);
-        String logKeyReleaseEvent(Event e, char key);
-        String logKeyHeldEvent(Event e, char key);
-        String logKeyRepeatEvent(Event e, char key);
+
+        char get_keybind_char() const {
+            return keyBt->key;
+        }
+
+        unsigned int get_keybind_ascii_code() const {
+            return keyBt->ascii_code;
+        }
+
+        void set_keybind_char(char newCharKey) {
+            keyBt->key = newCharKey;
+        }
+
+        void set_keybind_ascii_code(unsigned int new_ascii_code) {
+            keyBt->ascii_code = new_ascii_code;
+        }
+
+        inline int getKeyCode();
+        String* logKeyPressEvent(Event e, int state);
+        String* logKeyReleaseEvent(Event e, int state);
+        String* logKeyHeldEvent(Event e, int state);
+        String* logKeyRepeatEvent(Event e, int state);
 };
 
 #endif

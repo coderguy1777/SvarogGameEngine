@@ -123,6 +123,33 @@ SvarogGameEngine/fast:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/build
 .PHONY : SvarogGameEngine/fast
 
+core/Input/WindowInput.o: core/Input/WindowInput.cpp.o
+
+.PHONY : core/Input/WindowInput.o
+
+# target to build an object file
+core/Input/WindowInput.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/Input/WindowInput.cpp.o
+.PHONY : core/Input/WindowInput.cpp.o
+
+core/Input/WindowInput.i: core/Input/WindowInput.cpp.i
+
+.PHONY : core/Input/WindowInput.i
+
+# target to preprocess a source file
+core/Input/WindowInput.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/Input/WindowInput.cpp.i
+.PHONY : core/Input/WindowInput.cpp.i
+
+core/Input/WindowInput.s: core/Input/WindowInput.cpp.s
+
+.PHONY : core/Input/WindowInput.s
+
+# target to generate assembly for a file
+core/Input/WindowInput.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/Input/WindowInput.cpp.s
+.PHONY : core/Input/WindowInput.cpp.s
+
 core/String.o: core/String.cpp.o
 
 .PHONY : core/String.o
@@ -942,6 +969,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... SvarogGameEngine"
 	@echo "... edit_cache"
+	@echo "... core/Input/WindowInput.o"
+	@echo "... core/Input/WindowInput.i"
+	@echo "... core/Input/WindowInput.s"
 	@echo "... core/String.o"
 	@echo "... core/String.i"
 	@echo "... core/String.s"

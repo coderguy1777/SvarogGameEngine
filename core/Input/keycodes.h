@@ -2,23 +2,25 @@
 #ifdef KEYCODES_H
 #define KEYCODES_H
 #endif
-#define SVAROG_KEY_SPACE 32
-#define SVAROG_KEY_EXCL_PT 33
-#define SVAROG_KEY_QUOTATION 34
-#define SVAROG_KEY_HASHTAG 35
-#define SVAROG_KEY_DLR_SIGN 36
-#define SVAROG_KEY_PCT_SIGN 37
-#define SVAROG_KEY_AND_SIGN 38
-#define SVAROG_KEY_APST_SIGN 39
-#define SVAROG_KEY_OPN_PTH 40
-#define SVAROG_KEY_CLSE_PTH 41
-#define SVAROG_KEY_MULT_SYM 42
-#define SVAROG_KEY_ADD_SYM 43
-#define SVAROG_KEY_COMMA 44
-#define SVAROG_KEY_DASH_1 45
-#define SVAROG_KEY_PERIOD 46
-#define SVAROG_KEY_BACK_SLASH 47
-#define SVAROG_KEY_NUM_1 48
+#define SVAROG_KEY_ESC 27 // ESC Key
+#define SVAROG_KEY_SPACE 32 // Space Key
+#define SVAROG_KEY_EXCL_PT 33 // !
+#define SVAROG_KEY_QUOTATION 34 // refers to the " key
+#define SVAROG_KEY_HASHTAG 35 // refers to the # key
+#define SVAROG_KEY_DLR_SIGN 36 // refers to the $ key
+#define SVAROG_KEY_PCT_SIGN 37 // refers to the % key
+#define SVAROG_KEY_AND_SIGN 38 // refers to the & key
+#define SVAROG_KEY_APST_SIGN 39 // refers to the ' key
+#define SVAROG_KEY_OPN_PTH 40 // refers to the ( key
+#define SVAROG_KEY_CLSE_PTH 41 // refers to the ) key
+#define SVAROG_KEY_MULT_SYM 42 // refers to the * key
+#define SVAROG_KEY_ADD_SYM 43 // refers to the + key
+#define SVAROG_KEY_COMMA 44 // refers to the , key
+#define SVAROG_KEY_HYPH_MIN 45 // - 
+#define SVAROG_KEY_PERIOD 46 //.
+#define SVAROG_KEY_SOLIDOUS 47 // 
+// start of basic number keys
+#define SVAROG_KEY_NUM_1 48 
 #define SVAROG_KEY_NUM_2 49
 #define SVAROG_KEY_NUM_3 50
 #define SVAROG_KEY_NUM_4 51
@@ -28,7 +30,9 @@
 #define SVAROG_KEY_NUM_8 55
 #define SVAROG_KEY_NUM_9 56
 #define SVAROG_KEY_NUM_0 57
-#define SVAROG_KEY_DB_DT 58
+// end of basic non numpad number keys for the 
+// basic number keys
+#define SVAROG_KEY_CLN 58 // :
 #define SVAROG_KEY_SMI_CLN 59
 #define SVAROG_KEY_LSN_SYM 60 // <
 #define SVAROG_KEY_EQ_SYM 61 // =
@@ -62,12 +66,12 @@
 #define SVAROG_KEY_Y 89
 #define SVAROG_KEY_Z 90
 // puncation keycodes 
-#define SVAROG_KEY_FORWARD_BRACKET 91
-#define SVAROG_KEY_FORWARD_SLASH 92
-#define SVAROG_KEY_BACKWARDS_BRACKET 93
-#define SVAROG_KEY_PW_SYM 94
-#define SVAROG_KEY_DASH 95
-#define SVAROG_KEY_APSTROPHE 96
+#define SVAROG_KEY_LFT_BRCKT 91 // [
+#define SVAROG_KEY_RV_SOLIDIOUS 92 // '\'
+#define SVAROG_KEY_RGT_BRCKT 93 // ]
+#define SVAROG_KEY_CRCM_FLX 94 // ^
+#define SVAROG_KEY_LOW_LINE 95 // _ 
+#define SVAROG_KEY_GRAVE_ACT 96 /// refers to the ` key
 // lowercase keycodes
 #define SVAROG_KEY_l_A 97
 #define SVAROG_KEY_l_B 98
@@ -96,8 +100,7 @@
 #define SVAROG_KEY_l_Y 121
 #define SVAROG_KEY_l_Z 122
 // more puncation keycodes
-#define SVAROG_KEY_BRACKET_1 123
-#define SVAROG_KEY_DIV_SEP 124
-#define SVAROG_KEY_BRACKET_2 125
+#define SVAROG_KEY_LEFT_CRL_BRACKET 123 // {
+#define SVAROG_KEY_VRT_LINE 124 // |
+#define SVAORG_KEY_RIGHT_CRL_BRACKET 125 // }
 #define SVAROG_KEY_SQUIGGLY 126 // Key refers to the ~ key
-#define SVAROG_KEY_ESC 256
