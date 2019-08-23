@@ -83,7 +83,6 @@ TODO:
       an event dispatcher, which will make the key event known throughout the engine.
     - Also to add a way to add it to an application event layer, to process it in the engine
       itself when running.
-    - bind it together with some
-
-
+    - bind it together with some kind of keymap class, tbd to the design of it.
+    - clean up the logging methods to be more clean.
 */

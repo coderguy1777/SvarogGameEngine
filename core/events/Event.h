@@ -7,12 +7,12 @@
 enum EVENT_TYPE {
     nullevt = 0,
     KeyEvt,
-    MouseEvent,
-    WindowEvent, 
-    AudioEvent,
-    TextureEvent, 
-    InputEvent,
-    ErrorEvent, 
+    MouseEvt,
+    WindowEvt, 
+    AudioEvt,
+    TextureEvt, 
+    InputEvt,
+    ErrorEvt, 
 };
 
 class Event {
