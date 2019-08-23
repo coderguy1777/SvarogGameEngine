@@ -20,6 +20,13 @@ class KeyEvent {
             char key;
             unsigned int ascii_code;
         } Keybt;
+
+        struct KeyEventLog {
+            Array<string>keyinfo;
+            Array<const char*>eventinfo;
+            KeyEventTypes keyevt_type;
+        } KeyLog;
+
     private:
         WindowInput* input;
         String log;
@@ -47,6 +54,7 @@ class KeyEvent {
 
         void set_keybind_char(char newCharKey) {
             keyBt->key = newCharKey;
+            free(keyBt);
         }
 
         void set_keybind_ascii_code(unsigned int new_ascii_code) {
@@ -54,9 +62,28 @@ class KeyEvent {
             free(keyBt);
         }
 
-        inline int getKeyCode();
+        // TODO: make these methods not cause seg faults,
+        // and log in the form of the keyeventlog struct.
         String logKeyPressEvent(Event e, int state);
         void logKeyReleaseEvent(Event e, int state);
         void logKeyHeldEvent(Event e, int state);
         void logKeyRepeatEvent(Event e, int state);
 };
+
+/*
+Finished: 
+Setters and getters for the class, mostly, may have to configure some kind of 
+way to gen KeyEventLogs.
+
+WIP:
+logger methods, which will be switched over to key event log structs 
+
+TODO:
+    - Make a method to do generate event logs, also make these events added to
+      an event dispatcher, which will make the key event known throughout the engine.
+    - Also to add a way to add it to an application event layer, to process it in the engine
+      itself when running.
+    - bind it together with some
+
+
+*/

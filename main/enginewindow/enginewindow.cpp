@@ -102,11 +102,11 @@ void Application::SvarogAppLoop() {
     glfwSetKeyCallback(appWindow, [](GLFWwindow* window, int key, int action, int scancode, int mods) {
         switch(scancode) {
             case GLFW_PRESS:
-                {   
+                { 
                     Event e(EVENT_TYPE::KeyEvt, 10, "key_press");
                     KeyEvent evt(static_cast<int>(key), 'A');
                     std::cout << evt.get_keybind_ascii_code() << std::endl;
-                    String ab(evt.logKeyPressEvent(e, static_cast<int>(GLFW_PRESS)));
+                    std::cout << "Key press" << std::endl;
                     break;
                 }
             case GLFW_REPEAT:
@@ -117,10 +117,7 @@ void Application::SvarogAppLoop() {
             case GLFW_RELEASE:
                 {
                     std::cout << "Key Release" << std::endl;
-                }
-            case HOLD:
-                {
-                    std::cout << "Key has been held" << std::endl;
+                    break;
                 }
         }
     });

@@ -4,6 +4,7 @@
 #include<memory>
 #include<memory.h>
 #include<algorithm>
+#include<vector>
 #include "macrodefs.h"
 template<typename T> FORWARD_DEC(Array);
 template<typename T> class Array {
@@ -51,6 +52,16 @@ template<typename T> class Array {
 
         int length() const {
             return size;
+        }
+
+        void add_list(const std::vector<T>&list) {
+            if(list.size() > length()) {
+                throw std::invalid_argument("Size of list is too big for array size set.");
+            } else if(list.size() <= length()) {
+                for(unsigned int i= 0; i < list.size(); i++) {
+                    this->array->[i] = list[i];
+                }
+            }
         }
 
         void resize() {
