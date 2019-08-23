@@ -1,6 +1,8 @@
 #include "WindowInput.h"
 #include "main/enginewindow/enginewindow.h"
-Application* app;
+Application* app = new Application();
+
+Keyboard* Keyboard::input_instace = new WindowInput();
 bool WindowInput::checkKeyPressed(int keystate) {
     auto appWin = static_cast<GLFWwindow*>(app->getWindow());    
     auto key = glfwGetKey(appWin, keystate);

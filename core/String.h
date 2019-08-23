@@ -23,6 +23,10 @@ class String {
             str(static_cast<const char*>(strn.c_str()))
         {}
 
+        String(String*str):
+            str(static_cast<const char*>(str->str))
+        {}
+
         String() {};
         int length();
         vector<char>substring(int start, int end);
@@ -44,7 +48,7 @@ class String {
         String long_toString(long a);
         
         void * operator new(size_t size) {
-            void * str = :: new String("");
+            void * str = :: new String();
             return str;
         }
 

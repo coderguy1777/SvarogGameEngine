@@ -1,7 +1,8 @@
 #include "macrodefs.h"
 #include "keyevent.h"
 
-String* KeyEvent::logKeyPressEvent(Event e, int state) {
+String KeyEvent::logKeyPressEvent(Event e, int state) {
+    String a;
     auto keyevt_type = KeyEventTypes::KEY_PRESS_EVT;
     std::string key_code_str = "Key Code: " + get_keybind_ascii_code();
     std::string key_char_str = "Key char: " + get_keybind_char();
@@ -13,14 +14,14 @@ String* KeyEvent::logKeyPressEvent(Event e, int state) {
     // making of the key press log
     std::string pressLog(string("Key Code: " + get_keybind_ascii_code() + '\n') + string("Key char: " + get_keybind_char() + '\n') + string("Key event type: " + static_cast<unsigned int>(keyevt_type) + '\n') + 
     string(evtType + '\n') + string(evtPri + '\n') + string(evtCause + '\n') + string("Key Event type: " + state + '\n'));
-    
-    if(input->isKeyPressed(static_cast<int>(get_keybind_ascii_code())) == true) {
-        log = new String(pressLog);
-    }
-    return log;
+    a = pressLog;
+
+    //if(input->isKeyPressed(static_cast<int>(get_keybind_ascii_code())) == true) {
+    //}
+    return a;
 }
 
-String* KeyEvent::logKeyHeldEvent(Event e, int state) {
+void KeyEvent::logKeyHeldEvent(Event e, int state) {
     auto keyevt_type = KeyEventTypes::KEY_HELD_EVT;
     
     std::string key_code_str = "Key Code: " + get_keybind_ascii_code();
@@ -37,10 +38,9 @@ String* KeyEvent::logKeyHeldEvent(Event e, int state) {
     if(input->isKeyHeld(static_cast<int>(get_keybind_ascii_code())) == true) {
         log = new String(heldLog);
     }
-    return log;
 }
 
-String* KeyEvent::logKeyRepeatEvent(Event e, int state) {
+void KeyEvent::logKeyRepeatEvent(Event e, int state) {
     auto keyevt_type = KeyEventTypes::KEY_HELD_EVT;
     
     std::string key_code_str = "Key Code: " + get_keybind_ascii_code();
@@ -55,12 +55,11 @@ String* KeyEvent::logKeyRepeatEvent(Event e, int state) {
     string(evtType + '\n') + string(evtPri + '\n') + string(evtCause + '\n') + string("Key Event type: " + state + '\n'));
     
     if(input->isKeyRepeat(static_cast<int>(get_keybind_ascii_code()) == true)) {
-        log = new String(repeatLog);
+        log = String(repeatLog);
     }
-    return log;
 }
 
-String* KeyEvent::logKeyReleaseEvent(Event e, int state) {
+void KeyEvent::logKeyReleaseEvent(Event e, int state) {
     auto keyevt_type = KeyEventTypes::KEY_HELD_EVT;
     
     std::string key_code_str = "Key Code: " + get_keybind_ascii_code();
@@ -75,9 +74,13 @@ String* KeyEvent::logKeyReleaseEvent(Event e, int state) {
     string(evtType + '\n') + string(evtPri + '\n') + string(evtCause + '\n') + string("Key Event type: " + state + '\n'));
 
     if(input->isKeyReleased(static_cast<int>(get_keybind_ascii_code()) == true)) {
-        log = new String(releaseLog);
+        String a(releaseLog);
+        log = a;
     }
-    return log;
+}
+
+char KeyEvent::findKeyChar(unsigned int code) {
+
 }
 
 int KeyEvent::getKeyCode() {

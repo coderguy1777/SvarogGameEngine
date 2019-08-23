@@ -6,7 +6,7 @@
 #include<iostream>
 enum EVENT_TYPE {
     nullevt = 0,
-    KeyEvent,
+    KeyEvt,
     MouseEvent,
     WindowEvent, 
     AudioEvent,

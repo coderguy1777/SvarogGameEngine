@@ -204,33 +204,6 @@ core/ds-classes/ArrayList.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/ds-classes/ArrayList.cpp.s
 .PHONY : core/ds-classes/ArrayList.cpp.s
 
-core/ds-classes/LinkedList.o: core/ds-classes/LinkedList.cpp.o
-
-.PHONY : core/ds-classes/LinkedList.o
-
-# target to build an object file
-core/ds-classes/LinkedList.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/ds-classes/LinkedList.cpp.o
-.PHONY : core/ds-classes/LinkedList.cpp.o
-
-core/ds-classes/LinkedList.i: core/ds-classes/LinkedList.cpp.i
-
-.PHONY : core/ds-classes/LinkedList.i
-
-# target to preprocess a source file
-core/ds-classes/LinkedList.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/ds-classes/LinkedList.cpp.i
-.PHONY : core/ds-classes/LinkedList.cpp.i
-
-core/ds-classes/LinkedList.s: core/ds-classes/LinkedList.cpp.s
-
-.PHONY : core/ds-classes/LinkedList.s
-
-# target to generate assembly for a file
-core/ds-classes/LinkedList.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/ds-classes/LinkedList.cpp.s
-.PHONY : core/ds-classes/LinkedList.cpp.s
-
 core/events/Event.o: core/events/Event.cpp.o
 
 .PHONY : core/events/Event.o
@@ -744,60 +717,6 @@ main/svarogengine/svarogengine.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/svarogengine/svarogengine.cpp.s
 .PHONY : main/svarogengine/svarogengine.cpp.s
 
-main/terrian/noisemap.o: main/terrian/noisemap.cpp.o
-
-.PHONY : main/terrian/noisemap.o
-
-# target to build an object file
-main/terrian/noisemap.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/terrian/noisemap.cpp.o
-.PHONY : main/terrian/noisemap.cpp.o
-
-main/terrian/noisemap.i: main/terrian/noisemap.cpp.i
-
-.PHONY : main/terrian/noisemap.i
-
-# target to preprocess a source file
-main/terrian/noisemap.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/terrian/noisemap.cpp.i
-.PHONY : main/terrian/noisemap.cpp.i
-
-main/terrian/noisemap.s: main/terrian/noisemap.cpp.s
-
-.PHONY : main/terrian/noisemap.s
-
-# target to generate assembly for a file
-main/terrian/noisemap.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/terrian/noisemap.cpp.s
-.PHONY : main/terrian/noisemap.cpp.s
-
-main/terrian/perlin.o: main/terrian/perlin.cpp.o
-
-.PHONY : main/terrian/perlin.o
-
-# target to build an object file
-main/terrian/perlin.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/terrian/perlin.cpp.o
-.PHONY : main/terrian/perlin.cpp.o
-
-main/terrian/perlin.i: main/terrian/perlin.cpp.i
-
-.PHONY : main/terrian/perlin.i
-
-# target to preprocess a source file
-main/terrian/perlin.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/terrian/perlin.cpp.i
-.PHONY : main/terrian/perlin.cpp.i
-
-main/terrian/perlin.s: main/terrian/perlin.cpp.s
-
-.PHONY : main/terrian/perlin.s
-
-# target to generate assembly for a file
-main/terrian/perlin.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/terrian/perlin.cpp.s
-.PHONY : main/terrian/perlin.cpp.s
-
 main/window/window.o: main/window/window.cpp.o
 
 .PHONY : main/window/window.o
@@ -978,9 +897,6 @@ help:
 	@echo "... core/ds-classes/ArrayList.o"
 	@echo "... core/ds-classes/ArrayList.i"
 	@echo "... core/ds-classes/ArrayList.s"
-	@echo "... core/ds-classes/LinkedList.o"
-	@echo "... core/ds-classes/LinkedList.i"
-	@echo "... core/ds-classes/LinkedList.s"
 	@echo "... core/events/Event.o"
 	@echo "... core/events/Event.i"
 	@echo "... core/events/Event.s"
@@ -1038,12 +954,6 @@ help:
 	@echo "... main/svarogengine/svarogengine.o"
 	@echo "... main/svarogengine/svarogengine.i"
 	@echo "... main/svarogengine/svarogengine.s"
-	@echo "... main/terrian/noisemap.o"
-	@echo "... main/terrian/noisemap.i"
-	@echo "... main/terrian/noisemap.s"
-	@echo "... main/terrian/perlin.o"
-	@echo "... main/terrian/perlin.i"
-	@echo "... main/terrian/perlin.s"
 	@echo "... main/window/window.o"
 	@echo "... main/window/window.i"
 	@echo "... main/window/window.s"

@@ -8,7 +8,9 @@
 // input class
 class Keyboard {
     public:
-        Keyboard(){}
+        Keyboard() {
+            Keyboard::input_instace = this;
+        }
         inline static bool isKeyPressed(int keystate) {return input_instace->checkKeyPressed(keystate);}
         inline static bool isKeyReleased(int keystate) {return input_instace->checkKeyReleased(keystate);}
         inline static bool isKeyRepeat(int keystate) {return input_instace->checkKeyRepeat(keystate);}

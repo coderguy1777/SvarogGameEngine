@@ -19,9 +19,7 @@ include_directories(main/enginewindow)
 include_directories(main/materials)
 include_directories(main/shapes)
 include_directories(main/svarogengine)
-include_directories(main/terrian)
 include_directories(main/window)
-include_directories(main/windowhandling)
 include_directories(math)
 
 add_executable(SvarogGameEngine
@@ -29,8 +27,6 @@ add_executable(SvarogGameEngine
         core/ds-classes/Array.h
         core/ds-classes/ArrayList.cpp
         core/ds-classes/ArrayList.h
-        core/ds-classes/LinkedList.cpp
-        core/ds-classes/LinkedList.h
         core/ds-classes/Node.h
         core/events/event-types/keyevent.cpp
         core/events/event-types/keyevent.h
@@ -81,10 +77,6 @@ add_executable(SvarogGameEngine
         main/shapes/shape.h
         main/svarogengine/svarogengine.cpp
         main/svarogengine/svarogengine.h
-        main/terrian/noisemap.cpp
-        main/terrian/noisemap.h
-        main/terrian/perlin.cpp
-        main/terrian/perlin.h
         main/window/window.cpp
         main/window/window.h
         math/camera_matrix.cpp
@@ -108,11 +100,4 @@ add_executable(SvarogGameEngine
 find_package(glfw3 REQUIRED)
 find_package(X11 REQUIRED)
 find_package(OpenGL REQUIRED)
-target_link_libraries(${PROJECT_NAME}
-        GL
-        GLU
-        glfw
-        X11
-        Xxf86vm
-        Xrandr
-        pthread Xi dl Xinerama Xcursor assimp)
+target_link_libraries(${PROJECT_NAME} GL GLU glfw X11 Xxf86vm Xrandr pthread Xi dl Xinerama Xcursor assimp)

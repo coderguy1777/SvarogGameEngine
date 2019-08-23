@@ -5,6 +5,8 @@
 #include "macrodefs.h"
 
 class WindowInput : public Keyboard{
+    public: 
+        WindowInput() : Keyboard() {}
     protected: 
         virtual bool checkKeyPressed(int keycode) override;
         virtual bool checkKeyReleased(int keycode) override;
