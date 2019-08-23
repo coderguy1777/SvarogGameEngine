@@ -30,19 +30,5 @@ To make sure the header for `glad.h` is included properly on your machine, run t
 Once you have all that done and built with cmake, you should be good to go and ready to build the engine.
 
 ## Step 3: Building Svarog Engine.
-As of right now, Svarog Engine is not built with cmake due to the low amount of files used within the project, having no
-need for the use of cmake in my opinion. This may change in the future however for building the engine.
-
-But anyway, to start out, use gedit or any text editor and enter into the cloned engine directory, and find the bash script: compile.sh. Once you find this file, open the file with `gedit compile.sh` to edit the paths of where some of the source files are located to be up to date with your machine. 
-
-If you are using windows terminal to build the engine, then don't make the paths to them as they would be written on linux. But, once you are done fixing the paths, you are now able to build the engine. 
-
-To do this, run the compiling bash script `./compile.sh`, to build the engine. Once it completes the building process, run the bash script `./run.sh` to run the engine. If everything built correctly, you should have a working build on your machine once you use `./run.sh`.
-
-## Step 4: Updating your local build.
-When you make new classes to add into the functionallity itself, you should include the header file in the libs.h file, as it 
-serves to make it easier to include in other files and stay orgainzed. To compile the new .cpp files for the class if it has 
-any, add the path to it in the compile.sh script, and you should be good to go. You then can update your engine build by using
-the following command, similar to the initial build process, but you can do it that way or this way as follows: 
-
+To build the engine, run the bash script `build.sh` with `sh build.sh` or simply `./build.sh` to build a version, then head into the builds directory, and run: `./SvarogGameEngine` to run the engine!
 `./compile.sh && ./run.sh`
