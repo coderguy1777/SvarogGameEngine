@@ -96,7 +96,7 @@ void Application::SvarogAppLoop() {
 
     Shape drawer2(vertexdata, posdata);
     drawer2.noEBO();
-    
+    bool x = true;
     // TODO: start mouse functionallity event basic, and also fix seg. faults
     // on keyevent log.
     glfwSetKeyCallback(appWindow, [](GLFWwindow* window, int key, int action, int scancode, int mods) {
@@ -105,8 +105,7 @@ void Application::SvarogAppLoop() {
                 { 
                     Event e(EVENT_TYPE::KeyEvt, 10, "key_press");
                     KeyEvent evt(static_cast<int>(key), 'A');
-                    std::cout << evt.get_keybind_ascii_code() << std::endl;
-                    std::cout << "Key press" << std::endl;
+                    evt.logKeyPressEvent();
                     break;
                 }
             case GLFW_REPEAT:

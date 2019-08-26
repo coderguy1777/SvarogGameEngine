@@ -58,9 +58,7 @@ template<typename T> class Array {
             if(list.size() > length()) {
                 throw std::invalid_argument("Size of list is too big for array size set.");
             } else if(list.size() <= length()) {
-                for(unsigned int i= 0; i < list.size(); i++) {
-                    this->array->[i] = list[i];
-                }
+
             }
         }
 

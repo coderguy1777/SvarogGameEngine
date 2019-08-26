@@ -11,3 +11,10 @@ LIB_ASSIMP="assimp"
 LIB_XCURSOR="Xcursor"
 
 echo "Beginning Library install, press [Y] to continue, or [N] to stop the library installs."
+read ans
+
+if [$ans == 'Y']; then 
+    echo 'Continuing.....'
+elif [$ans == 'N']; then
+    echo "Ending now......"
+fi

@@ -21,35 +21,39 @@ class KeyEvent {
             unsigned int ascii_code;
         } Keybt;
 
-        struct KeyEventLog {
-            Array<string>keyinfo;
-            Array<const char*>eventinfo;
-            KeyEventTypes keyevt_type;
+        struct KeyEventInfo {
+            Event keyevt;
+            unsigned int key_State;
         } KeyLog;
 
     private:
         WindowInput* input;
-        String log;
-        KeyBind *keyBt;
+        KeyEventInfo* log;
+        KeyBind* keyBt;
     public:
         KeyEvent(){}
         KeyEvent(unsigned int code, char keyChar) {
             keyBt = new KeyBind();
+            input = new WindowInput();
             keyBt->key = keyChar;
             keyBt->ascii_code = code;
-            input = new WindowInput();
         }
 
-        char findKeyChar(unsigned int code);
+        
         char get_keybind_char() const {
             return keyBt->key;
         }
 
-        String get_log() {
-            return log;
-        }
         unsigned int get_keybind_ascii_code() const {
             return keyBt->ascii_code;
+        }
+
+        Event get_key_evt() const {
+            return log->keyevt;
+        }
+
+        unsigned int get_key_evt_state() const {
+            return log->key_State;
         }
 
         void set_keybind_char(char newCharKey) {
@@ -62,9 +66,19 @@ class KeyEvent {
             free(keyBt);
         }
 
+        void set_key_evt_event(Event evt) {
+            log->keyevt = evt;
+            free(log);
+        }
+
+        void set_key_evt_state(unsigned int new_state) {
+            log->key_State = new_state;
+            free(log);
+        }
+
         // TODO: make these methods not cause seg faults,
         // and log in the form of the keyeventlog struct.
-        String logKeyPressEvent(Event e, int state);
+        void logKeyPressEvent();
         void logKeyReleaseEvent(Event e, int state);
         void logKeyHeldEvent(Event e, int state);
         void logKeyRepeatEvent(Event e, int state);
