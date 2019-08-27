@@ -32,13 +32,17 @@ class KeyEvent {
         KeyBind* keyBt;
     public:
         KeyEvent(){}
-        KeyEvent(unsigned int code, char keyChar) {
+        KeyEvent(unsigned int code) {
             keyBt = new KeyBind();
+            log = new KeyEventInfo();
             input = new WindowInput();
-            keyBt->key = keyChar;
+            keyBt->key = get_keycode_char(code);
             keyBt->ascii_code = code;
         }
 
+        void spacer() {
+            std::cout << '\n' << std::endl;
+        }
         
         char get_keybind_char() const {
             return keyBt->key;
@@ -67,21 +71,23 @@ class KeyEvent {
         }
 
         void set_key_evt_event(Event evt) {
-            log->keyevt = evt;
-            free(log);
+            log->keyevt.setEventType(evt.get_typeof_event());
+            log->keyevt.setPriority(evt.get_priority());
+            log->keyevt.setCause(evt.get_cause());
         }
 
         void set_key_evt_state(unsigned int new_state) {
             log->key_State = new_state;
-            free(log);
         }
 
         // TODO: make these methods not cause seg faults,
         // and log in the form of the keyeventlog struct.
         void logKeyPressEvent();
-        void logKeyReleaseEvent(Event e, int state);
-        void logKeyHeldEvent(Event e, int state);
-        void logKeyRepeatEvent(Event e, int state);
+        void logKeyReleaseEvent();
+        void logKeyHeldEvent();
+        void logKeyRepeatEvent();
+        std::string get_state();
+        char get_keycode_char(unsigned int code);
 };
 
 /*

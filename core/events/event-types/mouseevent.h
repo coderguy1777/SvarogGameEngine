@@ -14,8 +14,31 @@ class MouseEvent {
         } MouseBT;
         MouseBind* mouseBt;
     public:
-        MouseEvent();
+        MouseEvent(unsigned int mse_code, int btn_state) {
+            mouseBt = new MouseBind();
+            mouseBt->mouse_code = mse_code;
+            mouseBt->state = btn_state; 
+        }
         ~MouseEvent();
+        void spacer() {
+            std::cout << '\n' << std::endl;
+        }
+
+        // getters for mouse bind sturct.
+        unsigned int get_mse_code() const;
+        int get_mse_state() const;
+
+        // setters for mouse struct.
+        void set_mse_code(unsigned int new_code);
+        void set_mse_state(int new_state);
+
+
+        // loggers, getters, setters, etc.
+        void logMousePressEvent();
+        void logMouseReleaseEvent();
+        void logMouseHeldEvent();
+        std::string get_state();
+        std::string get_curr_button();
 };
 #endif
 
