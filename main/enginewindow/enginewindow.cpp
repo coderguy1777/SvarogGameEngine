@@ -1,7 +1,7 @@
 #include "enginewindow.h"
 #include "core/events/Event.h"
-#define HOLD 4
-float x = 0.0f;
+#include "core/events/event-types/mouseevent.h"
+
 void Application::createWindowContext() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -110,6 +110,7 @@ void Application::SvarogAppLoop() {
                     evt.logKeyPressEvent();
                     break;
                 }
+
             case GLFW_REPEAT:
                 {
                     Event e(EVENT_TYPE::KeyEvt,  1, "key_repeat");
@@ -119,6 +120,7 @@ void Application::SvarogAppLoop() {
                     evt.logKeyHeldEvent();
                     break;
                 }
+
             case GLFW_RELEASE:
                 {
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_release");
@@ -135,10 +137,37 @@ void Application::SvarogAppLoop() {
     });
 
     // TODO: add functionality for mouse events, etc.
-    glfwSetMouseButtonCallback(appWindow, [](GLFWwindow* window, int mousebtn, int action, int scancode) {
-        if(glfwGetMouseButton(window, mousebtn) == GLFW_PRESS) {
-            std::cout << "Mouse button pressed" << std::endl;
-            std::cout << mousebtn << std::endl;
+    glfwSetMouseButtonCallback(appWindow, [](GLFWwindow* window, int button, int action, int mods) {
+        switch(action) {
+            case GLFW_PRESS:
+                {
+                    Event e(EVENT_TYPE::MouseEvt, 2, "mouse_press");
+                    MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(1));
+                    evt.set_mse_event(e);
+                    evt.set_mse_state(1);
+                    evt.logMousePressEvent();
+                    break;
+                }
+
+            case GLFW_REPEAT: 
+                {
+                    Event e(EVENT_TYPE::MouseEvt, 2, "mouse_held");
+                    MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(2));
+                    evt.set_mse_event(e);
+                    evt.set_mse_state(2);
+                    evt.logMouseHeldEvent();
+                    break;
+                }
+
+            case GLFW_RELEASE:
+                {
+                    Event e(EVENT_TYPE::MouseEvt, 3, "mouse_release");
+                    MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(3));
+                    evt.set_mse_event(e);
+                    evt.set_mse_state(3);
+                    evt.logMouseReleaseEvent();
+                    break;
+                }
         }
     });
 
