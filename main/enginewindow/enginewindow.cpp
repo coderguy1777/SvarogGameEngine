@@ -103,21 +103,34 @@ void Application::SvarogAppLoop() {
         switch(scancode) {
             case GLFW_PRESS:
                 { 
-                    Event e(EVENT_TYPE::KeyEvt, 10, "key_press");
-                    KeyEvent evt(static_cast<int>(key), 'A');
+                    Event e(EVENT_TYPE::KeyEvt, 1, "key_press");
+                    KeyEvent evt(static_cast<int>(key));
+                    evt.set_key_evt_event(e);
+                    evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
                     break;
                 }
             case GLFW_REPEAT:
                 {
-                    std::cout << "Key Repeat" << std::endl;
+                    Event e(EVENT_TYPE::KeyEvt,  1, "key_repeat");
+                    KeyEvent evt(static_cast<int>(key));
+                    evt.set_key_evt_event(e);
+                    evt.set_key_evt_state(2);
+                    evt.logKeyHeldEvent();
                     break;
                 }
             case GLFW_RELEASE:
                 {
-                    std::cout << "Key Release" << std::endl;
+                    Event e(EVENT_TYPE::KeyEvt, 1, "key_release");
+                    KeyEvent evt(static_cast<int>(key));
+                    evt.set_key_evt_event(e);
+                    evt.set_key_evt_state(3);
+                    evt.logKeyReleaseEvent();
                     break;
                 }
+        }
+        if(glfwGetKey(window, SVAROG_KEY_ESC) == GLFW_PRESS) {
+            glfwTerminate();
         }
     });
 
@@ -125,6 +138,7 @@ void Application::SvarogAppLoop() {
     glfwSetMouseButtonCallback(appWindow, [](GLFWwindow* window, int mousebtn, int action, int scancode) {
         if(glfwGetMouseButton(window, mousebtn) == GLFW_PRESS) {
             std::cout << "Mouse button pressed" << std::endl;
+            std::cout << mousebtn << std::endl;
         }
     });
 
