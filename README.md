@@ -30,5 +30,4 @@ To make sure the header for `glad.h` is included properly on your machine, run t
 Once you have all that done and built with cmake, you should be good to go and ready to build the engine.
 
 ## Step 3: Building Svarog Engine.
-To build the engine, run the bash script `build.sh` with `sh build.sh` or simply `./build.sh` to build a version, then head into the builds directory, and run: `./SvarogGameEngine` to run the engine!
-`./compile.sh && ./run.sh`
+To build the engine, run the bash script `build.sh` with `sh build.sh` or simply `./build.sh` to build, then head into the builds directory, and run: `./SvarogGameEngine` to run the engine!
