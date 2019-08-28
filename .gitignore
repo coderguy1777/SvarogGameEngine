@@ -7,3 +7,4 @@ debugger/debuglogs/RightVector.txt
 .vscode/tasks.json
 cmake-build-debug/
 CMakeFiles/
+.vscode/c_cpp_properties.json
