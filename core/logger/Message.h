@@ -3,20 +3,30 @@
 #define MESSAGE_H
 #endif
 #include "core/String.h"
-#include "core/ds-classes/ArrayList.h"
 #include "core/ds-classes/Pair.h"
-#include "Event.h"
-typedef struct {
-    int ID;
-    const char* type;
-} Information;
+#include "core/ds-classes/Array.h"
 class Message {
     private:
-        String msgLog;
-        Information info;
-    public:
-        Message(Information information, String log) {
-            this->msgLog = log;
-            this->info = information;
+        struct MessageContent {
+            Array<String>msg_data;
+            unsigned int msg_id;
+            Array<String>msg_types;
+            unsigned int type;
+        } msg_content;
+        MessageContent *content;
+
+    public: 
+        Message() {
+            content = new MessageContent();
         }
+        // getters for message
+        Array<String> getmsg_data() const;
+        Array<String> getmsg_types() const;
+        unsigned int get_msg_id() const;
+        unsigned int get_type_id() const;
+
+        // setters for message
+        void set_msg_data(Array<String>new_data);
+        void set_msg_types(Array<String>new_types);
+        
 };

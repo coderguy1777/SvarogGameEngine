@@ -42,12 +42,6 @@ Array<Pair<X, Y>> LoggerGroup<X, Y>::get_group_log_array() const {
 }
 
 template<class X, class Y>
-std::ostream operator<<(const std::ostream& os, const LoggerGroup<X, Y>&log) {
-    os << log.get_group_type() << log.get_sub_group_type() << log.get_group_log_array() << log.is_log_printed() << endl;
-    return os;
-}
-
-template<class X, class Y>
 void LoggerGroup<X, Y>::set_file_title(String file_title) {
     group_file_log->title = file_title;
 }
@@ -68,18 +62,18 @@ void LoggerGroup<X, Y>::set_max_size(int max_size) {
 }
 
 template<class X, class Y>
-String LoggerGroup<X, Y>::get_file_title() const {
-    return group_file_log->title;
+const char* LoggerGroup<X, Y>::get_file_title() const {
+    return group_file_log->title.str;
 }
 
 template<class X, class Y>
-String LoggerGroup<X, Y>::get_file_type() const {
-    return group_file_log->file_type;
+const char* LoggerGroup<X, Y>::get_file_type() const {
+    return group_file_log->file_type.str;
 }
 
 template<class X, class Y>
-String LoggerGroup<X, Y>::get_output_path() const {
-    return group_file_log->output_path;
+const char* LoggerGroup<X, Y>::get_output_path() const {
+    return group_file_log->output_path.str;
 }
 
 template<class X, class Y>
@@ -90,20 +84,21 @@ int LoggerGroup<X,Y>::get_max_size() const {
 // method that writes the file group log.
 template<class X, class Y>
 void LoggerGroup<X,Y>::stream_group_log() {
-    std::ostream log_group_output;
-    log_group_output.open(get_output_path() + get_file_title() + get_file_type());
+    std::string filepath = get_output_path() + get_file_title() + get_file_type();
+    std::ofstream log_group_output(filepath, ios::out);
     bool output_check = is_log_printed();
     if(output_check) {
         do {
             for(unsigned int i = 0; i <= group_log->file_log.length(); i++) {
-                log_group_output.write(file_log.array[i]);
-                log_group_output.write('\n');
+                log_group_output << group_log->file_log.array[i];
+                log_group_output << '\n';
                 if(i == group_log->file_log.length()) {
                     output_check = false;
+                    log_group_output.close();
                 }
             }
         } while(output_check);
-    } else if(output_check == false) {
+    } else if(!output_check) {
         throw std::invalid_argument("File output is not set, please set this too continue and out put the log as requested.");
         exit(0);
     }

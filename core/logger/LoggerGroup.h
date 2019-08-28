@@ -34,7 +34,6 @@ class LoggerGroup {
         GroupLogFile *group_file_log;
         GroupLog *group_log;
         bool is_in_log;
-
     public:
         LoggerGroup() {
             group_log = new GroupLog();
@@ -67,16 +66,15 @@ class LoggerGroup {
         void set_output_path(String output_path);
         void set_max_size(int max_size);
 
-        String get_file_title() const;
-        String get_file_type() const;
-        String get_output_path() const; 
+        const char* get_file_title() const;
+        const char* get_file_type() const;
+        const char* get_output_path() const; 
         int get_max_size() const;
 
         // file streaming method for group log
         void stream_group_log();
 
         // operator overloads
-        friend std::ostream& operator<<(const std::ostream& os, const LoggerGroup &log);
         void * operator new(size_t size) {
             void * p = ::new LoggerGroup();
             return p;
