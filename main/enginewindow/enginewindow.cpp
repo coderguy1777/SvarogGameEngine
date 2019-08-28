@@ -141,7 +141,7 @@ void Application::SvarogAppLoop() {
         switch(action) {
             case GLFW_PRESS:
                 {
-                    Event e(EVENT_TYPE::MouseEvt, 2, "mouse_press");
+                    Event e(EVENT_TYPE::MouseEvt, 1, "mouse_press");
                     MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(1));
                     evt.set_mse_event(e);
                     evt.set_mse_state(1);

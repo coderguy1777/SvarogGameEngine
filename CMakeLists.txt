@@ -9,6 +9,7 @@ include_directories(core)
 include_directories(core/ds-classes)
 include_directories(core/events)
 include_directories(core/events/event-types)
+include_directories(core/logger)
 include_directories(core/Input)
 include_directories(debugger)
 include_directories(glad)
@@ -41,8 +42,12 @@ add_executable(SvarogGameEngine
         core/events/EventTypes.h
         core/events/InputEvent.cpp
         core/events/InputEvent.h
-        core/events/Log.h
-        core/events/Message.h
+        core/logger/Log.h
+        core/logger/Log.cpp
+        core/logger/Message.h
+        core/logger/Message.cpp
+        core/logger/LoggerGroup.h
+        core/logger 
         core/Input/keyboard.h
         core/Input/keycodes.h
         core/Input/keymap.h

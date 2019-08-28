@@ -16,7 +16,7 @@
 #include "core/Input/keyboard.h"
 #include "core/String.h"
 #include "core/events/InputEvent.h"
-#include "core/events/Message.h"
+#include "core/logger/Message.h"
 #include "math/camera_matrix.h" 
 #include "main/color/Color.h"
 #include "main/camera/camera.h"
