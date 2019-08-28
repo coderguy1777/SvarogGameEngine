@@ -47,7 +47,7 @@ add_executable(SvarogGameEngine
         core/logger/Message.h
         core/logger/Message.cpp
         core/logger/LoggerGroup.h
-        core/logger 
+        core/logger/LoggerGroup.cpp
         core/Input/keyboard.h
         core/Input/keycodes.h
         core/Input/keymap.h
