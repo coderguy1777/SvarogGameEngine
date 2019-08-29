@@ -25,11 +25,6 @@ void LoggerGroup<X, Y>::set_output_path(String path_output) {
 }
 
 template<class X, class Y>
-void LoggerGroup<X, Y>::set_max_size(int max_size) {
-    group_file_log->max_file_size = max_size;
-}
-
-template<class X, class Y>
 const char* LoggerGroup<X, Y>::get_file_title() const {
     return group_file_log->title.str;
 }
@@ -42,11 +37,6 @@ const char* LoggerGroup<X, Y>::get_file_type() const {
 template<class X, class Y>
 const char* LoggerGroup<X, Y>::get_output_path() const {
     return group_file_log->output_path.str;
-}
-
-template<class X, class Y>
-int LoggerGroup<X,Y>::get_max_size() const {
-    return group_file_log->max_file_size;
 }
 
 // method that writes the file group log.
@@ -91,4 +81,6 @@ void LoggerGroup<X, Y>::add_to_parent_log(const X &item) {
 }
 
 MULT_TMP_TYPE(LoggerGroup, Event, int);
+MULT_TMP_TYPE(LoggerGroup, Event, float);
 MULT_TMP_TYPE(LoggerGroup, Event, MouseEvent);
+MULT_TMP_TYPE(LoggerGroup, Event, KeyEvent);

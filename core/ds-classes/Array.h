@@ -32,36 +32,38 @@ template<typename T, int N> class Array {
         }
 
         void add(const T &data) {
-            T* temp;
-            temp = new T[length() * 2];
-            for(int i = 0; i < length(); i++) {
-                temp[i] = array[i];
+            if(get_curr_element_len() == 0) {
+                array[0] = data;
+                curr_len++;
+            } else {
+                array[get_curr_element_len() - 1] = data;
+                curr_len++;
             }
-            size *= 2;
-            delete [] array;
-            array = temp;
-            array[curr_len] = data;
-            curr_len++;
         }
 
-        T get_pos(int pos) {
-            return array[pos];
+        T get(int id) {
+            return array[id];
         }
-
-        T get() {
-            MAX_LEN = MAX_LEN - 1;
-            if(MAX_LEN < 0) {
-                throw std::invalid_argument("To small a spot");
+        
+        Array & operator=(const Array& arr) {
+            if(this == &arr) {
+                T *temp = new T[N];
+                for(int i = 0; i < N; i++) {
+                    temp[i] = arr[i];
+                }
+                arr = new T[length() * 2];
+                delete [] arr;
+                arr = temp;
             }
-            return array[MAX_LEN];
-        }
-
-        void add_pos(const T &data, int pos) {
-            array[pos] = data;
+            return *this;
         }
 
         int length() const {
             return N;
+        }
+
+        int get_curr_element_len() {
+            return curr_len;
         }
 
         void add_list(const std::vector<T>&list) {

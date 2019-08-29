@@ -2,6 +2,7 @@
 #ifdef MOUSEEVENT_H
 #define MOUSEEVENT_H
 #endif
+#include "spdlog/spdlog.h"
 #include "core/Input/mousecodes.h"
 #include "core/events/Event.h"
 #include "core/ds-classes/Array.h"

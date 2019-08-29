@@ -83,7 +83,6 @@ void Application::SvarogAppLoop() {
         1, 2, 3,
         0, 1, 2,
     };
-
     std::vector<float>vertexdata;
     std::vector<unsigned int>posdata;
     std::cout << poss[1] << std::endl;
@@ -98,17 +97,10 @@ void Application::SvarogAppLoop() {
     Shape drawer2(vertexdata, posdata);
     drawer2.noEBO();
     LoggerGroup<Event, MouseEvent>loggroup_tst;
-    bool x = true;
-    // TODO: start mouse functionallity event basic, and also fix seg. faults
-    // on keyevent log.
     glfwSetKeyCallback(appWindow, [](GLFWwindow* window, int key, int action, int scancode, int mods) {
         switch(scancode) {
             case GLFW_PRESS:
                 { 
-                    Array<int, 10>arrtst;
-                    arrtst.add_pos(101, 0);
-                    std::cout << arrtst.length() << std::endl;
-                    std::cout << arrtst.get_pos(0) << std::endl; 
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_press");
                     KeyEvent evt(static_cast<int>(key));
                     evt.set_key_evt_event(e);

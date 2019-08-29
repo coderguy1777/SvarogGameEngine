@@ -3,6 +3,7 @@
 #define WINDOW_H
 #include <GLFW/glfw3.h>
 #include "core/String.h"
+#include "core/events/Event.h"
 #define GLFWFAILSTATE -1
 #define GLFWGOODSTATE 0
 struct WindowProp {
@@ -12,6 +13,7 @@ struct WindowProp {
 };
 class Window {
     public:
+
         WindowProp props;
         WindowProp* prop = &props;
 

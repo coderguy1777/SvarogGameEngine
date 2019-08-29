@@ -2,7 +2,7 @@
 String* String::concat(Array<string, 10>strings) {
     String *result = nullptr;
     for(int i = 0; i < strings.length() + 1; i++) {
-        result = new String(strings.get_pos(i) + strings.get_pos(i + 1));
+        result = new String(strings.get(i) + strings.get(i + 1));
     }
     return result;
 }

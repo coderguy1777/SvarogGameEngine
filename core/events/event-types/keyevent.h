@@ -3,6 +3,9 @@
 #define KEYEVENT_H
 #endif
 #include <string>
+#include <functional>
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
 #include "core/String.h"
 #include "core/Input/keycodes.h"
 #include "core/events/Event.h"

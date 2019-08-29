@@ -2,44 +2,28 @@
 #include "keyevent.h"
 
 void KeyEvent::logKeyPressEvent() {
-    std::cout << "Event type: " << static_cast<unsigned int>(log->keyevt.get_typeof_event()) << std::endl;
-    std::cout << "Event priority: " << static_cast<unsigned int>(log->keyevt.get_priority()) << std::endl;
-    std::cout << "Event cause: " << log->keyevt.get_cause() << std::endl;
-    std::cout << "Key Pressed: " << get_keybind_char() << std::endl;
-    std::cout << "Key State: " << get_state() << std::endl;
-    std::cout << "Key ASCII Code: " << get_keybind_ascii_code() << std::endl;
-    spacer();
+    spdlog::info("Key Pressed: {}", get_keybind_char());
+    spdlog::info("Key State: {}", get_state());
+    spdlog::info("Key ASCII CODE: {}", get_keybind_ascii_code());
 }
 
 
 void KeyEvent::logKeyReleaseEvent() {
-    std::cout << "Event type: " << static_cast<unsigned int>(log->keyevt.get_typeof_event()) << std::endl;
-    std::cout << "Event priority: " << static_cast<unsigned int>(log->keyevt.get_priority()) << std::endl;
-    std::cout << "Event cause: " << log->keyevt.get_cause() << std::endl;
-    std::cout << "Key Released: " << get_keybind_char() << std::endl;
-    std::cout << "Key State: " << get_state() << std::endl;
-    std::cout << "Key ASCII Code: " << get_keybind_ascii_code() << std::endl;
-    spacer();
+    spdlog::info("Key Released: {}", get_keybind_char());
+    spdlog::info("Key State: {}", get_state());
+    spdlog::info("Key ASCII CODE: {}", get_keybind_ascii_code());
 }
 
 void KeyEvent::logKeyHeldEvent() {
-    std::cout << "Event type: " << static_cast<unsigned int>(log->keyevt.get_typeof_event()) << std::endl;
-    std::cout << "Event priority: " << static_cast<unsigned int>(log->keyevt.get_priority()) << std::endl;
-    std::cout << "Event cause: " << log->keyevt.get_cause() << std::endl;
-    std::cout << "Key Held: " << get_keybind_char() << std::endl;
-    std::cout << "Key State: " << get_state() << std::endl;
-    std::cout << "Key ASCII Code: " << get_keybind_ascii_code() << std::endl;
-    spacer();
+    spdlog::info("Key Held: {}", get_keybind_char());
+    spdlog::info("Key State: {}", get_state());
+    spdlog::info("Key ASCII CODE: {}", get_keybind_ascii_code());
 }
 
 void KeyEvent::logKeyRepeatEvent() {
-    std::cout << "Event type: " << static_cast<unsigned int>(log->keyevt.get_typeof_event()) << std::endl;
-    std::cout << "Event priority: " << static_cast<unsigned int>(log->keyevt.get_priority()) << std::endl;
-    std::cout << "Event cause: " << log->keyevt.get_cause() << std::endl;
-    std::cout << "Key repeated: " << get_keybind_char() << std::endl;
-    std::cout << "Key State: " << get_state() << std::endl;
-    std::cout << "Key ASCII Code: " << get_keybind_ascii_code() << std::endl;
-    spacer();
+    spdlog::info("Key Repeated: {}", get_keybind_char());
+    spdlog::info("Key State: {}", get_state());
+    spdlog::info("Key ASCII CODE: {}", get_keybind_ascii_code());
 } 
 
 std::string KeyEvent::get_state() {

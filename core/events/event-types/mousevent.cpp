@@ -64,31 +64,19 @@ std::string MouseEvent::get_curr_button() {
 }
 
 void MouseEvent::logMousePressEvent() {
-    std::cout << "Event type: " << static_cast<unsigned int>(log->e.get_typeof_event()) << std::endl;
-    std::cout << "Event priority: " << static_cast<unsigned int>(log->e.get_priority()) << std::endl;
-    std::cout << "Event cause: " << log->e.get_cause() << std::endl;
-    std::cout << "Mouse Button pressed: " << get_curr_button() << std::endl;
-    std::cout << "Mouse Button state: " << get_state() << std::endl;
-    std::cout << "Mouse Button ASCII code: " << get_mse_code() << std::endl;
-    spacer();
+    spdlog::info("Mouse Button pressed: {}", get_curr_button());
+    spdlog::info("Mouse Button state: {}", get_state());
+    spdlog::info("Mouse Button ASCII code: {}", get_mse_code());
 }
 
 void MouseEvent::logMouseReleaseEvent() {
-    std::cout << "Event type: " << static_cast<unsigned int>(log->e.get_typeof_event()) << std::endl;
-    std::cout << "Event priority: " << static_cast<unsigned int>(log->e.get_priority()) << std::endl;
-    std::cout << "Event cause: " << log->e.get_cause() << std::endl;
-    std::cout << "Mouse Button released: " << get_curr_button() << std::endl;
-    std::cout << "Mouse Button state: " << get_state() << std::endl;
-    std::cout << "Mouse Button ASCII code: " << get_mse_code() << std::endl;
-    spacer();
+    spdlog::info("Mouse Button released: {}", get_curr_button());
+    spdlog::info("Mouse Button state: {}", get_state());
+    spdlog::info("Mouse Button ASCII code: {}", get_mse_code());
 }
 
 void MouseEvent::logMouseHeldEvent() {
-    std::cout << "Event type: " << static_cast<unsigned int>(log->e.get_typeof_event()) << std::endl;
-    std::cout << "Event priority: " << static_cast<unsigned int>(log->e.get_priority()) << std::endl;
-    std::cout << "Event cause: " << log->e.get_cause() << std::endl;
-    std::cout << "Mouse Button held: " << get_curr_button() << std::endl;
-    std::cout << "Mouse Button state: " << get_state() << std::endl;
-    std::cout << "Mouse Button ASCII code: " << get_mse_code() << std::endl;
-    spacer();
+    spdlog::info("Mouse Button held: {}", get_curr_button());
+    spdlog::info("Mouse Button state: {}", get_state());
+    spdlog::info("Mouse Button ASCII code: {}", get_mse_code());
 }
