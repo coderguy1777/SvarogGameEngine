@@ -1,25 +1,25 @@
 #pragma once 
-#ifdef LOGGERGROUP_H
-#define LOGGERGROUP_H
-#endif 
+#ifndef LOGGERGROUP_H
+#define LOGGERGROUP_H 
 #include "core/String.h"
 #include "core/ds-classes/Pair.h"
 #include "core/ds-classes/Array.h"
+#include "core/events/event-types/mouseevent.h"
+#include "core/ds-classes/ArrayList.h"
 #include "Message.h"
-#include "macrodefs.h"
 #include<ostream>
 #include<fstream>
 #include<sstream>
+#include "macrodefs.h"
 template<class X, class Y>
 FORWARD_DEC(LoggerGroup);
 
 template<class X, class Y>
 class LoggerGroup {
     private:
-        X const &group_type;
-        Y const &sub_group_type;
         struct GroupLog {
-            Array<Pair<X, Y>>file_log;
+            ArrayList<X>parent_log;
+            ArrayList<Y>sub_type_log;
             bool is_printed;
         } log_group;
 
@@ -44,27 +44,35 @@ class LoggerGroup {
         inline void group_is_in_log_group();
         bool get_is_in_log() const;
 
-        // getters for group type and sub group type.
-        X get_group_type() const;
-        Y get_sub_group_type() const;
-
-        // setters for group types and sub group types.
-        void set_group_type(X const&);
-        void set_sub_group_type(Y const&);
 
         // setters for the group log struct.
         void set_is_printed_log(bool output_log);
-        void set_array_log(Array<Pair<X, Y>>log);
 
         // getters for group log struct.
         bool is_log_printed() const;
-        Array<Pair<X, Y>>get_group_log_array() const;
 
         // file information setup
         void set_file_title(String file_title);
         void set_file_type(String file_type);
         void set_output_path(String output_path);
         void set_max_size(int max_size);
+
+        /*
+        inline void set_pt_log_len(unsigned int len) {
+            group_log->parent_log.setSize(len);
+        }
+
+        inline void set_sb_log_len(unsigned int len) {
+            group_log->sub_type_log.setSize(len);
+        }
+       */
+        void size_tst() {
+            std::cout << group_log->parent_log.size() << std::endl;
+        }
+
+        // adding to keyevent arr.
+        void add_to_parent_log(X const& item);
+        void add_to_sub_type_log(Y const& item);
 
         const char* get_file_title() const;
         const char* get_file_type() const;
@@ -80,3 +88,4 @@ class LoggerGroup {
             return p;
         }
 };
+#endif

@@ -8,12 +8,28 @@
 #include "macrodefs.h"
 template<typename T> FORWARD_DEC(Array);
 template<typename T> class Array {
+    private: 
+        int size;
+        int MAX_LEN = length() - 1;
+        int MIN_LEN = 0;
+        int curr_len = 0;
+        void initArray() {
+            array = new T[size];
+        }
+
+        void setZeros() {
+            for(int i = 0; i < size; i++) {
+                array[i] = 0;
+            }
+        }
+
     public: 
         T *array;
         Array(){}
         Array(int arrsize) {
             size = arrsize;
             array = new T[size * 2];
+            curr_len = 0;
             setZeros();
         }
 
@@ -22,11 +38,16 @@ template<typename T> class Array {
         }
 
         void add(const T &data) {
-            MIN_LEN = MIN_LEN + 1;
-            array[MIN_LEN] = data;
-            if(MIN_LEN > size) {
-                throw std::invalid_argument("Pos too big");
+            T* temp;
+            temp = new T[length() * 2];
+            for(int i = 0; i < length(); i++) {
+                temp[i] = array[i];
             }
+            size *= 2;
+            delete [] array;
+            array = temp;
+            array[curr_len] = data;
+            curr_len++;
         }
 
         T get_pos(int pos) {
@@ -80,22 +101,9 @@ template<typename T> class Array {
         bool isEmpty() {
             return length() == 0;
         }
-        
 
-        void copyarr();
-
-    private: 
-        int size;
-        mutable int MAX_LEN = length() - 1;
-        mutable int MIN_LEN = 0;
-        void initArray() {
-            array = new T[size];
-        }
-
-        void setZeros() {
-            for(int i = 0; i < size; i++) {
-                array[i] = 0;
-            }
+        void setSize(unsigned int new_size) {
+            size = new_size;
         }
 };
 #endif

@@ -7,13 +7,11 @@
 #include "ArrayList.h"
 #include "core/events/Event.h"
 #include "macrodefs.h"
-
+#include <vector>
 template<class S>
 class Stack {
     private: 
-        ArrayList<S>stack;
-        const int topPiece = stack.size() - 1;
-        const int bottomPiece = 0;
+        vector<S>stack;
     public:
         Stack() {}
         S top();

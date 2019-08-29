@@ -1,6 +1,7 @@
 #pragma once
-#ifndef MOUSEEVENT_H
+#ifdef MOUSEEVENT_H
 #define MOUSEEVENT_H
+#endif
 #include "core/Input/mousecodes.h"
 #include "core/events/Event.h"
 #include "core/ds-classes/Array.h"
@@ -48,7 +49,6 @@ class MouseEvent {
         std::string get_state();
         std::string get_curr_button();
 };
-#endif
 
 /*
 TODO:

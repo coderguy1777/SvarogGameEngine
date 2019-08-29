@@ -1,44 +1,12 @@
 #include "LoggerGroup.h"
 template<class X, class Y>
-X LoggerGroup<X, Y>::get_group_type() const {
-    return group_type;
-}
-
-template<class X, class Y>
-Y LoggerGroup<X, Y>::get_sub_group_type() const {
-    return sub_group_type;
-}
-
-template<class X, class Y>
-void LoggerGroup<X, Y>::set_group_type(X const& new_type) {
-    this->group_type = new_type;
-}
-
-template<class X, class Y>
-void LoggerGroup<X, Y>::set_sub_group_type(Y const& sub_type) {
-    this->sub_group_type = sub_type;
-}
-
-template<class X, class Y>
 void LoggerGroup<X, Y>::set_is_printed_log(bool output_log) {
     group_log->is_printed = output_log;
 }
 
 template<class X, class Y>
-void LoggerGroup<X, Y>::set_array_log(Array<Pair<X, Y>>log) {
-    for(unsigned int i = 0; i < log.length() && i < group_log->file_log.length(); i++) {
-        group_log->file_log.array[i] = log.array[i];
-    }
-}
-
-template<class X, class Y>
 bool LoggerGroup<X, Y>::is_log_printed() const {
     return group_log->is_printed;
-}
-
-template<class X, class Y>
-Array<Pair<X, Y>> LoggerGroup<X, Y>::get_group_log_array() const {
-    return group_log->file_log;
 }
 
 template<class X, class Y>
@@ -84,20 +52,22 @@ int LoggerGroup<X,Y>::get_max_size() const {
 // method that writes the file group log.
 template<class X, class Y>
 void LoggerGroup<X,Y>::stream_group_log() {
-    std::string filepath = get_output_path() + get_file_title() + get_file_type();
-    std::ofstream log_group_output(filepath, ios::out);
+    std::string filepath = std::string(std::string(get_output_path())+ std::string(get_file_title()) + std::string(get_file_type()));
+    std::ofstream log_group_output;
+    log_group_output.open(filepath, std::ostream::out);
     bool output_check = is_log_printed();
     if(output_check) {
         do {
-            for(unsigned int i = 0; i <= group_log->file_log.length(); i++) {
-                log_group_output << group_log->file_log.array[i];
+            for(unsigned int i = 0; i <= group_log->parent_log.size(); i++) {
+                log_group_output << group_log->parent_log.get(i);
                 log_group_output << '\n';
-                if(i == group_log->file_log.length()) {
+                if(i == group_log->parent_log.size() && i == group_log->sub_type_log.size()) {
                     output_check = false;
                     log_group_output.close();
                 }
             }
         } while(output_check);
+        log_group_output.close();
     } else if(!output_check) {
         throw std::invalid_argument("File output is not set, please set this too continue and out put the log as requested.");
         exit(0);
@@ -114,3 +84,11 @@ template<class X, class Y>
 bool LoggerGroup<X, Y>::get_is_in_log() const {
     return (is_in_log);
 }
+
+template<class X, class Y>
+void LoggerGroup<X, Y>::add_to_parent_log(const X &item) {
+    group_log->parent_log.add(item);
+}
+
+MULT_TMP_TYPE(LoggerGroup, Event, int);
+MULT_TMP_TYPE(LoggerGroup, Event, MouseEvent);

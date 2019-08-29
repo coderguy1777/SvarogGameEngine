@@ -68,6 +68,7 @@ float Matrix::getValue(int row, int spot) {
     return val;
 }
 
+/* 
 ArrayList<float> Matrix::getRow(int rowNum) {
     ArrayList<float>rowvals;
     switch(rowNum) {
@@ -91,3 +92,4 @@ ArrayList<float> Matrix::getRow(int rowNum) {
     }
     return rowvals;
 }
+*/

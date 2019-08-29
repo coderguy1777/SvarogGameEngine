@@ -26,7 +26,6 @@ include_directories(math)
 add_executable(SvarogGameEngine
         glad/glad.c
         core/ds-classes/Array.h
-        core/ds-classes/ArrayList.cpp
         core/ds-classes/ArrayList.h
         core/ds-classes/Node.h
         core/events/event-types/keyevent.cpp
@@ -86,8 +85,6 @@ add_executable(SvarogGameEngine
         main/window/window.h
         math/camera_matrix.cpp
         math/camera_matrix.h
-        math/euler_angles.cpp
-        math/euler_angles.h
         math/math.h
         math/matrix.cpp
         math/matrix.h

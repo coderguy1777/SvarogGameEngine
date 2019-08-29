@@ -104,3 +104,42 @@
 #define SVAROG_KEY_VRT_LINE 124 // |
 #define SVAORG_KEY_RIGHT_CRL_BRACKET 125 // }
 #define SVAROG_KEY_SQUIGGLY 126 // Key refers to the ~ key
+// key codes for things like enter, arrow keys, etc.
+#define SVAROG_KEY_ENTER 257
+#define SVAROG_KEY_LFT_TAB 258
+#define SVAROG_KEY_BACK_SPACE 259
+#define SVAROG_KEY_ARROW_RGT 262
+#define SVAROG_KEY_ARROW_LFT 263
+#define SVAROG_KEY_ARROW_DOWN 264 // is known as _^ in keyevent logs when pressed.
+#define SVAROG_KEY_ARROW_UP 265 // is known as ^_ in keyevent logs when pressed.
+#define SVAROG_KEY_CAPS_LOCK 280
+#define SVAROG_KEY_LFT_SHIFT 340
+#define SVAROG_KEY_LFT_CTRL 341
+#define SVAROG_KEY_LFT_ALT 342
+#define SVAROG_KEY_RGT_SHIFT 344
+#define SVAROG_KEY_RGT_CTRL 345
+#define SVAROG_KEY_RGT_ALT 346
+// numpad keys
+#define SVAROG_KEY_NUM_PAD_0 320
+#define SVAROG_KEY_NUM_PAD_1 321
+#define SVAROG_KEY_NUM_PAD_2 322
+#define SVAROG_KEY_NUM_PAD_3 323
+#define SVAROG_KEY_NUM_PAD_4 324
+#define SVAROG_KEY_NUM_PAD_5 325
+#define SVAROG_KEY_NUM_PAD_6 326 
+#define SVAROG_KEY_NUM_PAD_7 327
+#define SVAROG_KEY_NUM_PAD_8 328
+#define SVAROG_KEY_NUM_PAD_9 329
+// function keys
+#define SVAROG_KEY_FN_1 290
+#define SVAROG_KEY_FN_2 291
+#define SVAROG_KEY_FN_3 292
+#define SVAROG_KEY_FN_4 293
+#define SVAROG_KEY_FN_5 294
+#define SVAROG_KEY_FN_6 295
+#define SVAROG_KEY_FN_7 296
+#define SVAROG_KEY_FN_8 297
+#define SVAROG_KEY_FN_9 298
+#define SVAROG_KEY_FN_10 299
+#define SVAROG_KEY_FN_11 300
+#define SVAROG_KEY_FN_12 301

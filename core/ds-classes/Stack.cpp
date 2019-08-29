@@ -7,13 +7,13 @@ void Stack<S>::push(S const& item) {
 
 template<class S>
 S Stack<S>::pop() {
-    return stack.remove(topPiece);
+    return stack[stack.size() - 1];
 
 }
 
 template <class S>
 S Stack<S>::top() {
-    return stack.get(topPiece);
+    return stack[stack.size() - 1];
 }
 
 template<class S>

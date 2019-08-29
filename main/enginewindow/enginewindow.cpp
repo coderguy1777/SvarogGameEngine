@@ -1,6 +1,7 @@
 #include "enginewindow.h"
 #include "core/events/Event.h"
 #include "core/events/event-types/mouseevent.h"
+#include "core/logger/LoggerGroup.h"
 
 void Application::createWindowContext() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -96,6 +97,7 @@ void Application::SvarogAppLoop() {
 
     Shape drawer2(vertexdata, posdata);
     drawer2.noEBO();
+    LoggerGroup<Event, MouseEvent>loggroup_tst;
     bool x = true;
     // TODO: start mouse functionallity event basic, and also fix seg. faults
     // on keyevent log.
@@ -141,6 +143,7 @@ void Application::SvarogAppLoop() {
         switch(action) {
             case GLFW_PRESS:
                 {
+                    LoggerGroup<Event, MouseEvent>log_tst;
                     Event e(EVENT_TYPE::MouseEvt, 1, "mouse_press");
                     MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(1));
                     evt.set_mse_event(e);

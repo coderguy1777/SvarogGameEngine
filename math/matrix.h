@@ -1,9 +1,8 @@
 #pragma once
-#ifdef MATRIX_H
+#ifndef MATRIX_H
 #define MATRIX_H
-#endif 
+#include "macrodefs.h"
 #include "core/Point.h"
-#include "vec3.h"
 #include "core/ds-classes/ArrayList.h"
 #include<iostream>
 #include<bits/stdc++.h>
@@ -17,7 +16,6 @@ typedef struct {
 typedef struct {
     float xpos, ypos, zpos;
 } coordmat;
-
 class Matrix {
     public:
         matrixRow row1, row2, row3;
@@ -86,8 +84,9 @@ class Matrix {
             a.row3.r1 = mat4.row3.r1 / this->row3.r1;
             a.row3.r2 = mat4.row3.r2 / this->row3.r2;
             return a;
-        }
-
-        ArrayList<float>getRow(int rowVal);
+        };
+        // TODO: fix typename error.
+        // ArrayList<float>getRow(int row);
         float getValue(int row, int spot);
 };
+#endif

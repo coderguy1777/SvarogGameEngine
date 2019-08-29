@@ -17,7 +17,7 @@ enum class KeyEventTypes {
 class KeyEvent {
     private: 
         struct KeyBind {
-            char key;
+            std::string key;
             unsigned int ascii_code;
         } Keybt;
 
@@ -44,7 +44,7 @@ class KeyEvent {
             std::cout << '\n' << std::endl;
         }
         
-        char get_keybind_char() const {
+        std::string get_keybind_char() const {
             return keyBt->key;
         }
 
@@ -87,16 +87,14 @@ class KeyEvent {
         void logKeyHeldEvent();
         void logKeyRepeatEvent();
         std::string get_state();
-        char get_keycode_char(unsigned int code);
+        std::string get_keycode_char(unsigned int code);
 };
 
 /*
 Finished: 
 Setters and getters for the class, mostly, may have to configure some kind of 
 way to gen KeyEventLogs.
-
-WIP:
-logger methods, which will be switched over to key event log structs 
+logger methods, which will be switched over to key event log structs (now done).
 
 TODO:
     - Make a method to do generate event logs, also make these events added to

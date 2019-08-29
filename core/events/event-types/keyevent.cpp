@@ -64,8 +64,8 @@ std::string KeyEvent::get_state() {
     return state;
 }
 
-char KeyEvent::get_keycode_char(unsigned int code) {
-    char key;
+std::string KeyEvent::get_keycode_char(unsigned int code) {
+    std::string key;
     switch(code) {
         case SVAROG_KEY_SPACE:
             key = '\0';
@@ -244,8 +244,146 @@ char KeyEvent::get_keycode_char(unsigned int code) {
         case SVAROG_KEY_Z:
             key = 'Z';
             break;
+        case SVAROG_KEY_LFT_BRCKT:
+            key = '[';
+            break;
+        case SVAROG_KEY_RV_SOLIDIOUS:
+            key = "RV_SLSH";
+            break;
+        case SVAROG_KEY_RGT_BRCKT:
+            key = ']';
+            break;
+        case SVAROG_KEY_CRCM_FLX:
+            key = '^';
+            break;
+        case SVAROG_KEY_LOW_LINE:
+            key = '_';
+            break;
+        case SVAROG_KEY_GRAVE_ACT:
+            key = '`';
+            break;
+        case SVAROG_KEY_LEFT_CRL_BRACKET:
+            key = '{';
+            break;
+        case SVAROG_KEY_VRT_LINE:
+            key = '|';
+            break;
+        case SVAORG_KEY_RIGHT_CRL_BRACKET:
+            key = '}';
+            break;
+        case SVAROG_KEY_SQUIGGLY:
+            key = '~';
+            break;
+        case SVAROG_KEY_NUM_PAD_0:
+            key = "NUM_PAD_0";
+            break;
+        case SVAROG_KEY_NUM_PAD_1:
+            key = "NUM_PAD_1";
+            break;
+        case SVAROG_KEY_NUM_PAD_2:
+            key = "NUM_PAD_2";
+            break;
+        case SVAROG_KEY_NUM_PAD_3:
+            key = "NUM_PAD_3";
+            break;
+        case SVAROG_KEY_NUM_PAD_4:
+            key = "NUM_PAD_4";
+            break;
+        case SVAROG_KEY_NUM_PAD_5:
+            key = "NUM_PAD_5";
+            break;
+        case SVAROG_KEY_NUM_PAD_6:
+            key = "NUM_PAD_6";
+            break;
+        case SVAROG_KEY_NUM_PAD_7:
+            key = "NUM_PAD_7";
+            break;
+        case SVAROG_KEY_NUM_PAD_8:
+            key = "NUM_PAD_8";
+            break;
+        case SVAROG_KEY_NUM_PAD_9:
+            key = "NUM_PAD_9";
+            break;
+        case SVAROG_KEY_FN_1:
+            key = "FN_1";
+            break;
+        case SVAROG_KEY_FN_2: 
+            key = "FN_2";
+            break;
+        case SVAROG_KEY_FN_3:
+            key = "FN_3";
+            break;
+        case SVAROG_KEY_FN_4:
+            key = "FN_4";
+            break;
+        case SVAROG_KEY_FN_5:
+            key = "FN_5";
+            break;
+        case SVAROG_KEY_FN_6:
+            key = "FN_6";
+            break;
+        case SVAROG_KEY_FN_7:
+            key = "FN_7";
+            break;
+        case SVAROG_KEY_FN_8:
+            key = "FN_8";
+            break;
+        case SVAROG_KEY_FN_9:
+            key = "FN_9";
+            break;
+        case SVAROG_KEY_FN_10:
+            key = "FN_10";
+            break;
+        case SVAROG_KEY_FN_11:
+            key = "FN_11";
+            break;
+        case SVAROG_KEY_FN_12:
+            key = "FN_12";
+            break;
+        case SVAROG_KEY_ENTER:
+            key = "KEY_ENTER";
+            break;
+        case SVAROG_KEY_LFT_TAB:
+            key = "LFT_TAB";
+            break;
+        case SVAROG_KEY_BACK_SPACE:
+            key = "BCK_SPCE";
+            break;
+        case SVAROG_KEY_ARROW_RGT:
+            key = "->";
+            break;
+        case SVAROG_KEY_ARROW_LFT:
+            key = "<-";
+            break;
+        case SVAROG_KEY_ARROW_DOWN:
+            key = "_^";
+            break;
+        case SVAROG_KEY_ARROW_UP:
+            key = "^_";
+            break;
+        case SVAROG_KEY_CAPS_LOCK:
+            key = "CPS_LCK";
+            break;
+        case SVAROG_KEY_LFT_SHIFT:
+            key = "L_SHFT";
+            break;
+        case SVAROG_KEY_LFT_CTRL:
+            key = "L_CTRL";
+            break;
+        case SVAROG_KEY_LFT_ALT:
+            key = "L_ALT";
+            break;
+        case SVAROG_KEY_RGT_SHIFT:
+            key = "R_SHFT";
+            break;
+        case SVAROG_KEY_RGT_CTRL:
+            key = "R_CTRL";
+            break;
+        case SVAROG_KEY_RGT_ALT:
+            key = "R_ALT";
+            break;
         default:
-            key = NULL;
+            key = "ERROR_STATE";
             break;
     }
     return key;

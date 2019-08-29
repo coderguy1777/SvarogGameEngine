@@ -10,9 +10,6 @@ class EventDispatcher {
         static EventLayer* layer;
     public:
         EventDispatcher(){};
-        Queue<Event*>makeNewQueue(Event* event);
-        ~EventDispatcher();
-        void sendToEventLayer(Queue<Event*>evtQueue);
 };
 
 #endif
