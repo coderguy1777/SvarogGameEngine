@@ -9,6 +9,10 @@
 #include "core/events/EventDispatch.h"
 #include "main/window/window.h"
 class Application {
+    private:
+        Array<Event, 10>event_queue_key;
+        Array<Event, 10>event_queue_mouse;
+        Array<Event, 10>event_queue_window; 
     public: 
         Window winA;
         bool engineState;
@@ -17,6 +21,9 @@ class Application {
         Application(){}
         ~Application() {
             end();
+        }
+        int tst() {
+            return 2;
         }
         // engine core methods
         void end();

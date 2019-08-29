@@ -2,7 +2,6 @@
 #include "core/events/Event.h"
 #include "core/events/event-types/mouseevent.h"
 #include "core/logger/LoggerGroup.h"
-
 void Application::createWindowContext() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -96,8 +95,10 @@ void Application::SvarogAppLoop() {
 
     Shape drawer2(vertexdata, posdata);
     drawer2.noEBO();
-    LoggerGroup<Event, MouseEvent>loggroup_tst;
-    glfwSetKeyCallback(appWindow, [](GLFWwindow* window, int key, int action, int scancode, int mods) {
+
+    glfwSetWindowUserPointer(static_cast<GLFWwindow*>(this->getWindow()), this);
+    glfwSetKeyCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int key, int action, int scancode, int mods) {
+        Application* key_evt_ptr = (Application*)glfwGetWindowUserPointer(window);
         switch(scancode) {
             case GLFW_PRESS:
                 { 
@@ -129,13 +130,11 @@ void Application::SvarogAppLoop() {
                     break;
                 }
         }
-        if(glfwGetKey(window, SVAROG_KEY_ESC) == GLFW_PRESS) {
-            glfwTerminate();
-        }
     });
 
-    // TODO: add functionality for mouse events, etc.
-    glfwSetMouseButtonCallback(appWindow, [](GLFWwindow* window, int button, int action, int mods) {
+    // TODO: make an event dispatching system for mouse events.
+    glfwSetMouseButtonCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int button, int action, int mods) {
+        Application* mouse_evt_ptr = (Application*)glfwGetWindowUserPointer(window);
         switch(action) {
             case GLFW_PRESS:
                 {

@@ -52,7 +52,7 @@ std::string KeyEvent::get_keycode_char(unsigned int code) {
     std::string key;
     switch(code) {
         case SVAROG_KEY_SPACE:
-            key = '\0';
+            key = "KEY_SPACE";
             break;
         case SVAROG_KEY_EXCL_PT:
             key = '!';
