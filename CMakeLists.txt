@@ -102,4 +102,18 @@ add_executable(SvarogGameEngine
 find_package(glfw3 REQUIRED)
 find_package(X11 REQUIRED)
 find_package(OpenGL REQUIRED)
-target_link_libraries(${PROJECT_NAME} GL GLU glfw X11 Xxf86vm Xrandr pthread Xi dl Xinerama Xcursor assimp)
+find_package(spdlog REQUIRED)
+target_link_libraries(${PROJECT_NAME} 
+        GL 
+        GLU 
+        glfw 
+        X11 
+        Xxf86vm 
+        Xrandr 
+        pthread 
+        Xi 
+        dl 
+        Xinerama 
+        Xcursor 
+        assimp
+        spdlog::spdlog)
