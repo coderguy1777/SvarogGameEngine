@@ -105,6 +105,10 @@ void Application::SvarogAppLoop() {
         switch(scancode) {
             case GLFW_PRESS:
                 { 
+                    Array<int, 10>arrtst;
+                    arrtst.add_pos(101, 0);
+                    std::cout << arrtst.length() << std::endl;
+                    std::cout << arrtst.get_pos(0) << std::endl; 
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_press");
                     KeyEvent evt(static_cast<int>(key));
                     evt.set_key_evt_event(e);

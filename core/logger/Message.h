@@ -8,9 +8,9 @@
 class Message {
     private:
         struct MessageContent {
-            Array<String>msg_data;
+            Array<String, 10>msg_data;
             unsigned int msg_id;
-            Array<String>msg_types;
+            Array<String, 10>msg_types;
             unsigned int type;
         } msg_content;
         MessageContent *content;
@@ -20,13 +20,13 @@ class Message {
             content = new MessageContent();
         }
         // getters for message
-        Array<String> getmsg_data() const;
-        Array<String> getmsg_types() const;
+        Array<String, 10> getmsg_data() const;
+        Array<String, 10> getmsg_types() const;
         unsigned int get_msg_id() const;
         unsigned int get_type_id() const;
 
         // setters for message
-        void set_msg_data(Array<String>new_data);
-        void set_msg_types(Array<String>new_types);
+        void set_msg_data(Array<String, 10>new_data);
+        void set_msg_types(Array<String, 10>new_types);
         
 };

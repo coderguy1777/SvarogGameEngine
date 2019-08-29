@@ -5,6 +5,8 @@
 #include "core/ds-classes/Array.h"
 #include<iostream>
 #include<vector>
+#include<ostream>
+#include<fstream>
 #include<sstream>
 #include<string>
 using namespace std;
@@ -38,7 +40,7 @@ class String {
         bool startsWith(char check);
         bool endsWith(char check);
         String setstr(int index, char newstr, String a);
-        String* concat(Array<string>list);
+        String* concat(Array<string, 10>list);
         char* toCharArray(String i);
         String int_toString(int a);
         String char_toString(char a);
@@ -55,4 +57,5 @@ class String {
         const char* c_str() const {
             return data;
         }
+        friend std::ostream& operator<<(std::ostream& os, const String &stringex);
 };

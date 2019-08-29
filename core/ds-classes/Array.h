@@ -2,12 +2,11 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 #include<memory>
-#include<memory.h>
 #include<algorithm>
 #include<vector>
 #include "macrodefs.h"
-template<typename T> FORWARD_DEC(Array);
-template<typename T> class Array {
+template<typename T, int N> FORWARD_DEC(Array);
+template<typename T, int N> class Array {
     private: 
         int size;
         int MAX_LEN = length() - 1;
@@ -25,14 +24,9 @@ template<typename T> class Array {
 
     public: 
         T *array;
-        Array(){}
-        Array(int arrsize) {
-            size = arrsize;
-            array = new T[size * 2];
-            curr_len = 0;
-            setZeros();
+        Array(){ 
+            array = new T[N];
         }
-
         void setSize(int newSize) {
             size = newSize;
         }
@@ -63,16 +57,11 @@ template<typename T> class Array {
         }
 
         void add_pos(const T &data, int pos) {
-            if(pos > size || pos < MIN_LEN) {
-                throw std::invalid_argument("Out of bounds");
-            } else if(pos < size) {
-                resize();
-                array[pos] = data;
-            }
+            array[pos] = data;
         }
 
         int length() const {
-            return size;
+            return N;
         }
 
         void add_list(const std::vector<T>&list) {
@@ -103,7 +92,7 @@ template<typename T> class Array {
         }
 
         void setSize(unsigned int new_size) {
-            size = new_size;
+            N = new_size;
         }
 };
 #endif

@@ -1,5 +1,5 @@
 #include "String.h"
-String* String::concat(Array<string>strings) {
+String* String::concat(Array<string, 10>strings) {
     String *result = nullptr;
     for(int i = 0; i < strings.length() + 1; i++) {
         result = new String(strings.get_pos(i) + strings.get_pos(i + 1));
@@ -133,4 +133,9 @@ String String::short_toString(short a) {
     ss << a;
     temp = ss.str();
     return String(static_cast<const char*>(temp.c_str()));
+}
+
+std::ostream& operator<<(std::ostream& os, const String& strex) {
+    os << strex.str << std::endl;
+    return os;
 }
