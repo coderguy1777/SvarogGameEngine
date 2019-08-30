@@ -2,7 +2,10 @@
 #ifdef SHADERGEN_H
 #define SHADERGEN_H
 #endif 
-#include "libs.h"
+#include "math/vec3.h"
+#include "core/ds-classes/ArrayList.h"
+#include "math/matrix2f.h"
+#include "main/color/Color.h"
 using namespace std;
 
 // struct for layout locations

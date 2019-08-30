@@ -3,12 +3,12 @@
 #define ARRAYLIST_H
 #include "core/String.h"
 #include "core/events/Event.h"
-#include "core/events/event-types/mouseevent.h"
 #include<iostream>
 #include<vector>
 #include<string>
 #include "macrodefs.h"
 #define ARRAYLIST_TYPE(X)template class ArrayList<X>
+
 template<class T>
 class ArrayList {
     private:
@@ -27,7 +27,7 @@ class ArrayList {
         T lessThanEqual(const T& a, const T& b);
         T greaterThanEqual(const T& a, const T& b);
 };
-#endif
+
 template<class T>
 void ArrayList<T>::set(int index, T const& item) {
     ArrayList::items[index] = item;
@@ -80,3 +80,4 @@ ARRAYLIST_TYPE(uint16_t);
 ARRAYLIST_TYPE(uint32_t);
 ARRAYLIST_TYPE(String);
 ARRAYLIST_TYPE(Event);
+#endif

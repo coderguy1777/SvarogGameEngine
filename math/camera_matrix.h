@@ -3,8 +3,9 @@
 #define CAMERA_MATRIX_H
 #endif
 using namespace std;
-#include "libs.h"
-
+#include "matrix4f.h"
+#include "vec4.h"
+#include "vec3.h"
 typedef struct  {
     float left;
     float right;

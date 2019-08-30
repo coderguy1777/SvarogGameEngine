@@ -3,6 +3,8 @@
 #define MATRIX4F_H
 #endif
 #include<iostream>
+#include<cmath>
+#include "vec3.h"
 using namespace std;
 class Matrix4f { 
         public: 

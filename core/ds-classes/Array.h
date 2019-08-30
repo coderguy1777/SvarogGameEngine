@@ -4,6 +4,7 @@
 #include<memory>
 #include<algorithm>
 #include<vector>
+#include "core/events/event-types/mouseevent.h"
 #include "macrodefs.h"
 template<typename T, int N> FORWARD_DEC(Array);
 template<typename T, int N> class Array {
@@ -12,9 +13,6 @@ template<typename T, int N> class Array {
         int MAX_LEN = length() - 1;
         int MIN_LEN = 0;
         int curr_len = 0;
-        void initArray() {
-            array = new T[size];
-        }
 
         void setZeros() {
             for(int i = 0; i < size; i++) {

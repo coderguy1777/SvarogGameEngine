@@ -100,12 +100,13 @@ void Application::SvarogAppLoop() {
     glfwSetKeyCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int key, int action, int scancode, int mods) {
         Application* key_evt_ptr = (Application*)glfwGetWindowUserPointer(window);
         switch(scancode) {
+            /*
+                keep everything here, as glfw uses it
+            */
             case GLFW_PRESS:
                 { 
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_press");
                     KeyEvent evt(static_cast<int>(key));
-                    evt.set_key_evt_event(e);
-                    evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
                     break;
                 }
@@ -114,8 +115,6 @@ void Application::SvarogAppLoop() {
                 {
                     Event e(EVENT_TYPE::KeyEvt,  1, "key_repeat");
                     KeyEvent evt(static_cast<int>(key));
-                    evt.set_key_evt_event(e);
-                    evt.set_key_evt_state(2);
                     evt.logKeyHeldEvent();
                     break;
                 }
@@ -124,8 +123,6 @@ void Application::SvarogAppLoop() {
                 {
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_release");
                     KeyEvent evt(static_cast<int>(key));
-                    evt.set_key_evt_event(e);
-                    evt.set_key_evt_state(3);
                     evt.logKeyReleaseEvent();
                     break;
                 }
@@ -136,9 +133,9 @@ void Application::SvarogAppLoop() {
     glfwSetMouseButtonCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int button, int action, int mods) {
         Application* mouse_evt_ptr = (Application*)glfwGetWindowUserPointer(window);
         switch(action) {
+            // keep this, glfw uses GLFW_PRESS
             case GLFW_PRESS:
                 {
-                    LoggerGroup<Event, MouseEvent>log_tst;
                     Event e(EVENT_TYPE::MouseEvt, 1, "mouse_press");
                     MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(1));
                     evt.set_mse_event(e);
@@ -147,29 +144,41 @@ void Application::SvarogAppLoop() {
                     break;
                 }
 
+            // may need to delete, as glfw does not use repeat for mouse input.
             case GLFW_REPEAT: 
                 {
                     Event e(EVENT_TYPE::MouseEvt, 2, "mouse_held");
                     MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(2));
-                    evt.set_mse_event(e);
-                    evt.set_mse_state(2);
                     evt.logMouseHeldEvent();
                     break;
                 }
+            // ---------------------------------------------------------
 
+            // keep this, glfw uses GLFW_RELEASE
             case GLFW_RELEASE:
                 {
                     Event e(EVENT_TYPE::MouseEvt, 3, "mouse_release");
                     MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(3));
-                    evt.set_mse_event(e);
-                    evt.set_mse_state(3);
                     evt.logMouseReleaseEvent();
                     break;
                 }
         }
     });
 
-    while(!glfwWindowShouldClose(appWindow)) {
+    glfwSetWindowCloseCallback(static_cast<GLFWwindow*>(getWindow()), [](GLFWwindow* window) {
+        Application* win_close_mg = (Application*)glfwGetWindowUserPointer(window);
+        win_close_mg->reset_bool_state();
+    });
+
+    glfwSetWindowSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int h, int w) {
+        Application* win_size_mg = (Application*)glfwGetWindowUserPointer(window);
+    });
+
+    glfwSetCharCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, unsigned int keycode) {
+        Application* key_typed_mg = (Application*)glfwGetWindowUserPointer(window);
+    });
+
+    while(this->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         FrameBufferCallBack();
@@ -178,5 +187,4 @@ void Application::SvarogAppLoop() {
         glUseProgram(matA.shaderID);
         OnUpdate();
     }
-    glfwTerminate();
 }

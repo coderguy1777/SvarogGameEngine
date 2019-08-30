@@ -2,7 +2,9 @@
 #ifdef CAMERA_H
 #define CAMERA_H
 #endif
-#include "libs.h"
+#include "math/vec3.h"
+#include "math/matrix4f.h"
+
 using namespace std;
 class Camera {
     public:

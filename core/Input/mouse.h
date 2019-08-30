@@ -1,7 +1,5 @@
 #ifndef MOUSE_H
 #define MOUSE_H
-#include "libs.h"
-using namespace std;
 
 class Mouse {
     public:

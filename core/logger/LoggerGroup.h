@@ -4,6 +4,7 @@
 #include "core/String.h"
 #include "core/ds-classes/Pair.h"
 #include "core/ds-classes/Array.h"
+#include "core/events/event-types/keyevent.h"
 #include "core/events/event-types/mouseevent.h"
 #include "core/ds-classes/ArrayList.h"
 #include "Message.h"

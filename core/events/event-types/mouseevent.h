@@ -1,11 +1,9 @@
 #pragma once
-#ifdef MOUSEEVENT_H
+#ifndef MOUSEEVENT_H
 #define MOUSEEVENT_H
-#endif
 #include "spdlog/spdlog.h"
 #include "core/Input/mousecodes.h"
 #include "core/events/Event.h"
-#include "core/ds-classes/Array.h"
 #include "core/Input/WindowMouseInput.h"
 
 class MouseEvent {
@@ -27,6 +25,11 @@ class MouseEvent {
             log = new MouseEventLog();
             mouseBt->mouse_code = mse_code;
             mouseBt->state = btn_state; 
+        }
+
+        MouseEvent() {
+            mouseBt = new MouseBind();
+            log = new MouseEventLog();
         }
         
         void spacer() {
@@ -50,7 +53,7 @@ class MouseEvent {
         std::string get_state();
         std::string get_curr_button();
 };
-
+#endif
 /*
 TODO:
     - design this class to have the same functionallity as the key event class.

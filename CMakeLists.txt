@@ -96,7 +96,6 @@ add_executable(SvarogGameEngine
         math/vec3.cpp
         math/vec3.h
         math/vec4.h
-        libs.h
         macrodefs.h
         main.cpp)
 find_package(glfw3 REQUIRED)

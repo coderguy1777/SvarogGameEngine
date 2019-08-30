@@ -4,27 +4,40 @@
 #endif
 #include<glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "main/shapes/shape.h"
+#include "main/materials/material.h"
 #include "core/ds-classes/Array.h"
+#include "core/events/event-types/mouseevent.h"
 #include "core/events/event-types/keyevent.h"
 #include "core/events/EventDispatch.h"
 #include "main/window/window.h"
 class Application {
     private:
+        mutable bool state_tst;
         Array<Event, 10>event_queue_key;
-        Array<Event, 10>event_queue_mouse;
+        Array<MouseEvent, 50>event_queue_mouse;
         Array<Event, 10>event_queue_window; 
     public: 
         Window winA;
         bool engineState;
+        void tst(MouseEvent e) {
+            event_queue_mouse.add(e);
+            spdlog::info("Event 1 type: {}", event_queue_mouse.get(0).get_curr_button());
+            spdlog::info("Event size: {} ", event_queue_mouse.length());
+        }
         void* getWindow() {return appWindow;};
         // TODO, create event handler functions for classes
         Application(){}
         ~Application() {
             end();
         }
-        int tst() {
-            return 2;
+        void reset_bool_state() {
+            state_tst = false;
         }
+        void set_bool_state() {
+            state_tst = true;
+        }
+        bool get_state() const { return state_tst;}
         // engine core methods
         void end();
         void OnUpdate();

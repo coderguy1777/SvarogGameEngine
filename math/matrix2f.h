@@ -2,8 +2,7 @@
 #ifdef MATRIX2F_H
 #define MATRIX2F_h
 #endif 
-#include "libs.h"
-using namespace std;
+#include "math/vec2.h"
 
 class Matrix2f {
     public: 
