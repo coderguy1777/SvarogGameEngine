@@ -1,7 +1,10 @@
 #include "enginewindow.h"
 #include "core/events/Event.h"
+#include "main/window/window.h"
 #include "core/events/event-types/mouseevent.h"
 #include "core/logger/LoggerGroup.h"
+#include<iostream>
+
 void Application::createWindowContext() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -46,7 +49,7 @@ void Application::SvarogAppLoop() {
     appWindow = glfwCreateWindow((int)winA.prop->w, (int)winA.prop->h, (const char*)winA.prop->title.str, NULL, NULL);
     makeContextCurr();
     if(appWindow == NULL) {
-        cout << "SVAROG_WINDOW IS NULL, ENDING NOW" << endl;
+        std::cout << "SVAROG_WINDOW IS NULL, ENDING NOW" << std::endl;
         glfwTerminate();
     }
 
@@ -56,7 +59,7 @@ void Application::SvarogAppLoop() {
         winA.GLAD_STATE = GLFWFAILSTATE;
         glfwTerminate();
     } else {
-        cout << "GLAD SUCCESS TO LOAD." << endl;
+        std::cout << "GLAD SUCCESS TO LOAD." << std::endl;
         winA.GLAD_STATE = GLFWGOODSTATE;
     }
 
@@ -107,6 +110,7 @@ void Application::SvarogAppLoop() {
                 { 
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_press");
                     KeyEvent evt(static_cast<int>(key));
+                    evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
                     break;
                 }
@@ -115,6 +119,7 @@ void Application::SvarogAppLoop() {
                 {
                     Event e(EVENT_TYPE::KeyEvt,  1, "key_repeat");
                     KeyEvent evt(static_cast<int>(key));
+                    evt.set_key_evt_state(2);
                     evt.logKeyHeldEvent();
                     break;
                 }
@@ -123,6 +128,7 @@ void Application::SvarogAppLoop() {
                 {
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_release");
                     KeyEvent evt(static_cast<int>(key));
+                    evt.set_key_evt_state(3);
                     evt.logKeyReleaseEvent();
                     break;
                 }
