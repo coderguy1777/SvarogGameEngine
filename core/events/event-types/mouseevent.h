@@ -6,6 +6,11 @@
 #include "core/events/Event.h"
 #include "core/Input/WindowMouseInput.h"
 
+enum class mouse_evt_types {
+    MOUSE_PRESS_EVT = 1, 
+    MOUSE_RELEASE_EVT = 2,
+    MOUSE_HELD_EVT = 3
+};
 class MouseEvent {
     private:
         struct MouseBind {
@@ -15,6 +20,7 @@ class MouseEvent {
 
         struct MouseEventLog {
             Event e;
+            unsigned int mouse_sub_evt_type;
         } Mouselog;
         
         MouseEventLog* log;
@@ -31,20 +37,18 @@ class MouseEvent {
             mouseBt = new MouseBind();
             log = new MouseEventLog();
         }
-        
-        void spacer() {
-            std::cout << '\n' << std::endl;
-        }
 
         // getters for mouse bind sturct.
         unsigned int get_mse_code() const;
         int get_mse_state() const;
+        unsigned int get_mse_evt_type() const;
         Event get_mouse_event() const;
 
         // setters for mouse struct.
         void set_mse_code(unsigned int new_code);
         void set_mse_state(int new_state);
         void set_mse_event(Event e);
+        void set_mse_sub_evt_type(unsigned int evt_type);
 
         // loggers, getters, setters, etc.
         void logMousePressEvent();

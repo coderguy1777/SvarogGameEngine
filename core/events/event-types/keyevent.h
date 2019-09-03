@@ -27,7 +27,26 @@ class KeyEvent {
         struct KeyEventInfo {
             Event keyevt;
             unsigned int key_State;
+            KeyBind key_id;
         } KeyLog;
+
+        struct KeyPressedEvent {
+            KeyBind key_loc;
+            const unsigned int key_state = 1;
+            KeyEventInfo info;
+        } key_press;
+
+        struct KeyHeldEvent {
+            KeyBind key_loc;
+            const unsigned int key_state = 2;
+            KeyEventInfo info;
+        } key_held;
+
+        struct KeyReleaseEvent {
+            KeyBind key_loc;
+            const unsigned int key_state = 3;
+            KeyEventInfo info;
+        } key_release;
 
     private:
         WindowInput* input;
@@ -42,9 +61,9 @@ class KeyEvent {
             keyBt->key = get_keycode_char(code);
             keyBt->ascii_code = code;
         }
-
-        void spacer() {
-            std::cout << '\n' << std::endl;
+        
+        KeyBind get_keybind() const {
+            return log->key_id;
         }
         
         std::string get_keybind_char() const {
@@ -81,6 +100,11 @@ class KeyEvent {
 
         void set_key_evt_state(unsigned int new_state) {
             log->key_State = new_state;
+        }
+
+        void set_key_evt_bind(KeyBind bind) {
+            log->key_id.ascii_code = bind.ascii_code;
+            log->key_id.key = bind.key;
         }
 
         // TODO: make these methods not cause seg faults,

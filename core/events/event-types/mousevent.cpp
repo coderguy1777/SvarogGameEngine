@@ -80,3 +80,26 @@ void MouseEvent::logMouseHeldEvent() {
     spdlog::info("Mouse Button state: {}", get_state());
     spdlog::info("Mouse Button ASCII code: {}", get_mse_code());
 }
+
+void MouseEvent::set_mse_sub_evt_type(unsigned int evt_type) {
+    unsigned int mouse_evt;
+    switch(evt_type) {
+        case 1:
+            mouse_evt = static_cast<unsigned int>(mouse_evt_types::MOUSE_PRESS_EVT);
+            break;
+        case 2:
+            mouse_evt = static_cast<unsigned int>(mouse_evt_types::MOUSE_RELEASE_EVT);
+            break;
+        case 3: 
+            mouse_evt = static_cast<unsigned int>(mouse_evt_types::MOUSE_HELD_EVT);
+            break;
+        default:
+            mouse_evt = 4;
+            break;
+    }
+    log->mouse_sub_evt_type = mouse_evt;
+}
+
+unsigned int MouseEvent::get_mse_evt_type() const {
+    return log->mouse_sub_evt_type;
+}

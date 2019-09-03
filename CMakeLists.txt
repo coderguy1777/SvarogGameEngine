@@ -36,8 +36,10 @@ add_executable(SvarogGameEngine
         core/events/Event.h
         core/events/EventDispatch.cpp
         core/events/EventDispatch.h
-        core/events/EventListener.cpp
-        core/events/EventListener.h
+        core/events/event-listeners/EventListener.cpp
+        core/events/event-listeners/EventListener.h
+        core/events/event-listeners/KeyListener.cpp
+        core/events/event-listeners/KeyListener.h
         core/events/EventTypes.h
         core/events/InputEvent.cpp
         core/events/InputEvent.h

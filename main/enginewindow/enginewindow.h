@@ -5,6 +5,7 @@
 #include<glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "main/shapes/shape.h"
+#include "core/events/event-listeners/EventListener.h"
 #include "main/materials/material.h"
 #include "core/ds-classes/Array.h"
 #include "core/events/event-types/mouseevent.h"
@@ -18,6 +19,7 @@ class Application {
         Array<MouseEvent, 50>event_queue_mouse;
         Array<Event, 10>event_queue_window; 
     public: 
+        EventListener evt_type_listen;
         Window winA;
         bool engineState;
         void tst(MouseEvent e) {
@@ -48,6 +50,8 @@ class Application {
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();
+            using EvtListener = std::function<void(EventListener&)>;
+
         private: 
             bool isVsyncOn;
             GLFWwindow* appWindow;

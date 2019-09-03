@@ -29,4 +29,6 @@ class Message {
         void set_msg_data(Array<String, 10>new_data);
         void set_msg_types(Array<String, 10>new_types);
         
+        Array<String, 10>get_msg_data() const;
+        Array<String, 10>get_msg_types() const;
 };

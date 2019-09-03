@@ -117,16 +117,18 @@ void Application::SvarogAppLoop() {
 
             case GLFW_REPEAT:
                 {
-                    Event e(EVENT_TYPE::KeyEvt,  1, "key_repeat");
-                    KeyEvent evt(static_cast<int>(key));
-                    evt.set_key_evt_state(2);
-                    evt.logKeyHeldEvent();
+                    Event e(EVENT_TYPE::KeyEvt,  2, "key_repeat");
+                    KeyEvent *evt = new KeyEvent(static_cast<int>(key));
+                    evt->set_key_evt_bind(evt->get_keybind());
+                    evt->set_key_evt_event(e);
+                    evt->set_key_evt_state(2);
+                    evt->logKeyHeldEvent();
                     break;
                 }
 
             case GLFW_RELEASE:
                 {
-                    Event e(EVENT_TYPE::KeyEvt, 1, "key_release");
+                    Event e(EVENT_TYPE::KeyEvt, 3, "key_release");
                     KeyEvent evt(static_cast<int>(key));
                     evt.set_key_evt_state(3);
                     evt.logKeyReleaseEvent();
