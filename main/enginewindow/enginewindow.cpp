@@ -6,14 +6,11 @@
 #include<iostream>
 
 void Application::createWindowContext() {
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    WindowContext::create_context(appWindow);
 }
 
 void Application::OnUpdate() {
-    glfwPollEvents();
-    glfwSwapBuffers(appWindow);
+    WindowUpdate::window_buffer_swap(appWindow);
 }
 
 void Application::VSYNC_on() {
@@ -29,70 +26,39 @@ bool Application::isVSYNCon() {
 }
 
 void Application::makeContextCurr() {
-    glfwMakeContextCurrent(appWindow);
+    WindowContext::make_curr_context(appWindow);
 }
 
 void Application::end() {
     glfwDestroyWindow(appWindow);
 }
 
+void Application::glad_tst() {
+    WindowContext::init_glad();
+}
+
+void Application::VSYNC_func() {
+    auto vsync_check = isVSYNCon();
+    if(vsync_check) {
+        glfwSwapInterval(1);
+        std::cout << "VSYNC on!" << std::endl;
+    } else if(!vsync_check) {
+        glfwSwapInterval(0);
+    }
+}
+
 void Application::SvarogAppLoop() {
-    #ifdef __APPLE__
-        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-    #endif
-    glfwInit();
+    WindowContext::init_glfw();
     createWindowContext();
     appWindow = glfwCreateWindow((int)winA.prop->w, (int)winA.prop->h, (const char*)winA.prop->title.str, NULL, NULL);
     makeContextCurr();
+    WindowContext::init_glad();
+    VSYNC_func();
+
     if(appWindow == NULL) {
         std::cout << "SVAROG_WINDOW IS NULL, ENDING NOW" << std::endl;
         glfwTerminate();
     }
-
-
-    if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        throw std::invalid_argument("GLAD FAILURE.");
-        winA.GLAD_STATE = GLFWFAILSTATE;
-        glfwTerminate();
-    } else {
-        std::cout << "GLAD SUCCESS TO LOAD." << std::endl;
-        winA.GLAD_STATE = GLFWGOODSTATE;
-    }
-
-    auto vsync_check = isVSYNCon();
-    if(vsync_check) {
-        glfwSwapInterval(1);
-    } else if(!vsync_check) {
-        glfwSwapInterval(0);
-    }
-    Material matA("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl", "/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
-
-    float vertices[] = {
-        0.5f,  0.5f, -0.5f, 
-        0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, 0.5f , -0.5f, 
-        0.5f, -0.5f , 0.5f, 
-        0.5f, 0.5f , 0.5f, 
-    };        
-    
-    unsigned int poss[] = {  
-        0, 1, 3,  
-        1, 2, 3,
-        0, 1, 2,
-    };
-    std::vector<float>vertexdata;
-    std::vector<unsigned int>posdata;
-    for(int i = 0; i < 18; i++) {
-        vertexdata.push_back(vertices[i]);
-    }
-
-    for(int j = 0; j < 9; j++) {
-        posdata.push_back(poss[j]);
-    }
-
-    Shape drawer2(vertexdata, posdata);
-    drawer2.noEBO();
 
     glfwSetWindowUserPointer(static_cast<GLFWwindow*>(this->getWindow()), this);
     glfwSetKeyCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int key, int action, int scancode, int mods) {
@@ -175,7 +141,6 @@ void Application::SvarogAppLoop() {
         glViewport(0, 0, w, h);
         win_size_mg->winA.prop->w = w;
         win_size_mg->winA.prop->h = h;
-        spdlog::info("Window resize");
     });
 
     glfwSetCharCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, unsigned int keycode) {

@@ -3,8 +3,13 @@ Application* SvarogEngine::getApplicationWindow() const {
     return SvarogWindow;
 }
 
+void SvarogEngine::InitContext() {
+    SvarogWindow->VSYNC_on();
+}
+
 void SvarogEngine::RunEngine() {
     SvarogWindow->SvarogAppLoop();
+    InitContext();
     Material matA("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl", "/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 

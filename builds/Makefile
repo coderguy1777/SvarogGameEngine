@@ -960,6 +960,87 @@ math/vec3.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/math/vec3.cpp.s
 .PHONY : math/vec3.cpp.s
 
+render-pipeline/window-initalization/glad_loader.o: render-pipeline/window-initalization/glad_loader.cpp.o
+
+.PHONY : render-pipeline/window-initalization/glad_loader.o
+
+# target to build an object file
+render-pipeline/window-initalization/glad_loader.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/window-initalization/glad_loader.cpp.o
+.PHONY : render-pipeline/window-initalization/glad_loader.cpp.o
+
+render-pipeline/window-initalization/glad_loader.i: render-pipeline/window-initalization/glad_loader.cpp.i
+
+.PHONY : render-pipeline/window-initalization/glad_loader.i
+
+# target to preprocess a source file
+render-pipeline/window-initalization/glad_loader.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/window-initalization/glad_loader.cpp.i
+.PHONY : render-pipeline/window-initalization/glad_loader.cpp.i
+
+render-pipeline/window-initalization/glad_loader.s: render-pipeline/window-initalization/glad_loader.cpp.s
+
+.PHONY : render-pipeline/window-initalization/glad_loader.s
+
+# target to generate assembly for a file
+render-pipeline/window-initalization/glad_loader.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/window-initalization/glad_loader.cpp.s
+.PHONY : render-pipeline/window-initalization/glad_loader.cpp.s
+
+render-pipeline/window-initalization/window_context.o: render-pipeline/window-initalization/window_context.cpp.o
+
+.PHONY : render-pipeline/window-initalization/window_context.o
+
+# target to build an object file
+render-pipeline/window-initalization/window_context.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/window-initalization/window_context.cpp.o
+.PHONY : render-pipeline/window-initalization/window_context.cpp.o
+
+render-pipeline/window-initalization/window_context.i: render-pipeline/window-initalization/window_context.cpp.i
+
+.PHONY : render-pipeline/window-initalization/window_context.i
+
+# target to preprocess a source file
+render-pipeline/window-initalization/window_context.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/window-initalization/window_context.cpp.i
+.PHONY : render-pipeline/window-initalization/window_context.cpp.i
+
+render-pipeline/window-initalization/window_context.s: render-pipeline/window-initalization/window_context.cpp.s
+
+.PHONY : render-pipeline/window-initalization/window_context.s
+
+# target to generate assembly for a file
+render-pipeline/window-initalization/window_context.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/window-initalization/window_context.cpp.s
+.PHONY : render-pipeline/window-initalization/window_context.cpp.s
+
+render-pipeline/window-initalization/window_update.o: render-pipeline/window-initalization/window_update.cpp.o
+
+.PHONY : render-pipeline/window-initalization/window_update.o
+
+# target to build an object file
+render-pipeline/window-initalization/window_update.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/window-initalization/window_update.cpp.o
+.PHONY : render-pipeline/window-initalization/window_update.cpp.o
+
+render-pipeline/window-initalization/window_update.i: render-pipeline/window-initalization/window_update.cpp.i
+
+.PHONY : render-pipeline/window-initalization/window_update.i
+
+# target to preprocess a source file
+render-pipeline/window-initalization/window_update.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/window-initalization/window_update.cpp.i
+.PHONY : render-pipeline/window-initalization/window_update.cpp.i
+
+render-pipeline/window-initalization/window_update.s: render-pipeline/window-initalization/window_update.cpp.s
+
+.PHONY : render-pipeline/window-initalization/window_update.s
+
+# target to generate assembly for a file
+render-pipeline/window-initalization/window_update.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/window-initalization/window_update.cpp.s
+.PHONY : render-pipeline/window-initalization/window_update.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1062,6 +1143,15 @@ help:
 	@echo "... math/vec3.o"
 	@echo "... math/vec3.i"
 	@echo "... math/vec3.s"
+	@echo "... render-pipeline/window-initalization/glad_loader.o"
+	@echo "... render-pipeline/window-initalization/glad_loader.i"
+	@echo "... render-pipeline/window-initalization/glad_loader.s"
+	@echo "... render-pipeline/window-initalization/window_context.o"
+	@echo "... render-pipeline/window-initalization/window_context.i"
+	@echo "... render-pipeline/window-initalization/window_context.s"
+	@echo "... render-pipeline/window-initalization/window_update.o"
+	@echo "... render-pipeline/window-initalization/window_update.i"
+	@echo "... render-pipeline/window-initalization/window_update.s"
 .PHONY : help
 
 

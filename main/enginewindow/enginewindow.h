@@ -13,39 +13,50 @@
 #include "core/events/event-types/keyevent.h"
 #include "core/events/EventDispatchers/EventDispatch.h"
 #include "main/window/window.h"
+#include "render-pipeline/window-initalization/window_context.h"
+#include "render-pipeline/window-initalization/window_update.h"
+#include "render-pipeline/window-initalization/glad_loader.h"
+
 class Application {
     private:
-        mutable bool state_tst;
+        WindowContext* context;
+        WindowUpdate* update;
+        mutable bool engine_state;
     public: 
         Window winA;
         bool engineState;
-        void* getWindow() {return appWindow;};
-        // TODO, create event handler functions for classes
-        Application(){}
+        Application(){
+            context = new WindowContext();
+            update = new WindowUpdate();
+        }
+
         ~Application() {
             end();
         }
+
+        void* getWindow() {return appWindow;};
         void reset_bool_state() {
-            state_tst = false;
+            engine_state = false;
         }
         void set_bool_state() {
-            state_tst = true;
+            engine_state = true;
         }
         bool get_state() const { 
-            return state_tst;
+            return engine_state;
         }
-        // engine core methods
         void end();
         void OnUpdate();
         void VSYNC_on();
         void VSYNC_off();
+        void glad_tst();
         bool isVSYNCon();
+        void VSYNC_func();
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();
 
-        private: 
-            bool isVsyncOn;
-            GLFWwindow* appWindow;
-            WindowProp window;
+    private: 
+        bool isVsyncOn;
+        GLFWwindow* appWindow;
+        WindowProp window;
 };

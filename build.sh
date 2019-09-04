@@ -3,5 +3,5 @@
 cmake -Bbuilds -H.
 echo "cmake executed, beginning make...."
 cd builds && make
-echo "$USER , make has finished the build, now exiting..."
+echo "$USER , Svarog engine ready for use, head to builds DIR to run!"
 exit 0

@@ -14,6 +14,7 @@ class SvarogEngine {
         }
 
         Application* getApplicationWindow() const;
+        void InitContext();
         void RunEngine();
         void * operator new(size_t size) {
             void * win = ::new Application();
