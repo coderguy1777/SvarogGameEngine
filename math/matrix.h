@@ -88,5 +88,26 @@ class Matrix {
         // TODO: fix typename error.
         // ArrayList<float>getRow(int row);
         float getValue(int row, int spot);
+        ArrayList<float>*getRow(int id) {
+            ArrayList<float>*row = new ArrayList<float>();
+            if(id == 1) {
+                row->add(this->row1.r0);
+                row->add(this->row1.r1);
+                row->add(this->row1.r2);
+            }
+
+            if(id == 2) {
+                row->add(this->row2.r0);
+                row->add(this->row2.r1);
+                row->add(this->row2.r2);
+            }
+
+            if(id == 3) {
+                row->add(this->row3.r0);
+                row->add(this->row3.r1);
+                row->add(this->row3.r2);
+            }
+            return row;
+        }
 };
 #endif

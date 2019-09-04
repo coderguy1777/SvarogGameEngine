@@ -187,6 +187,7 @@ void Application::SvarogAppLoop() {
         Application* key_typed_mg = (Application*)glfwGetWindowUserPointer(window);
     });
 
+    // TODO: fix rendering bug with frame buffer callback.
     glfwSetFramebufferSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int w, int h) {
         Application* frm_bfer_cb = (Application*)glfwGetWindowUserPointer(window);        
         glfwGetFramebufferSize(window, frm_bfer_cb->winA.get_ptrWidth(), frm_bfer_cb->winA.get_ptrHeight());
