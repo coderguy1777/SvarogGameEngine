@@ -15,10 +15,6 @@ void Application::OnUpdate() {
     glfwPollEvents();
     glfwSwapBuffers(appWindow);
 }
-void Application::FrameBufferCallBack() {
-    glfwGetFramebufferSize(appWindow, &winA.prop->w, &winA.prop->h);
-    glViewport(0, 0, winA.prop->w, winA.prop->h);
-}
 
 void Application::VSYNC_on() {
     isVsyncOn = true;
@@ -158,7 +154,6 @@ void Application::SvarogAppLoop() {
                     break;
                 }
             // ---------------------------------------------------------
-
             // keep this, glfw uses GLFW_RELEASE
             case GLFW_RELEASE:
                 {
@@ -170,36 +165,29 @@ void Application::SvarogAppLoop() {
         }
     });
 
-    glfwSetWindowCloseCallback(static_cast<GLFWwindow*>(getWindow()), [](GLFWwindow* window) {
+    glfwSetWindowCloseCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window) {
         Application* win_close_mg = (Application*)glfwGetWindowUserPointer(window);
         win_close_mg->reset_bool_state();
     });
 
-    glfwSetWindowSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int h, int w) {
+    glfwSetWindowSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int w, int h) {
         Application* win_size_mg = (Application*)glfwGetWindowUserPointer(window);
         glViewport(0, 0, w, h);
-        win_size_mg->winA.changeWidth(w);
-        win_size_mg->winA.changeHeight(h);
+        win_size_mg->winA.prop->w = w;
+        win_size_mg->winA.prop->h = h;
         spdlog::info("Window resize");
     });
 
     glfwSetCharCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, unsigned int keycode) {
         Application* key_typed_mg = (Application*)glfwGetWindowUserPointer(window);
+        KeyEvent * typed_key = new KeyEvent(keycode);
+        spdlog::info("Key typed: {}" , keycode);
     });
 
     // TODO: fix rendering bug with frame buffer callback.
     glfwSetFramebufferSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int w, int h) {
         Application* frm_bfer_cb = (Application*)glfwGetWindowUserPointer(window);        
-        glfwGetFramebufferSize(window, frm_bfer_cb->winA.get_ptrWidth(), frm_bfer_cb->winA.get_ptrHeight());
-        glViewport(0, 0, frm_bfer_cb->winA.getWidth(), frm_bfer_cb->winA.getHeight());
+        glfwGetFramebufferSize(window, &w, &h);
+        glViewport(0, 0, w, h);
     });
-
-    while(this->get_state()) {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glClearColor(1.0, 0.0, 0.0, 1.0);
-        matA.setFloat("xPOs", 0.5f);
-        drawer2.drawFunc();
-        glUseProgram(matA.shaderID);
-        OnUpdate();
-    }
 }

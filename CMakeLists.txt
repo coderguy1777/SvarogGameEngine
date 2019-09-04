@@ -22,9 +22,17 @@ include_directories(main/shapes)
 include_directories(main/svarogengine)
 include_directories(main/window)
 include_directories(math)
+include_directories(render-pipeline)
+include_directories(render-pipeline/window-initalization)
 
 add_executable(SvarogGameEngine
         glad/glad.c
+        render-pipeline/window-initalization/glad_loader.h
+        render-pipeline/window-initalization/glad_loader.cpp
+        render-pipeline/window-initalization/window_context.h
+        render-pipeline/window-initalization/window_context.cpp
+        render-pipeline/window-initalization/window_update.h
+        render-pipeline/window-initalization/window_update.cpp
         core/ds-classes/Array.h
         core/ds-classes/ArrayList.h
         core/ds-classes/Node.h

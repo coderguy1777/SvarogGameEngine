@@ -1,19 +1,23 @@
 #pragma once
 #ifndef SVAROGENGINE_H
 #define SVAROGENGINE_H
+#include "main/shapes/shape.h"
+#include "main/materials/material.h"
 #include "main/enginewindow/enginewindow.h"
 class SvarogEngine {
     private:
-        bool state = true;
-        Application SvarogWindow;
+        Application* SvarogWindow;
     public:
-        ~SvarogEngine() {
-            state=false;
-            SvarogWindow.end();
+        SvarogEngine() {
+            SvarogWindow = new Application();
+            SvarogWindow->set_bool_state();
         }
-        bool getState() const;
-        Application getApplicationWindow() const;
-        void changeState(bool newState);
+
+        Application* getApplicationWindow() const;
         void RunEngine();
+        void * operator new(size_t size) {
+            void * win = ::new Application();
+            return win;
+        }
 };
 #endif
