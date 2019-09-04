@@ -87,7 +87,6 @@ void Application::SvarogAppLoop() {
     };
     std::vector<float>vertexdata;
     std::vector<unsigned int>posdata;
-    std::cout << poss[1] << std::endl;
     for(int i = 0; i < 18; i++) {
         vertexdata.push_back(vertices[i]);
     }
@@ -146,8 +145,6 @@ void Application::SvarogAppLoop() {
                 {
                     Event e(EVENT_TYPE::MouseEvt, 1, "mouse_press");
                     MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(1));
-                    evt.set_mse_event(e);
-                    evt.set_mse_state(1);
                     evt.logMousePressEvent();
                     break;
                 }
@@ -190,10 +187,15 @@ void Application::SvarogAppLoop() {
         Application* key_typed_mg = (Application*)glfwGetWindowUserPointer(window);
     });
 
+    glfwSetFramebufferSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int w, int h) {
+        Application* frm_bfer_cb = (Application*)glfwGetWindowUserPointer(window);        
+        glfwGetFramebufferSize(window, frm_bfer_cb->winA.get_ptrWidth(), frm_bfer_cb->winA.get_ptrHeight());
+        glViewport(0, 0, frm_bfer_cb->winA.getWidth(), frm_bfer_cb->winA.getHeight());
+    });
+
     while(this->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        FrameBufferCallBack();
         matA.setFloat("xPOs", 0.5f);
         drawer2.drawFunc();
         glUseProgram(matA.shaderID);

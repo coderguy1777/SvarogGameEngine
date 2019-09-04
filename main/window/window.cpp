@@ -7,6 +7,16 @@ int Window::getHeight()  {
     return prop->h;
 }
 
+int * Window::get_ptrHeight() const {
+    int * h_val = &prop->h;
+    return h_val;
+}
+
+int * Window::get_ptrWidth() const {
+    int * w_val = &prop->w;
+    return w_val;
+}
+
 String Window::getTitle()  {
     return prop->title;
 }

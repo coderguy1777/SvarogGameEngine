@@ -22,6 +22,8 @@ class Window {
         // getter functions
         int getWidth();
         int getHeight();
+        int * get_ptrHeight() const;
+        int * get_ptrWidth() const;
         String getTitle();
         // setter functions
         void changeHeight(int h);

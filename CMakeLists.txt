@@ -99,6 +99,8 @@ add_executable(SvarogGameEngine
         math/vec3.cpp
         math/vec3.h
         math/vec4.h
+        math/euler_angles.h
+        math/euler_angles.cpp
         macrodefs.h
         main.cpp)
 find_package(glfw3 REQUIRED)
