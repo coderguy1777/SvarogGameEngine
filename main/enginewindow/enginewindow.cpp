@@ -109,7 +109,7 @@ void Application::SvarogAppLoop() {
             case GLFW_PRESS:
                 { 
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_press");
-                    KeyEvent evt(static_cast<int>(key));
+                    KeyEvent  evt(static_cast<int>(key));
                     evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
                     break;
@@ -180,6 +180,10 @@ void Application::SvarogAppLoop() {
 
     glfwSetWindowSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int h, int w) {
         Application* win_size_mg = (Application*)glfwGetWindowUserPointer(window);
+        glViewport(0, 0, w, h);
+        win_size_mg->winA.changeWidth(w);
+        win_size_mg->winA.changeHeight(h);
+        spdlog::info("Window resize");
     });
 
     glfwSetCharCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, unsigned int keycode) {

@@ -4,19 +4,12 @@
 #include "core/String.h"
 #include "core/ds-classes/ArrayList.h"
 #include "core/events/event-types/keyevent.h"
+#include "core/events/EventDispatchers/KeyEventDispatcher.h"
 class KeyListener {
     private:
-        Array<KeyEvent*, 10>input_evts;
+        const int evt_type = 1;
     public:
-
-        void size_check() {
-            if(input_evts.length() > 0) {
-                std::cout << "Events added" << std::endl;
-            } else if(input_evts.length() == 0) {
-                std::cout << "no new events added" << std::endl;
-            }
-        }
-        void add_to_inputevts(KeyEvent* evt);
+        KeyListener();
 };
 
 #endif

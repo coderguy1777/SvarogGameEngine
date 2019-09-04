@@ -6,11 +6,12 @@
 #include <GLFW/glfw3.h>
 #include "main/shapes/shape.h"
 #include "core/events/event-listeners/EventListener.h"
+#include "core/events/EventDispatchers/KeyEventDispatcher.h"
 #include "main/materials/material.h"
 #include "core/ds-classes/Array.h"
 #include "core/events/event-types/mouseevent.h"
 #include "core/events/event-types/keyevent.h"
-#include "core/events/EventDispatch.h"
+#include "core/events/EventDispatchers/EventDispatch.h"
 #include "main/window/window.h"
 class Application {
     private:
@@ -19,14 +20,8 @@ class Application {
         Array<MouseEvent, 50>event_queue_mouse;
         Array<Event, 10>event_queue_window; 
     public: 
-        EventListener evt_type_listen;
         Window winA;
         bool engineState;
-        void tst(MouseEvent e) {
-            event_queue_mouse.add(e);
-            spdlog::info("Event 1 type: {}", event_queue_mouse.get(0).get_curr_button());
-            spdlog::info("Event size: {} ", event_queue_mouse.length());
-        }
         void* getWindow() {return appWindow;};
         // TODO, create event handler functions for classes
         Application(){}
@@ -50,7 +45,6 @@ class Application {
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();
-            using EvtListener = std::function<void(EventListener&)>;
 
         private: 
             bool isVsyncOn;

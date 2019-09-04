@@ -39,6 +39,14 @@ template<typename T, int N> class Array {
             }
         }
 
+        void set(const T &data, unsigned int pos) {
+            if(pos > length()) {
+                throw std::invalid_argument("POS TO BIG, TRY AGAIN");
+            } else {
+                array[pos] = data;
+            }
+        }
+
         T get(int id) {
             return array[id];
         }
