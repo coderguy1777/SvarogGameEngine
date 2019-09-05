@@ -35,13 +35,6 @@ class Shape {
         GLuint VAO, VBO, EBO;
         void createMesh() {
             bool eboCheck = checkEBONEED();
-           // float arr[vertdata.length()];
-           // for(int i = 0; i < vertdata.length(); i++) {
-            //    arr[i] = vertdata.get_pos(i);
-            //}
-            //if(arr[0] > -1.0) {
-                //std::cout << "Array works" << std::endl;
-            //}
             if(eboCheck == true) {
                 glGenVertexArrays(1, &VAO);
                 glGenBuffers(1, &VBO);
@@ -56,6 +49,7 @@ class Shape {
                 glBindBuffer(GL_ARRAY_BUFFER, 0);
                 glBindVertexArray(0);
                 draw();
+
             } else if(eboCheck == false) {
                 std::cout << "NO EBO" << std::endl;
                 glGenVertexArrays(1, &VAO);

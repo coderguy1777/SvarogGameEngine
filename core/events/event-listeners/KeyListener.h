@@ -4,7 +4,7 @@
 #include "core/String.h"
 #include "core/ds-classes/ArrayList.h"
 #include "core/events/event-types/keyevent.h"
-#include "core/events/EventDispatchers/KeyEventDispatcher.h"
+#include "core/events/event-dispatchers/KeyEventDispatcher.h"
 class KeyListener {
     private:
         const int evt_type = 1;

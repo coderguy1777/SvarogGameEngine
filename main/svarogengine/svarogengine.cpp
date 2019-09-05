@@ -34,7 +34,7 @@ void SvarogEngine::RunEngine() {
     for(int j = 0; j < 9; j++) {
         posdata.push_back(poss[j]);
     }
-
+    
     Shape drawer2(vertexdata, posdata);
     drawer2.noEBO();
     while(SvarogWindow->get_state()) {

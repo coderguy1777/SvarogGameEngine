@@ -33,10 +33,6 @@ void Application::end() {
     glfwDestroyWindow(appWindow);
 }
 
-void Application::glad_tst() {
-    WindowContext::init_glad();
-}
-
 void Application::VSYNC_func() {
     auto vsync_check = isVSYNCon();
     if(vsync_check) {
@@ -145,7 +141,6 @@ void Application::SvarogAppLoop() {
 
     glfwSetCharCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, unsigned int keycode) {
         Application* key_typed_mg = (Application*)glfwGetWindowUserPointer(window);
-        KeyEvent * typed_key = new KeyEvent(keycode);
         spdlog::info("Key typed: {}" , keycode);
     });
 
@@ -155,4 +150,10 @@ void Application::SvarogAppLoop() {
         glfwGetFramebufferSize(window, &w, &h);
         glViewport(0, 0, w, h);
     });
+
+    glfwSetWindowPosCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int xpos, int ypos) {
+        Application* scle_bfer_cb = (Application*)glfwGetWindowUserPointer(window);
+    });
+
+
 }

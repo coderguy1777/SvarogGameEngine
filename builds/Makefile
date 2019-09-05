@@ -204,59 +204,32 @@ core/events/Event.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/Event.cpp.s
 .PHONY : core/events/Event.cpp.s
 
-core/events/EventDispatchers/KeyEventDispatcher.o: core/events/EventDispatchers/KeyEventDispatcher.cpp.o
+core/events/event-dispatchers/KeyEventDispatcher.o: core/events/event-dispatchers/KeyEventDispatcher.cpp.o
 
-.PHONY : core/events/EventDispatchers/KeyEventDispatcher.o
-
-# target to build an object file
-core/events/EventDispatchers/KeyEventDispatcher.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/EventDispatchers/KeyEventDispatcher.cpp.o
-.PHONY : core/events/EventDispatchers/KeyEventDispatcher.cpp.o
-
-core/events/EventDispatchers/KeyEventDispatcher.i: core/events/EventDispatchers/KeyEventDispatcher.cpp.i
-
-.PHONY : core/events/EventDispatchers/KeyEventDispatcher.i
-
-# target to preprocess a source file
-core/events/EventDispatchers/KeyEventDispatcher.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/EventDispatchers/KeyEventDispatcher.cpp.i
-.PHONY : core/events/EventDispatchers/KeyEventDispatcher.cpp.i
-
-core/events/EventDispatchers/KeyEventDispatcher.s: core/events/EventDispatchers/KeyEventDispatcher.cpp.s
-
-.PHONY : core/events/EventDispatchers/KeyEventDispatcher.s
-
-# target to generate assembly for a file
-core/events/EventDispatchers/KeyEventDispatcher.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/EventDispatchers/KeyEventDispatcher.cpp.s
-.PHONY : core/events/EventDispatchers/KeyEventDispatcher.cpp.s
-
-core/events/InputEvent.o: core/events/InputEvent.cpp.o
-
-.PHONY : core/events/InputEvent.o
+.PHONY : core/events/event-dispatchers/KeyEventDispatcher.o
 
 # target to build an object file
-core/events/InputEvent.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/InputEvent.cpp.o
-.PHONY : core/events/InputEvent.cpp.o
+core/events/event-dispatchers/KeyEventDispatcher.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/event-dispatchers/KeyEventDispatcher.cpp.o
+.PHONY : core/events/event-dispatchers/KeyEventDispatcher.cpp.o
 
-core/events/InputEvent.i: core/events/InputEvent.cpp.i
+core/events/event-dispatchers/KeyEventDispatcher.i: core/events/event-dispatchers/KeyEventDispatcher.cpp.i
 
-.PHONY : core/events/InputEvent.i
+.PHONY : core/events/event-dispatchers/KeyEventDispatcher.i
 
 # target to preprocess a source file
-core/events/InputEvent.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/InputEvent.cpp.i
-.PHONY : core/events/InputEvent.cpp.i
+core/events/event-dispatchers/KeyEventDispatcher.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/event-dispatchers/KeyEventDispatcher.cpp.i
+.PHONY : core/events/event-dispatchers/KeyEventDispatcher.cpp.i
 
-core/events/InputEvent.s: core/events/InputEvent.cpp.s
+core/events/event-dispatchers/KeyEventDispatcher.s: core/events/event-dispatchers/KeyEventDispatcher.cpp.s
 
-.PHONY : core/events/InputEvent.s
+.PHONY : core/events/event-dispatchers/KeyEventDispatcher.s
 
 # target to generate assembly for a file
-core/events/InputEvent.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/InputEvent.cpp.s
-.PHONY : core/events/InputEvent.cpp.s
+core/events/event-dispatchers/KeyEventDispatcher.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/event-dispatchers/KeyEventDispatcher.cpp.s
+.PHONY : core/events/event-dispatchers/KeyEventDispatcher.cpp.s
 
 core/events/event-listeners/EventListener.o: core/events/event-listeners/EventListener.cpp.o
 
@@ -1059,12 +1032,9 @@ help:
 	@echo "... core/events/Event.o"
 	@echo "... core/events/Event.i"
 	@echo "... core/events/Event.s"
-	@echo "... core/events/EventDispatchers/KeyEventDispatcher.o"
-	@echo "... core/events/EventDispatchers/KeyEventDispatcher.i"
-	@echo "... core/events/EventDispatchers/KeyEventDispatcher.s"
-	@echo "... core/events/InputEvent.o"
-	@echo "... core/events/InputEvent.i"
-	@echo "... core/events/InputEvent.s"
+	@echo "... core/events/event-dispatchers/KeyEventDispatcher.o"
+	@echo "... core/events/event-dispatchers/KeyEventDispatcher.i"
+	@echo "... core/events/event-dispatchers/KeyEventDispatcher.s"
 	@echo "... core/events/event-listeners/EventListener.o"
 	@echo "... core/events/event-listeners/EventListener.i"
 	@echo "... core/events/event-listeners/EventListener.s"

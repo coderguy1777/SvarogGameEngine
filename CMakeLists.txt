@@ -36,22 +36,22 @@ add_executable(SvarogGameEngine
         core/ds-classes/Array.h
         core/ds-classes/ArrayList.h
         core/ds-classes/Node.h
+        core/ds-classes/Queue.h
         core/events/event-types/keyevent.cpp
         core/events/event-types/keyevent.h
         core/events/event-types/mouseevent.h
         core/events/event-types/mousevent.cpp
         core/events/Event.cpp
         core/events/Event.h
-        core/events/EventDispatchers/EventDispatch.h
-        core/events/EventDispatchers/KeyEventDispatcher.h
-        core/events/EventDispatchers/KeyEventDispatcher.cpp
+        core/events/event-dispatchers/EventDispatch.h
+        core/events/event-dispatchers/KeyEventDispatcher.h
+        core/events/event-dispatchers/KeyEventDispatcher.cpp
         core/events/event-listeners/EventListener.cpp
         core/events/event-listeners/EventListener.h
         core/events/event-listeners/KeyListener.cpp
         core/events/event-listeners/KeyListener.h
+        core/events/event-queues/event_queue.h
         core/events/EventTypes.h
-        core/events/InputEvent.cpp
-        core/events/InputEvent.h
         core/logger/Log.h
         core/logger/Log.cpp
         core/logger/Message.h

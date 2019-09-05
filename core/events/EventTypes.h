@@ -2,24 +2,11 @@
 #ifdef EVENTTYPES_H
 #define EVENTTYPES_H
 #endif
+#include<string>
+#define USED_EVENT -1
 
-enum class KEY_EVENT_TYPES {
-    KEY_PRESS = 1,
-    KEY_RELEASE = 2,
-    KEY_DOUBLE_PRESS = 3,
-    KEY_HOLD = 4,
-};
-
-typedef struct SvarogKey {
-    int key;
-};
-
-typedef struct LayerType {
-    const char* EvtType;
+struct EventLayerType {
     int id;
+    std::string evt_name;
 };
 
-enum class AUDIO_EVENT_TYPES {
-    AUDIO_STREAM = 1,
-    AUDIO_ENTRY = 2,
-};

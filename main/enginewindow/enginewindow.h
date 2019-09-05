@@ -6,12 +6,12 @@
 #include <GLFW/glfw3.h>
 #include "main/shapes/shape.h"
 #include "core/events/event-listeners/EventListener.h"
-#include "core/events/EventDispatchers/KeyEventDispatcher.h"
+#include "core/events/event-dispatchers/KeyEventDispatcher.h"
 #include "main/materials/material.h"
 #include "core/ds-classes/Array.h"
 #include "core/events/event-types/mouseevent.h"
 #include "core/events/event-types/keyevent.h"
-#include "core/events/EventDispatchers/EventDispatch.h"
+#include "core/events/event-dispatchers/EventDispatch.h"
 #include "main/window/window.h"
 #include "render-pipeline/window-initalization/window_context.h"
 #include "render-pipeline/window-initalization/window_update.h"
@@ -19,16 +19,11 @@
 
 class Application {
     private:
-        WindowContext* context;
-        WindowUpdate* update;
         mutable bool engine_state;
     public: 
         Window winA;
         bool engineState;
-        Application(){
-            context = new WindowContext();
-            update = new WindowUpdate();
-        }
+        Application(){}
 
         ~Application() {
             end();
