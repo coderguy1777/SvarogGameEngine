@@ -1,6 +1,7 @@
 # Svarog Engine
 ## An open source C++ path tracing game engine, made with GLFW and OpenGL.
 
+## (Note: the below build process is outdated, and will be updated very soon in accordance with new configure scripts.)
 # How to build Svarog Engine
 ## Step 1: clone the repository to your machine.
 To clone the repository, do: `git clone https://github.com/coderguy1777/SvarogGameEngine to get the engine source`
