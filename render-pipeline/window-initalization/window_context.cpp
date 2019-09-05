@@ -27,7 +27,9 @@ void WindowContext::init_glfw() {
         spdlog::info("GLFW Failure to load, please check for dependency install....");
         glfwTerminate();
     } else {
-        spdlog::info("GLFW success to load, continuing launch of engine....");
+        spdlog::info("********************************************************");
+        spdlog::info("GLFW load state: ");
+        spdlog::info("GLFW has been loaded!");
     }
 }
 
@@ -40,8 +42,27 @@ void WindowContext::init_glad() {
         throw std::invalid_argument("GLAD FAILURE");
         glfwTerminate();
     } else {
+        spdlog::info("********************************************************");
+        spdlog::info("GLAD load state: ");
         spdlog::info("GLAD has been loaded!");
     }
+}
+
+void WindowContext::load_gpu_info() {
+    // information getting
+    const GLubyte* gpu_vendor_info = glGetString(GL_VENDOR);
+    const GLubyte* renderer_api = glGetString(GL_RENDERER);
+    const GLubyte* renderer_api_version = glGetString(GL_VERSION);
+    const GLubyte* shading_language_version = glGetString(GL_SHADING_LANGUAGE_VERSION);
+    // log
+    spdlog::info("********************************************************");
+    spdlog::info("GPU and rendering information log: ");
+    spdlog::info("GPU Vendor: {}", gpu_vendor_info);
+    spdlog::info("GPU renderer: {}", renderer_api);
+    spdlog::info("GPU renderer version: {}", renderer_api_version);
+    spdlog::info("Shading Language API: {}", shading_language_version);
+    spdlog::info("********************************************************");
+
 }
 
 int WindowContext::get_glad_state() const {

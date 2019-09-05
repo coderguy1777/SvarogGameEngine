@@ -1,16 +1,4 @@
 #!/bin/bash
-# library name variables
-LIB_GLFW="libglfw3-dev"
-LIB_X11="libx11-dev"
-LIB_BLD_ESSENTIAL="build-essential"
-LIB_XINERMA="x11proto-xinerama-dev"
-LIB_GLU="libglu1-mesa-dev"
-LIB_DL="libdl-dev"
-LIB_XI="libxi-dev"
-LIB_XRANDR="libxrandr-dev"
-LIB_ASSIMP="libassimp-dev"
-LIB_XCURSOR="libxcursor-dev"
-
 # running of checks for libraries.
 GLFW_CHECK=$(dpkg -s libglfw3-dev|grep installed)
 echo Checking for glfw3: $GLFW_CHECK
@@ -60,12 +48,38 @@ elif [ "" != "$XINERMA_CHECK" ]; then
     echo "GLU installed, continuing lib check."
 fi
 
-# TODO: check if dl needs to be installed
-DL_CHECK=$(dpkg -s libdl-dev|grep installed)
-echo Checking for DL: $DL_CHECK
-if [ "" == "$DL_CHECK" ]; then
-    echo "Setting up DL now..."
-    sudo apt-get install dl
-elif [ "" != "$DL_CHECK" ]; then
-    echo "dl installed, continuing lib check."
+XI_CHECK=$(dpkg -s libxi-dev|grep installed)
+echo Checking for XI: $XI_CHECK
+if [ "" == "$XI_CHECK" ]; then
+    echo "Setting up Xi now..."
+    sudo apt-get install libxi-dev
+elif [ "" != "$XI_CHECK" ]; then
+    echo "Xi installed, continuing lib check."
+fi
+
+XRANDR_CHECK=$(dpkg -s libxrandr-dev|grep installed)
+echo Checking for XRANDR: $XRANDR_CHECK
+if [ "" == "$XRANDR_CHECK" ]; then
+    echo "Setting up Xrandr now..."
+    sudo apt-get install libxrandr-dev
+elif [ "" != "$XRANDR_CHECK" ]; then
+    echo "Xrandr installed, continuing lib check."
+fi
+
+ASSIMP_CHECK=$(dpkg -s libassimp-dev|grep installed)
+echo Checking for ASSIMP: $ASSIMP_CHECK
+if [ "" == "$ASSIMP_CHECK" ]; then
+    echo "Setting up assimp now..."
+    sudo apt-get install libassimp-dev
+elif [ "" != "$ASSIMP_CHECK" ]; then
+    echo "assimp installed, continuing lib check."
+fi
+
+XCURSOR_CHECK=$(dpkg -s libxcursor-dev|grep installed)
+echo Checking for XCURSOR: $XCURSOR_CHECK
+if [ "" == "$XCURSOR_CHECK" ]; then
+    echo "Setting up Xcursor now..."
+    sudo apt-get install libxcursor-dev
+elif [ "" != "$XCURSOR_CHECK" ]; then
+    echo "Xcursor installed, continuing lib check."
 fi

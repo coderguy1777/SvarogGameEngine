@@ -231,6 +231,60 @@ core/events/event-dispatchers/KeyEventDispatcher.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/event-dispatchers/KeyEventDispatcher.cpp.s
 .PHONY : core/events/event-dispatchers/KeyEventDispatcher.cpp.s
 
+core/events/event-layer/EventLayer.o: core/events/event-layer/EventLayer.cpp.o
+
+.PHONY : core/events/event-layer/EventLayer.o
+
+# target to build an object file
+core/events/event-layer/EventLayer.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/event-layer/EventLayer.cpp.o
+.PHONY : core/events/event-layer/EventLayer.cpp.o
+
+core/events/event-layer/EventLayer.i: core/events/event-layer/EventLayer.cpp.i
+
+.PHONY : core/events/event-layer/EventLayer.i
+
+# target to preprocess a source file
+core/events/event-layer/EventLayer.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/event-layer/EventLayer.cpp.i
+.PHONY : core/events/event-layer/EventLayer.cpp.i
+
+core/events/event-layer/EventLayer.s: core/events/event-layer/EventLayer.cpp.s
+
+.PHONY : core/events/event-layer/EventLayer.s
+
+# target to generate assembly for a file
+core/events/event-layer/EventLayer.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/event-layer/EventLayer.cpp.s
+.PHONY : core/events/event-layer/EventLayer.cpp.s
+
+core/events/event-layer/LayerStack.o: core/events/event-layer/LayerStack.cpp.o
+
+.PHONY : core/events/event-layer/LayerStack.o
+
+# target to build an object file
+core/events/event-layer/LayerStack.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/event-layer/LayerStack.cpp.o
+.PHONY : core/events/event-layer/LayerStack.cpp.o
+
+core/events/event-layer/LayerStack.i: core/events/event-layer/LayerStack.cpp.i
+
+.PHONY : core/events/event-layer/LayerStack.i
+
+# target to preprocess a source file
+core/events/event-layer/LayerStack.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/event-layer/LayerStack.cpp.i
+.PHONY : core/events/event-layer/LayerStack.cpp.i
+
+core/events/event-layer/LayerStack.s: core/events/event-layer/LayerStack.cpp.s
+
+.PHONY : core/events/event-layer/LayerStack.s
+
+# target to generate assembly for a file
+core/events/event-layer/LayerStack.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/events/event-layer/LayerStack.cpp.s
+.PHONY : core/events/event-layer/LayerStack.cpp.s
+
 core/events/event-listeners/EventListener.o: core/events/event-listeners/EventListener.cpp.o
 
 .PHONY : core/events/event-listeners/EventListener.o
@@ -1035,6 +1089,12 @@ help:
 	@echo "... core/events/event-dispatchers/KeyEventDispatcher.o"
 	@echo "... core/events/event-dispatchers/KeyEventDispatcher.i"
 	@echo "... core/events/event-dispatchers/KeyEventDispatcher.s"
+	@echo "... core/events/event-layer/EventLayer.o"
+	@echo "... core/events/event-layer/EventLayer.i"
+	@echo "... core/events/event-layer/EventLayer.s"
+	@echo "... core/events/event-layer/LayerStack.o"
+	@echo "... core/events/event-layer/LayerStack.i"
+	@echo "... core/events/event-layer/LayerStack.s"
 	@echo "... core/events/event-listeners/EventListener.o"
 	@echo "... core/events/event-listeners/EventListener.i"
 	@echo "... core/events/event-listeners/EventListener.s"

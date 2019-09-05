@@ -37,6 +37,7 @@ void SvarogEngine::RunEngine() {
     
     Shape drawer2(vertexdata, posdata);
     drawer2.noEBO();
+
     while(SvarogWindow->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);

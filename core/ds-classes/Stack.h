@@ -7,18 +7,17 @@
 #include "ArrayList.h"
 #include "core/events/Event.h"
 #include "macrodefs.h"
-#include <vector>
+#include <stack>
 template<class S>
 class Stack {
     private: 
-        vector<S>stack;
+        std::stack<S>stack;
     public:
         Stack() {}
         S top();
         bool isEmpty();
         void clear();
         void push(S const& item);
-        S pop();
+        void pop();
 };
-
 #endif

@@ -49,6 +49,7 @@ void Application::SvarogAppLoop() {
     appWindow = glfwCreateWindow((int)winA.prop->w, (int)winA.prop->h, (const char*)winA.prop->title.str, NULL, NULL);
     makeContextCurr();
     WindowContext::init_glad();
+    WindowContext::load_gpu_info();
     VSYNC_func();
 
     if(appWindow == NULL) {

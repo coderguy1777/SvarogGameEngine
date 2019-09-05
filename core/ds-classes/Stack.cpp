@@ -2,28 +2,29 @@
 
 template<class S>
 void Stack<S>::push(S const& item) {
-    stack.add(item);
+    stack.push(item);
 }
 
 template<class S>
-S Stack<S>::pop() {
-    return stack[stack.size() - 1];
-
+void Stack<S>::pop() {
+    stack.pop();
 }
 
 template <class S>
 S Stack<S>::top() {
-    return stack[stack.size() - 1];
+    return stack.top();
 }
 
 template<class S>
 void Stack<S>::clear() {
-    stack.clear();
+    for(unsigned int i = 0; i < stack.size(); i++) {
+        stack.pop();
+    }
 }
  
 template<class S>
 bool Stack<S>::isEmpty() {
-    return stack.size() == 0;
+    return (stack.size() == 0) ? true : false;
 } 
 TMP_TYPE(Stack, Queue<Event*>*);
 TMP_TYPE(Stack, Event);

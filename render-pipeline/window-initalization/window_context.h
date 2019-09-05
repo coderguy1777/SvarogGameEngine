@@ -15,6 +15,7 @@ class WindowContext {
         static void make_curr_context(GLFWwindow* win);
         static void init_glfw();
         static void init_glad();
+        static void load_gpu_info();
         int get_glad_state() const;
         int get_glfw_load_state() const;
 

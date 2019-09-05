@@ -8,6 +8,7 @@ include_directories(glad)
 include_directories(core)
 include_directories(core/ds-classes)
 include_directories(core/events)
+include_directories(core/events/event-layer)
 include_directories(core/events/event-types)
 include_directories(core/logger)
 include_directories(core/Input)
@@ -51,6 +52,10 @@ add_executable(SvarogGameEngine
         core/events/event-listeners/KeyListener.cpp
         core/events/event-listeners/KeyListener.h
         core/events/event-queues/event_queue.h
+        core/events/event-layer/EventLayer.h
+        core/events/event-layer/EventLayer.cpp
+        core/events/event-layer/LayerStack.h
+        core/events/event-layer/LayerStack.cpp
         core/events/EventTypes.h
         core/logger/Log.h
         core/logger/Log.cpp
@@ -124,7 +129,7 @@ target_link_libraries(${PROJECT_NAME}
         Xrandr 
         pthread 
         Xi 
-        dl 
+        dl
         Xinerama 
         Xcursor 
         assimp
