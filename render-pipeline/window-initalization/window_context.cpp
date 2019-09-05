@@ -15,7 +15,7 @@ void WindowContext::create_context(GLFWwindow* window) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 }
 
 void WindowContext::make_curr_context(GLFWwindow* win) {
@@ -35,17 +35,6 @@ void WindowContext::init_glfw() {
 
 int WindowContext::get_glfw_load_state() const {
     return glad_success;
-}
-
-void WindowContext::init_glad() {
-    if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        throw std::invalid_argument("GLAD FAILURE");
-        glfwTerminate();
-    } else {
-        spdlog::info("********************************************************");
-        spdlog::info("GLAD load state: ");
-        spdlog::info("GLAD has been loaded!");
-    }
 }
 
 void WindowContext::load_gpu_info() {

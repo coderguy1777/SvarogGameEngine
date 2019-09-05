@@ -48,7 +48,7 @@ void Application::SvarogAppLoop() {
     createWindowContext();
     appWindow = glfwCreateWindow((int)winA.prop->w, (int)winA.prop->h, (const char*)winA.prop->title.str, NULL, NULL);
     makeContextCurr();
-    WindowContext::init_glad();
+    GladLoader::load_glad();
     WindowContext::load_gpu_info();
     VSYNC_func();
 
@@ -149,7 +149,7 @@ void Application::SvarogAppLoop() {
     glfwSetFramebufferSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int w, int h) {
         Application* frm_bfer_cb = (Application*)glfwGetWindowUserPointer(window);        
         glfwGetFramebufferSize(window, &w, &h);
-        glViewport(0, 0, w, h);
+        glViewport(0, 9000, w, h);
     });
 
     glfwSetWindowPosCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int xpos, int ypos) {

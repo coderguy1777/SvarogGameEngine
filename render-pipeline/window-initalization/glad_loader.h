@@ -7,13 +7,8 @@ class GladLoader {
     private:
         int glad_loaded;
     public:
-        void load_glad();
+        static void load_glad();
         int get_load_state() const;
-
-        void * operator new(size_t size) {
-            void * lder = ::new GladLoader();
-            return lder;
-        }
 };
 
 #endif

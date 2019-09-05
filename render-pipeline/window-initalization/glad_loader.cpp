@@ -1,12 +1,13 @@
 #include "glad_loader.h"
 void GladLoader::load_glad() {
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        spdlog::info("Glad failed to load.");
         throw std::invalid_argument("GLAD FAILURE");
-        glad_loaded = 0;
         glfwTerminate();
     } else {
-        spdlog::info("GLAD has been loading.....");
-        glad_loaded = 1;
+        spdlog::info("********************************************************");
+        spdlog::info("GLAD load state: ");
+        spdlog::info("GLAD has been loaded!");
     }
 }
 

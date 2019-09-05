@@ -38,11 +38,11 @@ class LayerStack {
         V * evt_type_3 = new V();
         
     public:
-        LayerStack() {
+        LayerStack(E * event_1, U * event_2, V * event_3) {
             queue_group = new QueueInput();
-            //evt_type_1 = event_1;
-            //evt_type_2 = event_2;
-            //evt_type_3 = event_3;
+            evt_type_1 = event_1;
+            evt_type_2 = event_2;
+            evt_type_3 = event_3;
         }
 
         void set_queue_ids(unsigned int id_1, unsigned int id_2, unsigned int id_3);
@@ -65,9 +65,9 @@ class LayerStack {
         U find_event_queue2(unsigned int evt_id);
         V find_event_queue3(unsigned int evt_id);
 
-        E get_event_name_queue1();
-        U get_event_name_queue2();
-        V get_event_name_queue3();
+        E * get_event_name_queue1();
+        U * get_event_name_queue2();
+        V * get_event_name_queue3();
 
         static void pri_sort_evt1();
         static void pri_sort_evt2();

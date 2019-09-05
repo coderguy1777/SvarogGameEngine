@@ -1,6 +1,7 @@
 #pragma once
 #ifndef WINDOW_CONTEXT_H
 #define WINDOW_CONTEXT_H
+#include "render-pipeline/window-initalization/glad_loader.h"
 #include "render-pipeline/gl_libs.h"
 
 class WindowContext {
@@ -14,7 +15,6 @@ class WindowContext {
         static void create_context(GLFWwindow* win);
         static void make_curr_context(GLFWwindow* win);
         static void init_glfw();
-        static void init_glad();
         static void load_gpu_info();
         int get_glad_state() const;
         int get_glfw_load_state() const;
