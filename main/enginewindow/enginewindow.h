@@ -15,30 +15,24 @@
 #include "main/window/window.h"
 #include "render-pipeline/window-initalization/window_context.h"
 #include "render-pipeline/window-initalization/window_update.h"
+#include "render-pipeline/window-initalization/window_monitor.h"
 #include "render-pipeline/window-initalization/glad_loader.h"
 
-class Application {
+class EngineWindow {
     private:
         mutable bool engine_state;
     public: 
         Window winA;
-        bool engineState;
-        Application(){}
+        EngineWindow(){}
 
-        ~Application() {
+        ~EngineWindow() {
             end();
         }
 
-        void* getWindow() {return appWindow;};
-        void reset_bool_state() {
-            engine_state = false;
-        }
-        void set_bool_state() {
-            engine_state = true;
-        }
-        bool get_state() const { 
-            return engine_state;
-        }
+        void* getWindow();
+        void reset_bool_state();
+        void set_bool_state();
+        bool get_state() const;
         void end();
         void OnUpdate();
         void VSYNC_on();
@@ -53,5 +47,6 @@ class Application {
     private: 
         bool isVsyncOn;
         GLFWwindow* appWindow;
+        GLFWmonitor* moni;
         WindowProp window;
 };

@@ -5,35 +5,51 @@
 #include "core/logger/LoggerGroup.h"
 #include<iostream>
 
-void Application::createWindowContext() {
+void* EngineWindow::getWindow() {
+    return appWindow;
+}
+
+void EngineWindow::reset_bool_state() {
+    engine_state = false;
+}
+
+void EngineWindow::set_bool_state() {
+    engine_state = true;
+}
+
+bool EngineWindow::get_state() const {
+    return engine_state;
+}
+
+void EngineWindow::createWindowContext() {
     WindowContext::create_context(appWindow);
 }
 
-void Application::OnUpdate() {
+void EngineWindow::OnUpdate() {
     WindowUpdate::window_buffer_swap(appWindow);
 }
 
-void Application::VSYNC_on() {
+void EngineWindow::VSYNC_on() {
     isVsyncOn = true;
 }
 
-void Application::VSYNC_off() {
+void EngineWindow::VSYNC_off() {
     isVsyncOn = false;
 }
 
-bool Application::isVSYNCon() {
+bool EngineWindow::isVSYNCon() {
     return isVsyncOn;
 }
 
-void Application::makeContextCurr() {
+void EngineWindow::makeContextCurr() {
     WindowContext::make_curr_context(appWindow);
 }
 
-void Application::end() {
+void EngineWindow::end() {
     glfwDestroyWindow(appWindow);
 }
 
-void Application::VSYNC_func() {
+void EngineWindow::VSYNC_func() {
     auto vsync_check = isVSYNCon();
     if(vsync_check) {
         glfwSwapInterval(1);
@@ -43,11 +59,11 @@ void Application::VSYNC_func() {
     }
 }
 
-void Application::SvarogAppLoop() {
+void EngineWindow::SvarogAppLoop() {
     WindowContext::init_glfw();
-    createWindowContext();
-    appWindow = glfwCreateWindow((int)winA.prop->w, (int)winA.prop->h, (const char*)winA.prop->title.str, NULL, NULL);
-    makeContextCurr();
+    WindowContext::create_context(appWindow);
+    appWindow = glfwCreateWindow((int)winA.getWidth(), (int)winA.getHeight(), (const char*)winA.getTitle().str, NULL, NULL);
+    WindowContext::make_curr_context(appWindow);
     GladLoader::load_glad();
     WindowContext::load_gpu_info();
     VSYNC_func();
@@ -59,7 +75,7 @@ void Application::SvarogAppLoop() {
 
     glfwSetWindowUserPointer(static_cast<GLFWwindow*>(this->getWindow()), this);
     glfwSetKeyCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int key, int action, int scancode, int mods) {
-        Application* key_evt_ptr = (Application*)glfwGetWindowUserPointer(window);
+        EngineWindow* key_evt_ptr = (EngineWindow*)glfwGetWindowUserPointer(window);
         switch(scancode) {
             /*
                 keep everything here, as glfw uses it
@@ -97,7 +113,7 @@ void Application::SvarogAppLoop() {
 
     // TODO: make an event dispatching system for mouse events.
     glfwSetMouseButtonCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int button, int action, int mods) {
-        Application* mouse_evt_ptr = (Application*)glfwGetWindowUserPointer(window);
+        EngineWindow* mouse_evt_ptr = (EngineWindow*)glfwGetWindowUserPointer(window);
         switch(action) {
             // keep this, glfw uses GLFW_PRESS
             case GLFW_PRESS:
@@ -129,32 +145,30 @@ void Application::SvarogAppLoop() {
     });
 
     glfwSetWindowCloseCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window) {
-        Application* win_close_mg = (Application*)glfwGetWindowUserPointer(window);
+        EngineWindow* win_close_mg = (EngineWindow*)glfwGetWindowUserPointer(window);
         win_close_mg->reset_bool_state();
     });
 
     glfwSetWindowSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int w, int h) {
-        Application* win_size_mg = (Application*)glfwGetWindowUserPointer(window);
+        EngineWindow* win_size_mg = (EngineWindow*)glfwGetWindowUserPointer(window);
         glViewport(0, 0, w, h);
-        win_size_mg->winA.prop->w = w;
-        win_size_mg->winA.prop->h = h;
+        win_size_mg->winA.changeHeight(h);
+        win_size_mg->winA.changeWidth(w);
     });
 
     glfwSetCharCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, unsigned int keycode) {
-        Application* key_typed_mg = (Application*)glfwGetWindowUserPointer(window);
+        EngineWindow* key_typed_mg = (EngineWindow*)glfwGetWindowUserPointer(window);
         spdlog::info("Key typed: {}" , keycode);
     });
 
     // TODO: fix rendering bug with frame buffer callback.
     glfwSetFramebufferSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int w, int h) {
-        Application* frm_bfer_cb = (Application*)glfwGetWindowUserPointer(window);        
+        EngineWindow* frm_bfer_cb = (EngineWindow*)glfwGetWindowUserPointer(window);        
         glfwGetFramebufferSize(window, &w, &h);
         glViewport(0, 9000, w, h);
     });
 
     glfwSetWindowPosCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int xpos, int ypos) {
-        Application* scle_bfer_cb = (Application*)glfwGetWindowUserPointer(window);
+        EngineWindow* scle_bfer_cb = (EngineWindow*)glfwGetWindowUserPointer(window);
     });
-
-
 }

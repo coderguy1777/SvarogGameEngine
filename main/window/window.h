@@ -12,13 +12,12 @@ struct WindowProp {
     WindowProp(int width=800, int height=600, String winTitle="Svarog Game Engine") : w(width), h(height), title(winTitle){}
 };
 class Window {
+    private:
+        WindowProp* prop;
     public:
-
-        WindowProp props;
-        WindowProp* prop = &props;
-
-        int GLAD_STATE = 0;
-        Window(){};
+        Window() {
+            prop = new WindowProp();
+        }
         // getter functions
         int getWidth();
         int getHeight();

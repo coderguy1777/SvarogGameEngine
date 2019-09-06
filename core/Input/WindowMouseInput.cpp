@@ -1,6 +1,6 @@
 #include "main/enginewindow/enginewindow.h"
 #include "WindowMouseInput.h"
-Application* app = new Application();
+EngineWindow* app = new EngineWindow();
 Mouse* Mouse::input_ps = new WindowMouseInput();
 bool WindowMouseInput::isPressed(int mouse) {
     auto window = static_cast<GLFWwindow*>(app->getWindow());

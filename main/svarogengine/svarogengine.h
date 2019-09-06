@@ -9,19 +9,19 @@
 #include "main/enginewindow/enginewindow.h"
 class SvarogEngine {
     private:
-        Application* SvarogWindow;
+        EngineWindow* SvarogWindow;
         //LayerStack<int, float, char>e;
     public:
         SvarogEngine() {
-            SvarogWindow = new Application();
+            SvarogWindow = new EngineWindow();
             SvarogWindow->set_bool_state();
         }
         
-        Application* getApplicationWindow() const;
+        EngineWindow* getEngineWindowWindow() const;
         void InitContext();
         void RunEngine();
         void * operator new(size_t size) {
-            void * win = ::new Application();
+            void * win = ::new EngineWindow();
             return win;
         }
 };

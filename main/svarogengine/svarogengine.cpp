@@ -1,5 +1,5 @@
 #include "svarogengine.h"
-Application* SvarogEngine::getApplicationWindow() const {
+EngineWindow* SvarogEngine::getEngineWindowWindow() const {
     return SvarogWindow;
 }
 
