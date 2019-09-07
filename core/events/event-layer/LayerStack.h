@@ -4,6 +4,7 @@
 #include "core/ds-classes/Stack.h"
 #include "core/ds-classes/Queue.h"
 #include "macrodefs.h"
+#include<any>
 #define LAYERSTACK_DEP(X, X1, X2) template class LayerStack<X, X1, X2>
 template<class E, class U, class V>
 FORWARD_DEC(LayerStack);
@@ -14,16 +15,19 @@ class LayerStack {
         struct evt_queue_1 {
             Queue<E>*queue_1 = new Queue<E>();
             unsigned int queue_id;
+            std::string queue_name_1;
         };
 
         struct evt_queue_2 {
             Queue<U>*queue_2 = new Queue<U>();
             unsigned int queue_id;
+            std::string queue_name_2;
         };
 
         struct evt_queue_3 {
             Queue<V>*queue_3 = new Queue<V>();
             unsigned int queue_id;
+            std::string queue_name_3;
         };
 
         struct QueueInput {
@@ -65,9 +69,11 @@ class LayerStack {
         U find_event_queue2(unsigned int evt_id);
         V find_event_queue3(unsigned int evt_id);
 
-        E * get_event_name_queue1();
-        U * get_event_name_queue2();
-        V * get_event_name_queue3();
+        void set_queue_names(Array<std::string, 3>name_arr);
+
+        std::string get_event_name_queue1() const;
+        std::string get_event_name_queue2() const;
+        std::string get_event_name_queue3() const;
 
         static void pri_sort_evt1();
         static void pri_sort_evt2();

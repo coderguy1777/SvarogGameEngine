@@ -6,34 +6,25 @@
 #include <spdlog/spdlog.h>
 #include <iostream>
 #include <memory>
-struct SvarogMonitor {
-    GLFWmonitor* monitor;
-    int event_state;
-    bool is_on;
-};
-class Monitor {
-    private:
-        SvarogMonitor* win_monitor;
-    public:
-        virtual void* get_monitor() = 0;
-        virtual const char* get_monitor_name() = 0;
-        virtual int get_monitor_state() = 0;
-        virtual bool get_monitor_connection() = 0;
 
-};
-
-
-class WindowMonitor : public Monitor {
+class WindowMonitor {
     private: 
+        struct SvarogMonitor {
+            GLFWmonitor* monitor;
+            int event_state;
+            bool is_on;
+        } win_mtr;
         SvarogMonitor* win_monitor;
     public: 
-        WindowMonitor() : Monitor() {
+        WindowMonitor() {
             win_monitor = new SvarogMonitor();
         }
-        virtual void* get_monitor() override;
-        virtual const char* get_monitor_name() override;
-        virtual int get_monitor_state() override; 
-        virtual bool get_monitor_connection() override;
+        void init_monitor();
+        
+        void* get_monitor();
+        const char* get_monitor_name();
+        int get_monitor_state();
+        bool get_monitor_connection();
 };
 
 #endif

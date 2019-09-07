@@ -32,17 +32,17 @@ int LayerStack<E, U, V>::queue_3_len() const {
 }
 
 template<class E, class U, class V>
-E * LayerStack<E, U, V>::get_event_name_queue1() {
+std::string LayerStack<E, U, V>::get_event_name_queue1() const {
     return evt_type_1;
 }
 
 template<class E, class U, class V>
-U * LayerStack<E, U, V>::get_event_name_queue2() {
+std::string LayerStack<E, U, V>::get_event_name_queue2() const {
     return evt_type_2;
 }
 
 template<class E, class U, class V>
-V * LayerStack<E, U, V>::get_event_name_queue3() {
+std::string LayerStack<E, U, V>::get_event_name_queue3() const {
     return evt_type_3;
 }
 
@@ -79,7 +79,48 @@ void LayerStack<E, U, V>::set_queue_ids(unsigned int id_1, unsigned int id_2, un
     queue_group->evt_two->queue_id = id_2;
     queue_group->evt_three->queue_id = id_3;
 }
+template<class E, class U, class V>
+void LayerStack<E, U, V>::set_queue_names(Array<std::string, 3>name_arr) {
+    queue_group->evt_one->queue_name_1 = name_arr[0];
+    queue_group->evt_two->queue_name_2 = name_arr[1];
+    queue_group->evt_three->queue_name_3 = name_arr[2];
+}
 
+template<class E, class U, class V> 
+void LayerStack<E, U, V>::pri_sort_evt1() {
+    ArrayList<E>temp_sorted_li_1 = new ArrayList<E>();
+    unsigned int queue_1_size = queue_group->evt_one->queue_1->size();
+    E temp = queue_group->evt_one->queue_1->front();
+    E next;
+
+    while(queue_1_size > 0 && !(queue_group->evt_one->queue_1->isEmpty())) {
+
+    }
+}
+
+template<class E, class U, class V>
+void LayerStack<E, U, V>::pri_sort_evt2() {
+    ArrayList<U>temp_sorted_li_2 = new ArrayList<U>();
+    unsigned int queue_2_size = queue_group->evt_two->queue_2->size();
+    E temp = queue_group->evt_two->queue_2->front();
+    E next;
+
+    while(queue_2_size && !(queue_group->evt_two->queue_2->isEmpty())) {
+
+    }
+}
+
+template<class E, class U, class V>
+void LayerStack<E, U, V>::pri_sort_evt3() {
+    ArrayList<V>temp_sorted_li_3 = new ArrayList<V>();
+    unsigned int queue_3_size = queue_group->evt_three->queue_3->size();
+    E temp = queue_group->evt_three->queue_3->front(0;
+    E next;
+    
+    while(queue_3_size > 0 && !(queue_group->evt_three->queue_3->isEmpty())) {
+        
+    }
+}
 // declared classes allowed
 // for template cases and uses
 // of the template.

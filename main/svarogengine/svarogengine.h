@@ -10,15 +10,17 @@
 class SvarogEngine {
     private:
         EngineWindow* SvarogWindow;
-        //LayerStack<int, float, char>e;
+        WindowMonitor* svarog_monitor;
     public:
         SvarogEngine() {
             SvarogWindow = new EngineWindow();
+            svarog_monitor = new WindowMonitor();
             SvarogWindow->set_bool_state();
         }
         
         EngineWindow* getEngineWindowWindow() const;
         void InitContext();
+        void InitMonitor();
         void RunEngine();
         void * operator new(size_t size) {
             void * win = ::new EngineWindow();

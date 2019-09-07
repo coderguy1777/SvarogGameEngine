@@ -7,9 +7,14 @@ void SvarogEngine::InitContext() {
     SvarogWindow->VSYNC_on();
 }
 
+void SvarogEngine::InitMonitor() {
+    svarog_monitor->init_monitor();
+}
+
 void SvarogEngine::RunEngine() {
     SvarogWindow->SvarogAppLoop();
     InitContext();
+    InitMonitor();
     Material matA("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl", "/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 

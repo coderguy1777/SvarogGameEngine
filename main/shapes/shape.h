@@ -51,7 +51,6 @@ class Shape {
                 draw();
 
             } else if(eboCheck == false) {
-                std::cout << "NO EBO" << std::endl;
                 glGenVertexArrays(1, &VAO);
                 glGenBuffers(1, &VBO);
                 glBindVertexArray(VAO);
