@@ -8,15 +8,15 @@
 using namespace std;
 class Camera {
     public:
+        static Camera& instance() {
+            if(instance_ == NULL) {
+                instance_ = new Camera();
+            }
+        }
         int cameraW, cameraH;
         Vector3 upVector;
         Vector3 camorigin;
         Vector3 cameraTarget;
-        Camera(Vector3 camTarg, Vector3 camerapos) {
-            this->cameraTarget = camTarg;
-            this->camorigin = camerapos;
-        }
-        Camera(){};
         
         // camera view stuff
         int getCameraW();
@@ -36,4 +36,7 @@ class Camera {
         inline Matrix4f lookAt(Matrix4f view, Matrix4f model) {
             return Matrix4f(view * model);
         }    
+    private: 
+        Camera() {}
+        static Camera* instance_;
 };

@@ -3,6 +3,8 @@
 #define LAYERSTACK_H
 #include "core/ds-classes/Stack.h"
 #include "core/ds-classes/Queue.h"
+#include "core/ds-classes/Array.h"
+#include "core/ds-classes/ArrayList.h"
 #include "macrodefs.h"
 #include<any>
 #define LAYERSTACK_DEP(X, X1, X2) template class LayerStack<X, X1, X2>
@@ -37,16 +39,13 @@ class LayerStack {
         };
         QueueInput* queue_group;
 
-        E * evt_type_1 = new E();
-        U * evt_type_2 = new U();
-        V * evt_type_3 = new V();
+        std::string evt_type_1;
+        std::string evt_type_2;
+        std::string evt_type_3;
         
     public:
-        LayerStack(E * event_1, U * event_2, V * event_3) {
+        LayerStack() {
             queue_group = new QueueInput();
-            evt_type_1 = event_1;
-            evt_type_2 = event_2;
-            evt_type_3 = event_3;
         }
 
         void set_queue_ids(unsigned int id_1, unsigned int id_2, unsigned int id_3);
@@ -75,9 +74,9 @@ class LayerStack {
         std::string get_event_name_queue2() const;
         std::string get_event_name_queue3() const;
 
-        static void pri_sort_evt1();
-        static void pri_sort_evt2();
-        static void pri_sort_evt3();
+         void pri_sort_evt1();
+         void pri_sort_evt2();
+         void pri_sort_evt3();
 
 };
 #endif

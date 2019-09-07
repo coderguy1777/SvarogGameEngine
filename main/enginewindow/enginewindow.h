@@ -4,7 +4,11 @@
 #endif
 #include<glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
+#include <spdlog/spdlog.h>
+#include "core/ds-classes/Queue.h"
 #include "main/shapes/shape.h"
+#include "core/events/Event.h"
 #include "core/events/event-listeners/EventListener.h"
 #include "core/events/event-dispatchers/KeyEventDispatcher.h"
 #include "main/materials/material.h"
@@ -22,8 +26,9 @@ class EngineWindow {
     private:
         mutable bool engine_state;
     public: 
+
         Window winA;
-        EngineWindow(){}
+        EngineWindow() {}
 
         ~EngineWindow() {
             end();

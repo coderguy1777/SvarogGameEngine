@@ -1,9 +1,9 @@
 #include "enginewindow.h"
 #include "core/events/Event.h"
 #include "main/window/window.h"
+#include "main/enginewindow/enginewindow.h"
 #include "core/events/event-types/mouseevent.h"
 #include "core/logger/LoggerGroup.h"
-#include<iostream>
 
 void* EngineWindow::getWindow() {
     return appWindow;
@@ -67,6 +67,9 @@ void EngineWindow::SvarogAppLoop() {
     GladLoader::load_glad();
     WindowContext::load_gpu_info();
     VSYNC_func();
+    if(key_evt->size() > 0) {
+        set_notif();
+    }
 
     if(appWindow == NULL) {
         std::cout << "SVAROG_WINDOW IS NULL, ENDING NOW" << std::endl;
@@ -83,7 +86,9 @@ void EngineWindow::SvarogAppLoop() {
             case GLFW_PRESS:
                 { 
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_press");
-                    KeyEvent  evt(static_cast<int>(key));
+                    KeyEvent evt(static_cast<int>(key));
+                    key_evt_ptr->enqueue_temp(KeyEvent(static_cast<unsigned int>(key)));
+                    key_evt_ptr->set_notif();
                     evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
                     break;

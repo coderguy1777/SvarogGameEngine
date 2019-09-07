@@ -25,6 +25,7 @@ include_directories(main/window)
 include_directories(math)
 include_directories(render-pipeline)
 include_directories(render-pipeline/window-initalization)
+include_directories(svarogapp-test)
 
 add_executable(SvarogGameEngine
         glad/glad.c
@@ -111,8 +112,8 @@ add_executable(SvarogGameEngine
         math/matrix4f.h
         math/vec2.cpp
         math/vec2.h
-        math/vec3.cpp
         math/vec3.h
+        math/vec3.cpp
         math/vec4.h
         math/euler_angles.h
         math/euler_angles.cpp

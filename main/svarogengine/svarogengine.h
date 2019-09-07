@@ -5,6 +5,7 @@
 #include "core/ds-classes/Queue.h"
 #include "core/events/event-types/keyevent.h"
 #include "main/shapes/shape.h"
+#include "math/vec3.h"
 #include "main/materials/material.h"
 #include "main/enginewindow/enginewindow.h"
 class SvarogEngine {
@@ -12,11 +13,14 @@ class SvarogEngine {
         EngineWindow* SvarogWindow;
         WindowMonitor* svarog_monitor;
     public:
+
+
         SvarogEngine() {
             SvarogWindow = new EngineWindow();
             svarog_monitor = new WindowMonitor();
             SvarogWindow->set_bool_state();
         }
+
         
         EngineWindow* getEngineWindowWindow() const;
         void InitContext();

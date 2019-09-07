@@ -81,16 +81,16 @@ void LayerStack<E, U, V>::set_queue_ids(unsigned int id_1, unsigned int id_2, un
 }
 template<class E, class U, class V>
 void LayerStack<E, U, V>::set_queue_names(Array<std::string, 3>name_arr) {
-    queue_group->evt_one->queue_name_1 = name_arr[0];
-    queue_group->evt_two->queue_name_2 = name_arr[1];
-    queue_group->evt_three->queue_name_3 = name_arr[2];
+    queue_group->evt_one->queue_name_1 = name_arr.get(0);
+    queue_group->evt_two->queue_name_2 = name_arr.get(1);
+    queue_group->evt_three->queue_name_3 = name_arr.get(2);
 }
 
 template<class E, class U, class V> 
 void LayerStack<E, U, V>::pri_sort_evt1() {
-    ArrayList<E>temp_sorted_li_1 = new ArrayList<E>();
+    ArrayList<E>temp_sorted_li_1;
     unsigned int queue_1_size = queue_group->evt_one->queue_1->size();
-    E temp = queue_group->evt_one->queue_1->front();
+    E temp = queue_group->evt_one->queue_1->get_front();
     E next;
 
     while(queue_1_size > 0 && !(queue_group->evt_one->queue_1->isEmpty())) {
@@ -100,9 +100,9 @@ void LayerStack<E, U, V>::pri_sort_evt1() {
 
 template<class E, class U, class V>
 void LayerStack<E, U, V>::pri_sort_evt2() {
-    ArrayList<U>temp_sorted_li_2 = new ArrayList<U>();
+    ArrayList<U>temp_sorted_li_2;
     unsigned int queue_2_size = queue_group->evt_two->queue_2->size();
-    E temp = queue_group->evt_two->queue_2->front();
+    E temp = queue_group->evt_two->queue_2->get_front();
     E next;
 
     while(queue_2_size && !(queue_group->evt_two->queue_2->isEmpty())) {
@@ -112,9 +112,9 @@ void LayerStack<E, U, V>::pri_sort_evt2() {
 
 template<class E, class U, class V>
 void LayerStack<E, U, V>::pri_sort_evt3() {
-    ArrayList<V>temp_sorted_li_3 = new ArrayList<V>();
+    ArrayList<V>temp_sorted_li_3;
     unsigned int queue_3_size = queue_group->evt_three->queue_3->size();
-    E temp = queue_group->evt_three->queue_3->front();
+    E temp = queue_group->evt_three->queue_3->get_front();
     E next;
     
     while(queue_3_size > 0 && !(queue_group->evt_three->queue_3->isEmpty())) {
