@@ -114,11 +114,11 @@ template<class E, class U, class V>
 void LayerStack<E, U, V>::pri_sort_evt3() {
     ArrayList<V>temp_sorted_li_3 = new ArrayList<V>();
     unsigned int queue_3_size = queue_group->evt_three->queue_3->size();
-    E temp = queue_group->evt_three->queue_3->front(0;
+    E temp = queue_group->evt_three->queue_3->front();
     E next;
     
     while(queue_3_size > 0 && !(queue_group->evt_three->queue_3->isEmpty())) {
-        
+
     }
 }
 // declared classes allowed
