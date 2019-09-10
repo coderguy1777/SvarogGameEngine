@@ -12,7 +12,7 @@ For installing the dependencies needed for the Engine to be buildable, run the f
 command to obtain the depedencies needed as shown down below: 
 
 ### Command for dependicies:
-`sudo apt-get install build-essential libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libfreetype6-dev libudev-dev libxi-dev libxrandr-dev libglfw3-dev cmake gedit git.`
+bash install_libraries.sh
 
 Then, to get the OpenGL loader, glad, go to the site https://glad.dav1d.de/ and set the gl option to OpenGL 4.6, 
 and the profile to Core instead of compatibility. You are also going to want to check the box that says `omit KHR`
