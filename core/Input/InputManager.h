@@ -3,7 +3,7 @@
 #define INPUTMANAGER_H
 
 class InputManager {
-
+d
 };
 
 #endif
