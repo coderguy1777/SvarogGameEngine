@@ -1,8 +1,13 @@
 #include "WindowInput.h"
 #include "main/enginewindow/enginewindow.h"
-EngineWindow* app = new EngineWindow();
+EngineWindow* app = EngineWindow::getInstance();
 
 Keyboard* Keyboard::input_instace = new WindowInput();
+
+WindowInput* WindowInput::getSingleton() {
+    if(!InputManager) InputManager = new WindowInput; return InputManager;
+}
+
 bool WindowInput::checkKeyPressed(int keystate) {
     auto appWin = static_cast<GLFWwindow*>(app->getWindow());    
     auto key = glfwGetKey(appWin, keystate);
@@ -26,3 +31,5 @@ bool WindowInput::checkKeyRepeat(int keystate) {
     auto key = glfwGetKey(appWin, keystate);
     return key == GLFW_REPEAT;
 }
+
+WindowInput *WindowInput::InputManager = 0;

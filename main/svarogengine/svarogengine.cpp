@@ -49,6 +49,7 @@ void SvarogEngine::RunEngine() {
         matA.setFloat("xPOs", 0.5f);
         drawer2.drawFunc();
         glUseProgram(matA.shaderID);
+        
         SvarogWindow->OnUpdate();
     }
 }

@@ -5,6 +5,9 @@
 #include "core/events/event-types/mouseevent.h"
 #include "core/logger/LoggerGroup.h"
 
+EngineWindow* EngineWindow::getInstance() {
+    if(!winn) winn = new EngineWindow; return winn;
+}
 void* EngineWindow::getWindow() {
     return appWindow;
 }
@@ -67,9 +70,7 @@ void EngineWindow::SvarogAppLoop() {
     GladLoader::load_glad();
     WindowContext::load_gpu_info();
     VSYNC_func();
-    if(key_evt->size() > 0) {
-        set_notif();
-    }
+    
 
     if(appWindow == NULL) {
         std::cout << "SVAROG_WINDOW IS NULL, ENDING NOW" << std::endl;
@@ -87,10 +88,9 @@ void EngineWindow::SvarogAppLoop() {
                 { 
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_press");
                     KeyEvent evt(static_cast<int>(key));
-                    key_evt_ptr->enqueue_temp(KeyEvent(static_cast<unsigned int>(key)));
-                    key_evt_ptr->set_notif();
                     evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
+                    key_evt_ptr->test(evt.get_keybind_ascii_code());
                     break;
                 }
 
@@ -170,10 +170,12 @@ void EngineWindow::SvarogAppLoop() {
     glfwSetFramebufferSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int w, int h) {
         EngineWindow* frm_bfer_cb = (EngineWindow*)glfwGetWindowUserPointer(window);        
         glfwGetFramebufferSize(window, &w, &h);
-        glViewport(0, 9000, w, h);
+        glViewport(0, 0, w, h);
     });
 
     glfwSetWindowPosCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int xpos, int ypos) {
         EngineWindow* scle_bfer_cb = (EngineWindow*)glfwGetWindowUserPointer(window);
     });
 }
+
+EngineWindow *EngineWindow::winn = 0;

@@ -5,7 +5,10 @@
 #include "macrodefs.h"
 
 class WindowInput : public Keyboard{
+    private: 
+        static WindowInput* InputManager;
     public: 
+        static WindowInput* getSingleton();
         WindowInput() : Keyboard() {}
     protected: 
         virtual bool checkKeyPressed(int keycode) override;

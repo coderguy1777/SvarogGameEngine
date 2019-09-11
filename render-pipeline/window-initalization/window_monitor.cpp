@@ -21,7 +21,6 @@ bool WindowMonitor::get_monitor_connection() {
 void WindowMonitor::init_monitor() {
     win_monitor->monitor = glfwGetPrimaryMonitor();
     if(static_cast<GLFWmonitor*>(win_monitor->monitor) != NULL) {
-        spdlog::info("********************************************************");
         spdlog::info("Monitor Success loading...");
         spdlog::info("Monitor Name: {}", get_monitor_name());
     }

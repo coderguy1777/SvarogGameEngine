@@ -12,11 +12,12 @@ class SvarogEngine {
     private:
         EngineWindow* SvarogWindow;
         WindowMonitor* svarog_monitor;
+        WindowInput* Input;
     public:
 
-
         SvarogEngine() {
-            SvarogWindow = new EngineWindow();
+            Input = WindowInput::getSingleton();
+            SvarogWindow = EngineWindow::getInstance();
             svarog_monitor = new WindowMonitor();
             SvarogWindow->set_bool_state();
         }
@@ -26,9 +27,5 @@ class SvarogEngine {
         void InitContext();
         void InitMonitor();
         void RunEngine();
-        void * operator new(size_t size) {
-            void * win = ::new EngineWindow();
-            return win;
-        }
 };
 #endif

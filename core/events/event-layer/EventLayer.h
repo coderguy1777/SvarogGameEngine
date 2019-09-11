@@ -14,11 +14,8 @@ struct LayerID {
 
 class EventLayer {
     private:
-        Stack<LayerStack<Event, int, float>>*evt_layer;
-        std::unique_ptr<Event>et;
     public:
         EventLayer() {
-            evt_layer = new Stack<LayerStack<Event, int, float>>();
         }
 };
 #endif

@@ -9,6 +9,7 @@
 #include "core/ds-classes/Queue.h"
 #include "main/shapes/shape.h"
 #include "core/events/Event.h"
+#include "core/Input/WindowInput.h"
 #include "core/events/event-listeners/EventListener.h"
 #include "core/events/event-dispatchers/KeyEventDispatcher.h"
 #include "main/materials/material.h"
@@ -24,18 +25,36 @@
 
 class EngineWindow {
     private:
+        bool isVsyncOn;
+        GLFWwindow* appWindow;
+        GLFWmonitor* moni;
+        WindowInput* Input = WindowInput::getSingleton();
+        WindowProp window;
+        static EngineWindow* winn;
         mutable bool engine_state;
+        EngineWindow() {}
+
     public: 
 
         Window winA;
-        EngineWindow() {}
 
         ~EngineWindow() {
             end();
         }
 
+        static EngineWindow* getInstance();
         void* getWindow();
         void reset_bool_state();
+
+        int call_back(int a) {
+            return a;
+        }
+
+        void test(int a) {
+            if(Input->isKeyPressed(a)) {
+                spdlog::info("Key pressed: {}", a);
+            }
+        }
         void set_bool_state();
         bool get_state() const;
         void end();
@@ -48,10 +67,4 @@ class EngineWindow {
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();
-
-    private: 
-        bool isVsyncOn;
-        GLFWwindow* appWindow;
-        GLFWmonitor* moni;
-        WindowProp window;
 };
