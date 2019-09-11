@@ -5,6 +5,11 @@
 #include "core/events/event-types/mouseevent.h"
 #include "core/logger/LoggerGroup.h"
 
+
+WindowInput* EngineWindow::getInputInstance() {
+    return WindowInput::getSingleton();
+}
+
 EngineWindow* EngineWindow::getInstance() {
     if(!winn) winn = new EngineWindow; return winn;
 }
@@ -62,6 +67,7 @@ void EngineWindow::VSYNC_func() {
     }
 }
 
+
 void EngineWindow::SvarogAppLoop() {
     WindowContext::init_glfw();
     WindowContext::create_context(appWindow);
@@ -90,7 +96,6 @@ void EngineWindow::SvarogAppLoop() {
                     KeyEvent evt(static_cast<int>(key));
                     evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
-                    key_evt_ptr->test(evt.get_keybind_ascii_code());
                     break;
                 }
 

@@ -73,6 +73,8 @@ add_executable(SvarogGameEngine
         core/Input/mousecodes.h
         core/Input/WindowInput.h 
         core/Input/WindowInput.cpp
+        core/Input/InputManager.h
+        core/Input/InputManager.cpp
         core/Point.h
         core/String.cpp
         core/String.h
