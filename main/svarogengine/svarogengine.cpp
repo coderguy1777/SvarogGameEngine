@@ -30,6 +30,8 @@ void SvarogEngine::RunEngine() {
         1, 2, 3,
         0, 1, 2,
     };
+
+
     std::vector<float>vertexdata;
     std::vector<unsigned int>posdata;
     for(int i = 0; i < 18; i++) {
@@ -39,7 +41,6 @@ void SvarogEngine::RunEngine() {
     for(int j = 0; j < 9; j++) {
         posdata.push_back(poss[j]);
     }
-    
     Shape drawer2(vertexdata, posdata);
     drawer2.noEBO();
 
@@ -49,7 +50,6 @@ void SvarogEngine::RunEngine() {
         matA.setFloat("xPOs", 0.5f);
         drawer2.drawFunc();
         glUseProgram(matA.shaderID);
-        
         SvarogWindow->OnUpdate();
     }
 }

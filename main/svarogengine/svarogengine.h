@@ -13,14 +13,14 @@ class SvarogEngine {
         EngineWindow* SvarogWindow;
         WindowMonitor* svarog_monitor;
         WindowInput* Input;
-        InputManager* manager;
+        InputMG* manager;
     public:
 
         SvarogEngine() {
             Input = WindowInput::getSingleton();
             SvarogWindow = EngineWindow::getInstance();
             svarog_monitor = new WindowMonitor();
-            manager = InputManager::getMangerInstance();
+            manager = InputMG::getManagerInstance();
             SvarogWindow->set_bool_state();
         }
 

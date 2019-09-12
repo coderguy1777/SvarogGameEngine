@@ -26,8 +26,15 @@ template<class S>
 bool Stack<S>::isEmpty() {
     return (stack.size() == 0) ? true : false;
 } 
+
+template<class S>
+int Stack<S>::size() const {
+    return stack.size();
+}
+
 TMP_TYPE(Stack, Queue<Event*>*);
 TMP_TYPE(Stack, Event);
+TMP_TYPE(Stack, KeyEvent);
 TMP_TYPE(Stack, Event*);
 TMP_TYPE(Stack, double);
 TMP_TYPE(Stack, float);

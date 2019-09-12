@@ -3,9 +3,6 @@
 #include "main/window/window.h"
 #include "main/enginewindow/enginewindow.h"
 #include "core/events/event-types/mouseevent.h"
-#include "core/logger/LoggerGroup.h"
-
-
 WindowInput* EngineWindow::getInputInstance() {
     return WindowInput::getSingleton();
 }
@@ -61,7 +58,6 @@ void EngineWindow::VSYNC_func() {
     auto vsync_check = isVSYNCon();
     if(vsync_check) {
         glfwSwapInterval(1);
-        std::cout << "VSYNC on!" << std::endl;
     } else if(!vsync_check) {
         glfwSwapInterval(0);
     }
@@ -168,7 +164,6 @@ void EngineWindow::SvarogAppLoop() {
 
     glfwSetCharCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, unsigned int keycode) {
         EngineWindow* key_typed_mg = (EngineWindow*)glfwGetWindowUserPointer(window);
-        spdlog::info("Key typed: {}" , keycode);
     });
 
     // TODO: fix rendering bug with frame buffer callback.

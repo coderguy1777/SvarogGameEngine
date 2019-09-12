@@ -6,6 +6,7 @@
 #include "core/String.h"
 #include "ArrayList.h"
 #include "core/events/Event.h"
+#include "core/events/event-types/keyevent.h"
 #include "macrodefs.h"
 #include <stack>
 template<class S>
@@ -19,5 +20,6 @@ class Stack {
         void clear();
         void push(S const& item);
         void pop();
+        int size() const;
 };
 #endif
