@@ -10,22 +10,18 @@
 #include "main/enginewindow/enginewindow.h"
 class SvarogEngine {
     private:
-        EngineWindow* SvarogWindow;
+        static SvarogEngine* engine_instance;
+       // EngineWindow* SvarogWindow;
         WindowMonitor* svarog_monitor;
         WindowInput* Input;
         InputMG* manager;
     public:
-
         SvarogEngine() {
-            Input = WindowInput::getSingleton();
-            SvarogWindow = EngineWindow::getInstance();
             svarog_monitor = new WindowMonitor();
             manager = InputMG::getManagerInstance();
-            SvarogWindow->set_bool_state();
         }
-
+        static SvarogEngine* getInstanceEngine();
         
-        EngineWindow* getEngineWindowWindow() const;
         void InitContext();
         void InitMonitor();
         void RunEngine();

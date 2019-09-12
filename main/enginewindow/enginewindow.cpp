@@ -3,6 +3,7 @@
 #include "main/window/window.h"
 #include "main/enginewindow/enginewindow.h"
 #include "core/events/event-types/mouseevent.h"
+
 WindowInput* EngineWindow::getInputInstance() {
     return WindowInput::getSingleton();
 }
@@ -16,6 +17,10 @@ void* EngineWindow::getWindow() {
 
 void EngineWindow::reset_bool_state() {
     engine_state = false;
+}
+
+int EngineWindow::get_size() {
+    return KeyMap::getMapInstance()->map_size();
 }
 
 void EngineWindow::set_bool_state() {
@@ -92,6 +97,8 @@ void EngineWindow::SvarogAppLoop() {
                     KeyEvent evt(static_cast<int>(key));
                     evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
+                    KeyMap::getMapInstance()->set_key_pair(new key_pair( {static_cast<unsigned int>(key), true}));
+                    std::cout << KeyMap::getMapInstance()->map_size() << std::endl;
                     break;
                 }
 

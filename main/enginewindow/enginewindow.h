@@ -16,6 +16,7 @@
 #include "main/materials/material.h"
 #include "core/ds-classes/Array.h"
 #include "core/ds-classes/Stack.h"
+#include "core/Input/keymap.h"
 #include "core/events/event-types/mouseevent.h"
 #include "core/events/event-types/keyevent.h"
 #include "core/events/event-dispatchers/EventDispatch.h"
@@ -36,9 +37,10 @@ class EngineWindow {
         GLFWmonitor* moni;
         bool isVsyncOn;
         int state;
-        mutable bool engine_state;
-
-        EngineWindow() { }
+        mutable bool engine_state = true;
+        EngineWindow() {
+            set_bool_state();
+        }
 
     public: 
         Window winA;
@@ -51,15 +53,24 @@ class EngineWindow {
 
         void* getWindow();
         void reset_bool_state();
-
+        void set_statee() {
+            state = KeyMap::getMapInstance()->map_size();
+        }
+        int get_statee() const {
+            return state;
+        }
         void set_bool_state();
         bool get_state() const;
         void end();
         void OnUpdate();
         void VSYNC_on();
+        int get_size();
         void VSYNC_off();
         bool isVSYNCon();
         void VSYNC_func();
+        int size_mp() {
+            return KeyMap::getMapInstance()->map_size();
+        }
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();

@@ -1,10 +1,12 @@
 #include "svarogengine.h"
-EngineWindow* SvarogEngine::getEngineWindowWindow() const {
-    return SvarogWindow;
+
+SvarogEngine* SvarogEngine::getInstanceEngine() {
+    if(!engine_instance) engine_instance = new SvarogEngine; return engine_instance;
 }
 
 void SvarogEngine::InitContext() {
-    SvarogWindow->VSYNC_on();
+    EngineWindow::getInstance()->VSYNC_on();
+    EngineWindow::getInstance()->set_statee();
 }
 
 void SvarogEngine::InitMonitor() {
@@ -12,9 +14,10 @@ void SvarogEngine::InitMonitor() {
 }
 
 void SvarogEngine::RunEngine() {
-    SvarogWindow->SvarogAppLoop();
+    EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
     InitMonitor();
+
     Material matA("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl", "/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 
@@ -44,12 +47,14 @@ void SvarogEngine::RunEngine() {
     Shape drawer2(vertexdata, posdata);
     drawer2.noEBO();
 
-    while(SvarogWindow->get_state()) {
+    while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         matA.setFloat("xPOs", 0.5f);
         drawer2.drawFunc();
         glUseProgram(matA.shaderID);
-        SvarogWindow->OnUpdate();
+        EngineWindow::getInstance()->OnUpdate();
     }
 }
+
+SvarogEngine* SvarogEngine::engine_instance = 0;

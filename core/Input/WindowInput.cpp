@@ -10,9 +10,9 @@ WindowInput* WindowInput::getSingleton() {
 
 bool WindowInput::checkKeyPressed(int keystate) {
     auto key_needed = keystate;
-    auto appWin = static_cast<GLFWwindow*>(app->getWindow());    
+    auto appWin = static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow());
     auto key = glfwGetKey(appWin, keystate);
-    return (key == GLFW_PRESS && keystate == key_needed) ? true : false;
+    return (key == GLFW_PRESS) || (key == GLFW_RELEASE);
 }
 
 bool WindowInput::checkKeyReleased(int keystate) {
