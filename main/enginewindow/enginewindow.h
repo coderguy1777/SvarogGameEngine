@@ -53,12 +53,6 @@ class EngineWindow {
 
         void* getWindow();
         void reset_bool_state();
-        void set_statee() {
-            state = KeyMap::getMapInstance()->map_size();
-        }
-        int get_statee() const {
-            return state;
-        }
         void set_bool_state();
         bool get_state() const;
         void end();
