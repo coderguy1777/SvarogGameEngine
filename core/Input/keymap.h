@@ -4,6 +4,7 @@
 #include<map>
 #include<unordered_map>
 #include "core/String.h"
+#include <iostream>
 #include "macrodefs.h"
 
 
@@ -14,11 +15,12 @@ typedef struct  {
 } key_pair;
 class KeyMap {
     private:
-        std::unordered_map<unsigned int, bool>key_states;
+        std::map<unsigned int, bool>key_states;
         static KeyMap* key_mp;
-        KeyMap(){}
-    public: 
+                KeyMap(){}
+    public:
         static KeyMap* getMapInstance();
+
         void set_key_pair(key_pair* key);
         void change_key_pair(key_pair* new_pair);
         key_pair get_key_state(unsigned int key_id);

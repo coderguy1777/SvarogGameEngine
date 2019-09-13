@@ -1,12 +1,14 @@
 #include "svarogengine.h"
-
 SvarogEngine* SvarogEngine::getInstanceEngine() {
     if(!engine_instance) engine_instance = new SvarogEngine; return engine_instance;
 }
 
+void SvarogEngine::is_check() {
+
+}
+
 void SvarogEngine::InitContext() {
     EngineWindow::getInstance()->VSYNC_on();
-    EngineWindow::getInstance()->set_statee();
 }
 
 void SvarogEngine::InitMonitor() {
@@ -17,7 +19,6 @@ void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
     InitMonitor();
-
     Material matA("/home/jordan/Documents/SvarogGameEngine/main/shaders/VertexShader.glsl", "/home/jordan/Documents/SvarogGameEngine/main/shaders/FragmentShader.glsl");
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 
@@ -34,7 +35,6 @@ void SvarogEngine::RunEngine() {
         0, 1, 2,
     };
 
-
     std::vector<float>vertexdata;
     std::vector<unsigned int>posdata;
     for(int i = 0; i < 18; i++) {
@@ -46,7 +46,7 @@ void SvarogEngine::RunEngine() {
     }
     Shape drawer2(vertexdata, posdata);
     drawer2.noEBO();
-
+    
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);

@@ -5,8 +5,7 @@
 #include<glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include <spdlog/spdlog.h>
-#include<spdlog/logger.h>
+#include "spdlog/spdlog.h"
 #include "core/ds-classes/Queue.h"
 #include "main/shapes/shape.h"
 #include "core/events/Event.h"
@@ -25,10 +24,9 @@
 #include "render-pipeline/window-initalization/window_update.h"
 #include "render-pipeline/window-initalization/window_monitor.h"
 #include "render-pipeline/window-initalization/glad_loader.h"
+#include "render-pipeline/shader/VertexShader.h"
 #include "core/Input/InputManager.h"
-
-class EngineWindow {
-    
+class EngineWindow {    
     private:
         static EngineWindow* winn;
         WindowInput* Input = WindowInput::getSingleton();
@@ -37,20 +35,17 @@ class EngineWindow {
         GLFWmonitor* moni;
         bool isVsyncOn;
         int state;
-        mutable bool engine_state = true;
-        EngineWindow() {
-            set_bool_state();
-        }
+        mutable bool engine_state;
+        EngineWindow() { }
 
     public: 
+        KeyMap* map_tst = KeyMap::getMapInstance();
         Window winA;
         static EngineWindow* getInstance();
-        static WindowInput* getInputInstance();
-        
         ~EngineWindow() {
             end();
         }
-
+        
         void* getWindow();
         void reset_bool_state();
         void set_bool_state();
@@ -62,9 +57,6 @@ class EngineWindow {
         void VSYNC_off();
         bool isVSYNCon();
         void VSYNC_func();
-        int size_mp() {
-            return KeyMap::getMapInstance()->map_size();
-        }
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();

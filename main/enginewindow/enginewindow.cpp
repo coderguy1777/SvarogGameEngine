@@ -3,24 +3,17 @@
 #include "main/window/window.h"
 #include "main/enginewindow/enginewindow.h"
 #include "core/events/event-types/mouseevent.h"
-
-WindowInput* EngineWindow::getInputInstance() {
-    return WindowInput::getSingleton();
-}
-
 EngineWindow* EngineWindow::getInstance() {
     if(!winn) winn = new EngineWindow; return winn;
 }
+
 void* EngineWindow::getWindow() {
     return appWindow;
 }
 
+
 void EngineWindow::reset_bool_state() {
     engine_state = false;
-}
-
-int EngineWindow::get_size() {
-    return KeyMap::getMapInstance()->map_size();
 }
 
 void EngineWindow::set_bool_state() {
@@ -67,9 +60,18 @@ void EngineWindow::VSYNC_func() {
         glfwSwapInterval(0);
     }
 }
-
+bool check(int a) {
+    bool b;
+    GLFWwindow* win = static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow());
+    int state = glfwGetKey(win, a);
+    if(state==GLFW_PRESS) {
+        b = true;
+    }
+    return b;
+}
 
 void EngineWindow::SvarogAppLoop() {
+    set_bool_state();
     WindowContext::init_glfw();
     WindowContext::create_context(appWindow);
     appWindow = glfwCreateWindow((int)winA.getWidth(), (int)winA.getHeight(), (const char*)winA.getTitle().str, NULL, NULL);
@@ -77,7 +79,7 @@ void EngineWindow::SvarogAppLoop() {
     GladLoader::load_glad();
     WindowContext::load_gpu_info();
     VSYNC_func();
-    
+
 
     if(appWindow == NULL) {
         std::cout << "SVAROG_WINDOW IS NULL, ENDING NOW" << std::endl;
@@ -85,20 +87,16 @@ void EngineWindow::SvarogAppLoop() {
     }
 
     glfwSetWindowUserPointer(static_cast<GLFWwindow*>(this->getWindow()), this);
+    glfwSetInputMode(appWindow, GLFW_STICKY_KEYS, 1);
     glfwSetKeyCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int key, int action, int scancode, int mods) {
-        EngineWindow* key_evt_ptr = (EngineWindow*)glfwGetWindowUserPointer(window);
+        EngineWindow* key_evt_ptr = static_cast<EngineWindow*>(glfwGetWindowUserPointer(window));
         switch(scancode) {
-            /*
-                keep everything here, as glfw uses it
-            */
             case GLFW_PRESS:
                 { 
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_press");
                     KeyEvent evt(static_cast<int>(key));
                     evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
-                    KeyMap::getMapInstance()->set_key_pair(new key_pair( {static_cast<unsigned int>(key), true}));
-                    std::cout << KeyMap::getMapInstance()->map_size() << std::endl;
                     break;
                 }
 
@@ -123,7 +121,6 @@ void EngineWindow::SvarogAppLoop() {
                 }
         }
     });
-
     // TODO: make an event dispatching system for mouse events.
     glfwSetMouseButtonCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int button, int action, int mods) {
         EngineWindow* mouse_evt_ptr = (EngineWindow*)glfwGetWindowUserPointer(window);

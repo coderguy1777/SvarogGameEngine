@@ -14,14 +14,13 @@ class SvarogEngine {
        // EngineWindow* SvarogWindow;
         WindowMonitor* svarog_monitor;
         WindowInput* Input;
-        InputMG* manager;
     public:
+        int a;
         SvarogEngine() {
             svarog_monitor = new WindowMonitor();
-            manager = InputMG::getManagerInstance();
         }
         static SvarogEngine* getInstanceEngine();
-        
+        void is_check();
         void InitContext();
         void InitMonitor();
         void RunEngine();

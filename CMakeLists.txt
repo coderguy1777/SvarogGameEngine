@@ -37,6 +37,11 @@ add_executable(SvarogGameEngine
         render-pipeline/window-initalization/window_update.cpp
         render-pipeline/window-initalization/window_monitor.h
         render-pipeline/window-initalization/window_monitor.cpp
+        render-pipeline/shader\/SvarogShader.h
+        render-pipeline/shader/VertexShader.h 
+        render-pipeline/shader/VertexShader.cpp 
+        render-pipeline/shader/FragmentShader.h
+        render-pipeline/shader/FragmentShader.cpp
         core/ds-classes/Array.h
         core/ds-classes/ArrayList.h
         core/ds-classes/Node.h
