@@ -9,6 +9,8 @@ class FragmentShader : public SvarogShader {
         virtual bool get_use_state() const override;
         virtual void init_state(unsigned int state) override;
         virtual unsigned int get_initstate() const override;
-        virtual unsigned int compile_shader() override;
+        virtual void set_code(const char* code) override;
+        virtual const char* get_code() const override;
+        virtual void compile_shader() override;
 };
 #endif
