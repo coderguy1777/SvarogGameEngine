@@ -31,5 +31,6 @@ class SvarogShader {
         virtual void set_code(const char* code) = 0;
         virtual const char* get_code() const = 0;
         virtual void compile_shader() = 0;
+        virtual unsigned int get_shader_id() = 0;
 };
 #endif

@@ -12,5 +12,7 @@ class FragmentShader : public SvarogShader {
         virtual void set_code(const char* code) override;
         virtual const char* get_code() const override;
         virtual void compile_shader() override;
+        virtual unsigned int get_shader_id() override;
+        ~FragmentShader();
 };
 #endif

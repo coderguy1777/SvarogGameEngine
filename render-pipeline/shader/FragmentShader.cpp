@@ -44,5 +44,24 @@ void FragmentShader::compile_shader() {
         glShaderSource(shader_f, 1, &code, nullptr);
         glCompileShader(shader_f);
         s_code.success_state = 1;
+        int success;
+        char info[512];
+        glGetShaderiv(shader_f, GL_COMPILE_STATUS, &success);
+        if(success) {
+            glGetShaderInfoLog(shader_f, 512, NULL, info);
+            spdlog::info("Shader name: {}", (static_cast<SHADER_TYPE>(get_initstate()) == SHADER_TYPE::FRAG_SHADER) ? static_cast<const char*>("Vertex shader") : 
+            static_cast<const char*>("ERROR: SHADER_TYPE_INVALID."));
+
+        } else if(!success) {
+
+        }
     }
+}
+
+unsigned int FragmentShader::get_shader_id() {
+    return shader_f;
+}
+
+FragmentShader::~FragmentShader() {
+    glDeleteShader(shader_f);
 }

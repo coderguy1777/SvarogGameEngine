@@ -45,5 +45,24 @@ void VertexShader::compile_shader() {
         glShaderSource(shader_v, 1, &code, nullptr);
         glCompileShader(shader_v);
         s_code.success_state = 1;
+        int success;
+        char info[512];
+        glGetShaderiv(shader_v, GL_COMPILE_STATUS, &success);
+        if(!success) {
+            glGetShaderInfoLog(shader_v, 512, NULL, info);
+            spdlog::info("Shader name: {}", (static_cast<SHADER_TYPE>(get_initstate()) == SHADER_TYPE::VERT_SHADER) ? static_cast<const char*>("Vertex shader") : 
+            static_cast<const char*>("ERROR: SHADER_TYPE_INVALID."));
+        } else {
+            spdlog::info("SHADER FAILURE");
+            exit(0);
+        }
     }
+}
+
+unsigned int VertexShader::get_shader_id() {
+    return shader_v;
+}
+
+VertexShader::~VertexShader() {
+    glDeleteShader(shader_v);
 }
