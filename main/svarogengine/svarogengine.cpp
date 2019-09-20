@@ -22,21 +22,14 @@ void SvarogEngine::RunEngine() {
     VertexShader * vert_mat = new VertexShader();
     vert_mat->init_state(2);
     vert_mat->set_use_state();
-    vert_mat->set_code("#version 400\nlayout (location=0) in vec3 aPos;\nvoid main() {\n\tgl_Position = vec4(aPos, 1.0);\n}");
+    vert_mat->set_code("#version 400\nlayout (location=0) in vec3 aPos;\nvoid main() {\n\tgl_Position =aPos;\n}");
     FragmentShader * frag_mat = new FragmentShader();
     frag_mat->init_state(1);
     frag_mat->set_use_state();
-    frag_mat->set_code("#version 130\nout vec4 frag_colour;\nvoid main(void) {\n\tfrag_colour=vec4(1.0, 1.0, 1.0, 0.0);\n};");
+    frag_mat->set_code("#version 400\nout vec4 frag_colour; uniform vec4 color_tst;\nvoid main() {\n\tcolor_tst = vec4(1.0, 1.0, 0.0, 1.0);\n\tfrag_colour=color_tst;\n};");
     vert_mat->compile_shader();
     frag_mat->compile_shader();
-
     GLuint shader_test = glCreateProgram();
-    unsigned int x_pos = glGetAttribLocation(shader_test, "xPOs");
-    glUniform1i(x_pos, 1.3f);
-    if(!x_pos) {
-        spdlog::error("X_POS_FAIL");
-        exit(0);
-    }
     glAttachShader(shader_test, vert_mat->get_shader_id());
     glAttachShader(shader_test, frag_mat->get_shader_id());
     glLinkProgram(shader_test);
@@ -83,6 +76,8 @@ void SvarogEngine::RunEngine() {
         glUseProgram(shader_test);
         EngineWindow::getInstance()->OnUpdate();
     }
+    glDeleteShader(vert_mat->get_shader_id());
+    glDeleteShader(frag_mat->get_shader_id());
 }
 
 SvarogEngine* SvarogEngine::engine_instance = 0;

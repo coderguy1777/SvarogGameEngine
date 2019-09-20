@@ -41,7 +41,6 @@ void VertexShader::compile_shader() {
     */
     //shader_v = glCreateShader(GL_VERTEX_SHADER);
     bool code_check = (get_code() == "")  ? true : false;
-    spdlog::warn(get_code());
     if(code_check) {
         spdlog::info("ERROR, NO SHADER CODE SPECIFIED. (VERT)");
         exit(0);

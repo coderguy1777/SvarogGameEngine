@@ -41,6 +41,7 @@ void FragmentShader::compile_shader() {
         s_code.success_state = 0;
     } else if(!code_check) {
         const char* code = s_code.shader_code;
+        glGetError();
         glShaderSource(shader_f, 1, &code, nullptr);
         glCompileShader(shader_f);
         s_code.success_state = 1;

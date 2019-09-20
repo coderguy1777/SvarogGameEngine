@@ -33,6 +33,9 @@ class Shape {
 
     private: 
         GLuint VAO, VBO, EBO;
+        bool needEBO;
+        std::vector<float>VertexData;
+        std::vector<unsigned int>PositionData;
         void createMesh() {
             bool eboCheck = checkEBONEED();
             if(eboCheck == true) {
@@ -62,9 +65,6 @@ class Shape {
                 glBindVertexArray(0);
             }
         }
-        bool needEBO;
-        std::vector<float>VertexData;
-        std::vector<unsigned int>PositionData;
 
 };
 #endif
