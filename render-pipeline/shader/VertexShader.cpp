@@ -58,7 +58,7 @@ void VertexShader::compile_shader() {
             glGetShaderInfoLog(shader_v, 512, NULL, info);
             spdlog::info("Shader name: {}", "VERTEX_SHADER");
         } else {
-            std::cout << info << '\n';
+            std::cout << info[0] << '\n';
             exit(0);
         }
     }

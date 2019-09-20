@@ -3,6 +3,8 @@ project(SvarogGameEngine)
 
 set(CMAKE_CXX_STANDARD 14)
 set(SOURCE_FILES glad.c main.cpp)
+set(GCC_COVERAGE_COMPILE_FLAGS, "-DCMAKE_BUILD_TYPE=DEBUG")
+set(GCC_COVERAGE_COMPILE_FLAGS, "-Wno-dev")
 include_directories(.)
 include_directories(glad)
 include_directories(core)
