@@ -1,4 +1,5 @@
 #include "VertexShader.h"
+#include<iostream>
 void VertexShader::set_use_state() {
     flags.is_used = true;
 }
@@ -34,14 +35,19 @@ unsigned int VertexShader::get_initstate() const {
 }
 
 void VertexShader::compile_shader() {
-    shader_v = glCreateShader(GL_VERTEX_SHADER);
-    bool code_check = (get_code() != "") ? true : false;
+    /*
+        causes problem of making shader initalized when already created in svarog shader parent 
+        class.
+    */
+    //shader_v = glCreateShader(GL_VERTEX_SHADER);
+    bool code_check = (get_code() == "")  ? true : false;
+    spdlog::warn(get_code());
     if(code_check) {
-        spdlog::info("ERROR, NO SHADER CODE SPECIFIED.");
+        spdlog::info("ERROR, NO SHADER CODE SPECIFIED. (VERT)");
         exit(0);
         s_code.success_state = 0;
     } else if(!code_check) {
-        const char* code = get_code();
+        const char* code = s_code.shader_code;
         glShaderSource(shader_v, 1, &code, nullptr);
         glCompileShader(shader_v);
         s_code.success_state = 1;
@@ -50,10 +56,9 @@ void VertexShader::compile_shader() {
         glGetShaderiv(shader_v, GL_COMPILE_STATUS, &success);
         if(!success) {
             glGetShaderInfoLog(shader_v, 512, NULL, info);
-            spdlog::info("Shader name: {}", (static_cast<SHADER_TYPE>(get_initstate()) == SHADER_TYPE::VERT_SHADER) ? static_cast<const char*>("Vertex shader") : 
-            static_cast<const char*>("ERROR: SHADER_TYPE_INVALID."));
+            spdlog::info("Shader name: {}", "VERTEX_SHADER");
         } else {
-            spdlog::info("SHADER FAILURE");
+            std::cout << info << '\n';
             exit(0);
         }
     }

@@ -21,7 +21,8 @@ struct Shader_Code {
 
 class SvarogShader {
     public: 
-        unsigned int shader_f, shader_v;
+        unsigned int shader_f = glCreateShader(GL_FRAGMENT_SHADER);
+        unsigned int shader_v = glCreateShader(GL_VERTEX_SHADER);
         Shader_Flags flags;
         Shader_Code s_code;
         virtual void set_use_state() = 0;

@@ -34,13 +34,13 @@ unsigned int FragmentShader::get_initstate() const {
 }
 
 void FragmentShader::compile_shader() {
-    shader_f = glCreateShader(GL_FRAGMENT_SHADER);
-    bool code_check = (get_code() != "") ? true : false;
+    //shader_f = glCreateShader(GL_FRAGMENT_SHADER);
+    bool code_check = (get_code() == "") ? true : false;
     if(code_check) {
-        spdlog::info("ERROR, NO FRAG_SHADER CODE.");
+        spdlog::info("ERROR, NO FRAG_SHADER CODE. (FRAG)");
         s_code.success_state = 0;
     } else if(!code_check) {
-        const char* code = get_code();
+        const char* code = s_code.shader_code;
         glShaderSource(shader_f, 1, &code, nullptr);
         glCompileShader(shader_f);
         s_code.success_state = 1;
@@ -49,11 +49,11 @@ void FragmentShader::compile_shader() {
         glGetShaderiv(shader_f, GL_COMPILE_STATUS, &success);
         if(success) {
             glGetShaderInfoLog(shader_f, 512, NULL, info);
-            spdlog::info("Shader name: {}", (static_cast<SHADER_TYPE>(get_initstate()) == SHADER_TYPE::FRAG_SHADER) ? static_cast<const char*>("Vertex shader") : 
-            static_cast<const char*>("ERROR: SHADER_TYPE_INVALID."));
-
+            spdlog::info("Shader name: {}", "FRAG_SHADER");
         } else if(!success) {
-
+            spdlog::info("SHADER_FAILURE");
+            spdlog::info(info[0]);
+            exit(0);
         }
     }
 }
