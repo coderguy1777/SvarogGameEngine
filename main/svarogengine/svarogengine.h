@@ -7,6 +7,7 @@
 #include "main/shapes/shape.h"
 #include "render-pipeline/shader/FragmentShader.h"
 #include "render-pipeline/shader/VertexShader.h"
+#include "render-pipeline/shader/ShaderProgram.h"
 #include "math/vec3.h"
 #include "main/materials/material.h"
 #include "main/enginewindow/enginewindow.h"

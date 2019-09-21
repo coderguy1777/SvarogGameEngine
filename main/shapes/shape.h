@@ -10,9 +10,16 @@
 class Shape {
     public:
         // TODO: get pointers working for dynamic array size;
-        Shape(std::vector<float>VertData, std::vector<unsigned int>PosData):
-            VertexData(VertData), PositionData(PosData)
-        {createMesh();}
+        Shape(std::vector<float>VertData, std::vector<unsigned int>PosData) {
+            for(unsigned int i = 0; i < VertData.size(); i++) {
+                VertexData.push_back(VertData[i]);
+            }
+
+            for(unsigned int j = 0; j < PosData.size(); j++) {
+                PositionData.push_back(PosData[j]);
+            }
+            createMesh();
+        }
         Shape(){}
         
         void genVertexArrays();

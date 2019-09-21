@@ -19,29 +19,35 @@ void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
     InitMonitor();
-    VertexShader * vert_mat = new VertexShader();
-    vert_mat->init_state(2);
-    vert_mat->set_use_state();
-    vert_mat->set_code("#version 400\nlayout (location=0) in vec3 aPos;\nvoid main() {\n\tgl_Position =aPos;\n}");
-    FragmentShader * frag_mat = new FragmentShader();
-    frag_mat->init_state(1);
-    frag_mat->set_use_state();
-    frag_mat->set_code("#version 400\nout vec4 frag_colour; uniform vec4 color_tst;\nvoid main() {\n\tcolor_tst = vec4(1.0, 1.0, 0.0, 1.0);\n\tfrag_colour=color_tst;\n};");
-    vert_mat->compile_shader();
-    frag_mat->compile_shader();
-    GLuint shader_test = glCreateProgram();
-    glAttachShader(shader_test, vert_mat->get_shader_id());
-    glAttachShader(shader_test, frag_mat->get_shader_id());
-    glLinkProgram(shader_test);
-    int success;
-    char info[512];
-    glGetShaderiv(shader_test, GL_LINK_STATUS, &success);
-    if(!success) {
-        glGetProgramInfoLog(shader_test, 512, NULL, info);
-        spdlog::error("ERROR: SHADER_PROGRAM FAILURE");
-        glGetError();
-        EngineWindow::getInstance()->end();
-    }
+    static const char* shader_tst_1[] = {
+        "#version 400                           \n"
+        "layout (location=0) in vec3 aPos;      \n"
+        "void main() {                          \n"
+        "   gl_Position=aPos;                   \n"
+        "};                                     \n"
+    };
+
+    static const char* shader_tst_2[] = {
+        "#version 400                                               \n"
+        "layout (location=0) out vec3 frag_colour;                  \n"
+        "void main()                                                \n"
+        "{                                                          \n"
+        "   frag_colour=vec3(1.0, 1.0, 0.0);                        \n"
+        "};                                                         \n"
+    };
+
+    VertexShader vert_mat;
+    vert_mat.init_state(2);
+    vert_mat.set_use_state();
+    vert_mat.set_code(shader_tst_1);
+    FragmentShader frag_mat;
+    frag_mat.init_state(1);
+    frag_mat.set_use_state();
+    frag_mat.set_code(shader_tst_2);
+    vert_mat.compile_shader();
+    frag_mat.compile_shader();
+    ShaderProgram* test_1 = new ShaderProgram();
+    test_1->bind_shaders(vert_mat, frag_mat);
 
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 
@@ -73,11 +79,9 @@ void SvarogEngine::RunEngine() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         drawer2.drawFunc();
-        glUseProgram(shader_test);
+        glUseProgram(test_1->get_shader_id());
         EngineWindow::getInstance()->OnUpdate();
     }
-    glDeleteShader(vert_mat->get_shader_id());
-    glDeleteShader(frag_mat->get_shader_id());
 }
 
 SvarogEngine* SvarogEngine::engine_instance = 0;

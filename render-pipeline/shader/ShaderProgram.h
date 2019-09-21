@@ -27,7 +27,8 @@ class ShaderProgram {
         
         void set_state(int link_state);
         bool get_link_status() const;
-        void bind_shaders();
+        void bind_shaders(VertexShader vert, FragmentShader frag);\
+        unsigned int get_shader_id() const;
 
 };
 
