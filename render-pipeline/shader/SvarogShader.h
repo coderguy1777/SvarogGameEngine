@@ -15,7 +15,7 @@ struct Shader_Flags {
 };
 
 struct Shader_Code {
-    const char** shader_code;
+    const char* shader_code;
     unsigned int success_state;
 };
 
@@ -29,8 +29,8 @@ class SvarogShader {
         virtual bool get_use_state() const = 0;
         virtual void init_state(unsigned int state) = 0;
         virtual unsigned int get_initstate() const = 0;
-        virtual void set_code(const char** code) = 0;
-        virtual const char** get_code() const = 0;
+        virtual void set_code(const char* code) = 0;
+        virtual const char* get_code() const = 0;
         virtual void compile_shader() = 0;
         virtual unsigned int get_shader_id() = 0;
 };

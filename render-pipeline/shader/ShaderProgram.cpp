@@ -26,7 +26,6 @@ void ShaderProgram::bind_shaders(VertexShader vert, FragmentShader frag) {
         glGetProgramInfoLog(sh_prg->shader_id, 512, NULL, info);
         spdlog::error("SHADER_PROGRAM_FAILURE");
         glGetError();
-        exit(0);
     }
 }
 

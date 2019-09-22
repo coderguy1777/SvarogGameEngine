@@ -1,4 +1,5 @@
 #include "svarogengine.h"
+
 SvarogEngine* SvarogEngine::getInstanceEngine() {
     if(!engine_instance) engine_instance = new SvarogEngine; return engine_instance;
 }
@@ -19,22 +20,19 @@ void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
     InitMonitor();
-    static const char* shader_tst_1[] = {
-        "#version 400                           \n"
-        "layout (location=0) in vec3 aPos;      \n"
-        "void main() {                          \n"
-        "   gl_Position=aPos;                   \n"
-        "};                                     \n"
-    };
+    const char* shader_tst_1 = "#version 400\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "void main()\n"
+        "{\n"
+        "   gl_Position=vec4(aPos, 1.0);\n"
+        "}\n\0";
 
-    static const char* shader_tst_2[] = {
-        "#version 400                                               \n"
-        "layout (location=0) out vec3 frag_colour;                  \n"
-        "void main()                                                \n"
-        "{                                                          \n"
-        "   frag_colour=vec3(1.0, 1.0, 0.0);                        \n"
-        "};                                                         \n"
-    };
+    const char* shader_tst_2 ="#version 400\n"
+        "out vec4 frag_color;\n"
+        "void main()\n"
+        "{\n"
+        "   frag_color=vec4(1.0f, 1.0f, 0.0f, 1.0f);\n"
+        "}\n\0";
 
     VertexShader vert_mat;
     vert_mat.init_state(2);
@@ -82,6 +80,8 @@ void SvarogEngine::RunEngine() {
         glUseProgram(test_1->get_shader_id());
         EngineWindow::getInstance()->OnUpdate();
     }
+    glDeleteShader(vert_mat.get_shader_id());
+    glDeleteShader(frag_mat.get_shader_id());
 }
 
 SvarogEngine* SvarogEngine::engine_instance = 0;
