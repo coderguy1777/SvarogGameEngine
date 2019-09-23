@@ -25,6 +25,7 @@ class ArrayList {
         T Min (const T& a, const T& b);
         T lessThanEqual(const T& a, const T& b);
         T greaterThanEqual(const T& a, const T& b);
+        T front();
         void * operator new(size_t size) {
             void * p = :: new ArrayList<T>();
             return p;
@@ -39,6 +40,11 @@ void ArrayList<T>::set(int index, T const& item) {
 template<class T>
 void ArrayList<T>::add(T const& item) { 
     items.push_back(item);
+}
+
+template<class T>
+T ArrayList<T>::front() {
+    return items.front();
 }
 
 template<class T>

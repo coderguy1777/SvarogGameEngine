@@ -57,7 +57,20 @@ void SvarogEngine::RunEngine() {
         1, 2, 3,
         0, 1, 2,
     };
+    SvarogShape mesh_tst;
+    std::vector<float>a;
+    std::vector<unsigned int>b;
+    for(int i = 0; i < 18; i++) {
+        a.push_back(vertices[i]);
+    }
+    for(int j = 0; j < 9; j++) {
+        b.push_back(poss[j]);
+    }
+    mesh_tst.pass_position_data(b);
+    mesh_tst.pass_vert_data(a);
+    mesh_tst.end_binds();
 
+    /*
     std::vector<float>vertexdata;
     std::vector<unsigned int>posdata;
     for(int i = 0; i < 18; i++) {
@@ -67,12 +80,14 @@ void SvarogEngine::RunEngine() {
     for(int j = 0; j < 9; j++) {
         posdata.push_back(poss[j]);
     }
-    Shape drawer2(vertexdata, posdata);
-    drawer2.noEBO();
+    */
+    //Shape drawer2(vertexdata, posdata);
+    //drawer2.noEBO();
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        drawer2.drawFunc();
+        //drawer2.drawFunc();
+        mesh_tst.draw();
         glUseProgram(test_1->get_shader_id());
         EngineWindow::getInstance()->OnUpdate();
     }

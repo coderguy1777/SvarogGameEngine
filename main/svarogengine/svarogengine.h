@@ -8,6 +8,7 @@
 #include "render-pipeline/shader/FragmentShader.h"
 #include "render-pipeline/shader/VertexShader.h"
 #include "render-pipeline/shader/ShaderProgram.h"
+#include "render-pipeline/mesh/svarog_shape.h"
 #include "math/vec3.h"
 #include "main/materials/material.h"
 #include "main/enginewindow/enginewindow.h"

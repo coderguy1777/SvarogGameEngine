@@ -50,6 +50,8 @@ add_executable(SvarogGameEngine
         render-pipeline/shader/ShaderProgram.cpp
         render-pipeline/mesh/svarog_shape.h
         render-pipeline/mesh/svarog_shape.cpp
+        render-pipeline/mesh/svarog_renderobj.h
+        render-pipeline/mesh/svarog_renderobj.cpp
         core/ds-classes/Array.h
         core/ds-classes/ArrayList.h
         core/ds-classes/Node.h

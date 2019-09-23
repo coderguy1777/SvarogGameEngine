@@ -43,7 +43,6 @@ void VertexShader::compile_shader() {
     bool code_check = (get_code() == "")  ? true : false;
     if(code_check) {
         spdlog::info("ERROR, NO SHADER CODE SPECIFIED. (VERT)");
-        exit(0);
         s_code.success_state = 0;
     } else if(!code_check) {
         const char* code = s_code.shader_code;
