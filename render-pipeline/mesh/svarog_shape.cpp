@@ -77,25 +77,33 @@ void SvarogShape::ebo_buffer_gen() {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, data->pos_data.size() * sizeof(unsigned int), &data->pos_data.front(), GL_STATIC_DRAW);
 }
 
-void SvarogShape::end_binds() {
-    make_VAO();
-    make_VBO();
-    make_EBO();
-    bind_VAO();
-    glBindBuffer(GL_ARRAY_BUFFER, data->VBO);
-    glBufferData(GL_ARRAY_BUFFER, data->vert_data.size() * sizeof(float), &data->vert_data.front(), GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, data->EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, data->pos_data.size() * sizeof(unsigned int),&data->pos_data.front(), GL_STATIC_DRAW);
+void SvarogShape::attribs() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
-    spdlog::info("VAO OBJ: {}", get_VAO());
-    spdlog::info("EBO OBJ: {}", get_EBO());
+}
+
+void SvarogShape::init() {
+    make_VAO();
+    make_VBO();
+    make_EBO();
+    bind_VAO();
+    bind_VBO();
+    buffer_data_gen();
+    bind_EBO();
+    ebo_buffer_gen();
+    attribs();
 }
 
 void SvarogShape::draw() {
     glBindVertexArray(get_VAO());
     glDrawElements(GL_TRIANGLES, data->pos_data.size(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+}
+
+void SvarogShape::del_buffers() {
+    glDeleteVertexArrays(1, &data->VAO);
+    glDeleteBuffers(1, &data->VBO);
+    glDeleteBuffers(1, &data->EBO);
 }

@@ -5,6 +5,7 @@
 #include "core/ds-classes/Array.h"
 #include "core/ds-classes/ArrayList.h"
 #include "render-pipeline/gl_libs.h"
+#include "spdlog/spdlog.h"
 struct shape_data {
     std::vector<float>vert_data;
     std::vector<unsigned int>pos_data;
@@ -32,7 +33,9 @@ class SvarogShape {
         void bind_EBO();
         void buffer_data_gen();
         void ebo_buffer_gen();
-        void end_binds();
+        void attribs();
+        void init();
+        void del_buffers();
         void draw();
 
         void pass_vert_data(std::vector<float>vert_data);

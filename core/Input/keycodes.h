@@ -2,7 +2,6 @@
 #ifdef KEYCODES_H
 #define KEYCODES_H
 #endif
-#define SVAROG_KEY_ESC 27 // ESC Key
 #define SVAROG_KEY_SPACE 32 // Space Key
 #define SVAROG_KEY_EXCL_PT 33 // !
 #define SVAROG_KEY_QUOTATION 34 // refers to the " key
@@ -143,3 +142,4 @@
 #define SVAROG_KEY_FN_10 299
 #define SVAROG_KEY_FN_11 300
 #define SVAROG_KEY_FN_12 301
+#define SVAROG_KEY_ESC 256

@@ -366,6 +366,9 @@ std::string KeyEvent::get_keycode_char(unsigned int code) {
         case SVAROG_KEY_RGT_ALT:
             key = "R_ALT";
             break;
+        case SVAROG_KEY_ESC:
+            key = "ESC";
+            break;
         default:
             key = "ERROR_STATE";
             break;
