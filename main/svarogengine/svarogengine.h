@@ -22,7 +22,6 @@ class SvarogEngine {
             svarog_monitor = new WindowMonitor();
         }
         static SvarogEngine* getInstanceEngine();
-        void is_check();
         void InitContext();
         void InitMonitor();
         void RunEngine();

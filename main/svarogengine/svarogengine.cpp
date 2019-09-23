@@ -4,9 +4,6 @@ SvarogEngine* SvarogEngine::getInstanceEngine() {
     if(!engine_instance) engine_instance = new SvarogEngine; return engine_instance;
 }
 
-void SvarogEngine::is_check() {
-
-}
 
 void SvarogEngine::InitContext() {
     EngineWindow::getInstance()->VSYNC_on();
@@ -46,7 +43,6 @@ void SvarogEngine::RunEngine() {
     frag_mat.compile_shader();
     ShaderProgram* test_1 = new ShaderProgram();
     test_1->bind_shaders(vert_mat, frag_mat);
-
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 
         0.5f, -0.5f, -0.5f,

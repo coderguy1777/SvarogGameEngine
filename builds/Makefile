@@ -1068,6 +1068,33 @@ math/vec3.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/math/vec3.cpp.s
 .PHONY : math/vec3.cpp.s
 
+render-pipeline/mesh/svarog_shape.o: render-pipeline/mesh/svarog_shape.cpp.o
+
+.PHONY : render-pipeline/mesh/svarog_shape.o
+
+# target to build an object file
+render-pipeline/mesh/svarog_shape.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/svarog_shape.cpp.o
+.PHONY : render-pipeline/mesh/svarog_shape.cpp.o
+
+render-pipeline/mesh/svarog_shape.i: render-pipeline/mesh/svarog_shape.cpp.i
+
+.PHONY : render-pipeline/mesh/svarog_shape.i
+
+# target to preprocess a source file
+render-pipeline/mesh/svarog_shape.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/svarog_shape.cpp.i
+.PHONY : render-pipeline/mesh/svarog_shape.cpp.i
+
+render-pipeline/mesh/svarog_shape.s: render-pipeline/mesh/svarog_shape.cpp.s
+
+.PHONY : render-pipeline/mesh/svarog_shape.s
+
+# target to generate assembly for a file
+render-pipeline/mesh/svarog_shape.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/svarog_shape.cpp.s
+.PHONY : render-pipeline/mesh/svarog_shape.cpp.s
+
 render-pipeline/shader/FragmentShader.o: render-pipeline/shader/FragmentShader.cpp.o
 
 .PHONY : render-pipeline/shader/FragmentShader.o
@@ -1371,6 +1398,9 @@ help:
 	@echo "... math/vec3.o"
 	@echo "... math/vec3.i"
 	@echo "... math/vec3.s"
+	@echo "... render-pipeline/mesh/svarog_shape.o"
+	@echo "... render-pipeline/mesh/svarog_shape.i"
+	@echo "... render-pipeline/mesh/svarog_shape.s"
 	@echo "... render-pipeline/shader/FragmentShader.o"
 	@echo "... render-pipeline/shader/FragmentShader.i"
 	@echo "... render-pipeline/shader/FragmentShader.s"
