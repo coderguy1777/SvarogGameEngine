@@ -80,6 +80,12 @@ void SvarogShape::ebo_buffer_gen() {
 void SvarogShape::attribs() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+    /* 
+        quick note: the use of glEnableVertexAttribArray(1); gives access 
+        to the fragment shader.
+    */ 
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3* sizeof(float)));
+    glEnableVertexAttribArray(1);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }

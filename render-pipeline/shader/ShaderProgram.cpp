@@ -1,5 +1,4 @@
 #include "ShaderProgram.h"
-
 void ShaderProgram::set_state(int link_state) {
     sh_prg->link_success = (link_state==1) ? true : false;
 }
@@ -34,3 +33,6 @@ unsigned int ShaderProgram::get_shader_id() const {
     return (is_compiled) ? sh_prg->shader_id : 0;
 }
 
+void ShaderProgram::use() {
+    glUseProgram(sh_prg->shader_id);
+}

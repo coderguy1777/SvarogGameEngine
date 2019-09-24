@@ -68,9 +68,11 @@ void SvarogEngine::RunEngine() {
 
     const char* shader_tst_2 ="#version 400\n"
         "out vec4 frag_color;\n"
+        "uniform vec4 float_tst;\n"
+        "uniform float time;\n"
         "void main()\n"
         "{\n"
-        "   frag_color=vec4(1.0f, 1.0f, 0.0f, 1.0f);\n"
+        "   frag_color = vec4(sin(abs(time)), float_tst.y, float_tst.z, 1.0);\n"
         "}\n\0";
 
     VertexShader vert_mat;
@@ -85,6 +87,7 @@ void SvarogEngine::RunEngine() {
     frag_mat.compile_shader();
     ShaderProgram* test_1 = new ShaderProgram();
     test_1->bind_shaders(vert_mat, frag_mat);
+
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 
         0.5f, -0.5f, -0.5f,
@@ -124,11 +127,17 @@ void SvarogEngine::RunEngine() {
     ArrayList<RenderObj*>x;
 
     x.add(s);
+    glEnable(GL_BLEND);
+
+    test_1->use();
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        x.get(0)->get_mesh().draw();
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        glUseProgram(test_1->get_shader_id());
+        float xx = glfwGetTime();
+        float y = sin(xx / 2.0f) * 500.0f;
+        glUniform4f(glGetUniformLocation(test_1->get_shader_id(), "float_tst"), 0.0f, y, 0.0f, 1.0f);
+        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "time"), xx);
+        x.get(0)->get_mesh().draw();
         EngineWindow::getInstance()->OnUpdate();
     }
     x.get(0)->get_mesh().del_buffers();

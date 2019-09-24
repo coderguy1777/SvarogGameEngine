@@ -4,6 +4,7 @@
 #include "render-pipeline/gl_libs.h"
 #include "VertexShader.h"
 #include "FragmentShader.h"
+#include "math/vec3.h"
 
 struct shader_group {
     VertexShader vert_sh_1;
@@ -27,8 +28,9 @@ class ShaderProgram {
         
         void set_state(int link_state);
         bool get_link_status() const;
-        void bind_shaders(VertexShader vert, FragmentShader frag);\
+        void bind_shaders(VertexShader vert, FragmentShader frag);
         unsigned int get_shader_id() const;
+        void use();
 
 };
 
