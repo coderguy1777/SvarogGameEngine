@@ -1203,6 +1203,33 @@ render-pipeline/shader/VertexShader.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/VertexShader.cpp.s
 .PHONY : render-pipeline/shader/VertexShader.cpp.s
 
+render-pipeline/shader/glsl_shader_generation/shader_gen.o: render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.o
+
+.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.o
+
+# target to build an object file
+render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.o
+.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.o
+
+render-pipeline/shader/glsl_shader_generation/shader_gen.i: render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.i
+
+.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.i
+
+# target to preprocess a source file
+render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.i
+.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.i
+
+render-pipeline/shader/glsl_shader_generation/shader_gen.s: render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s
+
+.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.s
+
+# target to generate assembly for a file
+render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s
+.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s
+
 render-pipeline/window-initalization/glad_loader.o: render-pipeline/window-initalization/glad_loader.cpp.o
 
 .PHONY : render-pipeline/window-initalization/glad_loader.o
@@ -1440,6 +1467,9 @@ help:
 	@echo "... render-pipeline/shader/VertexShader.o"
 	@echo "... render-pipeline/shader/VertexShader.i"
 	@echo "... render-pipeline/shader/VertexShader.s"
+	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.o"
+	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.i"
+	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.s"
 	@echo "... render-pipeline/window-initalization/glad_loader.o"
 	@echo "... render-pipeline/window-initalization/glad_loader.i"
 	@echo "... render-pipeline/window-initalization/glad_loader.s"

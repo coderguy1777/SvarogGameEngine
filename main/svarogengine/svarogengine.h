@@ -12,6 +12,7 @@
 #include "render-pipeline/shader/ShaderProgram.h"
 #include "render-pipeline/mesh/svarog_shape.h"
 #include "render-pipeline/mesh/svarog_renderobj.h"
+#include "render-pipeline/shader/glsl_shader_generation/shader_gen.h"
 #include "math/vec3.h"
 #include "main/materials/material.h"
 #include "main/enginewindow/enginewindow.h"

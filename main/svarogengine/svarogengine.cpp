@@ -1,5 +1,5 @@
 #include "svarogengine.h"
-
+#include <spr
 SvarogEngine* SvarogEngine::getInstanceEngine() {
     if(!engine_instance) engine_instance = new SvarogEngine; return engine_instance;
 }
@@ -47,7 +47,6 @@ void SvarogEngine::draw_meshes() {
     s->set_mesh_name(String("Hello"));
     s->input_mesh(mesh_tst);
     ArrayList<RenderObj*>x;
-
     x.add(s);
 }
 
@@ -74,6 +73,24 @@ void SvarogEngine::RunEngine() {
         "{\n"
         "   frag_color = vec4(sin(abs(time)), float_tst.y, float_tst.z, 1.0);\n"
         "}\n\0";
+    
+    ShaderGeneration ab("shader_frag.glsl", 400, 1, true);
+    ArrayList<const char*>xss;
+    xss.add("#version 400\n");
+    xss.add("layout (location = 0) in vec3 aPos;\n");
+    xss.add("out frag_color;\n");
+    xss.add("uniform vec4 float_tst;\n");
+    xss.add("uniform float time;\n");
+    xss.add("void main()\n");
+    xss.add("{\n");
+    xss.add("   frag_color=vec4(sin(abs(time)), float_tst.y, float_tst.z, 1.0);\n");
+    xss.add("}\n\0");
+    ab.write_file(xss);
+    if(ab.get_success() == 1) {
+        spdlog::info("Shader written.");
+    } else if(ab.get_success() != 1) {
+        spdlog::info("WRITE_FAIL");
+    }
 
     VertexShader vert_mat;
     vert_mat.init_state(2);
