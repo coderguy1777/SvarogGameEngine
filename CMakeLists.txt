@@ -27,8 +27,9 @@ include_directories(main/window)
 include_directories(math)
 include_directories(render-pipeline)
 include_directories(render-pipeline/window-initalization)
-include_directories(render-pipeline/shaders)
+include_directories(render-pipeline/shader)
 include_directories(render-pipeline/mesh)
+include_directories(render-pipeline/shader/glsl_shader_generation)
 include_directories(svarogapp-test)
 
 add_executable(SvarogGameEngine
@@ -52,6 +53,9 @@ add_executable(SvarogGameEngine
         render-pipeline/mesh/svarog_shape.cpp
         render-pipeline/mesh/svarog_renderobj.h
         render-pipeline/mesh/svarog_renderobj.cpp
+        render-pipeline/shader/glsl_shader_generation/shader_defs.h
+        render-pipeline/shader/glsl_shader_generation/shader_gen.h
+        render-pipeline/shader/glsl_shader_generation/shader_gen.cpp
         core/ds-classes/Array.h
         core/ds-classes/ArrayList.h
         core/ds-classes/Node.h
