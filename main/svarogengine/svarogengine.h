@@ -17,6 +17,7 @@
 #include "math/vec3.h"
 #include "main/materials/material.h"
 #include "main/enginewindow/enginewindow.h"
+
 class SvarogEngine {
     private:
         static SvarogEngine* engine_instance;
