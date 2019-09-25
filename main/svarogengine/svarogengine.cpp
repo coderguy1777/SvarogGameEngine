@@ -1,5 +1,4 @@
 #include "svarogengine.h"
-#include <spr
 SvarogEngine* SvarogEngine::getInstanceEngine() {
     if(!engine_instance) engine_instance = new SvarogEngine; return engine_instance;
 }
