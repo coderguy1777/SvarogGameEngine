@@ -16,6 +16,7 @@ struct Shader_File_Attributes {
 class ShaderGeneration {
     private:
         Shader_File_Attributes* file_info;
+        ArrayList<const char*>*shader_output = new ArrayList<const char*>();
         int success;
     public:
         ShaderGeneration(std::string f_name, unsigned int size_m, unsigned int shader_type, bool is_writable);
@@ -24,8 +25,9 @@ class ShaderGeneration {
         unsigned int get_size_max() const;
         unsigned int get_mat_type() const;
         int get_success() const;
-        bool get_write_state() const;    
-        void write_file(ArrayList<const char*>file_tst);    
+        bool get_write_state() const;
+        void add_to_output(const char* shader_line);  
+        void write_file();    
 };
 
 #endif

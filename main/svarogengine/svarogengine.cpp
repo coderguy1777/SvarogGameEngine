@@ -34,21 +34,21 @@ void SvarogEngine::RunEngine() {
         "   frag_color = vec4(sin(abs(time)), float_tst.y, float_tst.z, 1.0);\n"
         "}\n\0";
     
-    ShaderGeneration ab("shader_frag.glsl", 400, 1, true);
+    ShaderGeneration * ab = new ShaderGeneration("shader_frag.glsl", 400, 1, true);
     ArrayList<const char*>xss;
-    xss.add("#version 400\n");
-    xss.add("layout (location = 0) in vec3 aPos;\n");
-    xss.add("out frag_color;\n");
-    xss.add("uniform vec4 float_tst;\n");
-    xss.add("uniform float time;\n");
-    xss.add("void main()\n");
-    xss.add("{\n");
-    xss.add("   frag_color=vec4(sin(abs(time)), float_tst.y, float_tst.z, 1.0);\n");
-    xss.add("}\n\0");
-    ab.write_file(xss);
-    if(ab.get_success() == 1) {
+    ab->add_to_output("#version 400\n");
+    ab->add_to_output("layout (location = 0) in vec3 aPos;\n");
+    ab->add_to_output("out frag_color;\n");
+    ab->add_to_output("uniform vec4 float_tst;\n");
+    ab->add_to_output("uniform float time;\n");
+    ab->add_to_output("void main()\n");
+    ab->add_to_output("{\n");
+    ab->add_to_output("   frag_color=vec4(sin(abs(time)), float_tst.y, float_tst.z, 1.0);\n");
+    ab->add_to_output("}\n\0");
+    ab->write_file();
+    if(ab->get_success() == 1) {
         spdlog::info("Shader written.");
-    } else if(ab.get_success() != 1) {
+    } else if(ab->get_success() != 1) {
         spdlog::info("WRITE_FAIL");
     }
 
@@ -101,8 +101,6 @@ void SvarogEngine::RunEngine() {
     ArrayList<RenderObj*>x;
     x.add(s);
     test_1->use();
-    const char* ca= GLSL_PRINT(GLSL_VEC3(A, 1.0f, 1.0f, 1.0f));
-    spdlog::info(ca);
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
@@ -117,5 +115,4 @@ void SvarogEngine::RunEngine() {
     glDeleteShader(vert_mat.get_shader_id());
     glDeleteShader(frag_mat.get_shader_id());
 }
-
 SvarogEngine* SvarogEngine::engine_instance = 0;

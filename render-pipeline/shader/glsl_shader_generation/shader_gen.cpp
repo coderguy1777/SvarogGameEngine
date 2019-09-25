@@ -28,7 +28,7 @@ bool ShaderGeneration::get_write_state() const {
     return file_info->write_shader;
 }
 
-void ShaderGeneration::write_file(ArrayList<const char*>file_tst) {
+void ShaderGeneration::write_file() {
     ofstream file_stream(SHADER_DIR + get_file_n());
     if(!file_stream) {
         throw std::invalid_argument("SHADER_GEN_ERROR");
@@ -38,8 +38,8 @@ void ShaderGeneration::write_file(ArrayList<const char*>file_tst) {
     bool write_shader = (get_write_state() == true) ? true : false;
     if(write_shader) {
         spdlog::info("Writing shader");
-        for(unsigned int i = 0; i < file_tst.size(); i++) {
-            file_stream << file_tst.get(i) << '\n';
+        for(unsigned int i = 0; i < shader_output->size(); i++) {
+            file_stream << shader_output->get(i) << '\n';
         }
         success = 1;
         spdlog::info("Shader written...");
@@ -49,6 +49,10 @@ void ShaderGeneration::write_file(ArrayList<const char*>file_tst) {
         success = 0;
         file_stream.close();
     }
+}
+
+void ShaderGeneration::add_to_output(const char* shader_line) {
+    shader_output->add(shader_line);
 }
 
 int ShaderGeneration::get_success() const {
