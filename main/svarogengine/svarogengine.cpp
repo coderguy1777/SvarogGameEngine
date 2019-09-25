@@ -1,4 +1,5 @@
 #include "svarogengine.h"
+#define Vector3 vec3
 SvarogEngine* SvarogEngine::getInstanceEngine() {
     if(!engine_instance) engine_instance = new SvarogEngine; return engine_instance;
 }
@@ -8,46 +9,6 @@ void SvarogEngine::InitContext() {
     EngineWindow::getInstance()->VSYNC_on();
 }
 
-void SvarogEngine::draw_meshes() {
-    float vertices[] = {
-        0.5f,  0.5f, -0.5f, 
-        0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, 0.5f , -0.5f, 
-        0.5f, -0.5f , 0.5f, 
-        0.5f, 0.5f , 0.5f, 
-    };        
-    
-    unsigned int poss[] = {  
-        0, 1, 3,  
-        1, 2, 3,
-        0, 1, 2,
-    };
-    SvarogShape mesh_tst;
-    std::vector<float>a;
-    std::vector<unsigned int>b;
-    for(int i = 0; i < 18; i++) {
-        a.push_back(vertices[i]);
-    }
-    for(int j = 0; j < 9; j++) {
-        b.push_back(poss[j]);
-    }
-    mesh_tst.pass_position_data(b);
-    mesh_tst.pass_vert_data(a);
-    mesh_tst.init();
-
-    SvarogShape tst_2; 
-    tst_2.pass_position_data(b);
-    tst_2.pass_vert_data(a);
-    tst_2.init();
-    
-    RenderObj* s = new RenderObj();
-    s->set_mesh_id(2);
-    s->set_mesh_name(String("Hello"));
-    s->input_mesh(mesh_tst);
-    ArrayList<RenderObj*>x;
-    x.add(s);
-}
 
 void SvarogEngine::InitMonitor() {
     svarog_monitor->init_monitor();
@@ -118,34 +79,30 @@ void SvarogEngine::RunEngine() {
         1, 2, 3,
         0, 1, 2,
     };
+
     SvarogShape mesh_tst;
-    std::vector<float>a;
-    std::vector<unsigned int>b;
+    std::vector<float>vert;
+    std::vector<unsigned int>pos;
+
     for(int i = 0; i < 18; i++) {
-        a.push_back(vertices[i]);
+        vert.push_back(vertices[i]);
     }
     for(int j = 0; j < 9; j++) {
-        b.push_back(poss[j]);
+        pos.push_back(poss[j]);
     }
-    mesh_tst.pass_position_data(b);
-    mesh_tst.pass_vert_data(a);
-    mesh_tst.init();
 
-    SvarogShape tst_2; 
-    tst_2.pass_position_data(b);
-    tst_2.pass_vert_data(a);
-    tst_2.init();
-    
+    mesh_tst.pass_position_data(pos);
+    mesh_tst.pass_vert_data(vert);
+    mesh_tst.init();
     RenderObj* s = new RenderObj();
     s->set_mesh_id(2);
     s->set_mesh_name(String("Hello"));
     s->input_mesh(mesh_tst);
     ArrayList<RenderObj*>x;
-
     x.add(s);
-    glEnable(GL_BLEND);
-
     test_1->use();
+    const char* ca= GLSL_PRINT(GLSL_VEC3(A, 1.0f, 1.0f, 1.0f));
+    spdlog::info(ca);
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);

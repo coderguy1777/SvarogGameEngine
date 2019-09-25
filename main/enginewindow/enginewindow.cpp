@@ -72,6 +72,7 @@ bool check(int a) {
 
 void EngineWindow::SvarogAppLoop() {
     set_bool_state();
+    WindowContext::set_states(2, 4);
     WindowContext::init_glfw();
     WindowContext::create_context(appWindow);
     appWindow = glfwCreateWindow((int)winA.getWidth(), (int)winA.getHeight(), (const char*)winA.getTitle().str, NULL, NULL);

@@ -1,6 +1,13 @@
 #pragma once
 #ifndef SHADER_DEFS_H
 #define SHADER_DEFS_H
+#define GLSL_TO_STR(v) #v
+#define GLSL_PRINT(vx) GLSL_TO_STR(vx)
+#define GLSL_V(X) "#"+version X'\n'
+#define LAYOUT_VEC3(X) layout (location=0) in vec3 X;
+#define VEC4(N, X, Y, Z, W) vec4 N(X, Y, Z, W);
+#define GLSL_VEC3(N, X, Y, Z) vec3 N(X, Y, Z);
+#define VEC2(N, X, Y) vec2 N(X, Y);
 #include<string>
 
 struct shader_attrib {
