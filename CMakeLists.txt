@@ -143,7 +143,7 @@ add_executable(SvarogGameEngine
         math/euler_angles.h
         math/euler_angles.cpp
         macrodefs.h
-        sandbox/main.cpp)
+        main.cpp)
 find_package(glfw3 REQUIRED)
 find_package(X11 REQUIRED)
 find_package(OpenGL REQUIRED)
