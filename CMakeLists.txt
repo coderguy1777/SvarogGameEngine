@@ -30,7 +30,7 @@ include_directories(render-pipeline/window-initalization)
 include_directories(render-pipeline/shader)
 include_directories(render-pipeline/mesh)
 include_directories(render-pipeline/shader/glsl_shader_generation)
-include_directories(svarogapp-test)
+include_directories(render-pipeline/shader/s_lab)
 
 add_executable(SvarogGameEngine
         glad/glad.c
@@ -56,6 +56,8 @@ add_executable(SvarogGameEngine
         render-pipeline/shader/glsl_shader_generation/shader_defs.h
         render-pipeline/shader/glsl_shader_generation/shader_gen.h
         render-pipeline/shader/glsl_shader_generation/shader_gen.cpp
+        render-pipeline/shader/s_lab/svarog_material.h 
+        render-pipeline/shader/s_lab/svarog_material.cpp
         core/ds-classes/Array.h
         core/ds-classes/ArrayList.h
         core/ds-classes/Node.h
