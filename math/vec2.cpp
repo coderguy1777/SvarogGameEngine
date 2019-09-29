@@ -1,5 +1,5 @@
 #include "vec2.h"
-#include "math/math.h"
+#include<cmath>
 
 float Vector2::getPosX() {
     return this->initx;
@@ -68,9 +68,9 @@ Vector2 Vector2::dotProduct(Vector2 veca, Vector2 vecb) {
 Vector2 Vector2::dotProductAngle(Vector2 veca, Vector2 vecb, double angle) {
     Vector2 vec_c(0.0f, 0.0f);
     float x_c, y_c, angle_c = 0.0f;
-    x_c = matheq::abs(veca.initx * vecb.initx);
-    y_c = matheq::abs(veca.inity * vecb.inity);
-    angle_c = matheq::cos((float)angle);
+    x_c = abs(veca.initx * vecb.initx);
+    y_c = abs(veca.inity * vecb.inity);
+    angle_c = cos((float)angle);
     vec_c.setPosX(x_c);
     vec_c.setPosY(y_c);
     return vec_c;

@@ -1230,6 +1230,33 @@ render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s
 .PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s
 
+render-pipeline/shader/s_lab/svarog_material.o: render-pipeline/shader/s_lab/svarog_material.cpp.o
+
+.PHONY : render-pipeline/shader/s_lab/svarog_material.o
+
+# target to build an object file
+render-pipeline/shader/s_lab/svarog_material.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/s_lab/svarog_material.cpp.o
+.PHONY : render-pipeline/shader/s_lab/svarog_material.cpp.o
+
+render-pipeline/shader/s_lab/svarog_material.i: render-pipeline/shader/s_lab/svarog_material.cpp.i
+
+.PHONY : render-pipeline/shader/s_lab/svarog_material.i
+
+# target to preprocess a source file
+render-pipeline/shader/s_lab/svarog_material.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/s_lab/svarog_material.cpp.i
+.PHONY : render-pipeline/shader/s_lab/svarog_material.cpp.i
+
+render-pipeline/shader/s_lab/svarog_material.s: render-pipeline/shader/s_lab/svarog_material.cpp.s
+
+.PHONY : render-pipeline/shader/s_lab/svarog_material.s
+
+# target to generate assembly for a file
+render-pipeline/shader/s_lab/svarog_material.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/s_lab/svarog_material.cpp.s
+.PHONY : render-pipeline/shader/s_lab/svarog_material.cpp.s
+
 render-pipeline/window-initalization/glad_loader.o: render-pipeline/window-initalization/glad_loader.cpp.o
 
 .PHONY : render-pipeline/window-initalization/glad_loader.o
@@ -1470,6 +1497,9 @@ help:
 	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.o"
 	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.i"
 	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.s"
+	@echo "... render-pipeline/shader/s_lab/svarog_material.o"
+	@echo "... render-pipeline/shader/s_lab/svarog_material.i"
+	@echo "... render-pipeline/shader/s_lab/svarog_material.s"
 	@echo "... render-pipeline/window-initalization/glad_loader.o"
 	@echo "... render-pipeline/window-initalization/glad_loader.i"
 	@echo "... render-pipeline/window-initalization/glad_loader.s"

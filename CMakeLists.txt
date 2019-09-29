@@ -31,6 +31,8 @@ include_directories(render-pipeline/shader)
 include_directories(render-pipeline/mesh)
 include_directories(render-pipeline/shader/glsl_shader_generation)
 include_directories(render-pipeline/shader/s_lab)
+include_directories(imgui)
+include_directories(imgui/examples)
 
 add_executable(SvarogGameEngine
         glad/glad.c
@@ -131,7 +133,6 @@ add_executable(SvarogGameEngine
         main/window/window.h
         math/camera_matrix.cpp
         math/camera_matrix.h
-        math/math.h
         math/matrix.cpp
         math/matrix.h
         math/matrix2f.h

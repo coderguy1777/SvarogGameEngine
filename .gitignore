@@ -7,5 +7,6 @@ debugger/debuglogs/RightVector.txt
 .vscode/tasks.json
 cmake-build-debug/
 CMakeFiles/
+imgui/
 .vscode/c_cpp_properties.json
 install/

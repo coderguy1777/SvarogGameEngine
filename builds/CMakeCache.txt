@@ -406,6 +406,9 @@ X11_xf86vmode_INCLUDE_PATH:PATH=/usr/include
 //The directory containing a CMake configuration file for glfw3.
 glfw3_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/glfw3
 
+//The directory containing a CMake configuration file for imgui.
+imgui_DIR:PATH=imgui_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for spdlog.
 spdlog_DIR:PATH=/usr/local/lib/spdlog/cmake
 
