@@ -10,7 +10,7 @@ For installing the dependencies needed for the Engine to be buildable, run the f
 command to obtain the depedencies needed as shown down below: 
 
 ### Command for dependicies:
-bash install_libraries.sh
+`bash install_libraries.sh`
 
 Then, to get the OpenGL loader, glad, go to the site https://glad.dav1d.de/ and set the gl option to OpenGL 4.6, 
 and the profile to Core instead of compatibility. You are also going to want to check the box that says `omit KHR`
