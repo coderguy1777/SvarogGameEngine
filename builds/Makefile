@@ -960,6 +960,33 @@ main/color/htmlcolors.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/color/htmlcolors.cpp.s
 .PHONY : main/color/htmlcolors.cpp.s
 
+main/enginewindow/engine-gui/imgui_init.o: main/enginewindow/engine-gui/imgui_init.cpp.o
+
+.PHONY : main/enginewindow/engine-gui/imgui_init.o
+
+# target to build an object file
+main/enginewindow/engine-gui/imgui_init.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/imgui_init.cpp.o
+.PHONY : main/enginewindow/engine-gui/imgui_init.cpp.o
+
+main/enginewindow/engine-gui/imgui_init.i: main/enginewindow/engine-gui/imgui_init.cpp.i
+
+.PHONY : main/enginewindow/engine-gui/imgui_init.i
+
+# target to preprocess a source file
+main/enginewindow/engine-gui/imgui_init.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/imgui_init.cpp.i
+.PHONY : main/enginewindow/engine-gui/imgui_init.cpp.i
+
+main/enginewindow/engine-gui/imgui_init.s: main/enginewindow/engine-gui/imgui_init.cpp.s
+
+.PHONY : main/enginewindow/engine-gui/imgui_init.s
+
+# target to generate assembly for a file
+main/enginewindow/engine-gui/imgui_init.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/imgui_init.cpp.s
+.PHONY : main/enginewindow/engine-gui/imgui_init.cpp.s
+
 main/enginewindow/enginewindow.o: main/enginewindow/enginewindow.cpp.o
 
 .PHONY : main/enginewindow/enginewindow.o
@@ -1229,6 +1256,87 @@ math/vec3.s: math/vec3.cpp.s
 math/vec3.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/math/vec3.cpp.s
 .PHONY : math/vec3.cpp.s
+
+render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.o: render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.o
+
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.o
+
+# target to build an object file
+render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.o
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.o
+
+render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.i: render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.i
+
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.i
+
+# target to preprocess a source file
+render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.i
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.i
+
+render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.s: render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.s
+
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.s
+
+# target to generate assembly for a file
+render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.s
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.s
+
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.o: render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.o
+
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.o
+
+# target to build an object file
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.o
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.o
+
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.i: render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.i
+
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.i
+
+# target to preprocess a source file
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.i
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.i
+
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.s: render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.s
+
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.s
+
+# target to generate assembly for a file
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.s
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp.s
+
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.o: render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.o
+
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.o
+
+# target to build an object file
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.o
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.o
+
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.i: render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.i
+
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.i
+
+# target to preprocess a source file
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.i
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.i
+
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.s: render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.s
+
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.s
+
+# target to generate assembly for a file
+render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.s
+.PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp.s
 
 render-pipeline/mesh/svarog_renderobj.o: render-pipeline/mesh/svarog_renderobj.cpp.o
 
@@ -1629,6 +1737,9 @@ help:
 	@echo "... main/color/htmlcolors.o"
 	@echo "... main/color/htmlcolors.i"
 	@echo "... main/color/htmlcolors.s"
+	@echo "... main/enginewindow/engine-gui/imgui_init.o"
+	@echo "... main/enginewindow/engine-gui/imgui_init.i"
+	@echo "... main/enginewindow/engine-gui/imgui_init.s"
 	@echo "... main/enginewindow/enginewindow.o"
 	@echo "... main/enginewindow/enginewindow.i"
 	@echo "... main/enginewindow/enginewindow.s"
@@ -1659,6 +1770,15 @@ help:
 	@echo "... math/vec3.o"
 	@echo "... math/vec3.i"
 	@echo "... math/vec3.s"
+	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.o"
+	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.i"
+	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.s"
+	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.o"
+	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.i"
+	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.s"
+	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.o"
+	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.i"
+	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.s"
 	@echo "... render-pipeline/mesh/svarog_renderobj.o"
 	@echo "... render-pipeline/mesh/svarog_renderobj.i"
 	@echo "... render-pipeline/mesh/svarog_renderobj.s"

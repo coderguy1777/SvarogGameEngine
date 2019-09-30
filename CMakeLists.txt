@@ -31,6 +31,7 @@ include_directories(render-pipeline/shader)
 include_directories(render-pipeline/mesh)
 include_directories(render-pipeline/shader/glsl_shader_generation)
 include_directories(render-pipeline/shader/s_lab)
+include_directories(render-pipeline/mesh/opengl_mesh_buffers)
 include_directories(libraries)
 include_directories(libraries/imgui)
 include_directories(libraries/imgui/examples)
@@ -75,6 +76,13 @@ add_executable(SvarogGameEngine
         render-pipeline/shader/glsl_shader_generation/shader_gen.cpp
         render-pipeline/shader/s_lab/svarog_material.h 
         render-pipeline/shader/s_lab/svarog_material.cpp
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_buffer.h
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.h
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.h
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.h
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp
         core/ds-classes/Array.h
         core/ds-classes/ArrayList.h
         core/ds-classes/Node.h
@@ -137,6 +145,8 @@ add_executable(SvarogGameEngine
         main/color/htmlcolors.h
         main/enginewindow/enginewindow.cpp
         main/enginewindow/enginewindow.h
+        main/enginewindow/engine-gui/imgui_init.h
+        main/enginewindow/engine-gui/imgui_init.cpp
         main/materials/material.h
         main/materials/shadergen.cpp
         main/materials/shadergen.h

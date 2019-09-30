@@ -13,27 +13,27 @@ bool SvarogShape::get_ebo() const {
 }
 
 void SvarogShape::make_VAO() {
-    glGenVertexArrays(1, &data->VAO);
+    data->vao.gen_mesh_buffer();
 }
 
 void SvarogShape::make_VBO() {
-    glGenBuffers(1, &data->VBO);
+    data->vbo.gen_mesh_buffer();
 }
 
 void SvarogShape::make_EBO() {
-    glGenBuffers(1, &data->EBO);
+    data->ebo.gen_mesh_buffer();
 }
 
 unsigned int SvarogShape::get_VAO() const {
-    return data->VAO;
+    return data->vao.get_mesh_buffer();
 }
 
 unsigned int SvarogShape::get_VBO() const {
-    return data->VBO;
+    return data->vbo.get_mesh_buffer();
 }
 
 unsigned int SvarogShape::get_EBO() const {
-    return data->EBO;
+    return data->ebo.get_mesh_buffer();
 }
 
 std::vector<float>SvarogShape::get_shape_verts() const {
@@ -109,7 +109,7 @@ void SvarogShape::draw() {
 }
 
 void SvarogShape::del_buffers() {
-    glDeleteVertexArrays(1, &data->VAO);
-    glDeleteBuffers(1, &data->VBO);
-    glDeleteBuffers(1, &data->EBO);
+    data->vao.del_mesh_buffer();
+    data->vbo.del_mesh_buffer();
+    data->ebo.del_mesh_buffer();
 }

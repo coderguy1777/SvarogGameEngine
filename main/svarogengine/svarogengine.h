@@ -14,6 +14,7 @@
 #include "render-pipeline/mesh/svarog_renderobj.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_gen.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_defs.h"
+#include "main/enginewindow/engine-gui/imgui_init.h"
 #include "math/vec3.h"
 #include "main/materials/material.h"
 #include "main/enginewindow/enginewindow.h"

@@ -5,11 +5,16 @@
 #include "core/ds-classes/Array.h"
 #include "core/ds-classes/ArrayList.h"
 #include "render-pipeline/gl_libs.h"
+#include "opengl_mesh_buffers/mesh_vao.h"
+#include "opengl_mesh_buffers/mesh_vbo.h"
+#include "opengl_mesh_buffers/mesh_ebo.h"
 #include "spdlog/spdlog.h"
 struct shape_data {
     std::vector<float>vert_data;
     std::vector<unsigned int>pos_data;
-    GLuint VAO, VBO, EBO;
+    MeshVao vao;
+    MeshVBO vbo;
+    MeshEBO ebo;
     bool use_ebo;
 };
 
