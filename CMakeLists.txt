@@ -17,11 +17,11 @@ include_directories(core/Input)
 include_directories(debugger)
 include_directories(glad)
 include_directories(main)
+include_directories(main/shapes)
 include_directories(main/camera)
 include_directories(main/color)
 include_directories(main/enginewindow)
 include_directories(main/materials)
-include_directories(main/shapes)
 include_directories(main/svarogengine)
 include_directories(main/window)
 include_directories(math)
@@ -31,11 +31,26 @@ include_directories(render-pipeline/shader)
 include_directories(render-pipeline/mesh)
 include_directories(render-pipeline/shader/glsl_shader_generation)
 include_directories(render-pipeline/shader/s_lab)
-include_directories(imgui)
-include_directories(imgui/examples)
+include_directories(libraries)
+include_directories(libraries/imgui)
+include_directories(libraries/imgui/examples)
 
 add_executable(SvarogGameEngine
         glad/glad.c
+        libraries/imgui/imconfig.h
+        libraries/imgui/imgui_demo.cpp
+        libraries/imgui/imgui_draw.cpp
+        libraries/imgui/imgui_internal.h
+        libraries/imgui/imgui_widgets.cpp
+        libraries/imgui/imgui.h
+        libraries/imgui/imgui.cpp
+        libraries/imgui/imstb_rectpack.h
+        libraries/imgui/imstb_textedit.h
+        libraries/imgui/imstb_truetype.h
+        libraries/imgui/examples/imgui_impl_glfw.h
+        libraries/imgui/examples/imgui_impl_glfw.cpp
+        libraries/imgui/examples/imgui_impl_opengl3.h
+        libraries/imgui/examples/imgui_impl_opengl3.cpp
         render-pipeline/window-initalization/glad_loader.h
         render-pipeline/window-initalization/glad_loader.cpp
         render-pipeline/window-initalization/window_context.h
@@ -151,6 +166,7 @@ find_package(glfw3 REQUIRED)
 find_package(X11 REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(spdlog REQUIRED)
+target_compile_definitions(SvarogGameEngine PUBLIC IMGUI_IMPL_OPENGL_LOADER_GLAD)
 target_link_libraries(${PROJECT_NAME} 
         GL 
         GLU 
