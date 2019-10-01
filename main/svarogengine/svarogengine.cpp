@@ -93,11 +93,11 @@ void SvarogEngine::RunEngine() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         // imgui loading test.
-        // TODO: begin abstracting imgui parts into wrangleable parts.
+        // TODO: begin abstracting imgui parts into wrangleable parts
+        // for making of engine gui parts.
         ImGuiInit::init_imgui_frames();
         ImGui::Begin("Hello");
         ImGui::Button("Hello Again");
-        auto a = ImGui::Button("Hello Again");
         ImGui::End();
         float xx = glfwGetTime();
         float y = sin(xx / 2.0f) * 500.0f;
