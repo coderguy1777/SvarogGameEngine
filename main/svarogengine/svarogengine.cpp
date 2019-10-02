@@ -100,8 +100,8 @@ void SvarogEngine::RunEngine() {
         float x_3 = 1.0f;
         float y = sin(xx / 2.0f) * 500.0f;
         glUniform4f(glGetUniformLocation(test_1->get_shader_id(), "float_tst"), 0.0f, y, 0.0f, 1.0f);
-        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "r"), x_1);
-        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "g"), x_2);
+            glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "r"), x_1);
+            glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "g"), x_2);
         glUniform1i(glGetUniformLocation(test_1->get_shader_id(), "b"), x_3);
         ImGuiInit::init_imgui_frames();
         
