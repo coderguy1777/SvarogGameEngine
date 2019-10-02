@@ -88,30 +88,30 @@ void SvarogEngine::RunEngine() {
     x.add(s);
     test_1->use();
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
-    ImGuiInit::make_imgui_style(2);
+    ImGuiInit::make_imgui_style(0);
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         // shader & imgui test.
         // TODO: design engine gui and docks.
+        ImGuiInit::init_imgui_frames();
+        
+        ImGui::Begin("Hello");
+        ImGui::SetCursorPos(ImVec2(10, 10));
+        ImGui::Button("Tehs", ImVec2(50, 60));
+        static float size_m = 0.0f;
+        ImGui::SliderFloat("Test", &size_m, 0.0f, 1.0f);
+        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "b"), size_m);
+        ImGui::End();
         float xx = glfwGetTime();
         float x_1 = 0.5f;
         float x_2 = 0.4f;
         float x_3 = 1.0f;
         float y = sin(xx / 2.0f) * 500.0f;
         glUniform4f(glGetUniformLocation(test_1->get_shader_id(), "float_tst"), 0.0f, y, 0.0f, 1.0f);
-            glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "r"), x_1);
-            glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "g"), x_2);
+        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "r"), x_1);
+        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "g"), x_2);
         glUniform1i(glGetUniformLocation(test_1->get_shader_id(), "b"), x_3);
-        ImGuiInit::init_imgui_frames();
-        
-        ImGui::Begin("Hello");
-        
-        static float check_val = 0.f;
-        ImGui::SliderFloat("SliderTest", &check_val, 0.0f, 1.0f);
-        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "b"), check_val);
-        ImGui::End();
-
         x.get(0)->get_mesh().draw();
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();
