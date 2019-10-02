@@ -41,6 +41,10 @@ add_executable(SvarogGameEngine
         libraries/imgui/imconfig.h
         libraries/imgui/imgui_demo.cpp
         libraries/imgui/imgui_draw.cpp
+        libraries/imgui/examples/imgui_impl_glfw.cpp
+        libraries/imgui/examples/imgui_impl_glfw.h
+        libraries/imgui/examples/imgui_impl_opengl3.h
+        libraries/imgui/examples/imgui_impl_opengl3.cpp
         libraries/imgui/imgui_internal.h
         libraries/imgui/imgui_widgets.cpp
         libraries/imgui/imgui.h
@@ -48,10 +52,6 @@ add_executable(SvarogGameEngine
         libraries/imgui/imstb_rectpack.h
         libraries/imgui/imstb_textedit.h
         libraries/imgui/imstb_truetype.h
-        libraries/imgui/examples/imgui_impl_glfw.h
-        libraries/imgui/examples/imgui_impl_glfw.cpp
-        libraries/imgui/examples/imgui_impl_opengl3.h
-        libraries/imgui/examples/imgui_impl_opengl3.cpp
         render-pipeline/window-initalization/glad_loader.h
         render-pipeline/window-initalization/glad_loader.cpp
         render-pipeline/window-initalization/window_context.h

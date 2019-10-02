@@ -1,5 +1,4 @@
 #include "svarogengine.h"
-#define Vector3 vec3
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GLAD)
 #include<glad/glad.h>
 #endif
@@ -7,7 +6,6 @@
 SvarogEngine* SvarogEngine::getInstanceEngine() {
     if(!engine_instance) engine_instance = new SvarogEngine; return engine_instance;
 }
-
 
 void SvarogEngine::InitContext() {
     EngineWindow::getInstance()->VSYNC_on();
@@ -28,14 +26,16 @@ void SvarogEngine::RunEngine() {
         "{\n"
         "   gl_Position=vec4(aPos, 1.0);\n"
         "}\n\0";
-
+    
     const char* shader_tst_2 ="#version 400\n"
         "out vec4 frag_color;\n"
         "uniform vec4 float_tst;\n"
         "uniform float time;\n"
+        "uniform float r, g, b;\n"
+        "float time_2;\n"
         "void main()\n"
         "{\n"
-        "   frag_color = vec4(sin(abs(time)), float_tst.y, float_tst.z, 1.0);\n"
+        "   frag_color = vec4(r, g, b, 1.0);\n"
         "}\n\0";
 
     VertexShader vert_mat;
@@ -92,17 +92,26 @@ void SvarogEngine::RunEngine() {
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        // imgui loading test.
-        // TODO: begin abstracting imgui parts into wrangleable parts
-        // for making of engine gui parts.
-        ImGuiInit::init_imgui_frames();
-        ImGui::Begin("Hello");
-        ImGui::Button("Hello Again");
-        ImGui::End();
+        // shader & imgui test.
+        // TODO: design engine gui and docks.
         float xx = glfwGetTime();
+        float x_1 = 0.5f;
+        float x_2 = 0.4f;
+        float x_3 = 1.0f;
         float y = sin(xx / 2.0f) * 500.0f;
         glUniform4f(glGetUniformLocation(test_1->get_shader_id(), "float_tst"), 0.0f, y, 0.0f, 1.0f);
-        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "time"), xx);
+        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "r"), x_1);
+        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "g"), x_2);
+        glUniform1i(glGetUniformLocation(test_1->get_shader_id(), "b"), x_3);
+        ImGuiInit::init_imgui_frames();
+        
+        ImGui::Begin("Hello");
+        
+        static float check_val = 0.f;
+        ImGui::SliderFloat("SliderTest", &check_val, 0.0f, 1.0f);
+        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "b"), check_val);
+        ImGui::End();
+
         x.get(0)->get_mesh().draw();
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();

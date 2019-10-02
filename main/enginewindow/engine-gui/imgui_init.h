@@ -1,13 +1,9 @@
 #pragma once 
 #ifndef IMGUI_INIT_H
 #define IMGUI_INIT_H
-#include "libraries/imgui/imgui.h"
-#include "libraries/imgui/imgui_internal.h"
-#include "libraries/imgui/examples/imgui_impl_glfw.h"
-#include "libraries/imgui/examples/imgui_impl_opengl3.h"
-#if defined(IMGUI_IMPL_OPENGL_LOADER_GLAD) 
-#include<glad/glad.h>
-#endif
+#include "imgui/imgui.h"
+#include "imgui/examples/imgui_impl_glfw.h"
+#include "imgui/examples/imgui_impl_opengl3.h"
 #include <GLFW/glfw3.h>
 
 class ImGuiInit {
