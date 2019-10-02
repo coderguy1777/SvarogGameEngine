@@ -147,6 +147,8 @@ add_executable(SvarogGameEngine
         main/enginewindow/enginewindow.h
         main/enginewindow/engine-gui/imgui_init.h
         main/enginewindow/engine-gui/imgui_init.cpp
+        main/enginewindow/engine-gui/sidebar-components/button.h
+        main/enginewindow/engine-gui/sidebar-components/button.cpp
         main/materials/material.h
         main/materials/shadergen.cpp
         main/materials/shadergen.h
