@@ -3,7 +3,6 @@
 #define BUTTON_H
 #include "libraries/imgui/imgui.h"
 #include "core/String.h"
-
 class SvarogButton {
     private:
         unsigned int w_, h_;
@@ -14,7 +13,7 @@ class SvarogButton {
     public: 
         SvarogButton(unsigned int width, unsigned int height, String btn_text, bool resize_val):
             w_(width), h_(height), button_text(btn_text), is_resizeable(resize_val)
-        {}
+        {make_new_button();}
 
         unsigned int get_button_width() const;
         unsigned int get_button_height() const;
@@ -22,5 +21,4 @@ class SvarogButton {
         bool get_resize_state() const;
         bool make_new_button();
 };
-
 #endif 

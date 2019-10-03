@@ -43,3 +43,4 @@ TMP_TYPE(Stack, char);
 TMP_TYPE(Stack, short);
 TMP_TYPE(Stack, long);
 TMP_TYPE(Stack, String);
+TMP_TYPE(Stack, bool);

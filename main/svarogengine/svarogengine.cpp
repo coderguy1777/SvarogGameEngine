@@ -96,18 +96,18 @@ void SvarogEngine::RunEngine() {
         // TODO: design engine gui and docks.
         ImGuiInit::init_imgui_frames();
         
-        ImGui::Begin("Hello");
+        ImGui::Begin("GUI_TEST");
         ImGui::SetCursorPos(ImVec2(10, 10));
-        ImGui::Button("Tehs", ImVec2(50, 60));
+        SvarogButton a(50, 60, "Custom class button", true);
         static float size_m = 0.0f;
         ImGui::SliderFloat("Test", &size_m, 0.0f, 1.0f);
         glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "b"), size_m);
         ImGui::End();
-        float xx = glfwGetTime();
         float x_1 = 0.5f;
         float x_2 = 0.4f;
         float x_3 = 1.0f;
-        float y = sin(xx / 2.0f) * 500.0f;
+        float xx = glfwGetTime();
+        float y= sin(xx/2.0f) * 20.0f;
         glUniform4f(glGetUniformLocation(test_1->get_shader_id(), "float_tst"), 0.0f, y, 0.0f, 1.0f);
         glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "r"), x_1);
         glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "g"), x_2);
