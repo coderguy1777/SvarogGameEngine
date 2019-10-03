@@ -35,9 +35,13 @@ include_directories(render-pipeline/mesh/opengl_mesh_buffers)
 include_directories(libraries)
 include_directories(libraries/imgui)
 include_directories(libraries/imgui/examples)
+include_directories(libraries/imgui/examples/libs)
+include_directories(libraries/imgui/examples/libs/include/glfw/GLFW)
 
 add_executable(SvarogGameEngine
         glad/glad.c
+        libraries/imgui/examples/libs/glfw/include/GLFW/glfw3.h
+        libraries/imgui/examples/libs/glfw/include/GLFW/glfw3native.h
         libraries/imgui/imconfig.h
         libraries/imgui/imgui_demo.cpp
         libraries/imgui/imgui_draw.cpp
