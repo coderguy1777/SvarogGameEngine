@@ -4,11 +4,26 @@
 #include "libraries/imgui/imgui.h"
 #include "core/String.h"
 #include "core/ds-classes/ArrayList.h"
+enum class GUI_TAG {
+    GUI_BUTTON=0,
+    GUI_LABEL=1,
+    GUI_CHECKBOX=2,
+    GUI_SLIDER=3,
+};
+
 struct imgui_frame_flags {
     bool is_resizable;
     bool is_movable;
     String frame_name;
     unsigned int f_w, f_h;
+};
+
+// storage for buttons and other components inside individual 
+// lists for running on run time for the user in the window.
+template<typename T>
+struct imgui_frame_pt_stg {
+    GUI_TAG pt_li_tag;
+    ArrayList<T>pt_li_stg;
 };
 
 /*
