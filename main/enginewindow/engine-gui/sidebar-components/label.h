@@ -26,10 +26,5 @@ class SvarogLabel {
         bool get_move_state() const;
         void gen_new_label();
 
-        void * operator new(size_t size) {
-            void * new_lbl =  new :: SvarogLabel();
-            return new_lbl;
-        }
-
 };
 #endif
