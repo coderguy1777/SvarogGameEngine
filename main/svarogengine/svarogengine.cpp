@@ -20,27 +20,8 @@ void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
     InitMonitor();
-    const char* shader_tst_1 = "#version 400\n"
-        "layout (location = 0) in vec3 aPos;\n"
-        "void main()\n"
-        "{\n"
-        "   gl_Position=vec4(aPos, 1.0);\n"
-        "}\n\0";
-    
-    const char* shader_tst_2 ="#version 400\n"
-        "out vec4 frag_color;\n"
-        "uniform vec4 float_tst;\n"
-        "uniform float time;\n"
-        "uniform float r, g, b;\n"
-        "float time_2;\n"
-        "void main()\n"
-        "{\n"
-        "   frag_color = vec4(r, g, b, 1.0);\n"
-        "}\n\0";
-
     Rgb c(1.0f, 1.0f, 0.5f);
     SvarogMaterial ac(c);
-    ac.add_code();
     ac.write_shader();
 
     float vertices[] = {
@@ -80,10 +61,10 @@ void SvarogEngine::RunEngine() {
     x.add(s);
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
-    ac.run();
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
+        ac.run();
         // shader & imgui test.
         // TODO: design engine gui and docks.
         ImGuiInit::init_imgui_frames();

@@ -19,29 +19,38 @@
 struct MatShader {
     VertexShader vert_shader;
     FragmentShader frag_shader;
-    ShaderProgram mat_prg;
 };
 
 class SvarogMaterial {
     private:
         Rgb color_test;
         MatShader shader_prg;
-        ArrayList<const char*>vert_code;
-        ArrayList<const char*>frag_code;
+        float tst;
+        ShaderProgram mat_prg;
+
     public: 
+        /* 
+            TODO: change methods up for given value, set by method, and then changed by glUniform*
+            to add modified value, and modify it for the material, in real time. do this
+            for all mesh class values, and materials.
+        */ 
         SvarogMaterial(Rgb c) {
             color_test.redval = c.redval;
             color_test.greenval = c.greenval;
             color_test.blueval = c.blueval;
-            shader_prg.vert_shader.init_state(1);
+            shader_prg.vert_shader.init_state(2);
             shader_prg.vert_shader.set_use_state();
-            shader_prg.frag_shader.init_state(2);
+            shader_prg.frag_shader.init_state(1);
             shader_prg.frag_shader.set_use_state();
         }
         void add_code();
+        VertexShader get_vert() const;
+        FragmentShader get_frag() const;
         void write_shader();
         void run();
         Rgb get_color() const;
+        float diffuse_tst();
+        void set_float(float r);
 };
 
 
