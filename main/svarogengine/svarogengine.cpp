@@ -38,18 +38,10 @@ void SvarogEngine::RunEngine() {
         "   frag_color = vec4(r, g, b, 1.0);\n"
         "}\n\0";
 
-    VertexShader vert_mat;
-    vert_mat.init_state(2);
-    vert_mat.set_use_state();
-    vert_mat.set_code(shader_tst_1);
-    FragmentShader frag_mat;
-    frag_mat.init_state(1);
-    frag_mat.set_use_state();
-    frag_mat.set_code(shader_tst_2);
-    vert_mat.compile_shader();
-    frag_mat.compile_shader();
-    ShaderProgram* test_1 = new ShaderProgram();
-    test_1->bind_shaders(vert_mat, frag_mat);
+    Rgb c(1.0f, 1.0f, 0.5f);
+    SvarogMaterial ac(c);
+    ac.add_code();
+    ac.write_shader();
 
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 
@@ -86,9 +78,9 @@ void SvarogEngine::RunEngine() {
     s->input_mesh(mesh_tst);
     ArrayList<RenderObj*>x;
     x.add(s);
-    test_1->use();
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
+    ac.run();
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
@@ -101,24 +93,17 @@ void SvarogEngine::RunEngine() {
         SvarogButton a(50, 60, "Custom class button", true);
         static float size_m = 0.0f;
         ImGui::SliderFloat("Test", &size_m, 0.0f, 1.0f);
-        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "b"), size_m);
         ImGui::End();
         float x_1 = 0.5f;
         float x_2 = 0.4f;
         float x_3 = 1.0f;
         float xx = glfwGetTime();
         float y= sin(xx/2.0f) * 20.0f;
-        glUniform4f(glGetUniformLocation(test_1->get_shader_id(), "float_tst"), 0.0f, y, 0.0f, 1.0f);
-        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "r"), x_1);
-        glUniform1f(glGetUniformLocation(test_1->get_shader_id(), "g"), x_2);
-        glUniform1i(glGetUniformLocation(test_1->get_shader_id(), "b"), x_3);
         x.get(0)->get_mesh().draw();
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();
     }
     x.get(0)->get_mesh().del_buffers();
-    glDeleteShader(vert_mat.get_shader_id());
-    glDeleteShader(frag_mat.get_shader_id());
     ImGuiInit::init_imgui_shutdown();
 }
 SvarogEngine* SvarogEngine::engine_instance = 0;

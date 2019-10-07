@@ -87,6 +87,8 @@ add_executable(SvarogGameEngine
         render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp
         render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.h
         render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp
+        render-pipeline/shader/s_lab/svarog_material.h
+        render-pipeline/shader/s_lab/svarog_material.cpp
         core/ds-classes/Array.h
         core/ds-classes/ArrayList.h
         core/ds-classes/Node.h

@@ -13,3 +13,8 @@ template<class T>
 void ImGuiLayer<T>::pop_gui_component() {
     component_stack->pop();
 }
+
+template<class T>
+T ImGuiLayer<T>::get_top_component() const {
+    component_stack->top();
+}

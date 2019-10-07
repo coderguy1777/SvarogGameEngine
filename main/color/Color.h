@@ -13,7 +13,9 @@
 class Rgb {
 	public:
 		float redval, greenval, blueval;
-
+		Rgb() {
+			
+		}
 		Rgb(float r, float g, float b) {
 			this->redval = r;
 			this->greenval = g;

@@ -18,6 +18,7 @@ class ImGuiLayer {
         void add_gui_component(T const&);
         T get_gui_component() const;
         void pop_gui_component();
+        T get_top_component() const;
 };
 
 

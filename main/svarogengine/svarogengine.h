@@ -11,6 +11,7 @@
 #include "render-pipeline/shader/VertexShader.h"
 #include "render-pipeline/shader/ShaderProgram.h"
 #include "render-pipeline/mesh/svarog_shape.h"
+#include "render-pipeline/shader/s_lab/svarog_material.h"
 #include "render-pipeline/mesh/svarog_renderobj.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_gen.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_defs.h"
