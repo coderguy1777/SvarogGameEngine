@@ -87,7 +87,6 @@ void SvarogEngine::RunEngine() {
         // shader & imgui test.
         // TODO: design engine gui and docks.
         ImGuiInit::init_imgui_frames();
-        
         ImGui::Begin("GUI_TEST");
         ImGui::SetCursorPos(ImVec2(10, 10));
         SvarogButton a(50, 60, "Custom class button", true);

@@ -17,6 +17,7 @@
 #include "render-pipeline/shader/glsl_shader_generation/shader_defs.h"
 #include "main/enginewindow/engine-gui/imgui_init.h"
 #include "main/enginewindow/engine-gui/sidebar-components/button.h"
+#include "main/enginewindow/engine-gui/sidebar-components/label.h"
 #include "math/vec3.h"
 #include "main/materials/material.h"
 #include "main/enginewindow/enginewindow.h"
