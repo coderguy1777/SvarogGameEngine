@@ -21,7 +21,7 @@ void SvarogEngine::RunEngine() {
     InitContext();
     InitMonitor();
     Rgb c(1.0f, 1.0f, 0.5f);
-    SvarogMaterial ac(c);
+    SvarogMaterial ac;
     ac.write_shader();
 
     float vertices[] = {
