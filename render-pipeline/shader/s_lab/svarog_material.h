@@ -22,8 +22,6 @@ struct MatShader {
 };
 
 class SvarogMaterial {
-    protected: 
-        void write_material_code();
     private:
         Rgb color_test;
         MatShader shader_prg;
@@ -35,13 +33,14 @@ class SvarogMaterial {
             to add modified value, and modify it for the material, in real time. do this
             for all mesh class values, and materials.
         */ 
-        SvarogMaterial() {
-    
-        }
-        VertexShader get_vert() const;
-        FragmentShader get_frag() const;
-        void write_shader();
+        SvarogMaterial() {}
+        VertexShader get_vert();
+        FragmentShader get_frag();
+        void write_shader(const char* a, const char* b);
         void run();
+        unsigned int get_s_prg() const {
+            return mat_prg.get_shader_id();
+        }
         Rgb get_color() const;
 };
 

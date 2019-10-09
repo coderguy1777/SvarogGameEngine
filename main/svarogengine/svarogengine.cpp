@@ -19,11 +19,23 @@ void SvarogEngine::InitMonitor() {
 void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
-    InitMonitor();
-    Rgb c(1.0f, 1.0f, 0.5f);
+    InitMonitor();   
+    const char* shader_tst_1 = "#version 400\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "void main()\n"
+        "{\n"
+        "   gl_Position=vec4(aPos, 1.0);\n"
+        "}\0";
+    
+    const char* shader_tst_2 ="#version 400\n"
+        "out vec4 frag_color;\n"
+        "uniform float r;\n"
+        "void main()\n"
+        "{\n"
+        "   frag_color = vec4(r, 0.5, 1.0, 1.0);\n"
+        "}\n\0";
     SvarogMaterial ac;
-    ac.write_shader();
-
+    ac.write_shader(shader_tst_1, shader_tst_2);
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 
         0.5f, -0.5f, -0.5f,
@@ -49,41 +61,36 @@ void SvarogEngine::RunEngine() {
     for(int j = 0; j < 9; j++) {
         pos.push_back(poss[j]);
     }
-
     mesh_tst.pass_position_data(pos);
     mesh_tst.pass_vert_data(vert);
     mesh_tst.init();
+    // renderable obj debug.
     RenderObj* s = new RenderObj();
-    s->set_mesh_id(2);
-    s->set_mesh_name(String("Hello"));
+    s->set_mesh_id(1);
+    s->set_mesh_name(String("Debug_Mesh"));
     s->input_mesh(mesh_tst);
-    ArrayList<RenderObj*>x;
-    x.add(s);
+    // debug im gui context
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
+    SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 500, 500);
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         ac.run();
-        // shader & imgui test.
-        // TODO: design engine gui and docks.
         ImGuiInit::init_imgui_frames();
-        ImGui::Begin("GUI_TEST");
-        ImGui::SetCursorPos(ImVec2(10, 10));
-        SvarogButton a(50, 60, "Custom class button", true);
-        static float size_m = 0.0f;
-        ImGui::SliderFloat("Test", &size_m, 0.0f, 1.0f);
-        ImGui::End();
-        float x_1 = 0.5f;
-        float x_2 = 0.4f;
-        float x_3 = 1.0f;
-        float xx = glfwGetTime();
-        float y= sin(xx/2.0f) * 20.0f;
-        x.get(0)->get_mesh().draw();
+        test->begin_gui_frame();
+        {
+            ImGui::SetCursorPos(ImVec2(10, 10));
+            SvarogButton a(100, 60, "Debug_Button", true);
+            static float size_m = 0.0f;
+            ImGui::SliderFloat("Debug_Slider", &size_m, 0.0f, 1.0f);
+        }
+        test->end_gui_frame();
+        s->get_mesh().draw();
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();
     }
-    x.get(0)->get_mesh().del_buffers();
+    s->get_mesh().del_buffers();
     ImGuiInit::init_imgui_shutdown();
 }
 SvarogEngine* SvarogEngine::engine_instance = 0;
