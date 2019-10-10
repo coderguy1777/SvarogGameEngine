@@ -80,6 +80,8 @@ add_executable(SvarogGameEngine
         render-pipeline/shader/glsl_shader_generation/shader_gen.cpp
         render-pipeline/shader/s_lab/svarog_material.h 
         render-pipeline/shader/s_lab/svarog_material.cpp
+        render-pipeline/shader/s_lab/shader_mg.h
+        render-pipeline/shader/s_lab/shader_mg.cpp
         render-pipeline/mesh/opengl_mesh_buffers/mesh_buffer.h
         render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.h
         render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp
@@ -87,10 +89,6 @@ add_executable(SvarogGameEngine
         render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp
         render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.h
         render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp
-        render-pipeline/shader/s_lab/svarog_material.h
-        render-pipeline/shader/s_lab/svarog_material.cpp
-        render-pipeline/shader/s_lab/shader_mg.h
-        render-pipeline/shader/s_lab/shader_mg.cpp
         core/ds-classes/Array.h
         core/ds-classes/ArrayList.h
         core/ds-classes/Node.h

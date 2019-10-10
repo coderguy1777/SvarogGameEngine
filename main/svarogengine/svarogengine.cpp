@@ -20,7 +20,7 @@ void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
     InitMonitor();   
-    const char* shader_tst_1 = "#version 400\n"
+   /* const char* shader_tst_1 = "#version 400\n"
         "layout (location = 0) in vec3 aPos;\n"
         "void main()\n"
         "{\n"
@@ -34,8 +34,7 @@ void SvarogEngine::RunEngine() {
         "{\n"
         "   frag_color = vec4(r, 0.5, 1.0, 1.0);\n"
         "}\n\0";
-    SvarogMaterial ac;
-    ac.write_shader(shader_tst_1, shader_tst_2);
+    */
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 
         0.5f, -0.5f, -0.5f,

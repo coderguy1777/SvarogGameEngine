@@ -15,33 +15,26 @@
 #include "render-pipeline/shader/FragmentShader.h"
 #include "render-pipeline/shader/VertexShader.h"
 #include "render-pipeline/shader/ShaderProgram.h"
+#include "render-pipeline/shader/s_lab/shader_mg.h"
 
-struct MatShader {
+struct ShaderParts {
     VertexShader vert_shader;
     FragmentShader frag_shader;
 };
 
+enum class COLOR_MODEL {
+    RGB_MODEL=0,
+    HSV_MODEL=1,
+    HSL_MODEL=2,
+    CMYK_MODEL=3,
+    ARGB_MODEL=4,
+    EIGHT_BIT_RGB_MODEL=5
+};
+
 class SvarogMaterial {
     private:
-        Rgb color_test;
-        MatShader shader_prg;
-        ShaderProgram mat_prg;
 
-    public: 
-        /* 
-            TODO: change methods up for given value, set by method, and then changed by glUniform*
-            to add modified value, and modify it for the material, in real time. do this
-            for all mesh class values, and materials.
-        */ 
-        SvarogMaterial() {}
-        VertexShader get_vert();
-        FragmentShader get_frag();
-        void write_shader(const char* a, const char* b);
-        void run();
-        unsigned int get_s_prg() const {
-            return mat_prg.get_shader_id();
-        }
-        Rgb get_color() const;
+    public:
 };
 
 
