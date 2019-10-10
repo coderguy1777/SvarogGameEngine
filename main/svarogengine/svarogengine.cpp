@@ -75,7 +75,6 @@ void SvarogEngine::RunEngine() {
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        ac.run();
         ImGuiInit::init_imgui_frames();
         test->begin_gui_frame();
         {
