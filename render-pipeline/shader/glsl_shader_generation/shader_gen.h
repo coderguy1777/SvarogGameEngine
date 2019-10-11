@@ -5,29 +5,33 @@
 #include <ostream>
 #include <fstream>
 #include "core/ds-classes/ArrayList.h"
+#include "render-pipeline/shader/VertexShader.h"
+#include "render-pipeline/shader/FragmentShader.h"
 #define SHADER_DIR "/home/jordan/Documents/SvarogGameEngine/builds/shaders/"
-struct Shader_File_Attributes {
-    std::string file_name;
-    unsigned int MAX_SIZE;
-    unsigned int shader_type;
-    bool write_shader;
-};
+#define MESH_ASSIGNED
+#define DEFAULT_VERTEX_SHADER
+#define DEFAULT_FRAGMENT_SHADER
 
 class ShaderGeneration {
     private:
-        Shader_File_Attributes* file_info;
-        ArrayList<const char*>*shader_output = new ArrayList<const char*>();
-        int success;
+        struct shader_program_shaders {
+            VertexShader material_vert_shader;
+            FragmentShader material_frag_shader;
+            VertexShader get_vert_shader() const {
+                return material_vert_shader;
+            }
+
+            FragmentShader get_frag_shader() const {
+                return material_frag_shader;
+            }
+        } mat_shader_prg;
+        
     public:
-        ShaderGeneration(std::string f_name, unsigned int size_m, unsigned int shader_type, bool is_writable);
         ShaderGeneration();
-        std::string get_file_n() const;
-        unsigned int get_size_max() const;
-        unsigned int get_mat_type() const;
-        int get_success() const;
-        bool get_write_state() const;
-        void add_to_output(const char* shader_line);  
-        void write_file();    
+
+        VertexShader get_mat_vert() const;
+        FragmentShader get_mat_frag() const;
+        void add_to_manager();
 };
 
 #endif

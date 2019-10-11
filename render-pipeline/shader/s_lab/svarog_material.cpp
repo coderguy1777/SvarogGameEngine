@@ -63,3 +63,15 @@ void SvarogMaterial::set_eight_bit(eightbit color) {
 eightbit SvarogMaterial::get_eight_bit() const {
     return mat_eightbit_color;
 }
+
+void SvarogMaterial::is_assigned_to_mesh() {
+    material_info.is_assigned = true;
+}
+
+void SvarogMaterial::is_not_assigned_to_mesh() {
+    material_info.is_assigned = false;
+}
+
+bool SvarogMaterial::get_assign_state() const {
+    return material_info.is_assigned;
+}

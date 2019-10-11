@@ -2,9 +2,11 @@
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GLAD)
 #include<glad/glad.h>
 #endif
-
 SvarogEngine* SvarogEngine::getInstanceEngine() {
-    if(!engine_instance) engine_instance = new SvarogEngine; return engine_instance;
+    if(!engine_instance) {
+        engine_instance = new SvarogEngine;
+    }
+    return engine_instance;
 }
 
 void SvarogEngine::InitContext() {
