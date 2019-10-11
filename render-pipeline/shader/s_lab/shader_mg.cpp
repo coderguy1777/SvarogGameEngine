@@ -6,23 +6,30 @@ ShaderManager* ShaderManager::getShaderManager() {
     return shader_manager;
 }
 
-void ShaderManager::compile_vertex() {
-
-}
-
-void ShaderManager::compile_fragment() {
-
-}
-
-void ShaderManager::test(SvarogMaterial a) {
-    a.set_primary_color_model(COLOR_MODEL::RGB_MODEL);
-    bool cmyk_tst = (a.get_primary_color_model() == COLOR_MODEL::ARGB_MODEL) ? true : false;
-    bool rgb_tst = (a.get_primary_color_model() == COLOR_MODEL::RGB_MODEL) ? true : false;
-    if(a.get_primary_color_model() == COLOR_MODEL::RGB_MODEL) {
-        a.set_rgb(Rgb(1.0f, 1.0f, 1.0f));
-        spdlog::warn(cmyk_tst);
-        spdlog::warn(rgb_tst);
+void ShaderManager::pass_code(VertexShader vert_pt, FragmentShader frag_pt) {
+    if(vert_pt.get_code() == "" || frag_pt.get_code() == "") {
+        spdlog::error("NO SHADER CODE PASSED");
+    } else {
+        spdlog::warn("SHADER CODE PASSED");
     }
+
+    ShaderProgram new_prg;
+    vert_pt.compile_shader();
+    frag_pt.compile_shader();
+    spdlog::info(vert_pt.get_code());
+    new_prg.bind_shaders(vert_pt, frag_pt);
+    shader_mats->add(new_prg);
+    new_prg.use();
 }
 
+void ShaderManager::render_tst() {
+    shader_mats->get(0).use();
+}
+
+bool ShaderManager::works() {
+    if(shader_mats->get(0).get_link_status()) {
+        spdlog::warn("COMPILED");
+    } 
+    return (shader_mats->get(0).get_link_status());
+}
 ShaderManager *ShaderManager::shader_manager = 0;

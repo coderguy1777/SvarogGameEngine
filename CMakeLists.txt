@@ -94,7 +94,6 @@ add_executable(SvarogGameEngine
         core/ds-classes/Node.h
         core/ds-classes/Queue.h
         core/ds-classes/Stack.h
-        core/ds-classes/Stack.cpp
         core/events/event-types/keyevent.cpp
         core/events/event-types/keyevent.h
         core/events/event-types/mouseevent.h
@@ -104,10 +103,6 @@ add_executable(SvarogGameEngine
         core/events/event-dispatchers/EventDispatch.h
         core/events/event-dispatchers/KeyEventDispatcher.h
         core/events/event-dispatchers/KeyEventDispatcher.cpp
-        core/events/event-listeners/EventListener.cpp
-        core/events/event-listeners/EventListener.h
-        core/events/event-listeners/KeyListener.cpp
-        core/events/event-listeners/KeyListener.h
         core/events/event-queues/event_queue.h
         core/events/event-layer/EventLayer.h
         core/events/event-layer/EventLayer.cpp

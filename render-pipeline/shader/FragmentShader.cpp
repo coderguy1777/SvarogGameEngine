@@ -52,7 +52,7 @@ void FragmentShader::compile_shader() {
             glGetShaderInfoLog(shader_f, 512, NULL, info);
             spdlog::info("Shader name: {}", "FRAG_SHADER");
         } else if(!success) {
-            spdlog::info("SHADER_FAILURE");
+            spdlog::info("SHADER_FAILURE (FragmentShader)");
             spdlog::info(info[0]);
         }
     }

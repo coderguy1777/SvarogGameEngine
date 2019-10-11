@@ -14,6 +14,10 @@ float Rgb::getGreen() {
     return greenval;
 }
 
+float Rgb::getAlpha() {
+    return 1.0f;
+}
+
 void Rgb::setRVal(float r) {
     redval = r;
 }

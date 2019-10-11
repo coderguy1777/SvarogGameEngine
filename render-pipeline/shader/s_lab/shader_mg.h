@@ -8,23 +8,17 @@
 #include "render-pipeline/shader/s_lab/svarog_material.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_defs.h"
 class SvarogMaterial;
-
-struct mesh_assignment {
-    String mesh_name;
-    unsigned int mesh_id;
-    ShaderProgram mesh_material;
-};
 class ShaderManager {
     private:
         static ShaderManager* shader_manager;
-        ArrayList<mesh_assignment>renderable_materials; // for storing all renderable materials for meshes.
+        ArrayList<ShaderProgram>*shader_mats = new ArrayList<ShaderProgram>();
         ShaderManager(){}
     public: 
         ~ShaderManager() {}
         static ShaderManager* getShaderManager();
-        void test(SvarogMaterial a);
-        void compile_vertex();
-        void compile_fragment();
+        void pass_code(VertexShader vert_mat, FragmentShader frag_mat);
+        void render_tst();
+        bool works();
 };
 
 #endif

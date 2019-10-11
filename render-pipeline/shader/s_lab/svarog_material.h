@@ -16,7 +16,6 @@
 #include "render-pipeline/shader/VertexShader.h"
 #include "render-pipeline/shader/ShaderProgram.h"
 #include "render-pipeline/shader/s_lab/shader_mg.h"
-#define NOT_ASSIGNED
 enum class COLOR_MODEL {
     RGB_MODEL=0,
     HSV_MODEL=1,
@@ -35,6 +34,7 @@ class SvarogMaterial {
             bool is_assigned = false;
             unsigned int mesh_id;
         } material_info;
+        
         Rgb mat_color;
         CMYKVALS mat_cmyk;
         HSV mat_hsv;
@@ -64,6 +64,8 @@ class SvarogMaterial {
         void is_assigned_to_mesh();
         void is_not_assigned_to_mesh();
         bool get_assign_state() const;
+        void set_material_name(String mat_name);
+        String get_material_name() const;
 
 };
 #endif

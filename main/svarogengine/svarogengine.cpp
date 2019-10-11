@@ -37,6 +37,16 @@ void SvarogEngine::RunEngine() {
         "   frag_color = vec4(r, 0.5, 1.0, 1.0);\n"
         "}\n\0";
     */
+
+    SvarogMaterial debug_mat;
+    debug_mat.is_assigned_to_mesh();
+    debug_mat.set_material_name("frag_color");
+    debug_mat.set_rgb(Rgb(1.0, 0.5, 1.0));
+    debug_mat.set_primary_color_model(COLOR_MODEL::RGB_MODEL);
+    ShaderGeneration::generateShaderCode()->input_mat(debug_mat);
+    ShaderGeneration::generateShaderCode()->make_shaders();
+    ShaderGeneration::generateShaderCode()->send_shaders();
+
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 
         0.5f, -0.5f, -0.5f,
@@ -51,10 +61,6 @@ void SvarogEngine::RunEngine() {
         1, 2, 3,
         0, 1, 2,
     };
-
-    SvarogMaterial ac;
-    ac.set_primary_color_model(COLOR_MODEL::RGB_MODEL);
-    ShaderManager::getShaderManager()->test(ac);
 
     SvarogShape mesh_tst;
     std::vector<float>vert;
@@ -78,6 +84,8 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
     SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 500, 500);
+        ShaderManager::getShaderManager()->render_tst();
+
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);

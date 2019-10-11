@@ -48,7 +48,6 @@ void SvarogShape::pass_vert_data(std::vector<float>data_1) {
     for(unsigned int i =0; i < data_1.size(); i++) {
         data->vert_data.push_back(data_1[i]);
     }
-    spdlog::info(data->vert_data.size());
 }
 
 void SvarogShape::pass_position_data(std::vector<unsigned int>pos_1) {
