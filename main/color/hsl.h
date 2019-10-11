@@ -11,6 +11,10 @@ class hsl {
 		float s, l;
 	
 	public:
+		hsl() {
+
+		}
+		
 		hsl(double hue, float saturation, float lightness) {
 			this->h = hue;
 			this->s = saturation;

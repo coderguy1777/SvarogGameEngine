@@ -10,7 +10,10 @@ class HSV {
 		double hue = 0.0;
 		float saturation = 0.0f;
 		float value = 0.0f;
+		HSV() {
 
+		}
+		
 		HSV(double h, float s, float vb) {
 			this->hue = h;
 			this->saturation = s;

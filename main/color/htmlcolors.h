@@ -10,6 +10,10 @@ class HexColorCodes {
 	private:
 		String code;
 	public:
+		HexColorCodes() {
+
+		}
+		
 		HexColorCodes(String str) {
 			code = str;
 		}

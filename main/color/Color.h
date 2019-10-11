@@ -40,6 +40,9 @@ class Rgb {
 class eightbit: public Rgb {
 	public:
 		float r,  g,  b;
+		eightbit() {
+
+		}
 		eightbit(float r, float b, float g):Rgb(r, g, b) {};
 		eightbit RgbtoEightbit(Rgb wantedEightbit);
 		float getRed();
@@ -55,6 +58,7 @@ class adobeRGB: public Rgb {
 	public:
 		float r, g, b;
 		adobeRGB(float r, float g, float b):Rgb(r, g, b){};
+		adobeRGB(){}
 		adobeRGB RGBtoAdobeRGB(Rgb color);
 		void setR(float r);
 		void setG(float g);

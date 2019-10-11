@@ -50,6 +50,10 @@ void SvarogEngine::RunEngine() {
         0, 1, 2,
     };
 
+    SvarogMaterial ac;
+    ac.set_primary_color_model(COLOR_MODEL::RGB_MODEL);
+    ShaderManager::getShaderManager()->test(ac);
+
     SvarogShape mesh_tst;
     std::vector<float>vert;
     std::vector<unsigned int>pos;

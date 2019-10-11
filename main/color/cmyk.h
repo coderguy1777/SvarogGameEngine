@@ -8,6 +8,9 @@ using namespace std;
 class CMYKVALS {
 	public:
 		float c, m, y, k;
+		CMYKVALS() {
+			
+		}
 		CMYKVALS(float cyan, float magenta, float yellow, float black) {
 			this->c = cyan;
 			this->m = magenta;
