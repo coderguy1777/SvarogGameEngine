@@ -21,7 +21,6 @@ class SvarogEngine {
         WindowMonitor* svarog_monitor;
         WindowInput* Input;
     public:
-        int a;
         SvarogEngine() {
             svarog_monitor = new WindowMonitor();
         }

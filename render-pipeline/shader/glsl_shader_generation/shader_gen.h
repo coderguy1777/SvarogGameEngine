@@ -8,6 +8,7 @@
 #include <string>
 #include "core/ds-classes/Stack.h"
 #include "core/ds-classes/Array.h"
+#include "core/logger/Log.h"
 #include "render-pipeline/shader/VertexShader.h"
 #include "render-pipeline/shader/FragmentShader.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_defs.h"
