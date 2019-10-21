@@ -10,6 +10,7 @@
 #include "main/color/hsl.h"
 #include "main/color/htmlcolors.h"
 #include "main/color/cmyk.h"
+#include "render-pipeline/mesh/svarog_renderobj.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_defs.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_gen.h"
 #include "render-pipeline/shader/FragmentShader.h"
@@ -33,6 +34,7 @@ class SvarogMaterial {
             String mesh_name;
             bool is_assigned = false;
             unsigned int mesh_id;
+            SvarogShape mat_shape;
         } material_info;
         
         Rgb mat_color;

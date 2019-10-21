@@ -17,8 +17,6 @@ class ShaderManager {
         ~ShaderManager() {}
         static ShaderManager* getShaderManager();
         void pass_code(VertexShader vert_mat, FragmentShader frag_mat);
-        void render_tst();
-        bool works();
 };
 
 #endif

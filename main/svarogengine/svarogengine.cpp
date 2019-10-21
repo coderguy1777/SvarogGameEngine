@@ -21,23 +21,7 @@ void SvarogEngine::InitMonitor() {
 void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
-    InitMonitor();   
-   /* const char* shader_tst_1 = "#version 400\n"
-        "layout (location = 0) in vec3 aPos;\n"
-        "void main()\n"
-        "{\n"
-        "   gl_Position=vec4(aPos, 1.0);\n"
-        "}\0";
-    
-    const char* shader_tst_2 ="#version 400\n"
-        "out vec4 frag_color;\n"
-        "uniform float r;\n"
-        "void main()\n"
-        "{\n"
-        "   frag_color = vec4(r, 0.5, 1.0, 1.0);\n"
-        "}\n\0";
-    */
-
+    InitMonitor();
     SvarogMaterial debug_mat;
     debug_mat.is_assigned_to_mesh();
     debug_mat.set_material_name("frag_color");
@@ -84,8 +68,6 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
     SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 500, 500);
-        ShaderManager::getShaderManager()->render_tst();
-
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);

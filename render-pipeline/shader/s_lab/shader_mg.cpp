@@ -21,15 +21,4 @@ void ShaderManager::pass_code(VertexShader vert_pt, FragmentShader frag_pt) {
     shader_mats->add(new_prg);
     new_prg.use();
 }
-
-void ShaderManager::render_tst() {
-    shader_mats->get(0).use();
-}
-
-bool ShaderManager::works() {
-    if(shader_mats->get(0).get_link_status()) {
-        spdlog::warn("COMPILED");
-    } 
-    return (shader_mats->get(0).get_link_status());
-}
 ShaderManager *ShaderManager::shader_manager = 0;

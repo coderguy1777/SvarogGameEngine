@@ -29,8 +29,12 @@ void ShaderGeneration::input_mat(SvarogMaterial to_compile) {
 void ShaderGeneration::make_shaders() {
     SvarogMaterial curr_shader = generation_queue->get(0);
     if(curr_shader.get_primary_color_model() == COLOR_MODEL::RGB_MODEL) {
-
+        
     } else if(curr_shader.get_primary_color_model() == COLOR_MODEL::HSV_MODEL) {
+
+    } else if(curr_shader.get_primary_color_model() == COLOR_MODEL::HSL_MODEL) {
+
+    } else if(curr_shader.get_primary_color_model() == COLOR_MODEL::ARGB_MODEL) {
 
     }
 }
