@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 git add .
 COMMIT_MSG=0
 echo "Type a commit message."
