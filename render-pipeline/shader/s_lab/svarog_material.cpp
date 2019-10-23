@@ -73,7 +73,7 @@ void SvarogMaterial::is_not_assigned_to_mesh() {
 }
 
 bool SvarogMaterial::get_assign_state() const {
-    return (material_info.mat_shape != NULL);
+
 }
 
 void SvarogMaterial::set_material_name(String mat_name) {

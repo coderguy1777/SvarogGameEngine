@@ -231,6 +231,33 @@ core/String.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/String.cpp.s
 .PHONY : core/String.cpp.s
 
+core/ds-classes/ClassString.o: core/ds-classes/ClassString.cpp.o
+
+.PHONY : core/ds-classes/ClassString.o
+
+# target to build an object file
+core/ds-classes/ClassString.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/ds-classes/ClassString.cpp.o
+.PHONY : core/ds-classes/ClassString.cpp.o
+
+core/ds-classes/ClassString.i: core/ds-classes/ClassString.cpp.i
+
+.PHONY : core/ds-classes/ClassString.i
+
+# target to preprocess a source file
+core/ds-classes/ClassString.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/ds-classes/ClassString.cpp.i
+.PHONY : core/ds-classes/ClassString.cpp.i
+
+core/ds-classes/ClassString.s: core/ds-classes/ClassString.cpp.s
+
+.PHONY : core/ds-classes/ClassString.s
+
+# target to generate assembly for a file
+core/ds-classes/ClassString.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/ds-classes/ClassString.cpp.s
+.PHONY : core/ds-classes/ClassString.cpp.s
+
 core/events/Event.o: core/events/Event.cpp.o
 
 .PHONY : core/events/Event.o
@@ -1710,6 +1737,9 @@ help:
 	@echo "... core/String.o"
 	@echo "... core/String.i"
 	@echo "... core/String.s"
+	@echo "... core/ds-classes/ClassString.o"
+	@echo "... core/ds-classes/ClassString.i"
+	@echo "... core/ds-classes/ClassString.s"
 	@echo "... core/events/Event.o"
 	@echo "... core/events/Event.i"
 	@echo "... core/events/Event.s"

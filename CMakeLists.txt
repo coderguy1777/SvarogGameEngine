@@ -130,6 +130,8 @@ add_executable(SvarogGameEngine
         core/Point.h
         core/String.cpp
         core/String.h
+        core/ds-classes/ClassString.h
+        core/ds-classes/ClassString.cpp
         debugger/logger.cpp
         debugger/logger.h
         glad/glad.c

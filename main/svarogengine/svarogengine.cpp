@@ -22,6 +22,35 @@ void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
     InitMonitor();
+    std::string vert_shader, frag_shader;
+    std::ifstream vert, frag;
+    vert.exceptions(std::ifstream::failbit);
+    frag.exceptions(std::ifstream::failbit);
+    try {
+        vert.open("/home/jordan/Documents/SvarogGameEngine/render-pipeline/shader/engine_shader/mainvertex_shader.glsl");
+        frag.open("/home/jordan/Documents/SvarogGameEngine/render-pipeline/shader/engine_shader/mainfragment_shader.glsl");
+        std::stringstream aa, aba;
+        aa << vert.rdbuf();
+        aba << frag.rdbuf();
+        vert.close();
+        frag.close();
+        vert_shader = aa.str();
+        frag_shader = aba.str();
+    } catch (ifstream::failure e) {
+        std::cout << e.what() << '\n';
+    }
+    const char* vert_s = vert_shader.c_str();
+    const char* frag_s = frag_shader.c_str();
+    VertexShader vert_m;
+    vert_m.set_code(vert_s);
+    vert_m.set_use_state();
+    vert_m.compile_shader();
+    FragmentShader frag_m; 
+    frag_m.set_code(frag_s);
+    frag_m.set_use_state();
+    frag_m.compile_shader();
+    ShaderProgram * test_prg = new ShaderProgram();
+    test_prg->bind_shaders(vert_m, frag_m);
     SvarogMaterial debug_mat;
     debug_mat.is_assigned_to_mesh();
     debug_mat.set_material_name("frag_color");
@@ -47,17 +76,17 @@ void SvarogEngine::RunEngine() {
     };
 
     SvarogShape mesh_tst;
-    std::vector<float>vert;
+    std::vector<float>vertt;
     std::vector<unsigned int>pos;
 
     for(int i = 0; i < 18; i++) {
-        vert.push_back(vertices[i]);
+        vertt.push_back(vertices[i]);
     }
     for(int j = 0; j < 9; j++) {
         pos.push_back(poss[j]);
     }
     mesh_tst.pass_position_data(pos);
-    mesh_tst.pass_vert_data(vert);
+    mesh_tst.pass_vert_data(vertt);
     mesh_tst.init();
     // renderable obj debug.
     RenderObj* s = new RenderObj();
@@ -71,6 +100,7 @@ void SvarogEngine::RunEngine() {
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
+        test_prg->use();
         ImGuiInit::init_imgui_frames();
         test->begin_gui_frame();
         {
