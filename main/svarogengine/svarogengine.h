@@ -3,6 +3,7 @@
 #define SVAROGENGINE_H
 #include <memory>
 #include <functional>
+#include "main/enginewindow/engine-gui/sidebar-components/input_text.h"
 #include "render-pipeline/mesh/svarog_shape.h"
 #include "render-pipeline/mesh/svarog_renderobj.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_gen.h"
@@ -21,6 +22,7 @@ class SvarogEngine {
         WindowMonitor* svarog_monitor;
         WindowInput* Input;
     public:
+
         SvarogEngine() {
             svarog_monitor = new WindowMonitor();
         }

@@ -97,6 +97,9 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
     SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 500, 500);
+    char* debug = new char[3];
+    debug[0] = 'e';
+    debug[1] = 'd';
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
@@ -105,10 +108,9 @@ void SvarogEngine::RunEngine() {
         test->begin_gui_frame();
         {
             ImGui::SetCursorPos(ImVec2(10, 10));
-            SvarogButton a(100, 60, "Debug_Button", true);
-            char* buf;
-            ImGui::InputText("##text", buf, IM_ARRAYSIZE(buf));
-            unsigned int bc = 20;
+            SvarogButton dbg_button(100, 60, "Debug_Button", true);
+            SvarogInputText("Steve", debug ,3);
+
             static float size_m = 0.0f;
             ImGui::SliderFloat("Debug_Slider", &size_m, 0.0f, 1.0f);
         }

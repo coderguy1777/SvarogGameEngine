@@ -53,7 +53,6 @@ void ShaderGeneration::send_shaders() {
         code_b += fragment_shader_code.get(j);
     }
     mat_shader_code.fragment_code = code_b.c_str();
-    SVAROG_CLASS_DEBUG("SvarogMaterial", code_a.c_str());
 
     mat_shader_prg.material_vert_shader.set_code(mat_shader_code.vertex_code);
     mat_shader_prg.material_frag_shader.set_code(mat_shader_code.fragment_code);
