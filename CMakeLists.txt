@@ -157,6 +157,8 @@ add_executable(SvarogGameEngine
         main/enginewindow/engine-gui/sidebar-components/label.cpp
         main/enginewindow/engine-gui/sidebar-components/gui_frames.h
         main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp
+        main/enginewindow/engine-gui/sidebar-components/input_text.h
+        main/enginewindow/engine-gui/sidebar-components/input_text.cpp
         main/enginewindow/engine-gui/gui_layer.h
         main/enginewindow/engine-gui/gui_layer.cpp
         main/materials/material.h
