@@ -1014,6 +1014,33 @@ main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.s
 .PHONY : main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.s
 
+main/enginewindow/engine-gui/sidebar-components/input_text.o: main/enginewindow/engine-gui/sidebar-components/input_text.cpp.o
+
+.PHONY : main/enginewindow/engine-gui/sidebar-components/input_text.o
+
+# target to build an object file
+main/enginewindow/engine-gui/sidebar-components/input_text.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/sidebar-components/input_text.cpp.o
+.PHONY : main/enginewindow/engine-gui/sidebar-components/input_text.cpp.o
+
+main/enginewindow/engine-gui/sidebar-components/input_text.i: main/enginewindow/engine-gui/sidebar-components/input_text.cpp.i
+
+.PHONY : main/enginewindow/engine-gui/sidebar-components/input_text.i
+
+# target to preprocess a source file
+main/enginewindow/engine-gui/sidebar-components/input_text.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/sidebar-components/input_text.cpp.i
+.PHONY : main/enginewindow/engine-gui/sidebar-components/input_text.cpp.i
+
+main/enginewindow/engine-gui/sidebar-components/input_text.s: main/enginewindow/engine-gui/sidebar-components/input_text.cpp.s
+
+.PHONY : main/enginewindow/engine-gui/sidebar-components/input_text.s
+
+# target to generate assembly for a file
+main/enginewindow/engine-gui/sidebar-components/input_text.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/sidebar-components/input_text.cpp.s
+.PHONY : main/enginewindow/engine-gui/sidebar-components/input_text.cpp.s
+
 main/enginewindow/engine-gui/sidebar-components/label.o: main/enginewindow/engine-gui/sidebar-components/label.cpp.o
 
 .PHONY : main/enginewindow/engine-gui/sidebar-components/label.o
@@ -1824,6 +1851,9 @@ help:
 	@echo "... main/enginewindow/engine-gui/sidebar-components/gui_frames.o"
 	@echo "... main/enginewindow/engine-gui/sidebar-components/gui_frames.i"
 	@echo "... main/enginewindow/engine-gui/sidebar-components/gui_frames.s"
+	@echo "... main/enginewindow/engine-gui/sidebar-components/input_text.o"
+	@echo "... main/enginewindow/engine-gui/sidebar-components/input_text.i"
+	@echo "... main/enginewindow/engine-gui/sidebar-components/input_text.s"
 	@echo "... main/enginewindow/engine-gui/sidebar-components/label.o"
 	@echo "... main/enginewindow/engine-gui/sidebar-components/label.i"
 	@echo "... main/enginewindow/engine-gui/sidebar-components/label.s"
