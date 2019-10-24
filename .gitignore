@@ -10,5 +10,5 @@ CMakeFiles/
 .vscode/c_cpp_properties.json
 install/
 libraries/imgui
-libraries/imgui
-imgui
+libraries/SvarogGameEngine-Gui
+

@@ -108,9 +108,8 @@ void SvarogEngine::RunEngine() {
         test->begin_gui_frame();
         {
             ImGui::SetCursorPos(ImVec2(10, 10));
-            SvarogButton dbg_button(100, 60, "Debug_Button", true);
-            SvarogInputText("Steve", debug ,3);
-
+            SvarogButton dbg_btn(100, 60, "Debug_Button", true);
+            SvarogInputText ad("Steve", debug ,3);
             static float size_m = 0.0f;
             ImGui::SliderFloat("Debug_Slider", &size_m, 0.0f, 1.0f);
         }
