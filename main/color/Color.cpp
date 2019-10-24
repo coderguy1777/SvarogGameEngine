@@ -1,7 +1,4 @@
 #include "Color.h"
-#include<GL/gl.h>
-#include <vector>
-
 float Rgb::getBlue() {
     return blueval;
 }
