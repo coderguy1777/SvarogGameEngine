@@ -1,7 +1,7 @@
 #pragma once
 #ifndef GUI_FRAMES_H
 #define GUI_FRAMES_H
-#include "libraries/imgui/imgui.h"
+#include "libraries/SvarogGameEngine-Gui/imgui.h"
 #include "core/String.h"
 #include "core/ds-classes/ArrayList.h"
 enum class GUI_TAG {

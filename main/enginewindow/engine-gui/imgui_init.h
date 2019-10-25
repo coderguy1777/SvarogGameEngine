@@ -2,8 +2,8 @@
 #ifndef IMGUI_INIT_H
 #define IMGUI_INIT_H
 #include "imgui/imgui.h"
-#include "imgui/examples/imgui_impl_glfw.h"
-#include "imgui/examples/imgui_impl_opengl3.h"
+#include "libraries/SvarogGameEngine-Gui/examples/imgui_impl_glfw.h"
+#include "libraries/SvarogGameEngine-Gui/examples/imgui_impl_opengl3.h"
 #include <GLFW/glfw3.h>
 
 class ImGuiInit {

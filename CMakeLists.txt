@@ -35,29 +35,29 @@ include_directories(render-pipeline/shader/s_lab)
 include_directories(render-pipeline/mesh/opengl_mesh_buffers)
 include_directories(~/Documents/SvarogGameEngine-Gui)
 include_directories(libraries)
-include_directories(libraries/imgui)
-include_directories(libraries/imgui/examples)
-include_directories(libraries/imgui/examples/libs)
-include_directories(libraries/imgui/examples/libs/include/glfw/GLFW)
+include_directories(libraries/SvarogGameEngine-Gui)
+include_directories(libraries/SvarogGameEngine-Gui/examples)
+include_directories(libraries/SvarogGameEngine-Gui/examples/libs)
+include_directories(libraries/SvarogGameEngine-Gui/examples/libs/include/glfw/GLFW)
 
 add_executable(SvarogGameEngine
         glad/glad.c
-        libraries/imgui/examples/libs/glfw/include/GLFW/glfw3.h
-        libraries/imgui/examples/libs/glfw/include/GLFW/glfw3native.h
-        libraries/imgui/imconfig.h
-        libraries/imgui/imgui_demo.cpp
-        libraries/imgui/imgui_draw.cpp
-        libraries/imgui/examples/imgui_impl_glfw.cpp
-        libraries/imgui/examples/imgui_impl_glfw.h
-        libraries/imgui/examples/imgui_impl_opengl3.h
-        libraries/imgui/examples/imgui_impl_opengl3.cpp
-        libraries/imgui/imgui_internal.h
-        libraries/imgui/imgui_widgets.cpp
-        libraries/imgui/imgui.h
-        libraries/imgui/imgui.cpp
-        libraries/imgui/imstb_rectpack.h
-        libraries/imgui/imstb_textedit.h
-        libraries/imgui/imstb_truetype.h
+        libraries/SvarogGameEngine-Gui/examples/libs/glfw/include/GLFW/glfw3.h
+        libraries/SvarogGameEngine-Gui/examples/libs/glfw/include/GLFW/glfw3native.h
+        libraries/SvarogGameEngine-Gui/imconfig.h
+        libraries/SvarogGameEngine-Gui/imgui_demo.cpp
+        libraries/SvarogGameEngine-Gui/imgui_draw.cpp
+        libraries/SvarogGameEngine-Gui/examples/imgui_impl_glfw.cpp
+        libraries/SvarogGameEngine-Gui/examples/imgui_impl_glfw.h
+        libraries/SvarogGameEngine-Gui/examples/imgui_impl_opengl3.h
+        libraries/SvarogGameEngine-Gui/examples/imgui_impl_opengl3.cpp
+        libraries/SvarogGameEngine-Gui/imgui_internal.h
+        libraries/SvarogGameEngine-Gui/imgui_widgets.cpp
+        libraries/SvarogGameEngine-Gui/imgui.h
+        libraries/SvarogGameEngine-Gui/imgui.cpp
+        libraries/SvarogGameEngine-Gui/imstb_rectpack.h
+        libraries/SvarogGameEngine-Gui/imstb_textedit.h
+        libraries/SvarogGameEngine-Gui/imstb_truetype.h
         render-pipeline/window-initalization/glad_loader.h
         render-pipeline/window-initalization/glad_loader.cpp
         render-pipeline/window-initalization/window_context.h

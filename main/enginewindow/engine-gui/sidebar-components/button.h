@@ -1,7 +1,7 @@
 #pragma once
 #ifndef BUTTON_H
 #define BUTTON_H
-#include "libraries/imgui/imgui.h"
+#include "libraries/SvarogGameEngine-Gui/imgui.h"
 #include "core/String.h"
 class SvarogButton {
     private:

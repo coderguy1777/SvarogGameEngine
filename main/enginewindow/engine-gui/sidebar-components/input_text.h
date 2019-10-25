@@ -1,7 +1,7 @@
 #pragma once
 #ifndef INPUT_TEXT_H
 #define INPUT_TEXT_H
-#include "imgui/imgui.h"
+#include "libraries/SvarogGameEngine-Gui/imgui.h"
 #include "core/String.h"
 #include "math/vec2.h"
 #include "core/ds-classes/Array.h"

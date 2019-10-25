@@ -2,7 +2,7 @@
 #ifndef LABEL_H
 #define LABEL_H
 #include <functional>
-#include "libraries/imgui/imgui.h"
+#include "libraries/SvarogGameEngine-Gui/imgui.h"
 #include "core/String.h"
 
 class SvarogLabel {
