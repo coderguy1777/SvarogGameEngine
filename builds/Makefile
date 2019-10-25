@@ -906,6 +906,33 @@ main/color/htmlcolors.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/color/htmlcolors.cpp.s
 .PHONY : main/color/htmlcolors.cpp.s
 
+main/enginewindow/engine-gui/gui_frames.o: main/enginewindow/engine-gui/gui_frames.cpp.o
+
+.PHONY : main/enginewindow/engine-gui/gui_frames.o
+
+# target to build an object file
+main/enginewindow/engine-gui/gui_frames.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/gui_frames.cpp.o
+.PHONY : main/enginewindow/engine-gui/gui_frames.cpp.o
+
+main/enginewindow/engine-gui/gui_frames.i: main/enginewindow/engine-gui/gui_frames.cpp.i
+
+.PHONY : main/enginewindow/engine-gui/gui_frames.i
+
+# target to preprocess a source file
+main/enginewindow/engine-gui/gui_frames.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/gui_frames.cpp.i
+.PHONY : main/enginewindow/engine-gui/gui_frames.cpp.i
+
+main/enginewindow/engine-gui/gui_frames.s: main/enginewindow/engine-gui/gui_frames.cpp.s
+
+.PHONY : main/enginewindow/engine-gui/gui_frames.s
+
+# target to generate assembly for a file
+main/enginewindow/engine-gui/gui_frames.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/gui_frames.cpp.s
+.PHONY : main/enginewindow/engine-gui/gui_frames.cpp.s
+
 main/enginewindow/engine-gui/gui_layer.o: main/enginewindow/engine-gui/gui_layer.cpp.o
 
 .PHONY : main/enginewindow/engine-gui/gui_layer.o
@@ -986,33 +1013,6 @@ main/enginewindow/engine-gui/sidebar-components/button.s: main/enginewindow/engi
 main/enginewindow/engine-gui/sidebar-components/button.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/sidebar-components/button.cpp.s
 .PHONY : main/enginewindow/engine-gui/sidebar-components/button.cpp.s
-
-main/enginewindow/engine-gui/sidebar-components/gui_frames.o: main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.o
-
-.PHONY : main/enginewindow/engine-gui/sidebar-components/gui_frames.o
-
-# target to build an object file
-main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.o
-.PHONY : main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.o
-
-main/enginewindow/engine-gui/sidebar-components/gui_frames.i: main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.i
-
-.PHONY : main/enginewindow/engine-gui/sidebar-components/gui_frames.i
-
-# target to preprocess a source file
-main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.i
-.PHONY : main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.i
-
-main/enginewindow/engine-gui/sidebar-components/gui_frames.s: main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.s
-
-.PHONY : main/enginewindow/engine-gui/sidebar-components/gui_frames.s
-
-# target to generate assembly for a file
-main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.s
-.PHONY : main/enginewindow/engine-gui/sidebar-components/gui_frames.cpp.s
 
 main/enginewindow/engine-gui/sidebar-components/input_text.o: main/enginewindow/engine-gui/sidebar-components/input_text.cpp.o
 
@@ -1839,6 +1839,9 @@ help:
 	@echo "... main/color/htmlcolors.o"
 	@echo "... main/color/htmlcolors.i"
 	@echo "... main/color/htmlcolors.s"
+	@echo "... main/enginewindow/engine-gui/gui_frames.o"
+	@echo "... main/enginewindow/engine-gui/gui_frames.i"
+	@echo "... main/enginewindow/engine-gui/gui_frames.s"
 	@echo "... main/enginewindow/engine-gui/gui_layer.o"
 	@echo "... main/enginewindow/engine-gui/gui_layer.i"
 	@echo "... main/enginewindow/engine-gui/gui_layer.s"
@@ -1848,9 +1851,6 @@ help:
 	@echo "... main/enginewindow/engine-gui/sidebar-components/button.o"
 	@echo "... main/enginewindow/engine-gui/sidebar-components/button.i"
 	@echo "... main/enginewindow/engine-gui/sidebar-components/button.s"
-	@echo "... main/enginewindow/engine-gui/sidebar-components/gui_frames.o"
-	@echo "... main/enginewindow/engine-gui/sidebar-components/gui_frames.i"
-	@echo "... main/enginewindow/engine-gui/sidebar-components/gui_frames.s"
 	@echo "... main/enginewindow/engine-gui/sidebar-components/input_text.o"
 	@echo "... main/enginewindow/engine-gui/sidebar-components/input_text.i"
 	@echo "... main/enginewindow/engine-gui/sidebar-components/input_text.s"

@@ -18,10 +18,73 @@ void SvarogEngine::InitMonitor() {
     svarog_monitor->init_monitor();
 }
 
+void SvarogEngine::layer_test() {
+    String debug_name = String("Debug");
+    ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);
+    ClassString* debug_class_str = debug_layer->get_layer_name();
+    bool is_right = (debug_class_str->get_class_id() <= 5 || debug_class_str->get_class_id() >= 0) ? true : false;
+    bool is_left = (debug_class_str->get_class_id() >= 6 || debug_class_str->get_class_id() <= 10) ? true : false;
+    spdlog::info("START_GUI_LAYER");
+    spdlog::info("--------------------------------------------------------");
+    spdlog::warn("GUI_LAYER_NAME: {}", debug_class_str->get_class_str());
+    std::string pos_msg;
+    if(is_right) {
+        assert(debug_class_str->get_class_id() >= 0);
+        switch(debug_class_str->get_class_id() - 1) {
+            case 0: 
+                pos_msg = "BOTTOM_RIGHT";
+                break;
+            case 1: 
+                pos_msg = "BOTTOM_RIGHT_UP";
+                break;
+            case 2: 
+                pos_msg = "RIGHT_MIDDLE";
+                break;
+            case 3: 
+                pos_msg = "TOP_RIGHT_DOWN";
+                break;
+            case 4: 
+                pos_msg = "TOP_RIGHT_DOWN";
+                break;
+            default: 
+                pos_msg = "NO_POS";
+                break;
+        }
+    }
+
+    if(is_left) {
+        assert(debug_class_str->get_class_id() >= 0);
+        switch(debug_class_str->get_class_id() - 1) {
+            case 0: 
+                pos_msg = "BOTTOM_RIGHT";
+                break;
+            case 1: 
+                pos_msg = "BOTTOM_RIGHT_UP";
+                break;
+            case 2: 
+                pos_msg = "RIGHT_MIDDLE";
+                break;
+            case 3: 
+                pos_msg = "TOP_RIGHT_DOWN";
+                break;
+            case 4: 
+                pos_msg = "TOP_RIGHT_DOWN";
+                break;
+            default: 
+                pos_msg = "NO_POS";
+                break;
+        }
+    }
+    spdlog::warn("GUI_LAYER_POS: {}", pos_msg);
+    spdlog::info("--------------------------------------------------------");
+    spdlog::info("END_GUI_LAYER");
+}
+
 void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
     InitMonitor();
+    layer_test();
     std::string vert_shader, frag_shader;
     std::ifstream vert, frag;
     vert.exceptions(std::ifstream::failbit);
@@ -96,6 +159,7 @@ void SvarogEngine::RunEngine() {
     // debug im gui context
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
+    
     SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 500, 500);
     char* debug = new char[3];
     debug[0] = 'e';

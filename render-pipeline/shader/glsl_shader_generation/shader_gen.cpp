@@ -41,9 +41,6 @@ void ShaderGeneration::make_shaders() {
 
 void ShaderGeneration::send_shaders() {
     std::string code_a, code_b;
-    vertex_shader_code.add("#version 400\n");
-    vertex_shader_code.add("#IFDEF\n");
-    fragment_shader_code.add("#version 400\n");
     for(unsigned int i = 0; i < vertex_shader_code.size(); i++) { 
         code_a += vertex_shader_code.get(i);
     }
