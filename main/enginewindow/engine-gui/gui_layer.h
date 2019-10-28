@@ -3,6 +3,8 @@
 #define GUI_LAYER_H
 #include <functional>
 #include "macrodefs.h"
+#include "main/enginewindow/engine-gui/sidebar-components/button.h"
+#include "main/enginewindow/engine-gui/sidebar-components/label.h"
 #include "core/ds-classes/Array.h"
 #include "core/String.h"
 #include "core/ds-classes/ClassString.h"
