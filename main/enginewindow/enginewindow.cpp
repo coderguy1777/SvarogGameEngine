@@ -4,8 +4,11 @@
 #include "main/enginewindow/enginewindow.h"
 #include "core/events/event-types/mouseevent.h"
 EngineWindow* EngineWindow::getInstance() {
-    if(!winn) winn = new EngineWindow; return winn;
+    if(!winn) 
+        winn = new EngineWindow; 
+    return winn;
 }
+
 
 void* EngineWindow::getWindow() {
     return appWindow;
@@ -60,6 +63,7 @@ void EngineWindow::VSYNC_func() {
         glfwSwapInterval(0);
     }
 }
+
 bool check(int a) {
     bool b;
     GLFWwindow* win = static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow());

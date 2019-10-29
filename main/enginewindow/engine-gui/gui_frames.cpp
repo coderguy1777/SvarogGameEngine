@@ -35,3 +35,115 @@ void SvarogGuiFrame::set_frame_pos(bool use_w_h, float w_x, float h_y) {
         ImGui::SetCursorPos(ImVec2(static_cast<unsigned int>(w_x), static_cast<unsigned int>(h_y)));
     }
 }
+
+void SvarogGuiFrame::add_gui_layer(const ImGuiLayer& layer_a) {
+    layer_stack->add(layer_a);
+}
+
+void SvarogGuiFrame::sort_layers() {
+    auto size_check = layer_stack->size();
+    auto temp_stack = make_shared<Stack<ImGuiLayer>>(); // for ids <= 5 || == 0
+    auto temp_stack_2 = make_shared<Stack<ImGuiLayer>>(); // for ids >= 6 || == 10
+
+    for(unsigned int layer = 0; layer < layer_stack->size(); layer++) {
+        auto temp_str = layer_stack->get(layer).get_layer_name();
+        if(temp_str->get_class_id() <= 5 || temp_str->get_class_id() == 0) {
+            auto index = layer;
+            auto layer_id = layer_stack->get(index);
+            temp_stack->push(layer_id);
+            layer_stack->remove(index);
+        }
+
+        if(temp_str->get_class_id() >= 6 || temp_str->get_class_id() == 10) {
+            auto index = layer;
+            auto layer_id = layer_stack->get(index);
+            temp_stack->push(layer_id);
+            layer_stack->remove(index);
+        }
+
+        if(temp_str->get_class_id() < 0 || temp_str->get_class_id() > 10)  {
+            auto error_str = temp_str->get_class_str();
+            auto error_str_id = temp_str->get_class_id();
+            spdlog::error("ERROR: LAYER_ID > 10 || LAYER_ID < 0");
+            spdlog::error("LAYER_NAME: {}", error_str);
+            spdlog::error("LAYER_ID: {}", error_str_id);
+            spdlog::error("CANNOT CONTINUE RENDERING LAYERS, EXITING");
+            //EngineWindow::getInstance()->~EngineWindow();
+        }
+    }
+    // pushing to main layer stack
+    layer_stack->clear();
+    while(!temp_stack->isEmpty()) {
+        layer_stack->add(temp_stack->top());
+        temp_stack->pop();
+    }
+
+    while(!temp_stack_2->isEmpty()) {
+        layer_stack->add(temp_stack_2->top());
+        temp_stack_2->pop();
+    }
+    // checks if sort worked
+    spdlog::info("LAYER_SIZE: {}", layer_stack->size());
+    spdlog::info("LAYER_NAME: {}", layer_stack->get(0).get_layer_name()->get_class_str());
+}
+
+void SvarogGuiFrame::render_layers() {
+    // TODO: finish thread class
+    //sort_layers();
+    for(unsigned int gui_layer = 0; gui_layer < layer_stack->size(); gui_layer++) {
+        layer_stack->get(gui_layer).render_layer();
+        layer_stack->remove(gui_layer - 1);
+    }
+}
+
+const char* SvarogGuiFrame::layer_pos_left(unsigned int id) {
+    const char* pos_msg;
+    assert(id >= 6 && id <= 10);
+    switch(id) {
+        case 6: 
+            pos_msg = "BOTTOM_LEFT";
+            break;
+        case 7: 
+            pos_msg = "BOTTOM_LEFT_UP";
+            break;
+        case 8: 
+            pos_msg = "LEFT_MIDDLE";
+            break;
+        case 9: 
+            pos_msg = "TOP_LEFT_DOWN";
+            break;
+        case 10: 
+            pos_msg = "TOP_LEFT_DOWN_DOWN";
+            break;
+        default: 
+            pos_msg = "NO_POS";
+            break;
+    }
+    return pos_msg;
+}
+
+const char* SvarogGuiFrame::layer_pos_right(unsigned int id) {
+    const char* pos_msg;
+    assert(id >= 0 && id <= 5);
+    switch(id - 1) {
+        case 0: 
+            pos_msg = "BOTTOM_RIGHT";
+            break;
+        case 1: 
+            pos_msg = "BOTTOM_RIGHT_UP";
+            break;
+        case 2: 
+            pos_msg = "RIGHT_MIDDLE";
+            break;
+        case 3: 
+            pos_msg = "TOP_RIGHT_DOWN";
+            break;
+        case 4: 
+            pos_msg = "TOP_RIGHT_DOWN";
+            break;
+        default: 
+            pos_msg = "NO_POS";
+            break;
+    }
+    return pos_msg;
+}

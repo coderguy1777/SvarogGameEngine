@@ -19,6 +19,9 @@ class SvarogButton {
         unsigned int get_button_height() const;
         String get_button_text() const;
         bool get_resize_state() const;
+        bool is_hovered();
+        bool is_clicked(uint mouse_val);
+        bool is_active();
         bool make_new_button();
 };
 #endif 

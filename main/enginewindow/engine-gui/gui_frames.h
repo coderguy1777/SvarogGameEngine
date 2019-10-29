@@ -1,6 +1,7 @@
 #pragma once
 #ifndef GUI_FRAMES_H
 #define GUI_FRAMES_H
+#include "core/memory/svarog_thread.h"
 #include "main/enginewindow/engine-gui/gui_layer.h"
 #include "libraries/SvarogGameEngine-Gui/imgui.h"
 #include "core/String.h"
@@ -16,10 +17,14 @@ struct imgui_frame_flags {
 TODO: get the layer for imgui parts done and streaming.
 */
 class SvarogGuiFrame {
+    protected: 
+        void sort_layers();
+
     private:
         ArrayList<ImGuiLayer>*layer_stack;
         imgui_frame_flags frame_flag_vals;
-        bool is_sorted;
+        bool sort_val;
+        
     public:
         SvarogGuiFrame(bool resize, bool move, String f_name, unsigned int frame_w, unsigned int frame_h) {
             frame_flag_vals.is_resizable=resize;
@@ -38,10 +43,12 @@ class SvarogGuiFrame {
         unsigned int get_frame_height() const;
         void set_frame_pos(bool use_w_h, float w_x, float h_y);
         void add_gui_layer(const ImGuiLayer& engine_layer);
-        void sort_layers();
+        //void sort_layers();
         void render_layers();
         void begin_gui_frame();
         void end_gui_frame();
+        const char* layer_pos_right(unsigned int id);
+        const char* layer_pos_left(unsigned int id);
 };
 
 

@@ -133,6 +133,8 @@ add_executable(SvarogGameEngine
         core/String.h
         core/ds-classes/ClassString.h
         core/ds-classes/ClassString.cpp
+        core/memory/svarog_thread.h
+        core/memory/svarog_thread.cpp
         debugger/logger.cpp
         debugger/logger.h
         glad/glad.c

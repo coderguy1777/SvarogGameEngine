@@ -7,8 +7,8 @@
 #include "ds-classes/Array.h"
 #include "ds-classes/ArrayList.h"
 #include "ds-classes/ClassString.h"
+// max count for thread
 #define PROCESS_MAX 50
-
 struct thread_info {
     long thread_id;
     ClassString class_name;
@@ -21,9 +21,9 @@ struct thread_process {
 
 class SvarogThread {
     private:
-        Array<thread_process, PROCESS_MAX>thread_li;
+        Array<std::thread, PROCESS_MAX>thread_li;
     public: 
-        void insert_process(thread_process pr_a);
+        void insert_process(std::thread pr_a);
         void join_all();
 };
 
