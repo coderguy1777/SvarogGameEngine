@@ -65,7 +65,8 @@ class ImGuiLayer {
     
         struct ButtonStack {
             GuiLayerID button_id;
-            ArrayList<SvarogButton>gui_window_button;
+            ArrayList
+            <SvarogButton>gui_window_button;
             Stack<String>gui_window_button_text;
         } button_stack;
 

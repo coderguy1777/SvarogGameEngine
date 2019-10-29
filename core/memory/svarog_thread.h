@@ -4,9 +4,9 @@
 #include<thread>
 #include<memory>
 #include<functional>
-#include "ds-classes/Array.h"
-#include "ds-classes/ArrayList.h"
-#include "ds-classes/ClassString.h"
+#include "core/ds-classes/Array.h"
+#include "core/ds-classes/ArrayList.h"
+#include "core/ds-classes/ClassString.h"
 // max count for thread
 #define PROCESS_MAX 50
 struct thread_info {

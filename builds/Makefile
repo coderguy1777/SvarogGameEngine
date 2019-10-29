@@ -987,6 +987,33 @@ main/enginewindow/engine-gui/gui_layer.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/gui_layer.cpp.s
 .PHONY : main/enginewindow/engine-gui/gui_layer.cpp.s
 
+main/enginewindow/engine-gui/gui_window.o: main/enginewindow/engine-gui/gui_window.cpp.o
+
+.PHONY : main/enginewindow/engine-gui/gui_window.o
+
+# target to build an object file
+main/enginewindow/engine-gui/gui_window.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/gui_window.cpp.o
+.PHONY : main/enginewindow/engine-gui/gui_window.cpp.o
+
+main/enginewindow/engine-gui/gui_window.i: main/enginewindow/engine-gui/gui_window.cpp.i
+
+.PHONY : main/enginewindow/engine-gui/gui_window.i
+
+# target to preprocess a source file
+main/enginewindow/engine-gui/gui_window.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/gui_window.cpp.i
+.PHONY : main/enginewindow/engine-gui/gui_window.cpp.i
+
+main/enginewindow/engine-gui/gui_window.s: main/enginewindow/engine-gui/gui_window.cpp.s
+
+.PHONY : main/enginewindow/engine-gui/gui_window.s
+
+# target to generate assembly for a file
+main/enginewindow/engine-gui/gui_window.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/enginewindow/engine-gui/gui_window.cpp.s
+.PHONY : main/enginewindow/engine-gui/gui_window.cpp.s
+
 main/enginewindow/engine-gui/imgui_init.o: main/enginewindow/engine-gui/imgui_init.cpp.o
 
 .PHONY : main/enginewindow/engine-gui/imgui_init.o
@@ -1875,6 +1902,9 @@ help:
 	@echo "... main/enginewindow/engine-gui/gui_layer.o"
 	@echo "... main/enginewindow/engine-gui/gui_layer.i"
 	@echo "... main/enginewindow/engine-gui/gui_layer.s"
+	@echo "... main/enginewindow/engine-gui/gui_window.o"
+	@echo "... main/enginewindow/engine-gui/gui_window.i"
+	@echo "... main/enginewindow/engine-gui/gui_window.s"
 	@echo "... main/enginewindow/engine-gui/imgui_init.o"
 	@echo "... main/enginewindow/engine-gui/imgui_init.i"
 	@echo "... main/enginewindow/engine-gui/imgui_init.s"

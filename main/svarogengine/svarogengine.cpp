@@ -205,23 +205,22 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_style(0);
     
     SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 500, 500);
-    
+    test->add_gui_layer(*debug_layer);
+    test->add_gui_layer(*debug_layer_2);
     char* debug = new char[3];
     debug[0] = 'e';
     debug[1] = 'd';
-
+    SvarogGuiWindow * dbg_win =  new SvarogGuiWindow();
+    ca.add_gui_layer(*debug_layer);
+    ca.add_gui_layer(*debug_layer_2);
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         test_prg->use();
         ImGuiInit::init_imgui_frames();
-        ca.add_gui_layer(*debug_layer_2);
-        ca.add_gui_layer(*debug_layer);
-        ca.begin_gui_frame();
-        {
-            ca.render_layers();
-        }
-        ca.end_gui_frame();
+        dbg_win->insert_to_stack(ca);
+        dbg_win->insert_to_stack(*test);
+        dbg_win->render_frames();
         s->get_mesh().draw();
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();

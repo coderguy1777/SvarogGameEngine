@@ -15,6 +15,7 @@
 #include "main/enginewindow/engine-gui/sidebar-components/button.h"
 #include "main/enginewindow/engine-gui/sidebar-components/label.h"
 #include "main/enginewindow/enginewindow.h"
+#include "main/enginewindow/engine-gui/gui_window.h"
 
 class SvarogEngine {
     private:
