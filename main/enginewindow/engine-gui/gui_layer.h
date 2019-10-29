@@ -71,7 +71,7 @@ class ImGuiLayer {
 
         struct LabelStack {
             GuiLayerID label_id;
-            Stack<SvarogLabel>gui_window_labels;
+            ArrayList<SvarogLabel>gui_window_labels;
             Stack<String>gui_label_text;
         } label_stack;
         ClassString *Layer_Name;
@@ -86,6 +86,7 @@ class ImGuiLayer {
         void add_button(ButtonData new_button);
         void add_label(LabelData new_label);
         void render_layer();
+        unsigned int get_class_id() const;
         ClassString* get_layer_name() const;
 };
 // extern ClassString ENGINE_GUI_LAYER;

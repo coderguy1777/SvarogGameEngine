@@ -25,19 +25,21 @@ ClassString* ImGuiLayer::get_layer_name() const {
 }
 
 void ImGuiLayer::init_button_positions() {
-    for(unsigned int i = 0; i < button_data->size(); i++) {
+    while(!button_data->isEmpty()) {
         button_stack.gui_window_button.add(SvarogButton(button_data->top().btn_pos.pos_x, button_data->top().btn_pos.pos_y, button_data->top().button_text, false));
         button_stack.gui_window_button_text.push(String(button_data->top().button_text));
         button_data->pop();
     }
+    //auto temp = NULL;
     button_stack.button_id.gui_char_id = '#';
     button_stack.button_id.gui_id = button_stack.gui_window_button.size();
 }
 
 void ImGuiLayer::init_label_positions() {
-    for(unsigned int i = 0; i < label_data->size(); i++) {
-        label_stack.gui_window_labels.push(SvarogLabel(label_data->top().label_text, label_data->top().lbl_pos.pos_x, label_data->top().lbl_pos.pos_y, "##",  false));
-        label_stack.gui_label_text.push(String(label_data->top().label_text));        
+    while(!label_data->isEmpty()) {
+        label_stack.gui_window_labels.add(SvarogLabel(String(label_data->top().label_text), label_data->top().lbl_pos.pos_x, label_data->top().lbl_pos.pos_y, "%20", true));
+        label_stack.gui_label_text.push(String(label_data->top().label_text));
+        label_data->pop();
     }
     label_stack.label_id.gui_char_id = '$';
     label_stack.label_id.gui_id = label_stack.gui_window_labels.size() + 1;
@@ -45,13 +47,16 @@ void ImGuiLayer::init_label_positions() {
 
 void ImGuiLayer::init_all() {
     init_button_positions();
-    //init_label_positions();
+    init_label_positions();
 }
 
 void ImGuiLayer::render_layer() {
     for(unsigned int j = 0; j < button_stack.gui_window_button.size(); j++) {
         auto ba = button_stack.gui_window_button.get(j).make_new_button();
+    }
 
+    for(unsigned int i = 0; i < label_stack.gui_window_labels.size(); i++) {
+        label_stack.gui_window_labels.get(i).gen_new_label();
     }
 }
 

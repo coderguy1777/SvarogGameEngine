@@ -98,8 +98,10 @@ void SvarogEngine::RunEngine() {
     ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);
     debug_layer->pass_frame_data(Layer_Pos::FRAME_LEFT, false, false);
     bool btn_val, btn_val2;
-    debug_layer->add_button(ButtonData{String("Test_Button"), btn_val, ButtonPosition{20, 20}, 0});
-    debug_layer->add_button(ButtonData{String("Test_Button2"), btn_val2, ButtonPosition{30, 30}, 1});
+    debug_layer->add_button(ButtonData{String("Test_Button"), btn_val, ButtonPosition{200, 200}, 0});
+    debug_layer->add_button(ButtonData{String("Test_Button2"), btn_val2, ButtonPosition{300, 300}, 1});
+    std::function<void()>labels;
+    debug_layer->add_label(LabelData{String("Label_1"), labels, LabelPosition{30, 30}, 30});
     ClassString* debug_class_str = debug_layer->get_layer_name();
     SvarogGuiFrame ca(true, true, String("Debug_Frame"), 500, 500);
     bool is_right = (debug_class_str->get_class_id() <= 5 || debug_class_str->get_class_id() >= 0) ? true : false;
