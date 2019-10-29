@@ -99,12 +99,12 @@ void SvarogEngine::RunEngine() {
     ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);
     debug_layer->pass_frame_data(Layer_Pos::FRAME_LEFT, false, false);
     bool btn_val, btn_val2;
-    debug_layer->add_button(ButtonData{String("Test_Button"), btn_val, ButtonPosition{200, 200}, 0});
-    debug_layer->add_button(ButtonData{String("Test_Button2"), btn_val2, ButtonPosition{300, 300}, 1});
+    debug_layer->add_button(ButtonData{String("Test_Button"), btn_val, ButtonPosition{100, 100}, 0});
+    debug_layer->add_button(ButtonData{String("Test_Button2"), btn_val2, ButtonPosition{150, 150}, 1});
     std::function<void()>labels;
     debug_layer->add_label(LabelData{String("Label_1"), labels, LabelPosition{30, 30}, 30});
     ClassString* debug_class_str = debug_layer->get_layer_name();
-    SvarogGuiFrame ca(true, true, String("Debug_Frame"), 500, 500);
+    SvarogGuiFrame ca(true, true, String("Debug_Frame"), 300, 600);
     bool is_right = (debug_class_str->get_class_id() <= 5 || debug_class_str->get_class_id() >= 0) ? true : false;
     bool is_left = (debug_class_str->get_class_id() >= 6 || debug_class_str->get_class_id() <= 10) ? true : false;
     spdlog::info("START_GUI_LAYER");
@@ -126,13 +126,14 @@ void SvarogEngine::RunEngine() {
     ImGuiLayer * debug_layer_2 = new ImGuiLayer(debug_2, 2);
     debug_layer_2->pass_frame_data(Layer_Pos::FRAME_RIGHT, false, false);
     bool btn_val_3, btn_val_4;
-    debug_layer_2->add_button(ButtonData{String("Test2_Button"), btn_val_3, ButtonPosition{100, 100}, 0});
-    debug_layer_2->add_button(ButtonData{String("Test3_Button"), btn_val_4, ButtonPosition{100, 124}, 2});
+    debug_layer_2->add_button(ButtonData{String("Test2_Button"), btn_val_3, ButtonPosition{50, 50}, 0});
+    debug_layer_2->add_button(ButtonData{String("Test3_Button"), btn_val_4, ButtonPosition{50, 74}, 2});
     debug_layer_2->init_all();
     std::string vert_shader, frag_shader;
     std::ifstream vert, frag;
     vert.exceptions(std::ifstream::failbit);
     frag.exceptions(std::ifstream::failbit);
+
     try {
         vert.open("/home/jordan/Documents/SvarogGameEngine/render-pipeline/shader/engine_shader/mainvertex_shader.glsl");
         frag.open("/home/jordan/Documents/SvarogGameEngine/render-pipeline/shader/engine_shader/mainfragment_shader.glsl");
@@ -146,6 +147,7 @@ void SvarogEngine::RunEngine() {
     } catch (ifstream::failure e) {
         std::cout << e.what() << '\n';
     }
+
     const char* vert_s = vert_shader.c_str();
     const char* frag_s = frag_shader.c_str();
     VertexShader vert_m;
@@ -203,8 +205,9 @@ void SvarogEngine::RunEngine() {
     // debug im gui context
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
+    ImGuiInit::imgui_ini_use(false);
     
-    SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 500, 500);
+    SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 100, 100);
     test->add_gui_layer(*debug_layer);
     test->add_gui_layer(*debug_layer_2);
     char* debug = new char[3];

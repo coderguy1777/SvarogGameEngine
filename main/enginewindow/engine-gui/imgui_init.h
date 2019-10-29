@@ -15,6 +15,7 @@ class ImGuiInit {
             STYLE_LIGHT = 1,
             STYLE_NONE = 2,
         };
+        static void imgui_ini_use(bool is_used);
         static void make_imgui_context(GLFWwindow* window, const char* glsl_v);
         static void make_imgui_style(unsigned int style);
         static void init_imgui_frames();

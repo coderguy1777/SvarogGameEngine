@@ -9,7 +9,6 @@ EngineWindow* EngineWindow::getInstance() {
     return winn;
 }
 
-
 void* EngineWindow::getWindow() {
     return appWindow;
 }
@@ -64,19 +63,9 @@ void EngineWindow::VSYNC_func() {
     }
 }
 
-bool check(int a) {
-    bool b;
-    GLFWwindow* win = static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow());
-    int state = glfwGetKey(win, a);
-    if(state==GLFW_PRESS) {
-        b = true;
-    }
-    return b;
-}
-
 void EngineWindow::SvarogAppLoop() {
     set_bool_state();
-    WindowContext::set_states(2, 4);
+    WindowContext::set_states(1, 4);
     WindowContext::init_glfw();
     WindowContext::create_context(appWindow);
     appWindow = glfwCreateWindow((int)winA.getWidth(), (int)winA.getHeight(), (const char*)winA.getTitle().str, NULL, NULL);

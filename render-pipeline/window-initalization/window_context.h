@@ -16,12 +16,14 @@ enum Window_Attributes {
 class WindowContext {
     private:
         unsigned int RESIZE_V;
+
         unsigned int OPENGL_V;
         GLFWwindow* context_win;
         int glfw_success;
         int glad_success;
         WindowContext(){}
     public: 
+
         static WindowContext* getContextInstance();
         static void set_context_win(GLFWwindow* window);
         void* get_context_win() const;

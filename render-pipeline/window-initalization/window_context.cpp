@@ -3,6 +3,7 @@
 WindowContext* WindowContext::getContextInstance() {
     if(!context_instance) context_instance = new WindowContext(); return context_instance;
 }
+
 void WindowContext::set_context_win(GLFWwindow* cxt_win) {
     context_instance->context_win= cxt_win;
 }

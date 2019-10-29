@@ -32,3 +32,13 @@ void ImGuiInit::init_imgui_shutdown() {
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
 }
+
+void ImGuiInit::imgui_ini_use(bool is_used) {
+    if(is_used) {
+        ImGui::GetIO().IniFilename = "imgui.ini";
+    }
+
+    if(!is_used) {
+        ImGui::GetIO().IniFilename = NULL;
+    }
+}

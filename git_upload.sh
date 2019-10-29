@@ -1,8 +1,8 @@
 #!/bin/sh
 git add .
-COMMIT_MSG=0
-echo "Type a commit message."
-read COMMIT_MSG
-git commit -m "$COMMIT_MSG"
+COMMIT_M=0
+echo "TYPE GIT COMMIT MESSAGE"
+read COMMIT_M
+git commit -m "$COMMIT_M"
 git push
 exit 0
