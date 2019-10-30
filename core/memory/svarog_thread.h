@@ -25,6 +25,7 @@ class SvarogThread {
     public: 
         void insert_process(std::thread pr_a);
         void join_all();
+        void detach_all();
 };
 
 #endif

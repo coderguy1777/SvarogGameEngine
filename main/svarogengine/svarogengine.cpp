@@ -194,6 +194,7 @@ void SvarogEngine::RunEngine() {
     for(int j = 0; j < 9; j++) {
         pos.push_back(poss[j]);
     }
+    
     mesh_tst.pass_position_data(pos);
     mesh_tst.pass_vert_data(vertt);
     mesh_tst.init();
