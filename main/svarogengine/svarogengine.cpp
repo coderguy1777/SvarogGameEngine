@@ -18,16 +18,16 @@ void SvarogEngine::InitMonitor() {
     svarog_monitor->init_monitor();
 }
 
+
 void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
     InitMonitor();
-    
     //layer_test();
+    bool btn_val, btn_val2;
     String debug_name = String("Debug");
     ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);
     debug_layer->pass_frame_data(Layer_Pos::FRAME_LEFT, false, false);
-    bool btn_val, btn_val2;
     debug_layer->add_button(ButtonData{String("Test_Button"), btn_val, ButtonPosition{100, 100}, 0});
     debug_layer->add_button(ButtonData{String("Test_Button2"), btn_val2, ButtonPosition{150, 150}, 1});
     std::function<void()>labels;
@@ -36,6 +36,7 @@ void SvarogEngine::RunEngine() {
     SvarogGuiFrame ca(true, true, String("Debug_Frame"), 300, 600);
     bool is_right = (debug_class_str->get_class_id() <= 5 || debug_class_str->get_class_id() >= 0) ? true : false;
     bool is_left = (debug_class_str->get_class_id() >= 6 || debug_class_str->get_class_id() <= 10) ? true : false;
+    
     spdlog::info("START_GUI_LAYER");
     spdlog::info("--------------------------------------------------------");
     spdlog::warn("GUI_LAYER_NAME: {}", debug_class_str->get_class_str());
@@ -50,7 +51,6 @@ void SvarogEngine::RunEngine() {
     spdlog::info("-------------------------------------------------------");
     spdlog::warn("RENDERING OF GUI_TO_START");
     debug_layer->init_all();  
-
     String debug_2 = String("Debug_2");
     ImGuiLayer * debug_layer_2 = new ImGuiLayer(debug_2, 2);
     debug_layer_2->pass_frame_data(Layer_Pos::FRAME_RIGHT, false, false);
@@ -146,6 +146,7 @@ void SvarogEngine::RunEngine() {
     SvarogGuiWindow * dbg_win =  new SvarogGuiWindow();
     ca.add_gui_layer(*debug_layer);
     ca.add_gui_layer(*debug_layer_2);
+
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
@@ -158,6 +159,7 @@ void SvarogEngine::RunEngine() {
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();
     }
+    
     s->get_mesh().del_buffers();
     ImGuiInit::init_imgui_shutdown();
 }
