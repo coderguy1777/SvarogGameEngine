@@ -32,6 +32,5 @@ class SvarogEngine {
         void InitContext();
         void InitMonitor();
         void RunEngine();
-        void layer_test();
 };
 #endif

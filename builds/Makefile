@@ -501,33 +501,6 @@ core/logger/Message.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/logger/Message.cpp.s
 .PHONY : core/logger/Message.cpp.s
 
-core/memory/svarog_thread.o: core/memory/svarog_thread.cpp.o
-
-.PHONY : core/memory/svarog_thread.o
-
-# target to build an object file
-core/memory/svarog_thread.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/memory/svarog_thread.cpp.o
-.PHONY : core/memory/svarog_thread.cpp.o
-
-core/memory/svarog_thread.i: core/memory/svarog_thread.cpp.i
-
-.PHONY : core/memory/svarog_thread.i
-
-# target to preprocess a source file
-core/memory/svarog_thread.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/memory/svarog_thread.cpp.i
-.PHONY : core/memory/svarog_thread.cpp.i
-
-core/memory/svarog_thread.s: core/memory/svarog_thread.cpp.s
-
-.PHONY : core/memory/svarog_thread.s
-
-# target to generate assembly for a file
-core/memory/svarog_thread.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/memory/svarog_thread.cpp.s
-.PHONY : core/memory/svarog_thread.cpp.s
-
 debugger/logger.o: debugger/logger.cpp.o
 
 .PHONY : debugger/logger.o
@@ -1848,9 +1821,6 @@ help:
 	@echo "... core/logger/Message.o"
 	@echo "... core/logger/Message.i"
 	@echo "... core/logger/Message.s"
-	@echo "... core/memory/svarog_thread.o"
-	@echo "... core/memory/svarog_thread.i"
-	@echo "... core/memory/svarog_thread.s"
 	@echo "... debugger/logger.o"
 	@echo "... debugger/logger.i"
 	@echo "... debugger/logger.s"
