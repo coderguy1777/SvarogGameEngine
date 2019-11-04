@@ -18,12 +18,17 @@ void SvarogEngine::InitMonitor() {
     svarog_monitor->init_monitor();
 }
 
+void SvarogEngine::test(int a) {
+    spdlog::info(a);
+}
+
 
 void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
     InitMonitor();
     //layer_test();
+    
     bool btn_val, btn_val2;
     String debug_name = String("Debug");
     ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);

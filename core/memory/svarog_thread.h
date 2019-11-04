@@ -102,6 +102,7 @@ struct svarog_process {
             process_val = std::thread(process);
         }
 
+
         void set_mutex() {
             bool use_mutex;
             if(process_detail.get_mutex_state()) {
@@ -140,11 +141,13 @@ class SvarogThread {
         // for max effeicny, make sure queue used in future, bugs previous in last class of it
         // when template class was attempted.
         std::stack<svarog_process>thread_process_queue;
+        std::stack<svarog_process>process_stack;
         bool max_reach = (thread_process_queue.size() == PROCESS_MAX) ? true : false;
     public: 
-        void add_function_process(std::function<void()> new_process, svarog_process_info new_process_info);
+        void add_function_process(std::function<void(int)> new_process, svarog_process_info new_process_info);
         void run_process(std::thread::id process_id);
         void sleep_process(std::thread::id process_id);
+        void add_new_process(svarog_process process_a);
         void lock_process(std::thread::id process_id);
         void end_process(std::thread::id process_id);
         void sort_process_queue(uint sort_order);

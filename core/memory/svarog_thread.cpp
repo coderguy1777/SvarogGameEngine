@@ -3,13 +3,12 @@ bool SvarogThread::max_process_check() const {
     return max_reach;
 }
 
-void SvarogThread::add_function_process(std::function<void()> new_process, svarog_process_info new_process_info) {
+void SvarogThread::add_function_process(std::function<void(int)> new_process, svarog_process_info new_process_info) {
     svarog_process process_container;
     process_container.set_process_details(new_process_info);
-    process_container.set_process_thread(new_process);
     process_container.set_mutex();
+    process_container.process_val = std::thread(&new_process);
     thread_process_queue.push(process_container);
-
 }
 
 void SvarogThread::run_process(std::thread::id process_thread_id) {
@@ -103,8 +102,4 @@ void SvarogThread::end_process(std::thread::id process_id) {
 
 void SvarogThread::sort_process_queue(uint sort_order) {
 
-}
-
-svarog_process SvarogThread::get_top() const {
-    thread_process_queue.top();
 }

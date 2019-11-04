@@ -3,7 +3,6 @@
 #define SVAROGENGINE_H
 #include <memory>
 #include <functional>
-#include <boost/function.hpp>
 #include "main/enginewindow/engine-gui/sidebar-components/input_text.h"
 #include "render-pipeline/mesh/svarog_shape.h"
 #include "render-pipeline/mesh/svarog_renderobj.h"
@@ -33,6 +32,7 @@ class SvarogEngine {
         static SvarogEngine* getInstanceEngine();
         void InitContext();
         void InitMonitor();
+        void test(int a);
         void RunEngine();
 };
 #endif
