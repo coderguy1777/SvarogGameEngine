@@ -7,7 +7,7 @@
 
 template<class Q>
 class Queue {
-    private:
+    protected:
         std::queue<Q>item_queue;
     public: 
         bool isEmpty() {
