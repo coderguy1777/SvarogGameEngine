@@ -57,6 +57,8 @@ struct SvarogTask {
             set_completion_state(0);
             make_task_id();
         }
+
+        ~SvarogTask() = delete;
         
         ClassString get_task_name() const {
             return task_name;

@@ -37,5 +37,10 @@ class Queue {
         Q get_next() const {
             return item_queue.pop();
         }
+        
+        void remove(Q const& item) {
+            item_queue.swap(item, NULL);
+            return null;
+        }
 };
 #endif

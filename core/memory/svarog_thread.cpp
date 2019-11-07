@@ -42,7 +42,17 @@ void SvarogThread<T>::run_task(size_t task_id) {
 
     if(!task_thread.joinable()) {
         spdlog::error("ERROR TASK IS CORRUPT");
+        task_thread.detach();
         exit(0);
     }
 }
 
+template<typename T>
+void SvarogThread<T>::remove_task(size_t task_id) {
+    auto temp_id = task_id;
+    bool is_rm = NULL;
+    for(unsigned int i = 0; i < thread_tasks.size(); i++) {
+        auto temp_task = thread_tasks.get_next();
+        thread_tasks.g
+    }
+}
