@@ -18,20 +18,27 @@ void SvarogEngine::InitMonitor() {
     svarog_monitor->init_monitor();
 }
 
-void SvarogEngine::test(int a) {
-    spdlog::info(a);
-}
-
-
 /*
     TODO: 
         Make sure to begin to thread tasks, and start doing
+        thread managers to hold threads
 */
+
+void box() {
+    spdlog::error("BRUH");
+}
 
 void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
+    EngineWindow::getInstance()->svarog_task_test();
     InitContext();
     InitMonitor();
+
+    int i =0;
+
+    auto g = [&](double) {return i;};
+    auto b = std::bind(&box);
+    b();
     
     bool btn_val, btn_val2;
     String debug_name = String("Debug");

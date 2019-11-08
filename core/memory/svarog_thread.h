@@ -4,8 +4,6 @@
 #include <thread>
 #include <memory>
 #include <functional>
-#include <iomanip>
-#include <unordered_set>
 #include <algorithm>
 #include <mutex>
 #include <memory>
@@ -20,7 +18,7 @@ template<typename Y>
 class SvarogTask {
     private:
         ClassString task_name;
-        size_t task_id;
+        std::hash<std::string>task_id;
         unsigned int task_priority;
         bool is_completed;
         Y task{};
@@ -39,7 +37,7 @@ class SvarogTask {
         }
 
         void make_task_id() {
-            task_id = typeid(task).hash_code();
+            task_id(task_name.get_class_str());
         }
 
         void set_task_priority(unsigned int new_task_pri) {
@@ -73,7 +71,7 @@ class SvarogTask {
             return task_priority;
         }
 
-        size_t get_task_id() const {
+        std::hash<std::string> get_task_id() const {
             return task_id;
         }
 
@@ -81,54 +79,54 @@ class SvarogTask {
             return is_completed;
         }
 
-        SvarogTask<Y>& operator=(SvarogTask<Y> task) noexcept {
+        /* fix this later for the operator to work right
+        --------------------------------------------------------
+            SvarogTask<Y>& operator=(SvarogTask<Y> task) noexcept {
             std::swap(task, task.task);
             std::swap(task_name, task.task_name);
             std::swap(task_priority, task.task_priority);
             std::swap(task_id, task.task_id);
-            return *this;
+            return *this;\
+        }
+        */
+};
+
+struct ThreadInformation {
+    private: 
+        ClassString thread_class;
+        std::hash<std::string> sva_thread_id;
+        bool end_condition;
+    public: 
+        void set_thread_class_name(ClassString new_thread_class) {
+            thread_class = new_thread_class;
+        }
+
+        void set_end_state(bool end_state) {
+            end_condition = end_state;
+        }
+
+        void set_thread_id() {
+            // note to future self, std::hash has to have the data type being hashed.
+            sva_thread_id(thread_class.get_class_str());
+        }
+
+        std::hash<std::string> get_thread_id() const {
+            return sva_thread_id;
+        }   
+
+        ClassString get_thread_class() const {
+            return thread_class;
+        }
+
+        bool get_thread_end_state() const {
+            return end_condition;
         }
 };
 
 template<typename T>
 class SvarogThread {
     private:
-        struct ThreadInformation {
-            private: 
-                ClassString thread_class;
-                size_t sva_thread_id;
-                bool end_condition;
-            public: 
-                void set_thread_class_name(ClassString new_thread_class) {
-                    thread_class = new_thread_class;
-                }
-
-                void set_end_state(bool end_state) {
-                    end_condition = end_state;
-                }
-
-                void set_thread_id() {
-                    // note to future self, std::hash has to have the data type being hashed.
-                    sva_thread_id = std::hash<std::string>{}(thread_class.get_class_str());
-                }
-
-                size_t get_thread_id() const {
-                    return sva_thread_id;
-                }
-
-                std::string get_thread_name_str() const {
-                    return thread_class.get_class_str();
-                }
-
-                unsigned int get_thread_name_pri() const {
-                    return thread_class.get_class_id();
-                }
-
-                bool get_thread_end_state() const {
-                    return end_condition;
-                }
-
-        } thread_name;
+        ThreadInformation thread_name;
         std::stack<T>thread_tasks;
         bool is_max;
 
@@ -139,14 +137,26 @@ class SvarogThread {
             thread_name.set_thread_id();
         }
 
+        ClassString get_thread_name() const;
+        bool get_end_state() const;
         bool get_max() const;
-        size_t get_thread_id() const;
-        T get_task(size_t task_id) const;
+        std::hash<std::string> get_thread_id() const;
+        T get_task(std::hash<std::string> task_id);
         unsigned int thread_task_size() const;
         void schedule_task(T const&);
-        void remove_task(size_t task_id);
-        void run_task(size_t task_id);
+        void remove_task(std::hash<std::string> task_id);
+        void run_task(std::hash<std::string> task_id);
 };
+
+template<typename T>
+ClassString SvarogThread<T>::get_thread_name() const {
+    return thread_name.get_thread_class();
+}
+
+template<typename T>
+bool SvarogThread<T>::get_end_state() const {
+    return thread_name.get_thread_end_state();
+}
 
 template<typename T>
 bool SvarogThread<T>::get_max() const {
@@ -154,7 +164,7 @@ bool SvarogThread<T>::get_max() const {
 }
 
 template<typename T>
-size_t SvarogThread<T>::get_thread_id() const {
+std::hash<std::string> SvarogThread<T>::get_thread_id() const {
     return thread_name.get_thread_id();
 }
 
@@ -164,27 +174,39 @@ unsigned int SvarogThread<T>::thread_task_size() const {
 }
 
 template<typename T>
-T SvarogThread<T>::get_task(size_t task_id) const {
-    T const& temp_task = thread_tasks.top();
-    auto temp_task_id = task_id;
-    for(;!thread_tasks.empty() && !thread_tasks.size() == 0;) {
-        auto temp_task = thread_tasks.top();
-        thread_tasks.pop();
-        if(thread_tasks.top().get_task_id() == temp_task_id) {
+T SvarogThread<T>::get_task(std::hash<std::string> task_id) {
+    T temp_task = thread_tasks.top();
+    if(thread_tasks.size() > 0 && thread_tasks.size() < 2) {
+        temp_task = thread_tasks.top();
+        spdlog::info(std::boolalpha);
+        // TODO: fix the below if statement break so it loops through
+        // the list dynamically to find more than one item.
+    } else if(!thread_tasks.size() > 0 && !thread_tasks.size() < 2) {
+        for(;!thread_tasks.empty() && !thread_tasks.size() == 0;) {
             temp_task = thread_tasks.top();
-            temp_task_id = 0;
-            break;
-        } else {
-            temp_task = thread_tasks.top();
-            thread_tasks.pop();
-            continue;
+            /*thread_tasks.pop();
+            bool is_equal = (temp_task.get_task_id() == task_id) ? true : false;
+            if(is_equal) {
+                temp_task = thread_tasks.top();
+                break;
+            } 
+            */
         }
     }
     return temp_task;
 }
 
 template<typename T>
-void SvarogThread<T>::run_task(size_t task_id) {
+void SvarogThread<T>::schedule_task(T const& task_Val) {
+    if(thread_tasks.size()==0) {
+        thread_tasks.emplace(task_Val);
+    } else {
+        thread_tasks.push(task_Val);
+    }
+}
+
+template<typename T>
+void SvarogThread<T>::run_task(std::hash<std::string> task_id) {
     auto task_val = task_id;
     auto task = get_task(task_val);
     std::cout << typeid(task).name() <<'\n';
@@ -204,13 +226,13 @@ void SvarogThread<T>::run_task(size_t task_id) {
 }
 
 template<typename T>
-void SvarogThread<T>::remove_task(size_t task_id) {
+void SvarogThread<T>::remove_task(std::hash<std::string> task_id) {
     auto temp_id = task_id;
     bool is_rm = NULL;
     for(;!thread_tasks.empty() && !thread_tasks.size() == 0;) {
-        auto temp_task = thread_tasks.top();
+        SvarogTask<T> temp_task = thread_tasks.top();
         thread_tasks.pop();
-        if(temp_task.get_task_id() == temp_id) {
+        if(temp_task.get_task_id() == task_id) {
             thread_tasks.pop();
             spdlog::info("Task has been removed..");
             break;
@@ -219,5 +241,34 @@ void SvarogThread<T>::remove_task(size_t task_id) {
             thread_tasks.pop();
         }
     }
+}
+
+
+namespace std {
+    template<typename T>
+    class hash<SvarogTask<T>> {
+        public: 
+            size_t operator() (const SvarogTask<T>& task) {
+                size_t result = 2166136261;
+                for(size_t i = 0, ie = task.get_task_name().get_class_str().length(); i != ie; ++i) {
+                    result = (result * 16777619) ^ task.get_task_name().get_class_str()[0];
+                }
+                return result ^ (task.get_task_name().get_class_id());
+            }
+    };
+}
+
+namespace std {
+    template<typename U>
+    class hash<SvarogThread<U>> {
+        public: 
+            size_t operator() (const SvarogThread<U>& sv_thread) {
+                size_t result = 2166136261;
+                for(size_t i = 0, ie = sv_thread.get_thread_name().get_class_str().length(); i != ie; ++i) {
+                    // gets index 0 of the 
+                    result = (result * 16777619) ^ sv_thread.get_thread_name().get_class_str()[0];
+                }
+            }
+    };
 }
 #endif

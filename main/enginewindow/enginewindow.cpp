@@ -80,7 +80,9 @@ void EngineWindow::svarog_task_test() {
     SvarogThread<SvarogTask<Box>>test_thread(str_thread, true);
     test_thread.schedule_task(test_task);
     auto box_id = test_task.get_task_id();
-    test_thread.run_task(box_id);
+    std::hash<SvarogTask<Box>>hash_tst;
+    spdlog::info(hash_tst(test_task));
+    test_thread.run_task(test_task.get_task_id());
 }
 
 void EngineWindow::SvarogAppLoop() {

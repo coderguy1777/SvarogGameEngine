@@ -32,7 +32,6 @@ class SvarogEngine {
         static SvarogEngine* getInstanceEngine();
         void InitContext();
         void InitMonitor();
-        void test(int a);
         void RunEngine();
 };
 #endif
