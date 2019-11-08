@@ -6,6 +6,7 @@
 #include "core/String.h"
 #include "ArrayList.h"
 #include "core/events/Event.h"
+#include "core/memory/svarog_thread.h"
 #include "render-pipeline/shader/s_lab/svarog_material.h"
 #include "core/events/event-types/keyevent.h"
 #include "macrodefs.h"

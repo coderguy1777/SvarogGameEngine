@@ -5,6 +5,7 @@
 #include<glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "core/memory/svarog_thread.h"
 #include "spdlog/spdlog.h"
 #include "core/ds-classes/Queue.h"
 #include "main/shapes/shape.h"
@@ -57,6 +58,7 @@ class EngineWindow {
         void VSYNC_off();
         bool isVSYNCon();
         void VSYNC_func();
+        void svarog_task_test();
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();

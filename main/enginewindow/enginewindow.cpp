@@ -63,6 +63,26 @@ void EngineWindow::VSYNC_func() {
     }
 }
 
+struct Box {
+        int w, l, h;
+
+        int get_l() const {
+            return l;
+        }
+};
+void EngineWindow::svarog_task_test() {
+    auto a = Box{20, 20, 20};
+    ClassString str;
+    ClassString str_thread;
+    str_thread.bind_class_string(203, "ThreadClass");
+    str.bind_class_string(20, "ThreadTest");
+    SvarogTask<Box>test_task({a, 10, str});
+    SvarogThread<SvarogTask<Box>>test_thread(str_thread, true);
+    test_thread.schedule_task(test_task);
+    auto box_id = test_task.get_task_id();
+    test_thread.run_task(box_id);
+}
+
 void EngineWindow::SvarogAppLoop() {
     set_bool_state();
     WindowContext::set_states(1, 4);

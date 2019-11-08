@@ -136,7 +136,6 @@ add_executable(SvarogGameEngine
         core/memory/svarog_thread.h
         debugger/logger.cpp
         debugger/logger.h
-        glad/glad.c
         main/camera/camera.cpp
         main/camera/camera.h
         main/color/cmyk.cpp

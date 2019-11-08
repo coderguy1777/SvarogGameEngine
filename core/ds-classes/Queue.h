@@ -40,7 +40,6 @@ class Queue {
         
         void remove(Q const& item) {
             item_queue.swap(item, NULL);
-            return null;
         }
 };
 #endif

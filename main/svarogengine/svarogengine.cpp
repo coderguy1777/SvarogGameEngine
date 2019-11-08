@@ -23,11 +23,15 @@ void SvarogEngine::test(int a) {
 }
 
 
+/*
+    TODO: 
+        Make sure to begin to thread tasks, and start doing
+*/
+
 void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();
     InitMonitor();
-    //layer_test();
     
     bool btn_val, btn_val2;
     String debug_name = String("Debug");
@@ -94,14 +98,6 @@ void SvarogEngine::RunEngine() {
     frag_m.compile_shader();
     ShaderProgram * test_prg = new ShaderProgram();
     test_prg->bind_shaders(vert_m, frag_m);
-    //SvarogMaterial debug_mat;
-    //debug_mat.is_assigned_to_mesh();
-    //debug_mat.set_material_name("frag_color");
-    //debug_mat.set_rgb(Rgb(1.0, 0.5, 1.0));
-    //debug_mat.set_primary_color_model(COLOR_MODEL::RGB_MODEL);
-    //ShaderGeneration::generateShaderCode()->input_mat(debug_mat);
-    //ShaderGeneration::generateShaderCode()->make_shaders();
-    //ShaderGeneration::generateShaderCode()->send_shaders();
 
     float vertices[] = {
         0.5f,  0.5f, -0.5f, 
