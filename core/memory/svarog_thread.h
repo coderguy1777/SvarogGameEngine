@@ -9,6 +9,7 @@
 #include <memory>
 #include <iostream>
 #include <stack>
+#include "core/ds-classes/function_list.h"
 #include "core/ds-classes/Stack.h"
 #include "spdlog/spdlog.h"
 #include "core/ds-classes/ClassString.h"

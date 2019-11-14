@@ -59,34 +59,6 @@ void EngineWindow::VSYNC_func() {
     }
 }
 
-struct Box {
-        int w, l, h;
-
-        int get_l() const {
-            return l;
-        }
-};
-
-void func_1() {
-    std::cout << "Hello\n";
-}
-
-void EngineWindow::svarog_task_test() {
-    FunctionList<std::function<void()>>func_li;
-    auto a = Box{20, 20, 20};
-    std::function<void()>va = std::bind(&func_1);
-    func_li.add_new_function(va);
-    func_li.run_functions();
-    ClassString str;
-    ClassString str_thread;
-    str_thread.bind_class_string(203, "ThreadClass");
-    str.bind_class_string(20, "ThreadTest");
-    SvarogTask<Box>test_task({a, 10, str});
-    SvarogThread<SvarogTask<Box>>test_thread(str_thread, true);
-    test_thread.schedule_task(test_task);
-    auto box_id = test_task.get_task_id();
-}
-
 void EngineWindow::SvarogAppLoop() {
     set_bool_state();
     WindowContext::set_states(1, 4);
