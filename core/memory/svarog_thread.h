@@ -30,7 +30,6 @@ class SvarogTask {
             if(state == 0) {
                 is_completed = false;
             }
-
             if(state == 1) {
                 is_completed = true;
             }
@@ -47,7 +46,6 @@ class SvarogTask {
         void set_task(Y const& new_task) {
             task = new_task;            
         }
-
     public:
         SvarogTask(Y t, unsigned int task_pri, ClassString task_name) {
             set_task(t);
@@ -56,9 +54,7 @@ class SvarogTask {
             set_completion_state(0);
             make_task_id();
         }
-
         //~SvarogTask() = delete;
-        
         ClassString get_task_name() const {
             return task_name;
         }
@@ -268,6 +264,7 @@ namespace std {
                     // gets index 0 of the 
                     result = (result * 16777619) ^ sv_thread.get_thread_name().get_class_str()[0];
                 }
+                return result;
             }
     };
 }

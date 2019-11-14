@@ -96,6 +96,7 @@ add_executable(SvarogGameEngine
         core/ds-classes/Node.h
         core/ds-classes/Queue.h
         core/ds-classes/Stack.h
+        core/ds-classes/function_list.h
         core/events/event-types/keyevent.cpp
         core/events/event-types/keyevent.h
         core/events/event-types/mouseevent.h

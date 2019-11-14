@@ -1,8 +1,4 @@
 #include "enginewindow.h"
-#include "core/events/Event.h"
-#include "main/window/window.h"
-#include "main/enginewindow/enginewindow.h"
-#include "core/events/event-types/mouseevent.h"
 EngineWindow* EngineWindow::getInstance() {
     if(!winn) 
         winn = new EngineWindow; 
@@ -70,8 +66,17 @@ struct Box {
             return l;
         }
 };
+
+void func_1() {
+    std::cout << "Hello\n";
+}
+
 void EngineWindow::svarog_task_test() {
+    FunctionList<std::function<void()>>func_li;
     auto a = Box{20, 20, 20};
+    std::function<void()>va = std::bind(&func_1);
+    func_li.add_new_function(va);
+    func_li.run_functions();
     ClassString str;
     ClassString str_thread;
     str_thread.bind_class_string(203, "ThreadClass");
@@ -80,9 +85,6 @@ void EngineWindow::svarog_task_test() {
     SvarogThread<SvarogTask<Box>>test_thread(str_thread, true);
     test_thread.schedule_task(test_task);
     auto box_id = test_task.get_task_id();
-    std::hash<SvarogTask<Box>>hash_tst;
-    spdlog::info(hash_tst(test_task));
-    test_thread.run_task(test_task.get_task_id());
 }
 
 void EngineWindow::SvarogAppLoop() {
