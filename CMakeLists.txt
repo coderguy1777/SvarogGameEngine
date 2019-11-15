@@ -134,6 +134,7 @@ add_executable(SvarogGameEngine
         core/String.h
         core/ds-classes/ClassString.h
         core/ds-classes/ClassString.cpp
+        core/memory/svarog_thread_task.h
         core/memory/svarog_thread.h
         debugger/logger.cpp
         debugger/logger.h
@@ -194,6 +195,7 @@ find_package(glfw3 REQUIRED)
 find_package(X11 REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(spdlog REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system thread filesystem)
 target_compile_definitions(SvarogGameEngine PUBLIC IMGUI_IMPL_OPENGL_LOADER_GLAD)
 target_link_libraries(${PROJECT_NAME} 
         GL 
@@ -208,4 +210,7 @@ target_link_libraries(${PROJECT_NAME}
         Xinerama 
         Xcursor 
         assimp
-        spdlog::spdlog)
+        spdlog::spdlog
+        Boost::system
+        Boost::filesystem
+        Boost::thread)

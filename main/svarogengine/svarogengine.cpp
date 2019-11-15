@@ -2,11 +2,20 @@
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GLAD)
 #include<glad/glad.h>
 #endif
+#include <boost/thread.hpp>
 SvarogEngine* SvarogEngine::getInstanceEngine() {
     if(!engine_instance) {
         engine_instance = new SvarogEngine;
     }
     return engine_instance;
+}
+
+void SvarogEngine::InitGuiManager() {
+
+}
+
+void SvarogEngine::InitMaterialManager() {
+
 }
 
 void SvarogEngine::InitContext() {
@@ -17,29 +26,15 @@ void SvarogEngine::InitContext() {
 void SvarogEngine::InitMonitor() {
     svarog_monitor->init_monitor();
 }
-
 /*
     TODO: 
         Make sure to begin to thread tasks, and start doing
         thread managers to hold threads
 */
-
-void box() {
-    spdlog::error("BRUH");
-}
-
 void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
-    EngineWindow::getInstance()->svarog_task_test();
-    InitContext();
+    InitContext();  
     InitMonitor();
-
-    int i =0;
-
-    auto g = [&](double) {return i;};
-    auto b = std::bind(&box);
-    b();
-    
     bool btn_val, btn_val2;
     String debug_name = String("Debug");
     ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);
@@ -92,6 +87,7 @@ void SvarogEngine::RunEngine() {
     } catch (ifstream::failure e) {
         std::cout << e.what() << '\n';
     }
+
 
     const char* vert_s = vert_shader.c_str();
     const char* frag_s = frag_shader.c_str();
@@ -154,6 +150,10 @@ void SvarogEngine::RunEngine() {
     SvarogGuiWindow * dbg_win =  new SvarogGuiWindow();
     ca.add_gui_layer(*debug_layer);
     ca.add_gui_layer(*debug_layer_2);
+    auto v = boost::bind(&SvarogEngine::InitGuiManager, this);
+    SvarogThreadTask<std::function<void(void)>>thread_tsk(v);
+    thread_tsk.set_flags(false, true, 10000);
+        thread_tsk.join_thread();
 
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

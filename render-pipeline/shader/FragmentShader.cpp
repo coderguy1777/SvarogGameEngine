@@ -1,4 +1,7 @@
 #include "FragmentShader.h"
+FragmentShader::FragmentShader() {
+    spdlog::info("FRAGMENT SHADER: {}", get_code());
+}
 void FragmentShader::set_use_state() {
     flags.is_used = true;
 }

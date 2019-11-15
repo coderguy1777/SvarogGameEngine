@@ -3,6 +3,7 @@
 #define SVAROGENGINE_H
 #include <memory>
 #include <functional>
+#include "core/memory/svarog_thread.h"
 #include "main/enginewindow/engine-gui/sidebar-components/input_text.h"
 #include "render-pipeline/mesh/svarog_shape.h"
 #include "render-pipeline/mesh/svarog_renderobj.h"
@@ -17,6 +18,7 @@
 #include "main/enginewindow/engine-gui/sidebar-components/label.h"
 #include "main/enginewindow/enginewindow.h"
 #include "main/enginewindow/engine-gui/gui_window.h"
+#include "core/memory/svarog_thread_task.h"
 
 class SvarogEngine {
     private:
@@ -32,6 +34,10 @@ class SvarogEngine {
         static SvarogEngine* getInstanceEngine();
         void InitContext();
         void InitMonitor();
+        void InitRenderManager();
+        void InitGuiManager();
+        void InitMaterialManager();
+        void InitThreadManager();
         void RunEngine();
 };
 #endif
