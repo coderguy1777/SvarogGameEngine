@@ -11,7 +11,11 @@ SvarogEngine* SvarogEngine::getInstanceEngine() {
 }
 
 void SvarogEngine::InitGuiManager() {
+    spdlog::info("Thread 1 works");
+}
 
+void SvarogEngine::InitThreadManager() {
+    spdlog::info("Thread 2 works");
 }
 
 void SvarogEngine::InitMaterialManager() {
@@ -151,10 +155,13 @@ void SvarogEngine::RunEngine() {
     ca.add_gui_layer(*debug_layer);
     ca.add_gui_layer(*debug_layer_2);
     auto v = boost::bind(&SvarogEngine::InitGuiManager, this);
+    auto vs = boost::bind(&SvarogEngine::InitThreadManager, this);
     SvarogThreadTask<std::function<void(void)>>thread_tsk(v);
     thread_tsk.set_flags(false, true, 10000);
-        thread_tsk.join_thread();
-
+    thread_tsk.join_thread();
+    SvarogThreadTask<std::function<void(void)>>thread_tsk_2(vs);
+    thread_tsk_2.set_flags(true, false, 1000);
+    thread_tsk_2.join_thread();
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);

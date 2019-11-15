@@ -1,7 +1,6 @@
 #pragma once
 #ifndef GUI_FRAMES_H
 #define GUI_FRAMES_H
-#include "core/memory/svarog_thread.h"
 #include "main/enginewindow/engine-gui/gui_layer.h"
 #include "libraries/SvarogGameEngine-Gui/imgui.h"
 #include "core/String.h"

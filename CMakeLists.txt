@@ -135,7 +135,6 @@ add_executable(SvarogGameEngine
         core/ds-classes/ClassString.h
         core/ds-classes/ClassString.cpp
         core/memory/svarog_thread_task.h
-        core/memory/svarog_thread.h
         debugger/logger.cpp
         debugger/logger.h
         main/camera/camera.cpp

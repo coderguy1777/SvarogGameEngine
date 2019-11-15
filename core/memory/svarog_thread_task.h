@@ -39,12 +39,11 @@ template<typename Y>
 class SvarogThreadTask {
     private:    
         boost::thread* task_thread;
-        //boost::mutex* task_mutex;
         std::shared_ptr<thread_task_flags>svarog_task_flags;
+        bool is_complete;
     public:
         SvarogThreadTask(Y const& item) {
             task_thread = new boost::thread(item);
-            //task_mutex = new boost::mutex();
             svarog_task_flags = std::make_shared<thread_task_flags>();
         }
 
@@ -59,20 +58,31 @@ class SvarogThreadTask {
         void join_thread() {
             if(!svarog_task_flags->get_mutex_state()) {
                 task_thread->join();
+                set_complete(1);
             }
 
             if(svarog_task_flags->get_sleep_state()) {
                 //auto sleep_time = boost::chrono::seconds(static_cast<boost::chrono::seconds>(svarog_task_flags->get_sleep_time()));
                 boost::this_thread::sleep_for(boost::chrono::seconds(2000));
                 task_thread->join();
-                task_thread->detach();
+                set_complete(1);
             }
 
             if(!svarog_task_flags->get_join_state() && svarog_task_flags->get_detach_state()) {
                 spdlog::error("THREAD NOT JOINABLE: {}");
+                set_complete(0);
             } else if(svarog_task_flags->get_join_state() && !svarog_task_flags->get_detach_state()) {
                 spdlog::info("THREAD IS JOINABLE: {}");
+                set_complete(1);
             }
+        }
+
+        void set_complete(uint state) {
+            is_complete = (state == 1) ? true : false;
+        }
+
+        bool get_task_complete_state() const {
+            return is_complete;
         }
 };
 #endif

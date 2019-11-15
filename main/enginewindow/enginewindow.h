@@ -6,7 +6,6 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include "spdlog/spdlog.h"
-#include "core/memory/svarog_thread.h"
 #include "core/ds-classes/function_list.h"
 #include "core/ds-classes/Queue.h"
 #include "main/shapes/shape.h"
