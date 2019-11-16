@@ -20,6 +20,7 @@ class RenderObj {
         void set_mesh_id(unsigned int id);
         void set_mesh_name(String name);
         void input_mesh(SvarogShape input_mesh);
+        void draw_input_mesh();
         unsigned int get_id() const;
         String get_mesh_name() const;
         SvarogShape get_mesh() const;

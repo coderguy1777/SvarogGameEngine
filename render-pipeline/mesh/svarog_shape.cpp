@@ -102,6 +102,7 @@ void SvarogShape::init() {
     bind_EBO();
     ebo_buffer_gen();
     attribs();
+    is_init = true;
 }
 
 void SvarogShape::draw() {
@@ -114,4 +115,12 @@ void SvarogShape::del_buffers() {
     data->vao.del_mesh_buffer();
     data->vbo.del_mesh_buffer();
     data->ebo.del_mesh_buffer();
+}
+
+bool SvarogShape::get_init_state() const {
+    return is_init;
+}
+
+void SvarogShape::test_thread_bind() {
+    spdlog::info("Hello again");
 }

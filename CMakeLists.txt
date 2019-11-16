@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(SOURCE_FILES glad.c main.cpp)
 set(GCC_COVERAGE_COMPILE_FLAGS, "-DCMAKE_BUILD_TYPE=DEBUG")
 set(GCC_COVERAGE_COMPILE_FLAGS, "-Wno-dev")
+set(GCC_COVERAGE_COMPILE_FLAGS, "-Werror-Wall")
 include_directories(.)
 include_directories(glad)
 include_directories(core)
@@ -135,6 +136,9 @@ add_executable(SvarogGameEngine
         core/ds-classes/ClassString.h
         core/ds-classes/ClassString.cpp
         core/memory/svarog_thread_task.h
+        core/memory/svarog_task_manager.h
+        core/memory/render_task_manager.h
+        core/memory/render_task_manager.cpp
         debugger/logger.cpp
         debugger/logger.h
         main/camera/camera.cpp

@@ -29,6 +29,10 @@ class String {
             str(static_cast<const char*>(str->str))
         {}
 
+        inline bool operator==(String const& str_val) {
+            return (str_val.data == this->data);
+        }
+
         String() {};
         int length();
         vector<char>substring(int start, int end);

@@ -11,15 +11,19 @@ SvarogEngine* SvarogEngine::getInstanceEngine() {
 }
 
 void SvarogEngine::InitGuiManager() {
-    spdlog::info("Thread 1 works");
+
 }
 
 void SvarogEngine::InitThreadManager() {
-    spdlog::info("Thread 2 works");
+
 }
 
 void SvarogEngine::InitMaterialManager() {
 
+}
+
+void SvarogEngine::InitRenderManager() {
+    RenderTaskManager::getRenderManager()->run_all_tasks();
 }
 
 void SvarogEngine::InitContext() {
@@ -136,10 +140,13 @@ void SvarogEngine::RunEngine() {
     mesh_tst.pass_vert_data(vertt);
     mesh_tst.init();
     // renderable obj debug.
-    RenderObj* s = new RenderObj();
-    s->set_mesh_id(1);
-    s->set_mesh_name(String("Debug_Mesh"));
-    s->input_mesh(mesh_tst);
+    RenderObj s;
+    s.set_mesh_id(1);
+    s.set_mesh_name(String("Debug_Mesh"));
+    s.input_mesh(mesh_tst);
+    RenderTaskManager::getRenderManager()->add_thread_task(s);
+
+    //RenderTaskManager::getRenderManager()->add_thread_task(s);
     // debug im gui context
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
@@ -154,28 +161,19 @@ void SvarogEngine::RunEngine() {
     SvarogGuiWindow * dbg_win =  new SvarogGuiWindow();
     ca.add_gui_layer(*debug_layer);
     ca.add_gui_layer(*debug_layer_2);
-    auto v = boost::bind(&SvarogEngine::InitGuiManager, this);
-    auto vs = boost::bind(&SvarogEngine::InitThreadManager, this);
-    SvarogThreadTask<std::function<void(void)>>thread_tsk(v);
-    thread_tsk.set_flags(false, true, 10000);
-    thread_tsk.join_thread();
-    SvarogThreadTask<std::function<void(void)>>thread_tsk_2(vs);
-    thread_tsk_2.set_flags(true, false, 1000);
-    thread_tsk_2.join_thread();
+    //RenderTaskManager::getRenderManager()->run_all_tasks();
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         test_prg->use();
+        RenderTaskManager::getRenderManager()->run_all_tasks();
         ImGuiInit::init_imgui_frames();
         dbg_win->insert_to_stack(ca);
         dbg_win->insert_to_stack(*test);
         dbg_win->render_frames();
-        s->get_mesh().draw();
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();
     }
-    
-    s->get_mesh().del_buffers();
     ImGuiInit::init_imgui_shutdown();
 }
 SvarogEngine* SvarogEngine::engine_instance = 0;

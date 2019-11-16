@@ -3,6 +3,10 @@ RenderObj::RenderObj() {
 
 }
 
+void RenderObj::draw_input_mesh() {
+    get_mesh().draw();
+}
+
 void RenderObj::set_mesh_id(unsigned int id) {
     id_val = id;
 }

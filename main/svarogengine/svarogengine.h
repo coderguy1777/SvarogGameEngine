@@ -3,12 +3,14 @@
 #define SVAROGENGINE_H
 #include <memory>
 #include <functional>
+#include <boost/asio.hpp>
+#include <boost/thread.hpp>
 #include "main/enginewindow/engine-gui/sidebar-components/input_text.h"
 #include "render-pipeline/mesh/svarog_shape.h"
 #include "render-pipeline/mesh/svarog_renderobj.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_gen.h"
 #include "main/enginewindow/engine-gui/gui_layer.h"
-#include "core/memory/thread_pools/svarog_thread_pool.h"
+#include "core/memory/render_task_manager.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_defs.h"
 #include "render-pipeline/shader/s_lab/svarog_material.h"
 #include "main/enginewindow/engine-gui/imgui_init.h"

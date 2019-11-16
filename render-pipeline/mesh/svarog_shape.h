@@ -22,7 +22,7 @@ struct shape_data {
 class SvarogShape {
     private: 
         shape_data* data;
-
+        bool is_init;
     public: 
         SvarogShape();
         void init_ebo(unsigned int state);
@@ -47,8 +47,7 @@ class SvarogShape {
         void pass_position_data(std::vector<unsigned int>pos_data);
         std::vector<float>get_shape_verts() const;
         std::vector<unsigned int>get_shape_posdata() const;
-
+        bool get_init_state() const;
+        void test_thread_bind();
 };
-
-
 #endif
