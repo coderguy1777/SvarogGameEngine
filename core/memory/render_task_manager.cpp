@@ -41,19 +41,8 @@ void RenderTaskManager::run_all_tasks() {
         auto temp_obj = render_task[i];
         if(temp_obj.get_vis_state()) {
             temp_obj.get_mesh().draw();
-            spdlog::info("MESH_VISIBLE: {}", temp_obj.get_mesh_name().str);
-        } else {
-            spdlog::info("MESH_NOT_VISIBLE: {}", temp_obj.get_mesh_name().str);
         }
     }
-        /*if(shape.get_vis_state()) {
-            shape.get_mesh().draw();
-            spdlog::info("MESH_VISIBLE: {}", shape.get_mesh_name().str);
-            spdlog::info("MESH VISIBLE_STATE: {}", shape.get_vis_state());
-        } else if(!shape.get_vis_state()) {
-            spdlog::info("MESH_NOT_VISIBLE: {}", shape.get_mesh_name().str);
-            spdlog::info("MESH VISIBLE_STATE: {}", shape.get_vis_state());
-        }*/
 }
 
 bool RenderTaskManager::render_state() const {

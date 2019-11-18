@@ -172,8 +172,6 @@ add_executable(SvarogGameEngine
         main/materials/material.h
         main/materials/shadergen.cpp
         main/materials/shadergen.h
-        main/shapes/shape.cpp
-        main/shapes/shape.h
         main/svarogengine/svarogengine.cpp
         main/svarogengine/svarogengine.h
         main/window/window.cpp

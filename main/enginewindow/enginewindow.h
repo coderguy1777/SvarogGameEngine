@@ -8,7 +8,6 @@
 #include "spdlog/spdlog.h"
 #include "core/ds-classes/function_list.h"
 #include "core/ds-classes/Queue.h"
-#include "main/shapes/shape.h"
 #include "core/events/Event.h"
 #include "core/Input/WindowInput.h"
 #include "core/events/event-listeners/EventListener.h"

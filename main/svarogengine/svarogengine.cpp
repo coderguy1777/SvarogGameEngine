@@ -174,7 +174,7 @@ void SvarogEngine::RunEngine() {
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        RenderTaskManager::getRenderManager()->run_all_tasks_priority();
+        RenderTaskManager::getRenderManager()->run_all_tasks();
 
         ImGuiInit::init_imgui_frames();
         dbg_win->insert_to_stack(ca);

@@ -1176,33 +1176,6 @@ main/materials/shadergen.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/materials/shadergen.cpp.s
 .PHONY : main/materials/shadergen.cpp.s
 
-main/shapes/shape.o: main/shapes/shape.cpp.o
-
-.PHONY : main/shapes/shape.o
-
-# target to build an object file
-main/shapes/shape.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/shapes/shape.cpp.o
-.PHONY : main/shapes/shape.cpp.o
-
-main/shapes/shape.i: main/shapes/shape.cpp.i
-
-.PHONY : main/shapes/shape.i
-
-# target to preprocess a source file
-main/shapes/shape.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/shapes/shape.cpp.i
-.PHONY : main/shapes/shape.cpp.i
-
-main/shapes/shape.s: main/shapes/shape.cpp.s
-
-.PHONY : main/shapes/shape.s
-
-# target to generate assembly for a file
-main/shapes/shape.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/shapes/shape.cpp.s
-.PHONY : main/shapes/shape.cpp.s
-
 main/svarogengine/svarogengine.o: main/svarogengine/svarogengine.cpp.o
 
 .PHONY : main/svarogengine/svarogengine.o
@@ -1923,9 +1896,6 @@ help:
 	@echo "... main/materials/shadergen.o"
 	@echo "... main/materials/shadergen.i"
 	@echo "... main/materials/shadergen.s"
-	@echo "... main/shapes/shape.o"
-	@echo "... main/shapes/shape.i"
-	@echo "... main/shapes/shape.s"
 	@echo "... main/svarogengine/svarogengine.o"
 	@echo "... main/svarogengine/svarogengine.i"
 	@echo "... main/svarogengine/svarogengine.s"
