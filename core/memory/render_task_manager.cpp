@@ -30,22 +30,39 @@ unsigned int RenderTaskManager::get_task_amount() const {
     return render_task.size();
 }
 
-void RenderTaskManager::run_all_tasks() {
+void RenderTaskManager::run_optimize_tasks() {
     for(const auto& shape: render_task) {
-        if(shape.get_mesh().get_init_state()) {
-            shape.get_mesh().draw();
-        }
-
-        if(!shape.get_mesh().get_init_state()) {
-            shape.get_mesh().init();
-            shape.get_mesh().draw();
-        }
         shape.get_mesh().del_buffers();
     }
 }
 
-void RenderTaskManager::run_all_tasks_priority() {
-    
+void RenderTaskManager::run_all_tasks() {
+    for(unsigned int i = 0; i < render_task.size(); i++) {
+        auto temp_obj = render_task[i];
+        if(temp_obj.get_vis_state()) {
+            temp_obj.get_mesh().draw();
+            spdlog::info("MESH_VISIBLE: {}", temp_obj.get_mesh_name().str);
+        } else {
+            spdlog::info("MESH_NOT_VISIBLE: {}", temp_obj.get_mesh_name().str);
+        }
+    }
+        /*if(shape.get_vis_state()) {
+            shape.get_mesh().draw();
+            spdlog::info("MESH_VISIBLE: {}", shape.get_mesh_name().str);
+            spdlog::info("MESH VISIBLE_STATE: {}", shape.get_vis_state());
+        } else if(!shape.get_vis_state()) {
+            spdlog::info("MESH_NOT_VISIBLE: {}", shape.get_mesh_name().str);
+            spdlog::info("MESH VISIBLE_STATE: {}", shape.get_vis_state());
+        }*/
+}
+
+bool RenderTaskManager::render_state() const {
+    return render_run;
+}
+
+void RenderTaskManager::set_render_state(int wanted_state) {
+    render_run = (wanted_state == 1) ? true : false;
+    spdlog::info("RUN VAL: {}", static_cast<int>(render_run));
 }
 RenderTaskManager* RenderTaskManager::render_mg_instance = 0;
 /*

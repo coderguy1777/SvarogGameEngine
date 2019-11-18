@@ -83,3 +83,12 @@ if [ "" == "$XCURSOR_CHECK" ]; then
 elif [ "" != "$XCURSOR_CHECK" ]; then
     echo "Xcursor installed, continuing lib check."
 fi
+
+BOOST_CHECK=$(dpkg -s libboost-all-dev|grep installed)
+echo Checking for BOOST: $BOOST_CHECK
+if [ "" == "$BOOST_CHECK" ]; then
+    echo "Setting up Boost now..."
+    sudo apt-get install libboost-all-dev
+elif [ "" != "$BOOST_CHECK" ]; then
+    echo "Boost is installed, continuing lib check."
+fi

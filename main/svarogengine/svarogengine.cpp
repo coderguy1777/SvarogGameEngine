@@ -23,7 +23,7 @@ void SvarogEngine::InitMaterialManager() {
 }
 
 void SvarogEngine::InitRenderManager() {
-    RenderTaskManager::getRenderManager()->run_all_tasks();
+    RenderTaskManager::getRenderManager()->set_render_state(1);
 }
 
 void SvarogEngine::InitContext() {
@@ -43,6 +43,7 @@ void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();  
     InitMonitor();
+    InitRenderManager();
     bool btn_val, btn_val2;
     String debug_name = String("Debug");
     ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);
@@ -144,7 +145,14 @@ void SvarogEngine::RunEngine() {
     s.set_mesh_id(1);
     s.set_mesh_name(String("Debug_Mesh"));
     s.input_mesh(mesh_tst);
+    s.set_render_flags(3, 49L, true, false, false);
+    RenderObj y;
+    y.set_mesh_id(20);
+    y.set_mesh_name(String("Debug_Mesh_2"));
+    y.input_mesh(mesh_tst);
+    y.set_render_flags(10, 200L, false, false, true);
     RenderTaskManager::getRenderManager()->add_thread_task(s);
+    RenderTaskManager::getRenderManager()->add_thread_task(y);
 
     //RenderTaskManager::getRenderManager()->add_thread_task(s);
     // debug im gui context
@@ -162,11 +170,12 @@ void SvarogEngine::RunEngine() {
     ca.add_gui_layer(*debug_layer);
     ca.add_gui_layer(*debug_layer_2);
     //RenderTaskManager::getRenderManager()->run_all_tasks();
+    test_prg->use();
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        test_prg->use();
-        RenderTaskManager::getRenderManager()->run_all_tasks();
+        RenderTaskManager::getRenderManager()->run_all_tasks_priority();
+
         ImGuiInit::init_imgui_frames();
         dbg_win->insert_to_stack(ca);
         dbg_win->insert_to_stack(*test);
@@ -174,6 +183,7 @@ void SvarogEngine::RunEngine() {
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();
     }
+    RenderTaskManager::getRenderManager()->run_optimize_tasks();
     ImGuiInit::init_imgui_shutdown();
 }
 SvarogEngine* SvarogEngine::engine_instance = 0;

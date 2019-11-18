@@ -12,6 +12,6 @@ class TaskManager {
         virtual void remove_thread_task(TASK_VAL const&) = 0;
         virtual TASK_VAL get_task()  = 0;
         virtual unsigned int get_task_amount() const = 0; 
-        virtual void run_all_tasks_priority() = 0;
+        virtual void run_optimize_tasks() = 0;
 };
 #endif
