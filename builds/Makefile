@@ -1365,6 +1365,33 @@ math/vec3.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/math/vec3.cpp.s
 .PHONY : math/vec3.cpp.s
 
+render-pipeline/mesh/cube.o: render-pipeline/mesh/cube.cpp.o
+
+.PHONY : render-pipeline/mesh/cube.o
+
+# target to build an object file
+render-pipeline/mesh/cube.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/cube.cpp.o
+.PHONY : render-pipeline/mesh/cube.cpp.o
+
+render-pipeline/mesh/cube.i: render-pipeline/mesh/cube.cpp.i
+
+.PHONY : render-pipeline/mesh/cube.i
+
+# target to preprocess a source file
+render-pipeline/mesh/cube.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/cube.cpp.i
+.PHONY : render-pipeline/mesh/cube.cpp.i
+
+render-pipeline/mesh/cube.s: render-pipeline/mesh/cube.cpp.s
+
+.PHONY : render-pipeline/mesh/cube.s
+
+# target to generate assembly for a file
+render-pipeline/mesh/cube.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/mesh/cube.cpp.s
+.PHONY : render-pipeline/mesh/cube.cpp.s
+
 render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.o: render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp.o
 
 .PHONY : render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.o
@@ -1917,6 +1944,9 @@ help:
 	@echo "... math/vec3.o"
 	@echo "... math/vec3.i"
 	@echo "... math/vec3.s"
+	@echo "... render-pipeline/mesh/cube.o"
+	@echo "... render-pipeline/mesh/cube.i"
+	@echo "... render-pipeline/mesh/cube.s"
 	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.o"
 	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.i"
 	@echo "... render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.s"

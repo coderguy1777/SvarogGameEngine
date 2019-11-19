@@ -1,5 +1,23 @@
 #!/bin/bash
 # running of checks for libraries.
+CMAKE_CHECK=$(dpkg -s cmake|grep installed)
+echo Checking for Cmake: $CMAKE_CHECK
+if [ "" == "$CMAKE_CHECK" ]; then
+    echo "Setting up cmake now..."
+    sudo apt install cmake && sudo apt update
+elif [ "" != "$CMAKE_CHECK" ]; then
+    echo "Cmake is installed, continuing lib check..."
+fi
+
+DOXYGEN_CHECK=$(dpkg -s libdoxygen-dev|grep installed)
+echo Checking for doxygen: $DOXYGEN_CHECK
+if [ "" == "$DOXYGEN_CHECK" ]; then 
+    echo "Setting up Doxygen now..."
+    sudo apt install doxygen
+elif [ "" != "$DOXYGEN_CHECK" ]; then 
+    echo "Doxygen installed, continuing lib check..."
+fi
+
 GLFW_CHECK=$(dpkg -s libglfw3-dev|grep installed)
 echo Checking for glfw3: $GLFW_CHECK
 if [ "" == "$GLFW_CHECK" ]; then
@@ -92,3 +110,9 @@ if [ "" == "$BOOST_CHECK" ]; then
 elif [ "" != "$BOOST_CHECK" ]; then
     echo "Boost is installed, continuing lib check."
 fi
+
+SPDLOG_CHECK=$(dpkg -s spdlog|grep installed)
+echo Checking for spdlog: $SPDLOG_CHECK
+if [ "" == "$SPDLOG_CHECK" ]; then
+    echo "Setting up spdlog now..."
+    cd && git clone https://github.com/

@@ -102,5 +102,13 @@ template<typename T, int N> class Array {
         void setSize(unsigned int new_size) {
             N = new_size;
         }
+
+        std::vector<T>to_vector() const {
+            std::vector<T>new_list;
+            for(int i = 0; i < length(); i++) {
+                new_list.push_back(array[i]);
+            }
+            return new_list;
+        }
 };
 #endif

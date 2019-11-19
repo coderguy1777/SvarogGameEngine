@@ -1,6 +1,16 @@
 #include "svarog_shape.h"
 SvarogShape::SvarogShape() {
     data = new shape_data();
+    make_VAO();
+    make_VBO();
+    make_EBO();
+    bind_VAO();
+    bind_VBO();
+    buffer_data_gen();
+    bind_EBO();
+    ebo_buffer_gen();
+    attribs();
+    is_init = true;
 }
 
 void SvarogShape::init_ebo(unsigned int state) {

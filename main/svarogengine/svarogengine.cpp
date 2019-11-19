@@ -11,25 +11,25 @@ SvarogEngine* SvarogEngine::getInstanceEngine() {
 }
 
 void SvarogEngine::InitGuiManager() {
-
+    spdlog::info("GUI_MANAGER_READY.");
 }
 
 void SvarogEngine::InitThreadManager() {
-
+    spdlog::info("THREAD_MANAGER_READY.");
 }
 
 void SvarogEngine::InitMaterialManager() {
-
+    spdlog::info("MATERIAL_MANAGER_READY.");
 }
 
 void SvarogEngine::InitRenderManager() {
+    spdlog::info("RENDER_TASK_MANAGER_READY.");
     RenderTaskManager::getRenderManager()->set_render_state(1);
 }
 
 void SvarogEngine::InitContext() {
     EngineWindow::getInstance()->VSYNC_on();
 }
-
 
 void SvarogEngine::InitMonitor() {
     svarog_monitor->init_monitor();
@@ -112,7 +112,7 @@ void SvarogEngine::RunEngine() {
     test_prg->bind_shaders(vert_m, frag_m);
 
     float vertices[] = {
-        0.5f,  0.5f, -0.5f, 
+        0.5f, 0.5f, -0.5f,
         0.5f, -0.5f, -0.5f,
         -0.5f, -0.5f, -0.5f,
         -0.5f, 0.5f , -0.5f, 
@@ -175,7 +175,6 @@ void SvarogEngine::RunEngine() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         RenderTaskManager::getRenderManager()->run_all_tasks();
-
         ImGuiInit::init_imgui_frames();
         dbg_win->insert_to_stack(ca);
         dbg_win->insert_to_stack(*test);
