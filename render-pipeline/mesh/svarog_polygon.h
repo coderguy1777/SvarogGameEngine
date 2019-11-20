@@ -20,7 +20,6 @@ class SvarogPolygon {
                 for(const auto& vertex: vertex_storage) {
                     auto vert_1 = vertex;
                     auto vert_2 = vertex_storage.front();
-
                 }
             }
         };

@@ -2,3 +2,34 @@
 SvarogCube::SvarogCube() {
     add_cube_data();
 }
+
+Vector3 SvarogCube::get_cube_position() const {
+    return cube_position;
+}
+
+Vector3 SvarogCube::get_cube_size() const {
+    return Vector3(cube_size_data.get_cube_length(), cube_size_data.get_cube_width(), cube_size_data.get_cube_height());
+}
+
+void SvarogCube::translate_cube(Vector3 translation_position) {
+    cube_position = get_cube_position() + translation_position;
+}
+
+void SvarogCube::scale_cube(Vector3 scale_factor) {
+    auto length_scale = cube_size_data.get_cube_length() * scale_factor.getComponentX();
+    auto width_scale = cube_size_data.get_cube_width() * scale_factor.getComponentY();
+    auto height_scale = cube_size_data.get_cube_height() * scale_factor.getComponentZ();
+    cube_size_data.modify_cube_size(length_scale, width_scale, height_scale);
+}
+
+void SvarogCube::draw_cube() {
+    std::vector<SvarogPolygon>cube_polygons;
+    std::vector<index_list>cube_indexs;
+    for(unsigned int i =0; i < cube_vertexs.length(); i++) {
+        cube_polygons.push_back(cube_vertexs.get(i));
+    }
+
+    for(unsigned int j=0; j < cube_indicies.length(); j++) {
+        cube_indexs.push_back(cube_indicies.get(j));
+    }
+}

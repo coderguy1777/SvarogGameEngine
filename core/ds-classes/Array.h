@@ -6,6 +6,7 @@
 #include<vector>
 #include "core/events/event-types/mouseevent.h"
 #include "macrodefs.h"
+#define ARRAY_TP(X, N) template class Array<X, N>
 template<typename T, int N> FORWARD_DEC(Array);
 template<typename T, int N> class Array {
     private: 
