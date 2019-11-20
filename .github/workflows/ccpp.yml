@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: install_libraries
-      run: ./install_libraries
+      run: ./install_libraries.sh
     - name: make
       run: make
     - name: make check
