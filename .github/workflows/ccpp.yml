@@ -11,9 +11,5 @@ jobs:
     - uses: actions/checkout@v1
     - name: install_libraries
       run: ./install_libraries.sh
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - name: build
+      run: ./build.sh
