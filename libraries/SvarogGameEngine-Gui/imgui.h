@@ -122,6 +122,7 @@ struct ImGuiStorage;                // Helper for key->value storage
 struct ImGuiStyle;                  // Runtime data for styling/colors
 struct ImGuiTextBuffer;             // Helper to hold and append into a text buffer (~string builder)
 struct ImGuiTextFilter;             // Helper to parse and apply text filters (e.g. "aaaaa[,bbbb][,ccccc]")
+struct ButtonWrapper;
 
 // Typedefs and Enums/Flags (declared as int for compatibility with old C++, to allow using as flags and to not pollute the top of this file)
 // Use your programming IDE "Go to definition" facility on the names in the central column below to find the actual flags/enum lists.
@@ -2225,6 +2226,19 @@ struct ImFont
     IMGUI_API void              AddGlyph(ImWchar c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advance_x);
     IMGUI_API void              AddRemapChar(ImWchar dst, ImWchar src, bool overwrite_dst = true); // Makes 'dst' character/glyph points to 'src' character/glyph. Currently needs to be called AFTER fonts have been built.
     IMGUI_API void              SetFallbackChar(ImWchar c);
+};
+
+
+struct ButtonWrapper {
+    ImVec2 button_position;
+    unsigned int width, height;
+    bool is_clicked;
+    bool is_visible;
+
+    IMGUI_API bool button_clicked() const;
+    IMGUI_API bool button_released() const;
+    
+    
 };
 
 #if defined(__clang__)

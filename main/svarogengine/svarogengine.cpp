@@ -116,21 +116,20 @@ void SvarogEngine::RunEngine() {
         0.5f, -0.5f, -0.5f,
         -0.5f, -0.5f, -0.5f,
         -0.5f, 0.5f , -0.5f, 
-        0.5f, -0.5f , 0.5f, 
-        0.5f, 0.5f , 0.5f, 
+        1.0f, 1.5f, -1.5f,
     };        
     
     unsigned int poss[] = {  
         0, 1, 3,  
         1, 2, 3,
-        0, 1, 2,
+        0, 1, 4,
     };
 
     SvarogShape mesh_tst;
     std::vector<float>vertt;
     std::vector<unsigned int>pos;
 
-    for(int i = 0; i < 18; i++) {
+    for(int i = 0; i < 15; i++) {
         vertt.push_back(vertices[i]);
     }
     for(int j = 0; j < 9; j++) {
@@ -174,8 +173,10 @@ void SvarogEngine::RunEngine() {
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        RenderTaskManager::getRenderManager()->run_all_tasks();
         ImGuiInit::init_imgui_frames();
+        RenderTaskManager::getRenderManager()->add_thread_task(s);
+        RenderTaskManager::getRenderManager()->run_all_tasks();
+        
         dbg_win->insert_to_stack(ca);
         dbg_win->insert_to_stack(*test);
         dbg_win->render_frames();

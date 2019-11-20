@@ -95,6 +95,7 @@ add_executable(SvarogGameEngine
         render-pipeline/mesh/cube.h
         render-pipeline/mesh/cube.cpp
         render-pipeline/mesh/svarog_polygon.h
+        render-pipeline/mesh/svarog_polygon.cpp
         core/ds-classes/Array.h
         core/ds-classes/ArrayList.h
         core/ds-classes/Node.h

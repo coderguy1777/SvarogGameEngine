@@ -9,8 +9,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: configure
-      run: ./configure
+    - name: install_libraries
+      run: ./install_libraries
     - name: make
       run: make
     - name: make check

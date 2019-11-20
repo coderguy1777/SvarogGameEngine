@@ -6,19 +6,27 @@
 #include <vector>
 #include <cmath>
 
-struct vertex_ids {
-    unsigned int vertex_index;
-    Vector3 vertex;
-    vertex_ids(Vector3 vertex, uint vert_index) {
-        this->vertex = vertex;
-        this->vertex_index = vert_index;
-    }
-};
 
 class SvarogPolygon {
     private:
+        struct VertexGroup {
+            std::vector<Vector3>vertex_storage;
+            unsigned int vertex_index;
+            void add_new_verticie(const Vector3& new_vert) {
+                vertex_storage.push_back(new_vert);
+            }
+
+            void assign_vert_order() {
+                for(const auto& vertex: vertex_storage) {
+                    auto vert_1 = vertex;
+                    auto vert_2 = vertex_storage.front();
+
+                }
+            }
+        };
+
         unsigned int vertex_count;
-        std::vector<vertex_ids>polygon_vertexs;
+        VertexGroup verticies;
         bool has_max_count;
     public:
         SvarogPolygon();
