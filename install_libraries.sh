@@ -115,4 +115,11 @@ SPDLOG_CHECK=$(dpkg -s spdlog|grep installed)
 echo Checking for spdlog: $SPDLOG_CHECK
 if [ "" == "$SPDLOG_CHECK" ]; then
     echo "Setting up spdlog now..."
-    cd && git clone https://github.com/
+    cd && git clone https://github.com/gabime/spdlog
+    mkdir spdlog_dir && cd spdlog_dir
+    cmake ./
+    make install
+elif [ "" !="$SPDLOG_CHECK" ]; then
+    echo "spdlog is installed, exiting now..."
+fi
+exit 0
