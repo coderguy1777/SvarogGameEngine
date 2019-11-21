@@ -12,7 +12,7 @@ class SvarogPolygon {
         struct VertexGroup {
             std::vector<Vector3>vertex_storage;
             unsigned int vertex_index;
-            void add_new_verticie(const Vector3& new_vert) {
+            void add_new_vertex(const Vector3& new_vert) {
                 vertex_storage.push_back(new_vert);
             }
 
@@ -33,6 +33,7 @@ class SvarogPolygon {
         bool get_count_state() const;
         std::vector<Vector3>get_polygon_vertex_li() const;
         unsigned int get_vertex_amount() const;
+        Vector3 get_vertex() const;
 };
 
 

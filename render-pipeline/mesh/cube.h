@@ -22,8 +22,8 @@ struct index_list {
 
 class SvarogCube {
     private:
-        Array<SvarogPolygon, 6>cube_vertexs;
-        Array<index_list, 6>cube_indicies;
+        std::vector<SvarogPolygon>cube_vertexs;
+        std::vector<index_list>cube_indices;
         Vector3 cube_position;
         SvarogShape cube_mesh;
         struct cube_size {
@@ -83,27 +83,25 @@ class SvarogCube {
             polygon_6.add_vertex(Vector3(-0.5f, 0.0f, -0.5f));
             polygon_6.add_vertex(Vector3(-0.5f, 0.0f, 0.5f));
             polygon_6.add_vertex(Vector3(-0.5f, -0.5f, 0.5f));
-            cube_vertexs.add(polygon_1);
-            cube_vertexs.add(polygon_2);
-            cube_vertexs.add(polygon_3);
-            cube_vertexs.add(polygon_4);
-            cube_vertexs.add(polygon_5);
-            cube_vertexs.add(polygon_6);
-            cube_indicies.add(index_list(0, 1, 3));
-            cube_indicies.add(index_list(1, 2, 3));
-            cube_indicies.add(index_list(0, 1, 2));
-            cube_indicies.add(index_list(1, 4, 5));
-            cube_indicies.add(index_list(2, 4, 5));
-            cube_indicies.add(index_list(4, 5, 6));
+            cube_vertexs.push_back(polygon_1);
+            cube_vertexs.push_back(polygon_2);
+            cube_vertexs.push_back(polygon_3);
+            cube_vertexs.push_back(polygon_4);
+            cube_vertexs.push_back(polygon_5);
+            cube_vertexs.push_back(polygon_6);
+            cube_indices.push_back(index_list(0, 1, 3));
+            cube_indices.push_back(index_list(1, 2, 3));
+            cube_indices.push_back(index_list(0, 1, 2));
         }
 
     public:
         SvarogCube();
         Vector3 get_cube_position() const;
         Vector3 get_cube_size() const;
+        SvarogShape get_cube_mesh() const;
         void translate_cube(Vector3 translation_point);
         void rotate_cube(Vector3 rotation_axis);
         void scale_cube(Vector3 scale_factor);
-        void draw_cube();
+        void make_cube();
 };
 #endif

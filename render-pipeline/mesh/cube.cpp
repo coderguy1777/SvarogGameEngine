@@ -22,14 +22,25 @@ void SvarogCube::scale_cube(Vector3 scale_factor) {
     cube_size_data.modify_cube_size(length_scale, width_scale, height_scale);
 }
 
-void SvarogCube::draw_cube() {
-    std::vector<SvarogPolygon>cube_polygons;
-    std::vector<index_list>cube_indexs;
-    for(unsigned int i =0; i < cube_vertexs.length(); i++) {
-        cube_polygons.push_back(cube_vertexs.get(i));
+void SvarogCube::make_cube() {
+    std::vector<float>cube_polygons;
+    std::vector<uint>cube_indexs;
+    for(unsigned int i =0; i < cube_vertexs.size(); i++) {
+        auto temp = cube_vertexs[i];
+        cube_polygons.push_back(temp.get_vertex().getComponentX());
+        cube_polygons.push_back(temp.get_vertex().getComponentY());
+        cube_polygons.push_back(temp.get_vertex().getComponentZ());
     }
 
-    for(unsigned int j=0; j < cube_indicies.length(); j++) {
-        cube_indexs.push_back(cube_indicies.get(j));
+    for(unsigned int j = 0; j < cube_indices[j].polygon_index.size(); j++) {
+        auto temp = cube_indices[j].polygon_index[j];
+        cube_indexs.push_back(temp);
     }
+
+    cube_mesh.pass_vert_data(cube_polygons);
+    cube_mesh.pass_position_data(cube_indexs);
+}
+
+SvarogShape SvarogCube::get_cube_mesh() const {
+    return cube_mesh;
 }

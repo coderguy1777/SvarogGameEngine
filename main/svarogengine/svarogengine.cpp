@@ -23,8 +23,8 @@ void SvarogEngine::InitMaterialManager() {
 }
 
 void SvarogEngine::InitRenderManager() {
-    spdlog::info("RENDER_TASK_MANAGER_READY.");
     RenderTaskManager::getRenderManager()->set_render_state(1);
+    spdlog::info("RENDER_TASK_MANAGER_READY.");
 }
 
 void SvarogEngine::InitContext() {
@@ -150,8 +150,17 @@ void SvarogEngine::RunEngine() {
     y.set_mesh_name(String("Debug_Mesh_2"));
     y.input_mesh(mesh_tst);
     y.set_render_flags(10, 200L, false, false, true);
-    RenderTaskManager::getRenderManager()->add_thread_task(s);
-    RenderTaskManager::getRenderManager()->add_thread_task(y);
+    SvarogCube cube_test;
+
+    cube_test.make_cube();
+    cube_test.get_cube_mesh().init();
+    RenderObj cube_renderable;
+    cube_renderable.set_mesh_id(2);
+    cube_renderable.set_mesh_name(String("Cube_Test"));
+    cube_renderable.input_mesh(cube_test.get_cube_mesh());
+    RenderTaskManager::getRenderManager()->add_thread_task(cube_renderable);
+    spdlog::info("RENDER_TASK_AMOUNT: {}", RenderTaskManager::getRenderManager()->get_task_amount());
+
 
     //RenderTaskManager::getRenderManager()->add_thread_task(s);
     // debug im gui context
@@ -169,14 +178,24 @@ void SvarogEngine::RunEngine() {
     ca.add_gui_layer(*debug_layer);
     ca.add_gui_layer(*debug_layer_2);
     //RenderTaskManager::getRenderManager()->run_all_tasks();
+       glm::mat4 view_mat = glm::mat4(1.0f);
+        glm::mat4 pos_mat = glm::mat4(1.0f);
+        glm::mat4 proj_mat = glm::mat4(1.0f);
+            glUniformMatrix4fv(glGetUniformLocation(test_prg->get_shader_id(), "view"), 1, GL_FALSE, &view_mat[0][0]);
+        glUniformMatrix4fv(glGetUniformLocation(test_prg->get_shader_id(), "proj"), 1, GL_FALSE, &proj_mat[0][0]);
+
+        glUniformMatrix4fv(glGetUniformLocation(test_prg->get_shader_id(), "location"), 1, GL_FALSE, glm::value_ptr(pos_mat));
     test_prg->use();
+
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         ImGuiInit::init_imgui_frames();
-        RenderTaskManager::getRenderManager()->add_thread_task(s);
-        RenderTaskManager::getRenderManager()->run_all_tasks();
+        //RenderTaskManager::getRenderManager()->run_all_tasks();
+
         
+        cube_test.get_cube_mesh().draw();
+        spdlog::info(cube_test.get_cube_mesh().get_init_state());
         dbg_win->insert_to_stack(ca);
         dbg_win->insert_to_stack(*test);
         dbg_win->render_frames();

@@ -1,15 +1,6 @@
 #include "svarog_shape.h"
 SvarogShape::SvarogShape() {
     data = new shape_data();
-    make_VAO();
-    make_VBO();
-    make_EBO();
-    bind_VAO();
-    bind_VBO();
-    buffer_data_gen();
-    bind_EBO();
-    ebo_buffer_gen();
-    attribs();
     is_init = true;
 }
 
@@ -87,15 +78,12 @@ void SvarogShape::ebo_buffer_gen() {
 }
 
 void SvarogShape::attribs() {
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
     /* 
         quick note: the use of glEnableVertexAttribArray(1); gives access 
         to the fragment shader.
     */ 
-
-    auto b = 2;
-    auto c = static_cast<float>(b);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3* sizeof(float)));
     glEnableVertexAttribArray(1);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -105,20 +93,21 @@ void SvarogShape::attribs() {
 void SvarogShape::init() {
     make_VAO();
     make_VBO();
-    make_EBO();
+    make_EBO();SvarogShape
     bind_VAO();
     bind_VBO();
     buffer_data_gen();
     bind_EBO();
     ebo_buffer_gen();
     attribs();
-    is_init = true;
 }
 
 void SvarogShape::draw() {
-    glBindVertexArray(get_VAO());
-    glDrawElements(GL_TRIANGLES, data->pos_data.size(), GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
+    if(!get_ebo()) {
+        glBindVertexArray(get_VAO());
+        glDrawElements(GL_TRIANGLES, data->pos_data.size(), GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+    }
 }
 
 void SvarogShape::del_buffers() {
@@ -129,8 +118,4 @@ void SvarogShape::del_buffers() {
 
 bool SvarogShape::get_init_state() const {
     return is_init;
-}
-
-void SvarogShape::test_thread_bind() {
-    spdlog::info("Hello again");
 }

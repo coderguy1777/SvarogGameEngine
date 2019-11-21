@@ -15,7 +15,15 @@ void SvarogPolygon::add_vertex(const Vector3& vertex) {
     if(get_count_state()) {
         spdlog::error("UNABLE TO ADD POLYGON VERTEX, MAX REACHED");
     } else if(!get_count_state()) {
-        verticies.add_new_verticie(vertex);
+        verticies.add_new_vertex(vertex);
     }
+}
+
+Vector3 SvarogPolygon::get_vertex() const {
+    Vector3 temp_vert;
+    for(const auto& vert: verticies.vertex_storage) {
+        temp_vert = vert;
+    }
+    return temp_vert;
 }
 
