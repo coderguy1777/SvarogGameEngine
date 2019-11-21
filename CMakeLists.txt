@@ -6,8 +6,11 @@ set(SOURCE_FILES glad.c main.cpp)
 set(GCC_COVERAGE_COMPILE_FLAGS, "-DCMAKE_BUILD_TYPE=DEBUG")
 set(GCC_COVERAGE_COMPILE_FLAGS, "-Wno-dev")
 set(GCC_COVERAGE_COMPILE_FLAGS, "-Werror-Wall")
+include_directories(libraries/glm)
+add_subdirectory(spdlog)
+include_directories(spdlog/include)
 include_directories(.)
-include_directories(glad)
+include_directories(glad/include)
 include_directories(core)
 include_directories(core/ds-classes)
 include_directories(core/events)
@@ -42,7 +45,7 @@ include_directories(libraries/SvarogGameEngine-Gui/examples/libs)
 include_directories(libraries/SvarogGameEngine-Gui/examples/libs/include/glfw/GLFW)
 
 add_executable(SvarogGameEngine
-        glad/glad.c
+        glad/src/glad.c
         libraries/SvarogGameEngine-Gui/examples/libs/glfw/include/GLFW/glfw3.h
         libraries/SvarogGameEngine-Gui/examples/libs/glfw/include/GLFW/glfw3native.h
         libraries/SvarogGameEngine-Gui/imconfig.h
@@ -199,7 +202,6 @@ add_executable(SvarogGameEngine
 find_package(glfw3 REQUIRED)
 find_package(X11 REQUIRED)
 find_package(OpenGL REQUIRED)
-find_package(spdlog REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system thread filesystem)
 target_compile_definitions(SvarogGameEngine PUBLIC IMGUI_IMPL_OPENGL_LOADER_GLAD)
 target_link_libraries(${PROJECT_NAME} 

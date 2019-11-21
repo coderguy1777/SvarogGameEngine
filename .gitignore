@@ -9,4 +9,5 @@ cmake-build-debug/
 CMakeFiles/
 .vscode/c_cpp_properties.json
 install/
+build
 
