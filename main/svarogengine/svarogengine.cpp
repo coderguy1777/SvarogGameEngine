@@ -152,8 +152,11 @@ void SvarogEngine::RunEngine() {
     y.set_render_flags(10, 200L, false, false, true);
     SvarogCube cube_test;
 
+    
     cube_test.make_cube();
+    cube_test.get_cube_mesh().
     cube_test.get_cube_mesh().init();
+    
     RenderObj cube_renderable;
     cube_renderable.set_mesh_id(2);
     cube_renderable.set_mesh_name(String("Cube_Test"));

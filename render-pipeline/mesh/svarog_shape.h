@@ -29,13 +29,14 @@ class SvarogShape {
         void buffer_data_gen();
         void ebo_buffer_gen();
         void attribs();
-        void init_ebo(unsigned int state);
         bool get_ebo() const;
         void make_VAO();
         void make_VBO();
         void make_EBO();
     public: 
         SvarogShape();
+        void init_ebo(unsigned int state);
+
         unsigned int get_VAO() const;
         unsigned int get_VBO() const;
         unsigned int get_EBO() const;
