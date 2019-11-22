@@ -5,9 +5,6 @@
 #include <functional>
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
-#include <glm/glm.hpp>
-#include <glm/mat4x4.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include "render-pipeline/mesh/cube.h"
 #include "main/enginewindow/engine-gui/sidebar-components/input_text.h"
 #include "render-pipeline/mesh/svarog_shape.h"

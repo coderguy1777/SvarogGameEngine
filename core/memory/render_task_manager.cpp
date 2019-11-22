@@ -37,11 +37,8 @@ void RenderTaskManager::run_optimize_tasks() {
 }
 
 void RenderTaskManager::run_all_tasks() {
-    for(unsigned int i = 0; i < render_task.size(); i++) {
-        auto temp_obj = render_task[i];
-        if(temp_obj.get_vis_state()) {
-            temp_obj.get_mesh().draw();
-        }
+    for(const auto& tets : render_task) {
+        
     }
 }
 

@@ -74,6 +74,13 @@ add_executable(SvarogGameEngine
         render-pipeline/shader/FragmentShader.cpp
         render-pipeline/shader/ShaderProgram.h
         render-pipeline/shader/ShaderProgram.cpp
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_buffer.h
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.h
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.h
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.h
+        render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp
         render-pipeline/mesh/svarog_shape.h
         render-pipeline/mesh/svarog_shape.cpp
         render-pipeline/mesh/svarog_renderobj.h
@@ -85,13 +92,6 @@ add_executable(SvarogGameEngine
         render-pipeline/shader/s_lab/shader_mg.cpp
         render-pipeline/shader/s_lab/svarog_material.h 
         render-pipeline/shader/s_lab/svarog_material.cpp
-        render-pipeline/mesh/opengl_mesh_buffers/mesh_buffer.h
-        render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.h
-        render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp
-        render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.h
-        render-pipeline/mesh/opengl_mesh_buffers/mesh_vbo.cpp
-        render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.h
-        render-pipeline/mesh/opengl_mesh_buffers/mesh_ebo.cpp
         render-pipeline/mesh/cube.h
         render-pipeline/mesh/cube.cpp
         render-pipeline/mesh/svarog_polygon.h

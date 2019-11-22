@@ -52,10 +52,10 @@ void VertexShader::compile_shader() {
         int success;
         char info[512];
         glGetShaderiv(shader_v, GL_COMPILE_STATUS, &success);
-        if(success) {
+        if(success == 1) {
             glGetShaderInfoLog(shader_v, 512, NULL, info);
             spdlog::info("Shader name: {}", "VERTEX_SHADER");
-        } else if(!success) {
+        } else if(!success == 1) {
             spdlog::info("Shader failure (VERT)");
             glGetError();
         }
@@ -64,8 +64,4 @@ void VertexShader::compile_shader() {
 
 unsigned int VertexShader::get_shader_id() {
     return shader_v;
-}
-
-VertexShader::~VertexShader() {
-    glDeleteShader(shader_v);
 }

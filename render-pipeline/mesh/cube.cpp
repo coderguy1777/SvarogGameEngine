@@ -32,9 +32,8 @@ void SvarogCube::make_cube() {
         cube_polygons.push_back(temp.get_vertex().getComponentZ());
     }
 
-    for(unsigned int j = 0; j < cube_indices[j].polygon_index.size(); j++) {
-        auto temp = cube_indices[j].polygon_index[j];
-        cube_indexs.push_back(temp);
+    for(uint j = 0; j < cube_indicies.polygon_index.size(); j++) {
+        cube_indexs.push_back(cube_indicies.get_index(j));
     }
 
     cube_mesh.pass_vert_data(cube_polygons);

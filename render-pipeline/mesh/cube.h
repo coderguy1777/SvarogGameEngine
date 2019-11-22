@@ -7,23 +7,19 @@
 #include "core/ds-classes/Array.h"
 struct index_list {
     std::vector<unsigned int>polygon_index;
-    index_list(unsigned int index_1, unsigned int index_2, unsigned int index_3) {
-        polygon_index.push_back(index_1);
-        polygon_index.push_back(index_2);
-        polygon_index.push_back(index_3);
+    void add_index(unsigned int index) {
+        polygon_index.push_back(index);
     }
 
-    index_list() {
-        polygon_index.push_back(0);
-        polygon_index.push_back(0);
-        polygon_index.push_back(0);
+    unsigned int get_index(int val) const {
+        return polygon_index[val];
     }
 };
 
 class SvarogCube {
     private:
         std::vector<SvarogPolygon>cube_vertexs;
-        std::vector<index_list>cube_indices;
+        index_list cube_indicies;
         Vector3 cube_position;
         SvarogShape cube_mesh;
         struct cube_size {
@@ -89,9 +85,22 @@ class SvarogCube {
             cube_vertexs.push_back(polygon_4);
             cube_vertexs.push_back(polygon_5);
             cube_vertexs.push_back(polygon_6);
-            cube_indices.push_back(index_list(0, 1, 3));
+            cube_indicies.add_index(0);
+            cube_indicies.add_index(1);
+            cube_indicies.add_index(3);
+            cube_indicies.add_index(1);
+            cube_indicies.add_index(2);
+            cube_indicies.add_index(3);
+            cube_indicies.add_index(0);
+            cube_indicies.add_index(1);
+            cube_indicies.add_index(2);
+            /*cube_indices.push_back(index_list(0, 1, 3));
             cube_indices.push_back(index_list(1, 2, 3));
             cube_indices.push_back(index_list(0, 1, 2));
+            cube_indices.push_back(index_list(3, 4, 5));
+            cube_indices.push_back(index_list(1, 3, 4));
+            cube_indices.push_back(index_list(4, 5, 6));
+            */
         }
 
     public:
