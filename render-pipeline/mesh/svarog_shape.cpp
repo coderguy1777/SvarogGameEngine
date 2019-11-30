@@ -1,7 +1,17 @@
 #include "svarog_shape.h"
 SvarogShape::SvarogShape() {
     data = new shape_data();
-    init();
+   /* make_VAO();
+    make_VBO();
+    make_EBO();
+    bind_VAO();
+    bind_VBO();
+    buffer_data_gen();
+    bind_EBO();
+    ebo_buffer_gen();
+    attribs();
+    */
+    is_init = true;
 }
 
 void SvarogShape::init_ebo(unsigned int state) {
@@ -86,14 +96,13 @@ void SvarogShape::attribs() {
 }
 
 void SvarogShape::init() {
-    bind_VAO();
-    bind_VBO();
-    bind_EBO();
     make_VAO();
     make_VBO();
     make_EBO();
+    bind_VAO();
+    bind_VBO();
+    bind_EBO();
     buffer_data_gen();
-
     ebo_buffer_gen();
     attribs();
     is_init = true;
@@ -102,6 +111,7 @@ void SvarogShape::init() {
 void SvarogShape::draw() {
     glBindVertexArray(get_VAO());
     glDrawElements(GL_TRIANGLES, data->pos_data.size(), GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
 }
 
 void SvarogShape::del_buffers() {

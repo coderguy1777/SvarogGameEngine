@@ -11,34 +11,32 @@ SvarogEngine* SvarogEngine::getInstanceEngine() {
 }
 
 void SvarogEngine::InitGuiManager() {
-
+    spdlog::info("GUI_MANAGER_READY.");
 }
 
 void SvarogEngine::InitThreadManager() {
-
+    spdlog::info("THREAD_MANAGER_READY.");
 }
 
 void SvarogEngine::InitMaterialManager() {
-
+    spdlog::info("MATERIAL_MANAGER_READY.");
 }
 
 void SvarogEngine::InitRenderManager() {
+    spdlog::info("RENDER_TASK_MANAGER_READY.");
     RenderTaskManager::getRenderManager()->set_render_state(1);
 }
 
 void SvarogEngine::InitContext() {
+    spdlog::info("WINDOW CONTEXT INITIALIZED");
     EngineWindow::getInstance()->VSYNC_on();
 }
 
-
 void SvarogEngine::InitMonitor() {
+    spdlog::info("WINDOW MONITOR INITIALIZED");
     svarog_monitor->init_monitor();
 }
-/*
-    TODO: 
-        Make sure to begin to thread tasks, and start doing
-        thread managers to hold threads
-*/
+
 void SvarogEngine::RunEngine() {
     EngineWindow::getInstance()->SvarogAppLoop();
     InitContext();  
@@ -56,6 +54,7 @@ void SvarogEngine::RunEngine() {
     SvarogGuiFrame ca(true, true, String("Debug_Frame"), 300, 600);
     bool is_right = (debug_class_str->get_class_id() <= 5 || debug_class_str->get_class_id() >= 0) ? true : false;
     bool is_left = (debug_class_str->get_class_id() >= 6 || debug_class_str->get_class_id() <= 10) ? true : false;
+    ca.set_frame_pos(false, 200.0f, 0);
     
     spdlog::info("START_GUI_LAYER");
     spdlog::info("--------------------------------------------------------");
@@ -75,7 +74,7 @@ void SvarogEngine::RunEngine() {
     ImGuiLayer * debug_layer_2 = new ImGuiLayer(debug_2, 2);
     debug_layer_2->pass_frame_data(Layer_Pos::FRAME_RIGHT, false, false);
     bool btn_val_3, btn_val_4;
-    debug_layer_2->add_button(ButtonData{String("Test2_Button"), btn_val_3, ButtonPosition{50, 50}, 0});
+    debug_layer_2->add_button(ButtonData{String("Test2_Button"), btn_val_3, ButtonPosition{90, 50}, 0});
     debug_layer_2->add_button(ButtonData{String("Test3_Button"), btn_val_4, ButtonPosition{50, 74}, 2});
     debug_layer_2->init_all();
     std::string vert_shader, frag_shader;
@@ -112,22 +111,24 @@ void SvarogEngine::RunEngine() {
     test_prg->bind_shaders(vert_m, frag_m);
 
     float vertices[] = {
-        0.5f,  0.5f, -0.5f, 
+        0.5f, 0.5f, -0.5f,
         0.5f, -0.5f, -0.5f,
         -0.5f, -0.5f, -0.5f,
+        -0.5f, 0.5f , -0.5f, 
+        1.0f, 1.5f, -1.5f,
     };        
     
     unsigned int poss[] = {  
         0, 1, 3,  
         1, 2, 3,
-        0, 1, 2,
+        0, 1, 4,
     };
 
     SvarogShape mesh_tst;
     std::vector<float>vertt;
     std::vector<unsigned int>pos;
 
-    for(int i = 0; i < 18; i++) {
+    for(int i = 0; i < 15; i++) {
         vertt.push_back(vertices[i]);
     }
     for(int j = 0; j < 9; j++) {
@@ -157,25 +158,25 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_style(0);
     ImGuiInit::imgui_ini_use(false);
     
-    SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 100, 100);
+    SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 300, 300);
     test->add_gui_layer(*debug_layer);
     test->add_gui_layer(*debug_layer_2);
+    test->set_frame_pos(false, 100, 0);
     char* debug = new char[3];
     debug[0] = 'e';
     debug[1] = 'd';
     SvarogGuiWindow * dbg_win =  new SvarogGuiWindow();
     ca.add_gui_layer(*debug_layer);
     ca.add_gui_layer(*debug_layer_2);
-    //RenderTaskManager::getRenderManager()->run_all_tasks();
-    
+
+    test_prg->use();
     while(EngineWindow::getInstance()->get_state()) {
-        glClearColor(1.0, 0.0, 0.0, 1.0);
-
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        test_prg->use();
-        RenderTaskManager::getRenderManager()->run_all_tasks();
-
+        glClearColor(1.0, 0.0, 0.0, 1.0);
         ImGuiInit::init_imgui_frames();
+        RenderTaskManager::getRenderManager()->add_thread_task(s);
+        RenderTaskManager::getRenderManager()->run_all_tasks();
+        
         dbg_win->insert_to_stack(ca);
         dbg_win->insert_to_stack(*test);
         dbg_win->render_frames();

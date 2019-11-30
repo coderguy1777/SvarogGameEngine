@@ -27,12 +27,22 @@ void SvarogGuiFrame::end_gui_frame() {
     ImGui::End();
 }
 
+float SvarogGuiFrame::get_pos_x() const {
+    return frame_flag_vals.gui_frame_pos.x;
+}
+
+float SvarogGuiFrame::get_pos_y() const {
+    return frame_flag_vals.gui_frame_pos.y;
+}
+
 void SvarogGuiFrame::set_frame_pos(bool use_w_h, float w_x, float h_y) {
     bool indicator = (use_w_h==true) ? true : false;
     if(indicator) {
-        ImGui::SetCursorPos(ImVec2(get_frame_width(), get_frame_height()));
+        frame_flag_vals.gui_frame_pos[0] = static_cast<float>(get_frame_width());
+        frame_flag_vals.gui_frame_pos[1] = static_cast<float>(get_frame_height());
     } else if(!indicator) {
-        ImGui::SetCursorPos(ImVec2(static_cast<unsigned int>(w_x), static_cast<unsigned int>(h_y)));
+        frame_flag_vals.gui_frame_pos[0] = w_x;
+        frame_flag_vals.gui_frame_pos[1] = h_y;   
     }
 }
 

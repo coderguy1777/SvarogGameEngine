@@ -61,7 +61,7 @@ void EngineWindow::VSYNC_func() {
 
 void EngineWindow::SvarogAppLoop() {
     set_bool_state();
-    WindowContext::set_states(1, 4);
+    WindowContext::set_states(1, 3);
     WindowContext::init_glfw();
     WindowContext::create_context(appWindow);
     appWindow = glfwCreateWindow((int)winA.getWidth(), (int)winA.getHeight(), (const char*)winA.getTitle().str, NULL, NULL);

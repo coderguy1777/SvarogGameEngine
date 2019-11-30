@@ -39,7 +39,7 @@ void VertexShader::compile_shader() {
         causes problem of making shader initalized when already created in svarog shader parent 
         class.
     */
-    //shader_v = glCreateShader(GL_VERTEX_SHADER);
+    shader_v = glCreateShader(GL_VERTEX_SHADER);
     bool code_check = (get_code() == "")  ? true : false;
     if(code_check) {
         spdlog::info("ERROR, NO SHADER CODE SPECIFIED. (VERT)");

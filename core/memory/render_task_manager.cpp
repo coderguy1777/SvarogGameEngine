@@ -37,8 +37,11 @@ void RenderTaskManager::run_optimize_tasks() {
 }
 
 void RenderTaskManager::run_all_tasks() {
-    for(const auto& tets : render_task) {
-        
+    for(unsigned int i = 0; i < render_task.size(); i++) {
+        auto temp_obj = render_task[i];
+        if(temp_obj.get_vis_state()) {
+            temp_obj.get_mesh().draw();
+        }
     }
 }
 
@@ -51,7 +54,3 @@ void RenderTaskManager::set_render_state(int wanted_state) {
     spdlog::info("RUN VAL: {}", static_cast<int>(render_run));
 }
 RenderTaskManager* RenderTaskManager::render_mg_instance = 0;
-/*
-    Note to future self: 
-    figure out how to use mutexs properly to lock tasks, if need be.
-*/

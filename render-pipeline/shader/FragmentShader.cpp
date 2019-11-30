@@ -34,7 +34,7 @@ unsigned int FragmentShader::get_initstate() const {
 }
 
 void FragmentShader::compile_shader() {
-    //shader_f = glCreateShader(GL_FRAGMENT_SHADER);
+    shader_f = glCreateShader(GL_FRAGMENT_SHADER);
     bool code_check = (get_code() == "") ? true : false;
     if(code_check) {
         spdlog::info("ERROR, NO FRAG_SHADER CODE. (FRAG)");
@@ -42,7 +42,7 @@ void FragmentShader::compile_shader() {
     } else if(!code_check) {
         const char* code = s_code.shader_code;
         glGetError();
-        glShaderSource(shader_f, 1, &code, nullptr);
+        glShaderSource(shader_f, 1, &code, NULL);
         glCompileShader(shader_f);
         s_code.success_state = 1;
         int success;
@@ -51,6 +51,9 @@ void FragmentShader::compile_shader() {
         if(success) {
             glGetShaderInfoLog(shader_f, 512, NULL, info);
             spdlog::info("Shader name: {}", "FRAG_SHADER");
+            if(shader_f == 0) {
+                spdlog::error("FRAGMENT SHADER FAILURE");
+            }
         } else if(!success) {
             spdlog::info("SHADER_FAILURE (FragmentShader)");
             spdlog::info(info[0]);

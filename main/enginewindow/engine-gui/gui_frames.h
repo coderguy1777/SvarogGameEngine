@@ -10,6 +10,7 @@ struct imgui_frame_flags {
     bool is_movable;
     String frame_name;
     unsigned int f_w, f_h;
+    ImVec2 gui_frame_pos;
 };
 
 /*
@@ -38,6 +39,8 @@ class SvarogGuiFrame {
         bool get_move_val() const;
         bool get_sort_state() const;
         String get_frame_name() const;
+        float get_pos_x() const;
+        float get_pos_y() const;
         unsigned int get_frame_width() const;
         unsigned int get_frame_height() const;
         void set_frame_pos(bool use_w_h, float w_x, float h_y);
