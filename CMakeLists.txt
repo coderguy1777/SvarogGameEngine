@@ -182,7 +182,6 @@ add_executable(SvarogGameEngine
         main/window/window.h
         math/camera_matrix.cpp
         math/camera_matrix.h
-        math/matrix.cpp
         math/matrix.h
         math/matrix2f.h
         math/matrix3f.h

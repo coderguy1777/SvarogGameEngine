@@ -1284,33 +1284,6 @@ math/euler_angles.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/math/euler_angles.cpp.s
 .PHONY : math/euler_angles.cpp.s
 
-math/matrix.o: math/matrix.cpp.o
-
-.PHONY : math/matrix.o
-
-# target to build an object file
-math/matrix.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/math/matrix.cpp.o
-.PHONY : math/matrix.cpp.o
-
-math/matrix.i: math/matrix.cpp.i
-
-.PHONY : math/matrix.i
-
-# target to preprocess a source file
-math/matrix.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/math/matrix.cpp.i
-.PHONY : math/matrix.cpp.i
-
-math/matrix.s: math/matrix.cpp.s
-
-.PHONY : math/matrix.s
-
-# target to generate assembly for a file
-math/matrix.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/math/matrix.cpp.s
-.PHONY : math/matrix.cpp.s
-
 math/vec2.o: math/vec2.cpp.o
 
 .PHONY : math/vec2.o
@@ -1962,9 +1935,6 @@ help:
 	@echo "... math/euler_angles.o"
 	@echo "... math/euler_angles.i"
 	@echo "... math/euler_angles.s"
-	@echo "... math/matrix.o"
-	@echo "... math/matrix.i"
-	@echo "... math/matrix.s"
 	@echo "... math/vec2.o"
 	@echo "... math/vec2.i"
 	@echo "... math/vec2.s"

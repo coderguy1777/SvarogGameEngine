@@ -5,6 +5,7 @@
 #include <functional>
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
+#include "math/matrix.h"
 #include "render-pipeline/mesh/cube.h"
 #include "main/enginewindow/engine-gui/sidebar-components/input_text.h"
 #include "render-pipeline/mesh/svarog_shape.h"
@@ -34,6 +35,7 @@ class SvarogEngine {
             svarog_monitor = new WindowMonitor();
         }
         static SvarogEngine* getInstanceEngine();
+        void MatrixTest();
         void InitContext();
         void InitMonitor();
         void InitRenderManager();

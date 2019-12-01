@@ -15,7 +15,6 @@ void RenderObj::set_mesh_name(String name) {
 
 void RenderObj::input_mesh(SvarogShape shape) {
     if(!shape.get_init_state()) {
-        shape.init();
         render_obj = shape;
     } else {
         render_obj = shape;
