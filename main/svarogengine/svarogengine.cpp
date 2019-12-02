@@ -11,37 +11,6 @@ SvarogEngine* SvarogEngine::getInstanceEngine() {
 }
 
 void SvarogEngine::InitGuiManager() {
-    spdlog::info("GUI_MANAGER_READY.");
-}
-
-void SvarogEngine::InitThreadManager() {
-    spdlog::info("THREAD_MANAGER_READY.");
-}
-
-void SvarogEngine::InitMaterialManager() {
-    spdlog::info("MATERIAL_MANAGER_READY.");
-}
-
-void SvarogEngine::InitRenderManager() {
-    spdlog::info("RENDER_TASK_MANAGER_READY.");
-    RenderTaskManager::getRenderManager()->set_render_state(1);
-}
-
-void SvarogEngine::InitContext() {
-    spdlog::info("WINDOW CONTEXT INITIALIZED");
-    EngineWindow::getInstance()->VSYNC_on();
-}
-
-void SvarogEngine::InitMonitor() {
-    spdlog::info("WINDOW MONITOR INITIALIZED");
-    svarog_monitor->init_monitor();
-}
-
-void SvarogEngine::RunEngine() {
-    EngineWindow::getInstance()->SvarogAppLoop();
-    InitContext();  
-    InitMonitor();
-    InitRenderManager();
     bool btn_val, btn_val2;
     String debug_name = String("Debug");
     ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);
@@ -77,6 +46,57 @@ void SvarogEngine::RunEngine() {
     debug_layer_2->add_button(ButtonData{String("Test2_Button"), btn_val_3, ButtonPosition{90, 50}, 0});
     debug_layer_2->add_button(ButtonData{String("Test3_Button"), btn_val_4, ButtonPosition{50, 74}, 2});
     debug_layer_2->init_all();
+    SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 300, 300);
+    test->add_gui_layer(*debug_layer);
+    test->add_gui_layer(*debug_layer_2);
+    test->set_frame_pos(false, 100, 0);
+    char* debug = new char[3];
+    debug[0] = 'e';
+    debug[1] = 'd';
+    SvarogGuiWindow * dbg_win =  new SvarogGuiWindow();
+    ca.add_gui_layer(*debug_layer);
+    ca.add_gui_layer(*debug_layer_2);
+
+    dbg_win->insert_to_stack(ca);
+    dbg_win->insert_to_stack(*test);
+    GuiTaskManager::getGuiManagerInstance()->add_thread_task(*dbg_win);
+
+    if(GuiTaskManager::getGuiManagerInstance()->get_task_amount() > 0) {
+        spdlog::info("GUI_MANAGER_READY.");
+    } else {
+        spdlog::error("GUI TASKS NOT ADDED SUCCESSFULLY");
+        exit(0);
+    }
+}
+
+void SvarogEngine::InitThreadManager() {
+    spdlog::info("THREAD_MANAGER_READY.");
+}
+
+void SvarogEngine::InitMaterialManager() {
+    spdlog::info("MATERIAL_MANAGER_READY.");
+}
+
+void SvarogEngine::InitRenderManager() {
+    spdlog::info("RENDER_TASK_MANAGER_READY.");
+    RenderTaskManager::getRenderManager()->set_render_state(1);
+}
+
+void SvarogEngine::InitContext() {
+    spdlog::info("WINDOW CONTEXT INITIALIZED");
+    EngineWindow::getInstance()->VSYNC_on();
+}
+
+void SvarogEngine::InitMonitor() {
+    spdlog::info("WINDOW MONITOR INITIALIZED");
+    svarog_monitor->init_monitor();
+}
+
+void SvarogEngine::RunEngine() {
+    EngineWindow::getInstance()->SvarogAppLoop();
+    InitContext();  
+    InitMonitor();
+    InitRenderManager();
     std::string vert_shader, frag_shader;
     std::ifstream vert, frag;
     vert.exceptions(std::ifstream::failbit);
@@ -158,16 +178,7 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_style(0);
     ImGuiInit::imgui_ini_use(false);
     
-    SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 300, 300);
-    test->add_gui_layer(*debug_layer);
-    test->add_gui_layer(*debug_layer_2);
-    test->set_frame_pos(false, 100, 0);
-    char* debug = new char[3];
-    debug[0] = 'e';
-    debug[1] = 'd';
-    SvarogGuiWindow * dbg_win =  new SvarogGuiWindow();
-    ca.add_gui_layer(*debug_layer);
-    ca.add_gui_layer(*debug_layer_2);
+
 
     test_prg->use();
     while(EngineWindow::getInstance()->get_state()) {
@@ -176,10 +187,9 @@ void SvarogEngine::RunEngine() {
         ImGuiInit::init_imgui_frames();
         RenderTaskManager::getRenderManager()->add_thread_task(s);
         RenderTaskManager::getRenderManager()->run_all_tasks();
-        
-        dbg_win->insert_to_stack(ca);
-        dbg_win->insert_to_stack(*test);
-        dbg_win->render_frames();
+        InitGuiManager();
+        GuiTaskManager::getGuiManagerInstance()->run_all_tasks();
+        //dbg_win->render_frames();
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();
     }

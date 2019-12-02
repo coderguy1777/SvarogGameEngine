@@ -143,6 +143,8 @@ add_executable(SvarogGameEngine
         core/memory/svarog_task_manager.h
         core/memory/render_task_manager.h
         core/memory/render_task_manager.cpp
+        core/memory/gui_task_manager.h
+        core/memory/gui_task_manager.cpp
         debugger/logger.cpp
         debugger/logger.h
         main/camera/camera.cpp

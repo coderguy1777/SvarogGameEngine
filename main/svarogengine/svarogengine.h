@@ -5,6 +5,7 @@
 #include <functional>
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
+#include "core/memory/gui_task_manager.h"
 #include "math/matrix.h"
 #include "render-pipeline/mesh/cube.h"
 #include "main/enginewindow/engine-gui/sidebar-components/input_text.h"

@@ -8,9 +8,27 @@
 struct imgui_frame_flags {
     bool is_resizable;
     bool is_movable;
+    bool is_rendered;
+    bool is_deleted;
     String frame_name;
     unsigned int f_w, f_h;
     ImVec2 gui_frame_pos;
+
+    void set_render_state(int state) {
+        is_rendered = (state == 1) ? true : false;
+    }
+    
+    void set_delete_state(int state) {
+        is_deleted = (state == 1) ? true : false;
+    }
+
+    bool get_render_state() const {
+        return is_rendered; 
+    }
+
+    bool get_delete_state() const {
+        return is_deleted;
+    }
 };
 
 /*
@@ -51,6 +69,14 @@ class SvarogGuiFrame {
         void end_gui_frame();
         const char* layer_pos_right(unsigned int id);
         const char* layer_pos_left(unsigned int id);
+
+        void set_render_state(int state) {
+            frame_flag_vals.set_render_state(state);
+        }
+
+        void set_delete_state(int state) {
+            frame_flag_vals.set_delete_state(state);
+        }
 };
 
 
