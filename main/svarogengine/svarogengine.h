@@ -35,7 +35,6 @@ class SvarogEngine {
             svarog_monitor = new WindowMonitor();
         }
         static SvarogEngine* getInstanceEngine();
-        void MatrixTest();
         void InitContext();
         void InitMonitor();
         void InitRenderManager();

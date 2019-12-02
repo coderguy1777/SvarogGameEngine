@@ -18,5 +18,4 @@ class GuiTaskManager : public TaskManager<SvarogGuiWindow> {
         virtual void run_optimize_tasks() override;
         virtual unsigned int get_task_amount() const override;
 };
-
 #endif
