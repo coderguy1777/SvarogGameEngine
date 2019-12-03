@@ -154,6 +154,7 @@ void EngineWindow::SvarogAppLoop() {
         glViewport(0, 0, w, h);
         win_size_mg->winA.changeHeight(h);
         win_size_mg->winA.changeWidth(w);
+        spdlog::info("WINDOW_RESIZE");
     });
 
     glfwSetCharCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, unsigned int keycode) {
@@ -165,6 +166,7 @@ void EngineWindow::SvarogAppLoop() {
         EngineWindow* frm_bfer_cb = (EngineWindow*)glfwGetWindowUserPointer(window);        
         glfwGetFramebufferSize(window, &w, &h);
         glViewport(0, 0, w, h);
+        spdlog::info("FRAMEBUFFER_SIZE_CHANGE");
     });
 
     glfwSetWindowPosCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int xpos, int ypos) {

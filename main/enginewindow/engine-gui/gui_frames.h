@@ -10,9 +10,11 @@ struct imgui_frame_flags {
     bool is_movable;
     bool is_rendered;
     bool is_deleted;
+    uint resize_event;
     String frame_name;
     unsigned int f_w, f_h;
     ImVec2 gui_frame_pos;
+    ImVec2 gui_frame_resize_size;
 
     void set_render_state(int state) {
         is_rendered = (state == 1) ? true : false;
@@ -56,6 +58,8 @@ class SvarogGuiFrame {
         bool get_resize_val() const;
         bool get_move_val() const;
         bool get_sort_state() const;
+        bool get_render_state() const;
+        bool get_delete_state() const;
         String get_frame_name() const;
         float get_pos_x() const;
         float get_pos_y() const;

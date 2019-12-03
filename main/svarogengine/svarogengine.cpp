@@ -24,20 +24,6 @@ void SvarogEngine::InitGuiManager() {
     bool is_right = (debug_class_str->get_class_id() <= 5 || debug_class_str->get_class_id() >= 0) ? true : false;
     bool is_left = (debug_class_str->get_class_id() >= 6 || debug_class_str->get_class_id() <= 10) ? true : false;
     ca.set_frame_pos(false, 200.0f, 0);
-    
-    spdlog::info("START_GUI_LAYER");
-    spdlog::info("--------------------------------------------------------");
-    spdlog::warn("GUI_LAYER_NAME: {}", debug_class_str->get_class_str());
-    std::string pos_msg;
-    if(is_right) {
-        pos_msg = ca.layer_pos_right(debug_class_str->get_class_id());
-    }
-
-    spdlog::warn("GUI_LAYER_POS: {}", pos_msg);
-    spdlog::info("--------------------------------------------------------");
-    spdlog::info("END_GUI_LAYER");
-    spdlog::info("-------------------------------------------------------");
-    spdlog::warn("RENDERING OF GUI_TO_START");
     debug_layer->init_all();  
     String debug_2 = String("Debug_2");
     ImGuiLayer * debug_layer_2 = new ImGuiLayer(debug_2, 2);
@@ -61,12 +47,14 @@ void SvarogEngine::InitGuiManager() {
     dbg_win->insert_to_stack(*test);
     GuiTaskManager::getGuiManagerInstance()->add_thread_task(*dbg_win);
 
+    /*
     if(GuiTaskManager::getGuiManagerInstance()->get_task_amount() > 0) {
         spdlog::info("GUI_MANAGER_READY.");
     } else {
         spdlog::error("GUI TASKS NOT ADDED SUCCESSFULLY");
         exit(0);
     }
+    */
 }
 
 void SvarogEngine::InitThreadManager() {

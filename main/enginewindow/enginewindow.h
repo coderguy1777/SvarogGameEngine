@@ -39,7 +39,6 @@ class EngineWindow {
         EngineWindow() { }
 
     public: 
-        KeyMap* map_tst = KeyMap::getMapInstance();
         Window winA;
         static EngineWindow* getInstance();
         ~EngineWindow() {

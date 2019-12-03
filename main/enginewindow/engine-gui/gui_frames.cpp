@@ -1,4 +1,12 @@
 #include "gui_frames.h"
+bool SvarogGuiFrame::get_render_state() const {
+    return (frame_flag_vals.get_render_state() == true) ? true : false;
+}
+
+bool SvarogGuiFrame::get_delete_state() const {
+    return (frame_flag_vals.get_delete_state() == true) ? true : false;
+}
+
 bool SvarogGuiFrame::get_resize_val() const {
     return frame_flag_vals.is_resizable;
 }
