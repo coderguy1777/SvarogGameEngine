@@ -23,37 +23,25 @@ void SvarogGuiWindow::render_frames() {
         while(!frame_stack.isEmpty()) {
             auto curr_window = frame_stack.top();
             if(curr_window.get_move_val()) {
-                ImGui::SetNextWindowPos(ImVec2(curr_window.get_pos_x(), curr_window.get_pos_y()), ImGuiCond_Always);
+                ImGui::SetNextWindowPos(ImVec2(curr_window.get_pos_x(), curr_window.get_pos_y()), ImGuiCond_Once, ImVec2(0, 0));
                 curr_window.set_render_state(1);
             } else if(!curr_window.get_move_val()) {
                 curr_window.set_render_state(0);
             }
 
             if(curr_window.get_resize_val()) {
-                ImGui::SetNextWindowSize(ImVec2(curr_window.get_frame_width(), curr_window.get_frame_height()), ImGuiCond_Always);
+                ImGui::SetNextWindowSize(ImVec2(curr_window.get_frame_width(), curr_window.get_frame_height()), ImGuiCond_Once);
                 curr_window.set_render_state(1);
             } else if(!curr_window.get_resize_val()) {
                 curr_window.set_render_state(0);
 
             }
-
-            bool is_renderable = (curr_window.get_render_state() == true) ? true : false;
-            if(is_renderable) {
-                curr_window.begin_gui_frame();
+               curr_window.begin_gui_frame();
                 curr_window.render_layers();
                 curr_window.end_gui_frame();
                 frame_stack.pop(); 
-                curr_window = frame_stack.top();
-            } else if(!is_renderable) {
-                frame_stack.pop();
-                curr_window = frame_stack.top();
-            }
+
             // left side (0, 0)
-            // center ()
-            frame_stack.top().begin_gui_frame();
-            frame_stack.top().render_layers();
-            frame_stack.top().end_gui_frame();
-            frame_stack.pop();
             
         }
     }

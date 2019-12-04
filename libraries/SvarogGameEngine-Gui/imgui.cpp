@@ -1004,7 +1004,7 @@ ImGuiIO::ImGuiIO()
     DisplaySize = ImVec2(-1.0f, -1.0f);
     DeltaTime = 1.0f/60.0f;
     IniSavingRate = 5.0f;
-    IniFilename = "imgui.ini";
+    IniFilename = NULL;
     LogFilename = "imgui_log.txt";
     MouseDoubleClickTime = 0.30f;
     MouseDoubleClickMaxDist = 6.0f;
@@ -4689,7 +4689,7 @@ static ImGuiWindow* CreateNewWindow(const char* name, ImVec2 size, ImGuiWindowFl
     g.WindowsById.SetVoidPtr(window->ID, window);
 
     // Default/arbitrary window position. Use SetNextWindowPos() with the appropriate condition flag to change the initial position of a window.
-    window->Pos = ImVec2(500, 500);
+    window->Pos = ImVec2(0, 0);
 
     // User can disable loading and saving of settings. Tooltip and child windows also don't store settings.
     if (!(flags & ImGuiWindowFlags_NoSavedSettings))

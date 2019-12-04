@@ -23,7 +23,7 @@ void SvarogEngine::InitGuiManager() {
     SvarogGuiFrame ca(true, true, String("Debug_Frame"), 300, 600);
     bool is_right = (debug_class_str->get_class_id() <= 5 || debug_class_str->get_class_id() >= 0) ? true : false;
     bool is_left = (debug_class_str->get_class_id() >= 6 || debug_class_str->get_class_id() <= 10) ? true : false;
-    ca.set_frame_pos(false, 200.0f, 0);
+    ca.set_frame_pos(false, 500, 0);
     debug_layer->init_all();  
     String debug_2 = String("Debug_2");
     ImGuiLayer * debug_layer_2 = new ImGuiLayer(debug_2, 2);
@@ -35,7 +35,7 @@ void SvarogEngine::InitGuiManager() {
     SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 300, 300);
     test->add_gui_layer(*debug_layer);
     test->add_gui_layer(*debug_layer_2);
-    test->set_frame_pos(false, 100, 0);
+    test->set_frame_pos(false, 300, -100);
     char* debug = new char[3];
     debug[0] = 'e';
     debug[1] = 'd';
