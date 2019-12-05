@@ -15,10 +15,10 @@ void SvarogEngine::InitGuiManager() {
     String debug_name = String("Debug");
     ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);
     debug_layer->pass_frame_data(Layer_Pos::FRAME_LEFT, false, false);
-    debug_layer->add_button(ButtonData{String("Test_Button"), btn_val, ButtonPosition{100, 100}, 0});
-    debug_layer->add_button(ButtonData{String("Test_Button2"), btn_val2, ButtonPosition{150, 150}, 1});
+    debug_layer->add_button(ButtonData{String("Test_Button"), btn_val, ButtonPosition{100, 100}, 0, false});
+    debug_layer->add_button(ButtonData{String("Test_Button2"), btn_val2, ButtonPosition{150, 150}, 1, false});
     std::function<void()>labels;
-    debug_layer->add_label(LabelData{String("Label_1"), labels, LabelPosition{30, 30}, 30});
+    debug_layer->add_label(LabelData{String("Label_1"), labels, LabelPosition{30, 30}, false});
     ClassString* debug_class_str = debug_layer->get_layer_name();
     SvarogGuiFrame ca(true, true, String("Debug_Frame"), 300, 600);
     bool is_right = (debug_class_str->get_class_id() <= 5 || debug_class_str->get_class_id() >= 0) ? true : false;
@@ -46,15 +46,6 @@ void SvarogEngine::InitGuiManager() {
     dbg_win->insert_to_stack(ca);
     dbg_win->insert_to_stack(*test);
     GuiTaskManager::getGuiManagerInstance()->add_thread_task(*dbg_win);
-
-    /*
-    if(GuiTaskManager::getGuiManagerInstance()->get_task_amount() > 0) {
-        spdlog::info("GUI_MANAGER_READY.");
-    } else {
-        spdlog::error("GUI TASKS NOT ADDED SUCCESSFULLY");
-        exit(0);
-    }
-    */
 }
 
 void SvarogEngine::InitThreadManager() {

@@ -30,6 +30,7 @@ struct LabelData {
     std::function<void()>label_init;
     LabelPosition lbl_pos;
     unsigned int pos; // greater pos, closer to bottom.
+    bool use_color;
 };
 
 struct ButtonData {
@@ -37,6 +38,7 @@ struct ButtonData {
     bool svarog_button;
     ButtonPosition btn_pos;
     unsigned int pos; // greater pos, closer to bottom.
+    bool use_color;
 };
 
 // given a position, put into frame rendering in that position, top

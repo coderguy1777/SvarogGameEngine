@@ -11,9 +11,9 @@ enum class GUI_WINDOW_POS {
     BOTTOM,
     BOTTOM_LEFT_CORNER,
     MIDDLE_LEFT,
-    TOP_LEFT_CORNER,
+    TOP_LEFT_CORNER, // (0, 0) for pos.
     TOP,
-    CENTER
+    CENTER // will most likely be at (screen_w/2, screen_h/2), and will have to be scaled to be perfectly center 
 };
 
 class SvarogGuiWindow {

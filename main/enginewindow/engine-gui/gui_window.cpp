@@ -1,5 +1,9 @@
 #include "gui_window.h"
 /* 
+Svarog Game Engine Gui design backlog
+*********************************************
+@Jordan Hill
+*********************************************
 BACKLOG: 
 ------------------------
     Log 1: need to make sure the styles for each window made here are parsed correctly, along with the gui
@@ -9,6 +13,10 @@ BACKLOG:
 ------------------------
     Log 2: need to continue wokring on styling sorting, and scaling of gui components on resize events 
     in the engine window as well when they occur.
+------------------------ 
+    Log 3: worked on label alot, adding some filtering stuff, going to update to docking branch of imgui soon
+    so that the gui window class has more of a purpose in this case, and isnt just there to act as a container
+    for individual gui windows in this case.
     
 */ 
 void SvarogGuiWindow::insert_to_stack(SvarogGuiFrame gui_frame) {

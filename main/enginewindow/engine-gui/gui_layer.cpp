@@ -37,7 +37,7 @@ void ImGuiLayer::init_button_positions() {
 
 void ImGuiLayer::init_label_positions() {
     while(!label_data->isEmpty()) {
-        label_stack.gui_window_labels.add(SvarogLabel(String(label_data->top().label_text), label_data->top().lbl_pos.pos_x, label_data->top().lbl_pos.pos_y, "%20", true));
+        label_stack.gui_window_labels.add(SvarogLabel(String(label_data->top().label_text), label_data->top().lbl_pos.pos_x, label_data->top().lbl_pos.pos_y, "%20", true, false));
         label_stack.gui_label_text.push(String(label_data->top().label_text));
         label_data->pop();
     }
