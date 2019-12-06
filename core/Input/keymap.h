@@ -3,12 +3,8 @@
 #define KEYMAP_H
 #include<map>
 #include<unordered_map>
+#include<iostream>
 #include "core/String.h"
-#include <iostream>
-#include "macrodefs.h"
-
-
-
 typedef struct  {
     unsigned int key_code;
     bool state;

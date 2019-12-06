@@ -150,33 +150,6 @@ core/Input/InputManager.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/Input/InputManager.cpp.s
 .PHONY : core/Input/InputManager.cpp.s
 
-core/Input/WindowInput.o: core/Input/WindowInput.cpp.o
-
-.PHONY : core/Input/WindowInput.o
-
-# target to build an object file
-core/Input/WindowInput.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/Input/WindowInput.cpp.o
-.PHONY : core/Input/WindowInput.cpp.o
-
-core/Input/WindowInput.i: core/Input/WindowInput.cpp.i
-
-.PHONY : core/Input/WindowInput.i
-
-# target to preprocess a source file
-core/Input/WindowInput.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/Input/WindowInput.cpp.i
-.PHONY : core/Input/WindowInput.cpp.i
-
-core/Input/WindowInput.s: core/Input/WindowInput.cpp.s
-
-.PHONY : core/Input/WindowInput.s
-
-# target to generate assembly for a file
-core/Input/WindowInput.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/core/Input/WindowInput.cpp.s
-.PHONY : core/Input/WindowInput.cpp.s
-
 core/Input/keymap.o: core/Input/keymap.cpp.o
 
 .PHONY : core/Input/keymap.o
@@ -663,6 +636,33 @@ libraries/SvarogGameEngine-Gui/examples/imgui_impl_opengl3.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/libraries/SvarogGameEngine-Gui/examples/imgui_impl_opengl3.cpp.s
 .PHONY : libraries/SvarogGameEngine-Gui/examples/imgui_impl_opengl3.cpp.s
 
+libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.o: libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.o
+
+.PHONY : libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.o
+
+# target to build an object file
+libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.o
+.PHONY : libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.o
+
+libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.i: libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.i
+
+.PHONY : libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.i
+
+# target to preprocess a source file
+libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.i
+.PHONY : libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.i
+
+libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.s: libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.s
+
+.PHONY : libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.s
+
+# target to generate assembly for a file
+libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.s
+.PHONY : libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c.s
+
 libraries/SvarogGameEngine-Gui/imgui.o: libraries/SvarogGameEngine-Gui/imgui.cpp.o
 
 .PHONY : libraries/SvarogGameEngine-Gui/imgui.o
@@ -770,6 +770,33 @@ libraries/SvarogGameEngine-Gui/imgui_widgets.s: libraries/SvarogGameEngine-Gui/i
 libraries/SvarogGameEngine-Gui/imgui_widgets.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/libraries/SvarogGameEngine-Gui/imgui_widgets.cpp.s
 .PHONY : libraries/SvarogGameEngine-Gui/imgui_widgets.cpp.s
+
+libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.o: libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.o
+
+.PHONY : libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.o
+
+# target to build an object file
+libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.o
+.PHONY : libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.o
+
+libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.i: libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.i
+
+.PHONY : libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.i
+
+# target to preprocess a source file
+libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.i
+.PHONY : libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.i
+
+libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.s: libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.s
+
+.PHONY : libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.s
+
+# target to generate assembly for a file
+libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.s
+.PHONY : libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp.s
 
 main.o: main.cpp.o
 
@@ -1836,9 +1863,6 @@ help:
 	@echo "... core/Input/InputManager.o"
 	@echo "... core/Input/InputManager.i"
 	@echo "... core/Input/InputManager.s"
-	@echo "... core/Input/WindowInput.o"
-	@echo "... core/Input/WindowInput.i"
-	@echo "... core/Input/WindowInput.s"
 	@echo "... core/Input/keymap.o"
 	@echo "... core/Input/keymap.i"
 	@echo "... core/Input/keymap.s"
@@ -1893,6 +1917,9 @@ help:
 	@echo "... libraries/SvarogGameEngine-Gui/examples/imgui_impl_opengl3.o"
 	@echo "... libraries/SvarogGameEngine-Gui/examples/imgui_impl_opengl3.i"
 	@echo "... libraries/SvarogGameEngine-Gui/examples/imgui_impl_opengl3.s"
+	@echo "... libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.o"
+	@echo "... libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.i"
+	@echo "... libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.s"
 	@echo "... libraries/SvarogGameEngine-Gui/imgui.o"
 	@echo "... libraries/SvarogGameEngine-Gui/imgui.i"
 	@echo "... libraries/SvarogGameEngine-Gui/imgui.s"
@@ -1905,6 +1932,9 @@ help:
 	@echo "... libraries/SvarogGameEngine-Gui/imgui_widgets.o"
 	@echo "... libraries/SvarogGameEngine-Gui/imgui_widgets.i"
 	@echo "... libraries/SvarogGameEngine-Gui/imgui_widgets.s"
+	@echo "... libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.o"
+	@echo "... libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.i"
+	@echo "... libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

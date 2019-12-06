@@ -2,7 +2,6 @@
 #ifdef KEYBOARD_H
 #define KEYBOARD_H
 #endif
-#include "macrodefs.h"
 //#define KEY_BIND(KEYNAME, KEY) Pair<const char*, int>key(KEYNAME, KEY);
 
 // input class

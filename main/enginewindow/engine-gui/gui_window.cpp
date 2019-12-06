@@ -34,6 +34,7 @@ void SvarogGuiWindow::render_frames() {
                 ImGui::SetNextWindowPos(ImVec2(curr_window.get_pos_x(), curr_window.get_pos_y()), ImGuiCond_Once, ImVec2(0, 0));
                 curr_window.set_render_state(1);
             } else if(!curr_window.get_move_val()) {
+                ImGui::SetNextWindowPos(ImVec2(curr_window.get_pos_x(), curr_window.get_pos_y()), ImGuiCond_Once, ImVec2(0, 0));
                 curr_window.set_render_state(0);
             }
 
@@ -41,13 +42,13 @@ void SvarogGuiWindow::render_frames() {
                 ImGui::SetNextWindowSize(ImVec2(curr_window.get_frame_width(), curr_window.get_frame_height()), ImGuiCond_Once);
                 curr_window.set_render_state(1);
             } else if(!curr_window.get_resize_val()) {
+                ImGui::SetNextWindowSize(ImVec2(curr_window.get_frame_width(), curr_window.get_frame_height()), ImGuiCond_Once);
                 curr_window.set_render_state(0);
-
             }
-               curr_window.begin_gui_frame();
-                curr_window.render_layers();
-                curr_window.end_gui_frame();
-                frame_stack.pop(); 
+            curr_window.begin_gui_frame();
+            curr_window.render_layers();
+            curr_window.end_gui_frame();
+            frame_stack.pop(); 
 
             // left side (0, 0)
             

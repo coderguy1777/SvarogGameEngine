@@ -9,7 +9,6 @@
 #include "core/String.h"
 #include "core/Input/keycodes.h"
 #include "core/events/Event.h"
-#include "core/Input/WindowInput.h"
 enum class KeyEventTypes {
     KEY_PRESS_EVT,
     KEY_HELD_EVT,
@@ -49,7 +48,6 @@ class KeyEvent {
         } key_release;
 
     private:
-        WindowInput* input;
         KeyEventInfo* log;
         KeyBind* keyBt;
     public:
@@ -57,7 +55,6 @@ class KeyEvent {
         KeyEvent(unsigned int code) {
             keyBt = new KeyBind();
             log = new KeyEventInfo();
-            input = new WindowInput();
             keyBt->key = get_keycode_char(code);
             keyBt->ascii_code = code;
         }

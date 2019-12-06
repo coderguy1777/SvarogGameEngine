@@ -9,7 +9,6 @@
 #include "core/ds-classes/function_list.h"
 #include "core/ds-classes/Queue.h"
 #include "core/events/Event.h"
-#include "core/Input/WindowInput.h"
 #include "core/events/event-listeners/EventListener.h"
 #include "core/events/event-dispatchers/KeyEventDispatcher.h"
 #include "main/materials/material.h"
@@ -21,6 +20,7 @@
 #include "core/events/event-dispatchers/EventDispatch.h"
 #include "main/window/window.h"
 #include "render-pipeline/window-initalization/window_context.h"
+#include "main/window/window.h"
 #include "render-pipeline/window-initalization/window_update.h"
 #include "render-pipeline/window-initalization/window_monitor.h"
 #include "render-pipeline/window-initalization/glad_loader.h"
@@ -29,7 +29,6 @@
 class EngineWindow {    
     private:
         static EngineWindow* winn;
-        WindowInput* Input = WindowInput::getSingleton();
         WindowProp window;
         GLFWwindow* appWindow;
         GLFWmonitor* moni;

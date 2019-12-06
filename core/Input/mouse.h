@@ -1,6 +1,6 @@
 #ifndef MOUSE_H
 #define MOUSE_H
-
+#include<map>
 class Mouse {
     public:
         double x, y;

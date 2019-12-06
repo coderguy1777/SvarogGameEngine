@@ -6,6 +6,30 @@ GuiTaskManager* GuiTaskManager::getGuiManagerInstance() {
     return gui_manager_instance;
 }
 
+void GuiTaskManager::resize_gui_components() {
+    bool use_resize = (gui_events.resize_gui == true && gui_events.resize_state == 1) ? true : false;
+    if(use_resize) {
+        std::stack<SvarogGuiWindow>temp_stack = gui_task_stack;
+        while(!temp_stack.empty()) {
+
+        }
+    }
+}
+
+SvarogGuiWindow GuiTaskManager::get_task() {
+    return gui_task_stack.top();
+}
+
+void GuiTaskManager::set_resize_state(uint resize_state) {
+    gui_events.resize_state = 1;
+    gui_events.resize_gui = true;
+}
+
+void GuiTaskManager::set_collapse_state(uint collapse_state) {
+    gui_events.collapse_state = 1;
+    gui_events.collapse_gui = true;
+}
+
 void GuiTaskManager::add_thread_task(SvarogGuiWindow const& new_window) {
     gui_task_stack.push(new_window);
 }
@@ -20,10 +44,6 @@ void GuiTaskManager::run_all_tasks() {
 
 unsigned int GuiTaskManager::get_task_amount() const {
     return gui_task_stack.size();
-}
-
-SvarogGuiWindow GuiTaskManager::get_task() {
-
 }
 
 void GuiTaskManager::run_optimize_tasks() {

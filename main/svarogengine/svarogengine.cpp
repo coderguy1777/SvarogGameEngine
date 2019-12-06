@@ -11,6 +11,7 @@ SvarogEngine* SvarogEngine::getInstanceEngine() {
 }
 
 void SvarogEngine::InitGuiManager() {
+
     bool btn_val, btn_val2;
     String debug_name = String("Debug");
     ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);

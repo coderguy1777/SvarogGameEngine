@@ -29,7 +29,6 @@ class SvarogEngine {
         static SvarogEngine* engine_instance;
        // EngineWindow* SvarogWindow;
         WindowMonitor* svarog_monitor;
-        WindowInput* Input;
     public:
 
         SvarogEngine() {

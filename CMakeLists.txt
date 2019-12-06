@@ -43,6 +43,10 @@ include_directories(libraries/SvarogGameEngine-Gui/examples/libs/include/glfw/GL
 
 add_executable(SvarogGameEngine
         glad/glad.c
+        libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.h
+        libraries/SvarogGameEngine-Gui/misc/cpp/imgui_stdlib.cpp
+        libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.h
+        libraries/SvarogGameEngine-Gui/examples/libs/usynergy/uSynergy.c
         libraries/SvarogGameEngine-Gui/examples/libs/glfw/include/GLFW/glfw3.h
         libraries/SvarogGameEngine-Gui/examples/libs/glfw/include/GLFW/glfw3native.h
         libraries/SvarogGameEngine-Gui/imconfig.h
@@ -128,8 +132,6 @@ add_executable(SvarogGameEngine
         core/Input/keymap.h
         core/Input/mouse.h
         core/Input/mousecodes.h
-        core/Input/WindowInput.h 
-        core/Input/WindowInput.cpp
         core/Input/InputManager.h
         core/Input/InputManager.cpp
         core/Input/keymap.h
