@@ -19,6 +19,7 @@ void RenderObj::input_mesh(SvarogShape shape) {
     } else {
         render_obj = shape;
     }
+    
 }
 
 SvarogShape RenderObj::get_mesh() const {
