@@ -1,4 +1,8 @@
 #include "svarogengine.h"
+// note to self: 
+// in order to use the imgui docking, dockspace is needed in this case
+// by including the imgui_internal.h header file to use the given methods
+// for docking in this case.
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GLAD)
 #include<glad/glad.h>
 #endif

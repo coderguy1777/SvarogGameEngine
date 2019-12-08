@@ -2,6 +2,7 @@
 #ifndef IMGUI_INIT_H
 #define IMGUI_INIT_H
 #include "libraries/SvarogGameEngine-Gui/imgui.h"
+#include "libraries/SvarogGameEngine-Gui/imconfig.h"
 #include "libraries/SvarogGameEngine-Gui/examples/imgui_impl_glfw.h"
 #include "libraries/SvarogGameEngine-Gui/examples/imgui_impl_opengl3.h"
 #include <GLFW/glfw3.h>

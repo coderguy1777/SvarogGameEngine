@@ -86,7 +86,6 @@ void SvarogGuiFrame::sort_layers() {
             spdlog::error("LAYER_NAME: {}", error_str);
             spdlog::error("LAYER_ID: {}", error_str_id);
             spdlog::error("CANNOT CONTINUE RENDERING LAYERS, EXITING");
-            //EngineWindow::getInstance()->~EngineWindow();
         }
     }
     // pushing to main layer stack
@@ -106,8 +105,6 @@ void SvarogGuiFrame::sort_layers() {
 }
 
 void SvarogGuiFrame::render_layers() {
-    // TODO: finish thread class
-    //sort_layers();
     for(unsigned int gui_layer = 0; gui_layer < layer_stack->size(); gui_layer++) {
         layer_stack->get(gui_layer).render_layer();
         layer_stack->remove(gui_layer - 1);
