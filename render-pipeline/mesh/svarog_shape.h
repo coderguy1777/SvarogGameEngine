@@ -18,7 +18,6 @@ struct shape_data {
     bool use_ebo;
 };
 
-
 class SvarogShape {
     private: 
         shape_data* data;

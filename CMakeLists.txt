@@ -71,6 +71,8 @@ add_executable(SvarogGameEngine
         render-pipeline/window-initalization/window_update.cpp
         render-pipeline/window-initalization/window_monitor.h
         render-pipeline/window-initalization/window_monitor.cpp
+        render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.h
+        render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp
         render-pipeline/shader/SvarogShader.h
         render-pipeline/shader/VertexShader.h 
         render-pipeline/shader/VertexShader.cpp 

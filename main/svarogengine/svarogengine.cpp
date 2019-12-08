@@ -11,7 +11,6 @@ SvarogEngine* SvarogEngine::getInstanceEngine() {
 }
 
 void SvarogEngine::InitGuiManager() {
-
     bool btn_val, btn_val2;
     String debug_name = String("Debug");
     ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);
@@ -37,13 +36,9 @@ void SvarogEngine::InitGuiManager() {
     test->add_gui_layer(*debug_layer);
     test->add_gui_layer(*debug_layer_2);
     test->set_frame_pos(false, 300, -100);
-    char* debug = new char[3];
-    debug[0] = 'e';
-    debug[1] = 'd';
     SvarogGuiWindow * dbg_win =  new SvarogGuiWindow();
     ca.add_gui_layer(*debug_layer);
     ca.add_gui_layer(*debug_layer_2);
-
     dbg_win->insert_to_stack(ca);
     dbg_win->insert_to_stack(*test);
     GuiTaskManager::getGuiManagerInstance()->add_thread_task(*dbg_win);

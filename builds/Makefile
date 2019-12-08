@@ -1689,6 +1689,33 @@ render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s
 .PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s
 
+render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.o: render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.o
+
+.PHONY : render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.o
+
+# target to build an object file
+render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.o:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.o
+.PHONY : render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.o
+
+render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.i: render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.i
+
+.PHONY : render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.i
+
+# target to preprocess a source file
+render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.i:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.i
+.PHONY : render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.i
+
+render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.s: render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.s
+
+.PHONY : render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.s
+
+# target to generate assembly for a file
+render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.s:
+	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.s
+.PHONY : render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.s
+
 render-pipeline/shader/s_lab/shader_mg.o: render-pipeline/shader/s_lab/shader_mg.cpp.o
 
 .PHONY : render-pipeline/shader/s_lab/shader_mg.o
@@ -2034,6 +2061,9 @@ help:
 	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.o"
 	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.i"
 	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.s"
+	@echo "... render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.o"
+	@echo "... render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.i"
+	@echo "... render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.s"
 	@echo "... render-pipeline/shader/s_lab/shader_mg.o"
 	@echo "... render-pipeline/shader/s_lab/shader_mg.i"
 	@echo "... render-pipeline/shader/s_lab/shader_mg.s"
