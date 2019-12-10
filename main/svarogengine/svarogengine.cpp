@@ -45,6 +45,7 @@ void SvarogEngine::InitGuiManager() {
     ca.add_gui_layer(*debug_layer_2);
     dbg_win->insert_to_stack(ca);
     dbg_win->insert_to_stack(*test);
+    SLabEditorGUI::getSlabEditor()->init_editor();
     GuiTaskManager::getGuiManagerInstance()->add_thread_task(*dbg_win);
 }
 
@@ -160,6 +161,9 @@ void SvarogEngine::RunEngine() {
 
 
     test_prg->use();
+         const char* list[2];
+        list[0] = "hello0";
+        list[1] = "helli";
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(1.0, 0.0, 0.0, 1.0);
@@ -167,6 +171,8 @@ void SvarogEngine::RunEngine() {
         RenderTaskManager::getRenderManager()->add_thread_task(s);
         RenderTaskManager::getRenderManager()->run_all_tasks();
         InitGuiManager();
+
+
         GuiTaskManager::getGuiManagerInstance()->run_all_tasks();
         //dbg_win->render_frames();
         ImGuiInit::init_imgui_render();

@@ -1,4 +1,11 @@
 #include "main_editor_gui.h"
+
+SLabEditorGUI* SLabEditorGUI::getSlabEditor() {
+    if(!slabeditor_instance) {
+        slabeditor_instance = new SLabEditorGUI;
+    }
+    return slabeditor_instance;
+}
 COLOR_MODEL SLabEditorGUI::get_current_color_model() const {
     return color_model_curr;
 }
@@ -45,17 +52,19 @@ void SLabEditorGUI::color_model_selection(COLOR_MODEL model) {
 }
 
 void SLabEditorGUI::edit_material() {
-
+    // add editor here kinda
 }
 
 void SLabEditorGUI::init_editor() {
-
+    slab_c_values.color_model_selection();
 }
 
 void SLabEditorGUI::switch_editor_state(S_LAB_STATE state) {
-
+    state = S_LAB_STATE::NODE_EDITOR;
 }
 
 void SLabEditorGUI::init_editor_window_gui_frames() {
 
 }
+
+SLabEditorGUI* SLabEditorGUI::slabeditor_instance  = 0;

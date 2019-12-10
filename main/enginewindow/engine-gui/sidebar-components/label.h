@@ -18,9 +18,7 @@ class SvarogLabel {
             label_text(input_txt), l_w(label_w), l_h(label_h), label_format(l_format), is_movable(move_val), text_is_colored(is_colored_text)
         {}
 
-        SvarogLabel() {
-            // TODO: make params for default constructor.
-        }
+        SvarogLabel() {}
         String get_label_txt() const;
         bool get_text_colored_state() const;
         unsigned int get_label_width() const;

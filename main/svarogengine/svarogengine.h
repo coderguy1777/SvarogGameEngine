@@ -16,6 +16,7 @@
 #include "core/memory/render_task_manager.h"
 #include "render-pipeline/shader/glsl_shader_generation/shader_defs.h"
 #include "render-pipeline/shader/s_lab/svarog_material.h"
+#include "render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.h"
 #include "main/enginewindow/engine-gui/imgui_init.h"
 #include "main/enginewindow/engine-gui/gui_frames.h"
 #include "main/enginewindow/engine-gui/sidebar-components/button.h"
