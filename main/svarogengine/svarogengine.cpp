@@ -15,38 +15,7 @@ SvarogEngine* SvarogEngine::getInstanceEngine() {
 }
 
 void SvarogEngine::InitGuiManager() {
-    bool btn_val, btn_val2;
-    String debug_name = String("Debug");
-    ImGuiLayer* debug_layer = new ImGuiLayer(debug_name, 3);
-    debug_layer->pass_frame_data(Layer_Pos::FRAME_LEFT, false, false);
-    debug_layer->add_button(ButtonData{String("Test_Button"), btn_val, ButtonPosition{100, 100}, 0, false});
-    debug_layer->add_button(ButtonData{String("Test_Button2"), btn_val2, ButtonPosition{150, 150}, 1, false});
-    std::function<void()>labels;
-    debug_layer->add_label(LabelData{String("Label_1"), labels, LabelPosition{30, 30}, false});
-    ClassString* debug_class_str = debug_layer->get_layer_name();
-    SvarogGuiFrame ca(true, true, String("Debug_Frame"), 300, 600);
-    bool is_right = (debug_class_str->get_class_id() <= 5 || debug_class_str->get_class_id() >= 0) ? true : false;
-    bool is_left = (debug_class_str->get_class_id() >= 6 || debug_class_str->get_class_id() <= 10) ? true : false;
-    ca.set_frame_pos(false, 500, 0);
-    debug_layer->init_all();  
-    String debug_2 = String("Debug_2");
-    ImGuiLayer * debug_layer_2 = new ImGuiLayer(debug_2, 2);
-    debug_layer_2->pass_frame_data(Layer_Pos::FRAME_RIGHT, false, false);
-    bool btn_val_3, btn_val_4;
-    debug_layer_2->add_button(ButtonData{String("Test2_Button"), btn_val_3, ButtonPosition{90, 50}, 0});
-    debug_layer_2->add_button(ButtonData{String("Test3_Button"), btn_val_4, ButtonPosition{50, 74}, 2});
-    debug_layer_2->init_all();
-    SvarogGuiFrame * test = new SvarogGuiFrame(true, true, "Shaders", 300, 300);
-    test->add_gui_layer(*debug_layer);
-    test->add_gui_layer(*debug_layer_2);
-    test->set_frame_pos(false, 300, -100);
-    SvarogGuiWindow * dbg_win =  new SvarogGuiWindow();
-    ca.add_gui_layer(*debug_layer);
-    ca.add_gui_layer(*debug_layer_2);
-    dbg_win->insert_to_stack(ca);
-    dbg_win->insert_to_stack(*test);
     SLabEditorGUI::getSlabEditor()->init_editor();
-    GuiTaskManager::getGuiManagerInstance()->add_thread_task(*dbg_win);
 }
 
 void SvarogEngine::InitThreadManager() {
@@ -173,7 +142,6 @@ void SvarogEngine::RunEngine() {
         InitGuiManager();
 
 
-        GuiTaskManager::getGuiManagerInstance()->run_all_tasks();
         //dbg_win->render_frames();
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();

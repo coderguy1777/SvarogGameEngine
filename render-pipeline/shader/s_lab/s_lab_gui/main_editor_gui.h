@@ -47,9 +47,26 @@ class SLabEditorGUI {
                     switch(selected_mdl) {
                         case COLOR_MODEL::RGB_MODEL:
                             curr_model = String("RGB Values:");
+                            std::unique_ptr<Rgb>mat_color = std::make_unique<Rgb>();
+                            I
                             break;
                         case COLOR_MODEL::HSV_MODEL:
                             curr_model = String("HSV Values:");
+                            break;
+                        case COLOR_MODEL::HSL_MODEL:
+                            curr_model = String("HSL Values:");
+                            break;
+                        case COLOR_MODEL::CMYK_MODEL:
+                            curr_model = String("CMYK Values");
+                            break;
+                        case COLOR_MODEL::ARGB_MODEL:
+                            curr_model = String("Adobe RGB Values:");
+                            break;
+                        case COLOR_MODEL::EIGHT_BIT_RGB_MODEL:
+                            curr_model = String("8 bit Values:");
+                            break;
+                        case COLOR_MODEL::HEX_CODE:
+                            curr_model = String("Hex Color Code");
                             break;
                         default:
                             curr_model = String("\0");
