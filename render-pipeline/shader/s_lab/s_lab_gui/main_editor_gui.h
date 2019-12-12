@@ -47,7 +47,6 @@ class SLabEditorGUI {
                     switch(selected_mdl) {
                         case COLOR_MODEL::RGB_MODEL:
                             curr_model = String("RGB Values:");
-                            ImGui::InputText("R", 
                             model_selected = 1;
                             break;
                         case COLOR_MODEL::HSV_MODEL:
@@ -136,6 +135,18 @@ class SLabEditorGUI {
                     } else {
                        set_selected_color_model_str();
                        ImGui::Text(get_selected_model_lbl().str);
+
+                       if(get_curr_model_enum() == COLOR_MODEL::RGB_MODEL && model_selected == 1) {
+                           static char r[4] = {};
+                           
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::InputText("R", r, sizeof(r));
+                           float r_1[4] = {};
+                           for(uint i = 0; i < 4; i++) {
+                               r_1[i] = (float)(r[i]-'0');
+                           }
+                           ImGui::PopItemWidth();
+                       }
                     }
                     ImGui::PopItemWidth();
                 }
