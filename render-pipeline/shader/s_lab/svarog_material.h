@@ -18,13 +18,13 @@
 #include "render-pipeline/shader/ShaderProgram.h"
 #include "render-pipeline/shader/s_lab/shader_mg.h"
 enum class COLOR_MODEL {
-    RGB_MODEL=0,
-    HSV_MODEL=1,
-    HSL_MODEL=2,
-    CMYK_MODEL=3,
-    ARGB_MODEL=4,
-    EIGHT_BIT_RGB_MODEL=5,
-    HEX_CODE=6,
+    RGB_MODEL,
+    HSV_MODEL,
+    HSL_MODEL,
+    CMYK_MODEL,
+    ARGB_MODEL,
+    EIGHT_BIT_RGB_MODEL,
+    HEX_CODE,
 };
 
 class SvarogMaterial {
@@ -44,6 +44,7 @@ class SvarogMaterial {
         adobeRGB mat_argb;
         HexColorCodes mat_hex_code;
         eightbit mat_eightbit_color;
+        float color_values[4];
         COLOR_MODEL primary_model; // for assigning the value of the color model to use.
     public:
         SvarogMaterial();

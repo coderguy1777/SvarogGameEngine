@@ -19,7 +19,6 @@ enum class S_LAB_STATE {
 class SLabEditorGUI {
     private:
         struct ShaderColorPicker {
-
             private:
                 COLOR_MODEL color_val;
                 String color_label_txt;
@@ -42,34 +41,42 @@ class SLabEditorGUI {
                 String get_selected_model_lbl() const {
                     return curr_model;
                 }
+
                 void set_selected_color_model_str() {
                     auto selected_mdl = get_curr_model_enum();
                     switch(selected_mdl) {
                         case COLOR_MODEL::RGB_MODEL:
                             curr_model = String("RGB Values:");
-                            std::unique_ptr<Rgb>mat_color = std::make_unique<Rgb>();
-                            I
+                            ImGui::InputText("R", 
+                            model_selected = 1;
                             break;
                         case COLOR_MODEL::HSV_MODEL:
                             curr_model = String("HSV Values:");
+                            model_selected = 2;
                             break;
                         case COLOR_MODEL::HSL_MODEL:
                             curr_model = String("HSL Values:");
+                            model_selected = 3;
                             break;
                         case COLOR_MODEL::CMYK_MODEL:
                             curr_model = String("CMYK Values");
+                            model_selected = 4;
                             break;
                         case COLOR_MODEL::ARGB_MODEL:
                             curr_model = String("Adobe RGB Values:");
+                            model_selected = 5;
                             break;
                         case COLOR_MODEL::EIGHT_BIT_RGB_MODEL:
                             curr_model = String("8 bit Values:");
+                            model_selected = 6;
                             break;
                         case COLOR_MODEL::HEX_CODE:
                             curr_model = String("Hex Color Code");
+                            model_selected = 7;
                             break;
                         default:
                             curr_model = String("\0");
+                            model_selected = -1;
                             break;
                     }
                 }
@@ -114,6 +121,7 @@ class SLabEditorGUI {
                         "8 Bit Color Model",
                         "Hex Color Code",
                     };
+
                     set_color_label_txt(String("Select a Color Model."));
                     uint len_of_color_labels = IM_ARRAYSIZE(color_selection_labels);
                     static int curr_model_val = -1;
@@ -122,6 +130,7 @@ class SLabEditorGUI {
                     ImGui::PushItemWidth(300.0f);
                     ImGui::ListBox("\0", &curr_model_val, color_selection_labels, len_of_color_labels, 5);
                     set_selected_model(curr_model_val);
+
                     if(curr_model_val == -1) {
                         curr_model.str = NULL;
                     } else {
