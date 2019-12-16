@@ -141,23 +141,58 @@ class SLabEditorGUI {
                            static char g[4] = {};
                            static char b[4] = {};
                            static char a[4] = {};
+                           ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
-                           ImGui::TextUnformatted("R");
                            ImGui::SameLine();
-                           ImGui::InputText("\0", r, sizeof(r));
+                           ImGui::InputText("R", r, sizeof(r));
+                           /*
                            float r_1[4] = {};
                            for(uint i = 0; i < 4; i++) {
                                r_1[i] = (float)(r[i]-'0');
                            }
+                           */
+                           ImGui::PopItemWidth();
                            ImGui::NewLine();
-                           ImGui::TextUnformatted("G");
+                           ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("\0", g, sizeof(g));
+                           ImGui::InputText("G", g, sizeof(g),ImGuiInputTextFlags_CallbackCharFilter | ImGuiInputTextFlags_CallbackAlways, [](ImGuiTextEditCallbackData* data) 
+                           {
+                               data->EventChar = 'G';
+                               return 0;
+                           });
+                           /*
                            float g_1[4] = {};
                            for(uint j = 0; j < 4; j++) {
                                g_1[j] = (float)(g[j]-'0');
                            }
+                           */
                            ImGui::PopItemWidth();
+                           ImGui::NewLine();
+                           ImGui::TextUnformatted("B");
+                           ImGui::SameLine();
+                           ImGui::InputText("\0", b, sizeof(b), ImGuiInputTextFlags_CallbackAlways, [](ImGuiTextEditCallbackData *data) {
+                               data->EventChar = 'B';
+                               return 0;
+                           });
+                           /*
+                           float b_1[4] = {};
+                           for(uint k = 0; k < 4; k++) {
+                               b_1[k] = (float)(b[k]-'0');
+                           }
+                           */
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::NewLine();
+                           ImGui::TextUnformatted("A");
+                           ImGui::SameLine();
+                           ImGui::InputText("", a, sizeof(a));
+                           /*
+                           float a_1[4] = {};
+                           for(uint m = 0; m < 4; m++) {
+                               a_1[m] = (float)(a[m]-'0');
+                           }
+                           */
+                           ImGui::PopItemWidth();
+                           
                        }
                     }
                     ImGui::PopItemWidth();
