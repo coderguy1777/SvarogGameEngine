@@ -145,52 +145,53 @@ class SLabEditorGUI {
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
                            ImGui::InputText("R", r, sizeof(r));
-                           /*
+                           
                            float r_1[4] = {};
                            for(uint i = 0; i < 4; i++) {
                                r_1[i] = (float)(r[i]-'0');
                            }
-                           */
+                           
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("G", g, sizeof(g),ImGuiInputTextFlags_CallbackCharFilter | ImGuiInputTextFlags_CallbackAlways, [](ImGuiTextEditCallbackData* data) 
-                           {
-                               data->EventChar = 'G';
-                               return 0;
-                           });
-                           /*
+                           ImGui::InputText("G", g, sizeof(g));
+
                            float g_1[4] = {};
                            for(uint j = 0; j < 4; j++) {
                                g_1[j] = (float)(g[j]-'0');
                            }
-                           */
+
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
-                           ImGui::TextUnformatted("B");
+                           ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("\0", b, sizeof(b), ImGuiInputTextFlags_CallbackAlways, [](ImGuiTextEditCallbackData *data) {
-                               data->EventChar = 'B';
-                               return 0;
-                           });
-                           /*
+                           ImGui::InputText("B", b, sizeof(b), ImGuiInputTextFlags_CallbackCharFilter | ImGuiInputTextFlags_CallbackAlways, 
+                                [](ImGuiTextEditCallbackData *data) {
+                                    char buf[4];
+                                    auto buf_len = data->BufTextLen;
+                                    if(buf_len == data->BufSize) {
+                                        auto chars = data->Buf[0];
+                                        spdlog::info("Buf size reached");
+                                        spdlog::info(chars);
+                                    }
+                                    return 0;
+                                }
+                            );
                            float b_1[4] = {};
                            for(uint k = 0; k < 4; k++) {
                                b_1[k] = (float)(b[k]-'0');
                            }
-                           */
-                           ImGui::PushItemWidth(100.0f);
+
+                           ImGui::PopItemWidth();
                            ImGui::NewLine();
-                           ImGui::TextUnformatted("A");
+                           ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("", a, sizeof(a));
-                           /*
+                           ImGui::InputText("A", a, sizeof(a));
                            float a_1[4] = {};
                            for(uint m = 0; m < 4; m++) {
                                a_1[m] = (float)(a[m]-'0');
                            }
-                           */
                            ImGui::PopItemWidth();
                            
                        }
