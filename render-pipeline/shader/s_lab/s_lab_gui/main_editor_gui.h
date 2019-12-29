@@ -166,21 +166,11 @@ class SLabEditorGUI {
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("B", b, sizeof(b), ImGuiInputTextFlags_CallbackCharFilter | ImGuiInputTextFlags_CallbackAlways, 
-                                [](ImGuiTextEditCallbackData *data) {
-                                    char buf[4];
-                                    auto buf_len = data->BufTextLen;
-                                    if(buf_len == data->BufSize) {
-                                        auto chars = data->Buf[0];
-                                        spdlog::info("Buf size reached");
-                                        spdlog::info(chars);
-                                    }
-                                    return 0;
-                                }
-                            );
+                           ImGui::InputText("B", b, sizeof(b));
                            float b_1[4] = {};
                            for(uint k = 0; k < 4; k++) {
                                b_1[k] = (float)(b[k]-'0');
+                               spdlog::info(b_1[k]);
                            }
 
                            ImGui::PopItemWidth();
