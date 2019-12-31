@@ -170,7 +170,6 @@ class SLabEditorGUI {
                            float b_1[4] = {};
                            for(uint k = 0; k < 4; k++) {
                                b_1[k] = (float)(b[k]-'0');
-                               spdlog::info(b_1[k]);
                            }
 
                            ImGui::PopItemWidth();
@@ -183,6 +182,77 @@ class SLabEditorGUI {
                                a_1[m] = (float)(a[m]-'0');
                            }
                            ImGui::PopItemWidth();
+                       }
+
+                       if(get_curr_model_enum() == COLOR_MODEL::HSV_MODEL && model_selected == 2) {
+                           static char hue[4] = {};
+                           static char saturation[4] = {};
+                           static char value[4] = {};
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("H", hue, sizeof(hue));
+                           ImGui::PopItemWidth();
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("S", saturation, sizeof(saturation));
+                           ImGui::PopItemWidth();
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("V", value, sizeof(value));
+                           ImGui::PopItemWidth();
+                       }
+
+                       if(get_curr_model_enum() == COLOR_MODEL::HSL_MODEL && model_selected == 3) {
+                           static char hue[4] = {};
+                           static char saturation[4] = {};
+                           static char lightnesss[4] = {};
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("H", hue, sizeof(hue));
+                           ImGui::PopItemWidth();
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("S", saturation, sizeof(saturation));
+                           ImGui::PopItemWidth();
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("L", lightnesss, sizeof(lightnesss));
+                           ImGui::PopItemWidth();
+                       }
+
+                       if(get_curr_model_enum() == COLOR_MODEL::CMYK_MODEL && model_selected == 4) {
+                           static char cyan[4] = {};
+                           static char magenta[4] = {};
+                           static char yellow[4] = {};
+                           static char key[4] = {};
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("C", cyan, sizeof(cyan));
+                           ImGui::PopItemWidth();
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("M", magenta, sizeof(magenta));
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("Y", yellow, sizeof(yellow));
+                           ImGui::PopItemWidth();
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("K", key, sizeof(key));
+                           ImGui::PopItemWidth();
+                       }
+
+                       if(;;) {
                            
                        }
                     }
