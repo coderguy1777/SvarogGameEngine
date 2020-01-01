@@ -252,8 +252,56 @@ class SLabEditorGUI {
                            ImGui::PopItemWidth();
                        }
 
-                       if(;;) {
-                           
+                       if(get_curr_model_enum() == COLOR_MODEL::ARGB_MODEL && model_selected == 5) {
+                           static char r[5] = {};
+                           static char g[5] = {};
+                           static char b[5] = {};
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("R", r, sizeof(r));
+                           ImGui::PopItemWidth();
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("G", g, sizeof(g));
+                           ImGui::PopItemWidth();
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("B", b, sizeof(b));
+                           ImGui::PopItemWidth();
+                       }
+
+                       if(get_curr_model_enum() == COLOR_MODEL::EIGHT_BIT_RGB_MODEL && model_selected == 6) {
+                           static char eight_bit_r[4] = {};
+                           static char eight_bit_g[4] = {};
+                           static char eight_bit_b[4] = {};
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("R", eight_bit_r, sizeof(eight_bit_r));
+                           ImGui::PopItemWidth();
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("G", eight_bit_g, sizeof(eight_bit_g));
+                           ImGui::PopItemWidth();
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("B", eight_bit_b, sizeof(eight_bit_b));
+                           ImGui::PopItemWidth();
+                       }
+
+                       if(get_curr_model_enum() == COLOR_MODEL::HEX_CODE && model_selected == 7) {
+                           static char hex_code[8] = {};
+                           hex_code[0] = '#';
+                           ImGui::NewLine();
+                           ImGui::PushItemWidth(100.0f);
+                           ImGui::SameLine();
+                           ImGui::InputText("Hex Code", hex_code, sizeof(hex_code));
+                           ImGui::PopItemWidth();
                        }
                     }
                     ImGui::PopItemWidth();
