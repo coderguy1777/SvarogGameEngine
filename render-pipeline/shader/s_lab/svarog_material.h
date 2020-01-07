@@ -27,6 +27,10 @@ enum class COLOR_MODEL {
     HEX_CODE,
 };
 
+/*
+    TODO: 
+        rewrite svarog material class to have more parameters and leave selection tasks to be done in the shader editor itself.0
+*/ 
 class SvarogMaterial {
     private:
         struct mesh_assignment {

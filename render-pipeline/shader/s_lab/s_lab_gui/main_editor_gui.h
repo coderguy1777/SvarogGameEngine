@@ -25,7 +25,26 @@ class SLabEditorGUI {
                 String curr_model = String("");
                 int model_selected;
                 float values[4];
+
+                float specular_val;
+                float roughness_val;
             public:
+                float get_curr_spec() const {
+                    return specular_val;
+                }
+
+                float get_curr_roughness() const {
+                    return roughness_val;
+                }
+
+                void set_specular(float spec_val) {
+                    specular_val = spec_val;
+                }
+
+                void set_roughness(float rough_val) {
+                    roughness_val = rough_val;
+                }
+
                 int get_curr_model() const {
                     return model_selected;
                 }
@@ -305,6 +324,22 @@ class SLabEditorGUI {
                        }
                     }
                     ImGui::PopItemWidth();
+                    ImGui::PushItemWidth(100.0f);
+                    ImGui::Text(" Specular Value");
+                    ImGui::NewLine();
+
+                    ImGui::SameLine();
+                    static float spec_val_data = {};
+                    // TODO: replace with an imgui slider for easier use, also make useable with the
+                    // svarog mat. class.
+                    ImGui::SliderFloat("Specular", &spec_val_data, 0.0f, 999.0f, "%.0f", 1.0f);
+                    spdlog::info(spec_val_data);         
+                    ImGui::PopItemWidth();
+                    ImGui::PushItemWidth(100.0f);
+                    ImGui::Text(" Roughness");
+                    ImGui::NewLine();
+                    ImGui::SameLine();
+                    static float rough_val_data = {};
                 }
 
                 void set_curr_model(COLOR_MODEL model_val) {
