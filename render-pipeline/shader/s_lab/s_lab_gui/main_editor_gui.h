@@ -28,6 +28,8 @@ class SLabEditorGUI {
 
                 float specular_val;
                 float roughness_val;
+                bool new_mat_made;
+
             public:
                 float get_curr_spec() const {
                     return specular_val;
@@ -156,50 +158,29 @@ class SLabEditorGUI {
                        ImGui::Text(get_selected_model_lbl().str);
 
                        if(get_curr_model_enum() == COLOR_MODEL::RGB_MODEL && model_selected == 1) {
-                           static char r[4] = {};
-                           static char g[4] = {};
-                           static char b[4] = {};
-                           static char a[4] = {};
+                           static float r = {};
+                           static float g = {};
+                           static float b = {};
+                           static float a = {};
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("R", r, sizeof(r));
-                           
-                           float r_1[4] = {};
-                           for(uint i = 0; i < 4; i++) {
-                               r_1[i] = (float)(r[i]-'0');
-                           }
-                           
+                           ImGui::SliderFloat("R", &r, 0.0f, 256.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("G", g, sizeof(g));
-
-                           float g_1[4] = {};
-                           for(uint j = 0; j < 4; j++) {
-                               g_1[j] = (float)(g[j]-'0');
-                           }
-
+                           ImGui::SliderFloat("G", &g, 0.0f, 256.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("B", b, sizeof(b));
-                           float b_1[4] = {};
-                           for(uint k = 0; k < 4; k++) {
-                               b_1[k] = (float)(b[k]-'0');
-                           }
-
+                           ImGui::SliderFloat("B", &b, 0.0f, 256.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("A", a, sizeof(a));
-                           float a_1[4] = {};
-                           for(uint m = 0; m < 4; m++) {
-                               a_1[m] = (float)(a[m]-'0');
-                           }
+                           ImGui::SliderFloat("A", &a, 0.0f, 256.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
                        }
 
@@ -293,23 +274,23 @@ class SLabEditorGUI {
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::EIGHT_BIT_RGB_MODEL && model_selected == 6) {
-                           static char eight_bit_r[4] = {};
-                           static char eight_bit_g[4] = {};
-                           static char eight_bit_b[4] = {};
+                           static float eight_bit_r = {};
+                           static float eight_bit_g = {};
+                           static float eight_bit_b = {};
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("R", eight_bit_r, sizeof(eight_bit_r));
+                           ImGui::SliderFloat(" R", &eight_bit_r, 0.0f, 1.0f, "%.3f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("G", eight_bit_g, sizeof(eight_bit_g));
+                           ImGui::SliderFloat(" G", &eight_bit_g, 0.0f, 1.0f, "%.3f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("B", eight_bit_b, sizeof(eight_bit_b));
+                           ImGui::SliderFloat(" B", &eight_bit_b, 0.0f, 1.0f, "%.3f", 1.0f);
                            ImGui::PopItemWidth();
                        }
 
@@ -332,8 +313,7 @@ class SLabEditorGUI {
                     static float spec_val_data = {};
                     // TODO: replace with an imgui slider for easier use, also make useable with the
                     // svarog mat. class.
-                    ImGui::SliderFloat("Specular", &spec_val_data, 0.0f, 999.0f, "%.0f", 1.0f);
-                    spdlog::info(spec_val_data);         
+                    ImGui::SliderFloat("Specular", &spec_val_data, 0.0f, 1.0f, "%.3f", 1.0f);
                     ImGui::PopItemWidth();
                     ImGui::PushItemWidth(100.0f);
                     ImGui::Text(" Roughness");

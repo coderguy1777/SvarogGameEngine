@@ -126,22 +126,16 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
     ImGuiInit::imgui_ini_use(false);
-    
-
 
     test_prg->use();
-         const char* list[2];
-        list[0] = "hello0";
-        list[1] = "helli";
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         ImGuiInit::init_imgui_frames();
         RenderTaskManager::getRenderManager()->add_thread_task(s);
         RenderTaskManager::getRenderManager()->run_all_tasks();
         InitGuiManager();
-
-
         //dbg_win->render_frames();
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();

@@ -29,50 +29,31 @@ enum class COLOR_MODEL {
 
 /*
     TODO: 
-        rewrite svarog material class to have more parameters and leave selection tasks to be done in the shader editor itself.0
+        rewrite svarog material class to have more parameters and leave selection tasks to be done in the shader editor itself.
+        this will allow for more dynamic editing of materials when it comes to a given mesh in this case.
 */ 
 class SvarogMaterial {
     private:
-        struct mesh_assignment {
-            String material_name;
-            String mesh_name;
-            bool is_assigned = false;
-            unsigned int mesh_id;
-            SvarogShape mat_shape;
-        } material_info;
-        
-        Rgb mat_color;
-        CMYKVALS mat_cmyk;
-        HSV mat_hsv;
-        hsl mat_hsl;
-        adobeRGB mat_argb;
-        HexColorCodes mat_hex_code;
-        eightbit mat_eightbit_color;
+        std::string material_name;
+        bool is_assigned_to_mesh;
         float color_values[4];
-        COLOR_MODEL primary_model; // for assigning the value of the color model to use.
+        float specular;
+        float roughness;
+        float metallic_scale; // for determining how metallic the mesh will look in game.
+        VertexShader mat_vert_shader;
+        FragmentShader mat_frag_shader;
+        ShaderProgram* material_program;
+        COLOR_MODEL primary_model;
+
     public:
         SvarogMaterial();
-        void set_primary_color_model(COLOR_MODEL model);
         COLOR_MODEL get_primary_color_model() const;
-        void set_rgb(Rgb color);
-        Rgb get_rgb() const;
-        void set_cmyk(CMYKVALS color);
-        CMYKVALS get_cmyk() const;
-        void set_hsv(HSV color);
-        HSV get_hsv() const;
-        void set_hsl(hsl color);
-        hsl get_hsl() const;
-        void set_argb(adobeRGB color);
-        adobeRGB get_argb() const;
-        void set_hex_code(HexColorCodes color);
-        HexColorCodes get_hex_code() const;
-        void set_eight_bit(eightbit color);
-        eightbit get_eight_bit() const;
-        void is_assigned_to_mesh();
-        void is_not_assigned_to_mesh();
-        bool get_assign_state() const;
-        void set_material_name(String mat_name);
-        String get_material_name() const;
-
+        void set_material_specular(float spec_val);
+        void set_material_roughness(float rough_pct);
+        void set_material_metallic_value(float metallic_pct);
+        void set_color_values(float c_vals[4]);
+        void set_material_name(char* mat_name);
+        void set_mesh(SvarogShape mesh_val);
+        void set_primary_color_model(COLOR_MODEL model);
 };
 #endif

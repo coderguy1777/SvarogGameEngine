@@ -56,7 +56,9 @@ void SLabEditorGUI::edit_material() {
 }
 
 void SLabEditorGUI::init_editor() {
+    ImGui::Begin("Shader Editor");
     slab_c_values.color_model_selection();
+    ImGui::End();
 }
 
 void SLabEditorGUI::switch_editor_state(S_LAB_STATE state) {
