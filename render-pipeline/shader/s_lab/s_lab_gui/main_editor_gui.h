@@ -185,45 +185,49 @@ class SLabEditorGUI {
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::HSV_MODEL && model_selected == 2) {
-                           static char hue[4] = {};
-                           static char saturation[4] = {};
-                           static char value[4] = {};
+                           static float hue = {};
+                           static float saturation = {};
+                           static float value = {};
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("H", hue, sizeof(hue));
+                           ImGui::SliderFloat("H", &hue, 0.0f, 256.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("S", saturation, sizeof(saturation));
+                           ImGui::SliderFloat("S", &saturation, 0.0f, 100.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("V", value, sizeof(value));
+                           ImGui::SliderFloat("V", &value, 0.0f, 100.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::HSL_MODEL && model_selected == 3) {
-                           static char hue[4] = {};
-                           static char saturation[4] = {};
-                           static char lightnesss[4] = {};
+                           static float hue = {};
+                           static float saturation  = {};
+                           static float lightness = {};
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("H", hue, sizeof(hue));
+                           ImGui::SliderFloat("Hue", &hue, 0.0f, 256.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("S", saturation, sizeof(saturation));
+                           ImGui::SliderFloat("Saturation", &saturation, 0.0f, 100.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("L", lightnesss, sizeof(lightnesss));
+                           ImGui::SliderFloat("Lightness", &lightness, 0.0f, 100.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
+                           values[0] = hue;
+                           values[1] = saturation;
+                           values[2] = lightness;
+                           values[3] = 0.0f;
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::CMYK_MODEL && model_selected == 4) {
@@ -253,24 +257,28 @@ class SLabEditorGUI {
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::ARGB_MODEL && model_selected == 5) {
-                           static char r[5] = {};
-                           static char g[5] = {};
-                           static char b[5] = {};
+                           static float r = {};
+                           static float g = {};
+                           static float b = {};
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("R", r, sizeof(r));
+                           ImGui::SliderFloat("R", &r, 0.0f, 1.0f, "%.5f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("G", g, sizeof(g));
+                           ImGui::SliderFloat("G", &g, 0.0f, 1.0f, "%.5f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("B", b, sizeof(b));
+                           ImGui::SliderFloat("B", &b, 0.0f, 1.0f, "%.5f", 1.0f);
                            ImGui::PopItemWidth();
+                           values[0] = r;
+                           values[1] = g;
+                           values[2] = b;
+                           values[3] = 0.0f;
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::EIGHT_BIT_RGB_MODEL && model_selected == 6) {
@@ -292,6 +300,10 @@ class SLabEditorGUI {
                            ImGui::SameLine();
                            ImGui::SliderFloat(" B", &eight_bit_b, 0.0f, 1.0f, "%.3f", 1.0f);
                            ImGui::PopItemWidth();
+                           values[0] = eight_bit_r;
+                           values[1] = eight_bit_g;
+                           values[2] = eight_bit_b;
+                           values[3] = 0.0f;
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::HEX_CODE && model_selected == 7) {
