@@ -203,6 +203,10 @@ class SLabEditorGUI {
                            ImGui::SameLine();
                            ImGui::SliderFloat("V", &value, 0.0f, 100.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
+                           values[0] = hue;
+                           values[1] = saturation;
+                           values[2] = value;
+                           values[3] = 0.0f;
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::HSL_MODEL && model_selected == 3) {
@@ -231,29 +235,33 @@ class SLabEditorGUI {
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::CMYK_MODEL && model_selected == 4) {
-                           static char cyan[4] = {};
-                           static char magenta[4] = {};
-                           static char yellow[4] = {};
-                           static char key[4] = {};
+                           static float cyan = {};
+                           static float magenta = {};
+                           static float yellow = {};
+                           static float key = {};
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("C", cyan, sizeof(cyan));
+                           ImGui::SliderFloat("C", &cyan, 0.0f, 100.0f, "%.0f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("M", magenta, sizeof(magenta));
+                           ImGui::SliderFloat("M", &magenta, 0.0f, 100.0f, "%.0f", 1.0f);
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("Y", yellow, sizeof(yellow));
+                           ImGui::SliderFloat("Y", &yellow, 0.0f, 100.0f, "%.0f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::InputText("K", key, sizeof(key));
+                           ImGui::SliderFloat("K", &key, 0.0f, 100.0f, "%.0f", 1.0f);
                            ImGui::PopItemWidth();
+                           values[0] = cyan;
+                           values[1] = magenta;
+                           values[2] = yellow;
+                           values[3] = key;
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::ARGB_MODEL && model_selected == 5) {
@@ -328,7 +336,8 @@ class SLabEditorGUI {
                     ImGui::SliderFloat("Specular", &spec_val_data, 0.0f, 1.0f, "%.3f", 1.0f);
                     ImGui::PopItemWidth();
                     ImGui::PushItemWidth(100.0f);
-                    ImGui::Text(" Roughness");
+                    static float roughness_val_data = {};
+                    ImGui::SliderFloat("Roughness", &roughness_val_data, 0.0f, 1.0f, "%.3f", 1.0f);
                     ImGui::NewLine();
                     ImGui::SameLine();
                     static float rough_val_data = {};
