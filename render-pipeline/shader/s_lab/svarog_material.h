@@ -16,6 +16,7 @@
 #include "render-pipeline/shader/FragmentShader.h"
 #include "render-pipeline/shader/VertexShader.h"
 #include "render-pipeline/shader/ShaderProgram.h"
+#include "render-pipeline/mesh/svarog_shape.h"
 #include "render-pipeline/shader/s_lab/shader_mg.h"
 enum class COLOR_MODEL {
     RGB_MODEL,
@@ -52,8 +53,15 @@ class SvarogMaterial {
         void set_material_roughness(float rough_pct);
         void set_material_metallic_value(float metallic_pct);
         void set_color_values(float c_vals[4]);
-        void set_material_name(char* mat_name);
+        void set_material_name(const char* m_name);
         void set_mesh(SvarogShape mesh_val);
         void set_primary_color_model(COLOR_MODEL model);
+        const char* get_material_name() const;
+        std::vector<float> get_color_values() const;
+        float get_metallic_scale() const;
+        float get_specular_value() const;
+        float get_roughness_value() const;
+        SvarogShape get_mesh() const;
+        
 };
 #endif
