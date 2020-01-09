@@ -231,6 +231,7 @@ class SLabEditorGUI {
                            values[0] = hue;
                            values[1] = saturation;
                            values[2] = lightness;
+                           spdlog::info(values[2]);
                            values[3] = 0.0f;
                        }
 

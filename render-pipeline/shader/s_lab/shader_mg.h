@@ -12,11 +12,16 @@ class ShaderManager {
     private:
         static ShaderManager* shader_manager;
         ArrayList<ShaderProgram>*shader_mats = new ArrayList<ShaderProgram>();
+        std::stack<SvarogMaterial>material_li;
         ShaderManager(){}
     public: 
         ~ShaderManager() {}
         static ShaderManager* getShaderManager();
         void pass_code(VertexShader vert_mat, FragmentShader frag_mat);
+        void add_new_material(SvarogMaterial m_mat);
+        void modify_material_color(const char* m_name, float values[4]);
+        SvarogMaterial get_material(const char* m_name) const;
+
 };
 
 #endif
