@@ -18,6 +18,8 @@ void SvarogMaterial::set_color_values(float c_vals[4]) {
     }
     glUniform1f(glGetUniformLocation(material_program->get_shader_id(), "mesh_color.x"), color_values[0]);
     glUniform1f(glGetUniformLocation(material_program->get_shader_id(), "mesh_color.y"), color_values[1]);
+    glUniform1f(glGetUniformLocation(material_program->get_shader_id(), "mesh_color.z"), color_values[2]);
+    glUniform1f(glGetUniformLocation(material_program->get_shader_id(), "mesh_color.w"), color_values[3]);
 }
 
 void SvarogMaterial::set_material_metallic_value(float metallic_pct) {
@@ -61,5 +63,5 @@ std::vector<float> SvarogMaterial::get_color_values() const {
 }
 
 SvarogShape SvarogMaterial::get_mesh() const {
-    
+    return material_mesh;
 }

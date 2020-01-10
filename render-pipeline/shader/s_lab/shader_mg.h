@@ -2,6 +2,7 @@
 #ifndef SHADER_MG_H
 #define SHADER_MG_H
 #include <fstream>
+#include <stack>
 #include <ostream>
 #include "core/ds-classes/ArrayList.h"
 #include "core/String.h"

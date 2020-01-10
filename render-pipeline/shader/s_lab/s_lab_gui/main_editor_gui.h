@@ -18,21 +18,31 @@ enum class S_LAB_STATE {
 
 class SLabEditorGUI {
     private:
+    
         struct ShaderColorPicker {
             private:
                 COLOR_MODEL color_val;
                 String color_label_txt;
                 String curr_model = String("");
                 int model_selected;
-                float values[4];
 
                 float specular_val;
                 float roughness_val;
                 bool new_mat_made;
 
             public:
+                float values[4];
+
                 float get_curr_spec() const {
                     return specular_val;
+                }
+
+                std::vector<float>get_color_values() const {
+                    std::vector<float>m_color;
+                    for(uint i = 0; i < 4; i++) {
+                        m_color.push_back(values[i]);
+                    }
+                    return m_color;
                 }
 
                 float get_curr_roughness() const {
@@ -113,7 +123,7 @@ class SLabEditorGUI {
                         case 2:
                             set_curr_model(COLOR_MODEL::HSL_MODEL);
                             break;
-                        case 3:
+                        case 3: 
                             set_curr_model(COLOR_MODEL::CMYK_MODEL);
                             break;
                         case 4:
@@ -231,7 +241,6 @@ class SLabEditorGUI {
                            values[0] = hue;
                            values[1] = saturation;
                            values[2] = lightness;
-                           spdlog::info(values[2]);
                            values[3] = 0.0f;
                        }
 
@@ -329,7 +338,6 @@ class SLabEditorGUI {
                     ImGui::PushItemWidth(100.0f);
                     ImGui::Text(" Specular Value");
                     ImGui::NewLine();
-
                     ImGui::SameLine();
                     static float spec_val_data = {};
                     // TODO: replace with an imgui slider for easier use, also make useable with the
@@ -337,11 +345,12 @@ class SLabEditorGUI {
                     ImGui::SliderFloat("Specular", &spec_val_data, 0.0f, 1.0f, "%.3f", 1.0f);
                     ImGui::PopItemWidth();
                     ImGui::PushItemWidth(100.0f);
+                    ImGui::Text(" Roughness Value");
                     static float roughness_val_data = {};
-                    ImGui::SliderFloat("Roughness", &roughness_val_data, 0.0f, 1.0f, "%.3f", 1.0f);
                     ImGui::NewLine();
                     ImGui::SameLine();
-                    static float rough_val_data = {};
+                    ImGui::SliderFloat("Roughness", &roughness_val_data, 0.0f, 1.0f, "%.3f", 1.0f);
+                    ImGui::PopItemWidth();
                 }
 
                 void set_curr_model(COLOR_MODEL model_val) {
@@ -380,6 +389,7 @@ class SLabEditorGUI {
         void init_editor();
         void switch_editor_state(S_LAB_STATE editor_window_to_open);
         void init_editor_window_gui_frames();
+        std::vector<float>get_current_color_values() const;
 };
 
 #endif

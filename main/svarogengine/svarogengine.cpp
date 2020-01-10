@@ -6,6 +6,7 @@
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GLAD)
 #include<glad/glad.h>
 #endif
+#include<experimental/optional>
 #include <boost/thread.hpp>
 SvarogEngine* SvarogEngine::getInstanceEngine() {
     if(!engine_instance) {
@@ -126,12 +127,24 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
     ImGuiInit::imgui_ini_use(false);
-
     test_prg->use();
+    float m_v[4];
+    m_v[0] = -0.5f;
+    m_v[1] = -0.5f;
+    m_v[2] = -0.43f;
+    m_v[3] = -0.9f;
+  
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);
+        std::experimental::optional<float>value_tst;
+        if(!value_tst) {
+            spdlog::info("Value null");
+        }
+    
+        glUniform4f(glGetUniformLocation(test_prg->get_shader_id(), "rgb_v"), m_v[0], m_v[1], m_v[2], m_v[3]);
+
         ImGuiInit::init_imgui_frames();
         RenderTaskManager::getRenderManager()->add_thread_task(s);
         RenderTaskManager::getRenderManager()->run_all_tasks();

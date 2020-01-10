@@ -53,9 +53,12 @@ void SLabEditorGUI::color_model_selection(COLOR_MODEL model) {
 
 void SLabEditorGUI::edit_material() {
     // add editor here kinda
+    bool material_edited;
+
 }
 
 void SLabEditorGUI::init_editor() {
+    ImGui::SetNextWindowSize(ImVec2(300.0f, 400.0f), ImGuiCond_Once);
     ImGui::Begin("Shader Editor");
     slab_c_values.color_model_selection();
     ImGui::End();
@@ -67,6 +70,10 @@ void SLabEditorGUI::switch_editor_state(S_LAB_STATE state) {
 
 void SLabEditorGUI::init_editor_window_gui_frames() {
 
+}
+
+std::vector<float> SLabEditorGUI::get_current_color_values() const {
+    slab_c_values.get_color_values();
 }
 
 SLabEditorGUI* SLabEditorGUI::slabeditor_instance  = 0;

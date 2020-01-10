@@ -35,6 +35,7 @@ enum class COLOR_MODEL {
 */ 
 class SvarogMaterial {
     private:
+        SvarogShape material_mesh;
         std::string material_name;
         bool is_assigned_to_mesh;
         float color_values[4];
