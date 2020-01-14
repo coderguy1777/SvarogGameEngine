@@ -30,18 +30,6 @@ void ShaderManager::add_new_material(SvarogMaterial m_material) {
     }
 }
 
-void ShaderManager::modify_material_color(const char* m_name, float values[4]) {
-    while(!material_li.empty() && material_li.size() != 0) {
-        auto m_material = material_li.top();
-        if(m_material.get_material_name() == m_name) {
-            m_material.set_color_values(values);
-            break;
-        } else {
-            material_li.pop();
-        }
-    }
-}
-
 SvarogMaterial ShaderManager::get_material(const char* m_name) const {
     auto m_material = material_li.top();
     while(!material_li.empty() && material_li.size() != 0) {
@@ -52,5 +40,13 @@ SvarogMaterial ShaderManager::get_material(const char* m_name) const {
         }
     }
     return m_material;
+}
+
+void ShaderManager::render_materials() {
+    while(!material_li.empty()) {
+        material_li.top().get_material_prg().use();
+        spdlog::info("Shader Manager");
+        material_li.pop();
+    }
 }
 ShaderManager *ShaderManager::shader_manager = 0;

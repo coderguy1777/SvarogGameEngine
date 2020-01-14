@@ -1,7 +1,14 @@
 #include "svarog_material.h"
 SvarogMaterial::SvarogMaterial() {
-    material_program = new ShaderProgram();
-    material_program->bind_shaders(mat_vert_shader, mat_frag_shader);
+
+}
+
+SvarogMaterial::SvarogMaterial(ShaderProgram mat_prg) {
+    mesh_prg = mat_prg;
+}
+
+void SvarogMaterial::set_mesh(RenderObj m_mesh) {
+    material_mesh = m_mesh;
 }
 
 void SvarogMaterial::set_primary_color_model(COLOR_MODEL model) {
@@ -13,13 +20,7 @@ COLOR_MODEL SvarogMaterial::get_primary_color_model() const {
 }
 
 void SvarogMaterial::set_color_values(float c_vals[4]) {
-    for(uint i = 0; i < 4; i++) {
-        color_values[i] = c_vals[i];
-    }
-    glUniform1f(glGetUniformLocation(material_program->get_shader_id(), "mesh_color.x"), color_values[0]);
-    glUniform1f(glGetUniformLocation(material_program->get_shader_id(), "mesh_color.y"), color_values[1]);
-    glUniform1f(glGetUniformLocation(material_program->get_shader_id(), "mesh_color.z"), color_values[2]);
-    glUniform1f(glGetUniformLocation(material_program->get_shader_id(), "mesh_color.w"), color_values[3]);
+    glUniform4fv(glGetUniformLocation(mesh_prg.get_shader_id(), "color_v"), GL_FLOAT, c_vals);
 }
 
 void SvarogMaterial::set_material_metallic_value(float metallic_pct) {
@@ -32,10 +33,12 @@ void SvarogMaterial::set_material_name(const char* m_name) {
 
 void SvarogMaterial::set_material_roughness(float roughness_value) {
     roughness = roughness_value;
+    glUniform1f(glGetUniformLocation(mesh_prg.get_shader_id(), "roughness_value"), roughness);
 }
 
 void SvarogMaterial::set_material_specular(float spec_val) {
     specular = spec_val;
+    glUniform1f(glGetUniformLocation(mesh_prg.get_shader_id(), "specular_value"), spec_val);
 }
 
 const char* SvarogMaterial::get_material_name() const {
@@ -62,6 +65,10 @@ std::vector<float> SvarogMaterial::get_color_values() const {
     return c_val;
 }
 
-SvarogShape SvarogMaterial::get_mesh() const {
+RenderObj SvarogMaterial::get_mesh() const {
     return material_mesh;
+}
+
+ShaderProgram SvarogMaterial::get_material_prg() const {
+    return mesh_prg;
 }

@@ -18,6 +18,27 @@ enum class S_LAB_STATE {
 
 class SLabEditorGUI {
     private:
+        struct ShaderValuePicker {
+            private: 
+                float specular_value;
+                float roughness_value;
+                float metallic_scale;
+                
+
+            public: 
+                float get_specular() const {
+                    return specular_value;
+                }
+
+                float get_roughness() const {
+                    return roughness_value;
+                }
+
+                float get_metallic_scale() const {
+                    return metallic_scale;
+                }
+
+        } s_value_picker;
     
         struct ShaderColorPicker {
             private:
@@ -192,6 +213,10 @@ class SLabEditorGUI {
                            ImGui::SameLine();
                            ImGui::SliderFloat("A", &a, 0.0f, 256.0f, "%.1f", 1.0f);
                            ImGui::PopItemWidth();
+                           values[0] = r;
+                           values[1] = g;
+                           values[2] = b;
+                           values[3] = a;
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::HSV_MODEL && model_selected == 2) {
@@ -297,6 +322,7 @@ class SLabEditorGUI {
                            values[1] = g;
                            values[2] = b;
                            values[3] = 0.0f;
+                        
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::EIGHT_BIT_RGB_MODEL && model_selected == 6) {
@@ -322,6 +348,7 @@ class SLabEditorGUI {
                            values[1] = eight_bit_g;
                            values[2] = eight_bit_b;
                            values[3] = 0.0f;
+
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::HEX_CODE && model_selected == 7) {
@@ -334,22 +361,6 @@ class SLabEditorGUI {
                            ImGui::PopItemWidth();
                        }
                     }
-                    ImGui::PopItemWidth();
-                    ImGui::PushItemWidth(100.0f);
-                    ImGui::Text(" Specular Value");
-                    ImGui::NewLine();
-                    ImGui::SameLine();
-                    static float spec_val_data = {};
-                    // TODO: replace with an imgui slider for easier use, also make useable with the
-                    // svarog mat. class.
-                    ImGui::SliderFloat("Specular", &spec_val_data, 0.0f, 1.0f, "%.3f", 1.0f);
-                    ImGui::PopItemWidth();
-                    ImGui::PushItemWidth(100.0f);
-                    ImGui::Text(" Roughness Value");
-                    static float roughness_val_data = {};
-                    ImGui::NewLine();
-                    ImGui::SameLine();
-                    ImGui::SliderFloat("Roughness", &roughness_val_data, 0.0f, 1.0f, "%.3f", 1.0f);
                     ImGui::PopItemWidth();
                 }
 

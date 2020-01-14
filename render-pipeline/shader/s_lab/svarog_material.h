@@ -18,6 +18,8 @@
 #include "render-pipeline/shader/ShaderProgram.h"
 #include "render-pipeline/mesh/svarog_shape.h"
 #include "render-pipeline/shader/s_lab/shader_mg.h"
+#define FRAG_COLOR "color_v"
+#define FRAG_SPEC "specular_value"
 enum class COLOR_MODEL {
     RGB_MODEL,
     HSV_MODEL,
@@ -35,7 +37,7 @@ enum class COLOR_MODEL {
 */ 
 class SvarogMaterial {
     private:
-        SvarogShape material_mesh;
+        RenderObj material_mesh;
         std::string material_name;
         bool is_assigned_to_mesh;
         float color_values[4];
@@ -44,25 +46,27 @@ class SvarogMaterial {
         float metallic_scale; // for determining how metallic the mesh will look in game.
         VertexShader mat_vert_shader;
         FragmentShader mat_frag_shader;
-        ShaderProgram* material_program;
         COLOR_MODEL primary_model;
+        ShaderProgram mesh_prg;
 
     public:
         SvarogMaterial();
+        SvarogMaterial(ShaderProgram mat_prg);
         COLOR_MODEL get_primary_color_model() const;
         void set_material_specular(float spec_val);
         void set_material_roughness(float rough_pct);
         void set_material_metallic_value(float metallic_pct);
         void set_color_values(float c_vals[4]);
         void set_material_name(const char* m_name);
-        void set_mesh(SvarogShape mesh_val);
+        void set_mesh(RenderObj mesh_val);
         void set_primary_color_model(COLOR_MODEL model);
         const char* get_material_name() const;
         std::vector<float> get_color_values() const;
         float get_metallic_scale() const;
         float get_specular_value() const;
         float get_roughness_value() const;
-        SvarogShape get_mesh() const;
+        RenderObj get_mesh() const;
+        ShaderProgram get_material_prg() const;
         
 };
 #endif

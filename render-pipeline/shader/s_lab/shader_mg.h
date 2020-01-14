@@ -20,7 +20,7 @@ class ShaderManager {
         static ShaderManager* getShaderManager();
         void pass_code(VertexShader vert_mat, FragmentShader frag_mat);
         void add_new_material(SvarogMaterial m_mat);
-        void modify_material_color(const char* m_name, float values[4]);
+        void render_materials();
         SvarogMaterial get_material(const char* m_name) const;
 
 };

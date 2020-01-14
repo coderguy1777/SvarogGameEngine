@@ -55,13 +55,13 @@ void SvarogEngine::RunEngine() {
     try {
         vert.open("/home/jordan/Documents/SvarogGameEngine/render-pipeline/shader/engine_shader/mainvertex_shader.glsl");
         frag.open("/home/jordan/Documents/SvarogGameEngine/render-pipeline/shader/engine_shader/mainfragment_shader.glsl");
-        std::stringstream aa, aba;
-        aa << vert.rdbuf();
-        aba << frag.rdbuf();
+        std::stringstream m_vert, m_frag;
+        m_vert << vert.rdbuf();
+        m_frag << frag.rdbuf();
         vert.close();
         frag.close();
-        vert_shader = aa.str();
-        frag_shader = aba.str();
+        vert_shader = m_vert.str();
+        frag_shader = m_frag.str();
     } catch (ifstream::failure e) {
         std::cout << e.what() << '\n';
     }
@@ -128,26 +128,30 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_style(0);
     ImGuiInit::imgui_ini_use(false);
     test_prg->use();
-    float m_v[4];
-    m_v[0] = -0.5f;
-    m_v[1] = -0.5f;
-    m_v[2] = -0.43f;
-    m_v[3] = -0.9f;
+    SvarogMaterial mat_a(*test_prg);
+    float c_vals[4];
+    c_vals[0] = 1.0f;
+    c_vals[1] = 1.0f;
+    c_vals[2] = 1.0f;
+    c_vals[3] = 0.0f;
+    mat_a.set_material_name("Default");
+    mat_a.set_mesh(s);
+    mat_a.set_color_values(c_vals);
+    mat_a.set_material_roughness(0.5f);
+    mat_a.set_material_specular(0.5f);
+    ShaderManager::getShaderManager()->add_new_material(mat_a);
+
   
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        c_vals[1] += 0.01f;
         glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        std::experimental::optional<float>value_tst;
-        if(!value_tst) {
-            spdlog::info("Value null");
-        }
-    
-        glUniform4f(glGetUniformLocation(test_prg->get_shader_id(), "rgb_v"), m_v[0], m_v[1], m_v[2], m_v[3]);
-
         ImGuiInit::init_imgui_frames();
         RenderTaskManager::getRenderManager()->add_thread_task(s);
+
         RenderTaskManager::getRenderManager()->run_all_tasks();
+        ShaderManager::getShaderManager()->render_materials();
         InitGuiManager();
         //dbg_win->render_frames();
         ImGuiInit::init_imgui_render();
