@@ -129,14 +129,9 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::imgui_ini_use(false);
     test_prg->use();
     SvarogMaterial mat_a(*test_prg);
-    float c_vals[4];
-    c_vals[0] = 1.0f;
-    c_vals[1] = 1.0f;
-    c_vals[2] = 1.0f;
-    c_vals[3] = 0.0f;
+    
     mat_a.set_material_name("Default");
     mat_a.set_mesh(s);
-    mat_a.set_color_values(c_vals);
     mat_a.set_material_roughness(0.5f);
     mat_a.set_material_specular(0.5f);
     ShaderManager::getShaderManager()->add_new_material(mat_a);
@@ -144,7 +139,6 @@ void SvarogEngine::RunEngine() {
   
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        c_vals[1] += 0.01f;
         glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         ImGuiInit::init_imgui_frames();
