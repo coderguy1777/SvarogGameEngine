@@ -134,8 +134,6 @@ void SvarogEngine::RunEngine() {
     mat_a.set_mesh(s);
     mat_a.set_material_roughness(0.5f);
     mat_a.set_material_specular(0.5f);
-    ShaderManager::getShaderManager()->add_new_material(mat_a);
-
   
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

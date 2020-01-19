@@ -9,6 +9,7 @@
 #include "main/enginewindow/engine-gui/gui_frames.h"
 #include "main/enginewindow/engine-gui/gui_layer.h"
 #include "main/enginewindow/engine-gui/gui_window.h"
+#include "core/memory/shader_editor_cache.h"
 #include "core/String.h"
 
 enum class S_LAB_STATE {
@@ -189,40 +190,47 @@ class SLabEditorGUI {
                        ImGui::Text(get_selected_model_lbl().str);
 
                        if(get_curr_model_enum() == COLOR_MODEL::RGB_MODEL && model_selected == 1) {
-                           static float r = {};
-                           static float g = {};
-                           static float b = {};
-                           static float a = {};
+                           static float r = 0.0f;
+                           static float g = 0.0f;
+                           static float b = 0.0f;
+                           static float a = 0.0f;
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::SliderFloat("R", &r, 0.0f, 256.0f, "%.1f", 1.0f);
+                           ImGui::SliderFloat("R", &r, 0.0f, 256.0f, "%.0f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::SliderFloat("G", &g, 0.0f, 256.0f, "%.1f", 1.0f);
+                           ImGui::SliderFloat("G", &g, 0.0f, 256.0f, "%.0f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::SliderFloat("B", &b, 0.0f, 256.0f, "%.1f", 1.0f);
+                           ImGui::SliderFloat("B", &b, 0.0f, 256.0f, "%.0f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::SliderFloat("A", &a, 0.0f, 256.0f, "%.1f", 1.0f);
+                           ImGui::SliderFloat("A", &a, 0.0f, 256.0f, "%.0f", 1.0f);
                            ImGui::PopItemWidth();
                            values[0] = r;
                            values[1] = g;
                            values[2] = b;
                            values[3] = a;
+                           std::vector<float>m_values;
+                           for(uint i = 0; i < 4; i++) {
+                               m_values.push_back(values[i]);
+                           }
+                           ShaderCache::getShaderCache()->updateColorValues(m_values);
+                           auto vec = ShaderCache::getShaderCache()->get_m_values();
+                           spdlog::info(vec[0]);
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::HSV_MODEL && model_selected == 2) {
-                           static float hue = {};
-                           static float saturation = {};
-                           static float value = {};
+                           static float hue = 0.0f;
+                           static float saturation = 0.0f;
+                           static float value = 0.0f;
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
@@ -231,17 +239,22 @@ class SLabEditorGUI {
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::SliderFloat("S", &saturation, 0.0f, 100.0f, "%.1f", 1.0f);
+                           ImGui::SliderFloat("S", &saturation, 0.0f, 100.0f, "%.0f", 1.0f);
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
-                           ImGui::SliderFloat("V", &value, 0.0f, 100.0f, "%.1f", 1.0f);
+                           ImGui::SliderFloat("V", &value, 0.0f, 100.0f, "%.0f", 1.0f);
                            ImGui::PopItemWidth();
                            values[0] = hue;
                            values[1] = saturation;
                            values[2] = value;
                            values[3] = 0.0f;
+                           std::vector<float>m_hue_v;
+                           for(uint i = 0; i < 4; ++i) {
+                               m_hue_v.push_back(values[i]);
+                           }
+                           ShaderCache::getShaderCache()->updateColorValues(m_hue_v);
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::HSL_MODEL && model_selected == 3) {
@@ -267,6 +280,11 @@ class SLabEditorGUI {
                            values[1] = saturation;
                            values[2] = lightness;
                            values[3] = 0.0f;
+                           std::vector<float>m_hsl_v;
+                           for(uint i = 0; i < 4; i++) {
+                               m_hsl_v.push_back(values[i]);
+                           }
+                           ShaderCache::getShaderCache()->updateColorValues(m_hsl_v);
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::CMYK_MODEL && model_selected == 4) {
@@ -297,6 +315,11 @@ class SLabEditorGUI {
                            values[1] = magenta;
                            values[2] = yellow;
                            values[3] = key;
+                           std::vector<float>m_cmyk_v;
+                           for(uint i = 0; i < 4; i++) {
+                               m_cmyk_v.push_back(values[i]);
+                           }
+                           ShaderCache::getShaderCache()->updateColorValues(m_cmyk_v);
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::ARGB_MODEL && model_selected == 5) {
@@ -322,7 +345,11 @@ class SLabEditorGUI {
                            values[1] = g;
                            values[2] = b;
                            values[3] = 0.0f;
-                        
+                           std::vector<float>m_argb_v;
+                           for(uint i = 0; i < 4; i++) {
+                               m_argb_v.push_back(values[i]);
+                           }
+                           ShaderCache::getShaderCache()->updateColorValues(m_argb_v);
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::EIGHT_BIT_RGB_MODEL && model_selected == 6) {
@@ -348,6 +375,11 @@ class SLabEditorGUI {
                            values[1] = eight_bit_g;
                            values[2] = eight_bit_b;
                            values[3] = 0.0f;
+                           std::vector<float>m_ergb_v;
+                           for(uint i = 0; i < 4; i++) {
+                               m_ergb_v.push_back(values[i]);
+                           }
+                           ShaderCache::getShaderCache()->updateColorValues(m_ergb_v);
 
                        }
 

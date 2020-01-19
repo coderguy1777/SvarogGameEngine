@@ -4,7 +4,7 @@
 #include <memory>
 #include <functional>
 #include <boost/asio.hpp>
-#include<optional>
+#include <optional>
 #include <boost/thread.hpp>
 #include "render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.h"
 #include "render-pipeline/shader/s_lab/shader_mg.h"
@@ -27,6 +27,7 @@
 #include "main/enginewindow/enginewindow.h"
 #include "main/enginewindow/engine-gui/gui_window.h"
 #include "core/memory/svarog_thread_task.h"
+#include "core/memory/shader_editor_cache.h"
 
 class SvarogEngine {
     private:
