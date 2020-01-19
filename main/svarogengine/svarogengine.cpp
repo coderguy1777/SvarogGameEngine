@@ -127,27 +127,25 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
     ImGuiInit::imgui_ini_use(false);
-    test_prg->use();
     SvarogMaterial mat_a(*test_prg);
-    
+
+
     mat_a.set_material_name("Default");
     mat_a.set_mesh(s);
     mat_a.set_material_roughness(0.5f);
-    mat_a.set_material_specular(0.5f);
-
+    mat_a.set_material_specular(-0.2f);
     if(SLabEditorGUI::getSlabEditor()->color_picker_is_active()) {
         spdlog::info("Is active");
         auto m_values = SLabEditorGUI::getSlabEditor()->get_current_color_values();
-        mat_a.set_color_values(m_values.data());
     }
     ShaderManager::getShaderManager()->add_new_material(mat_a);
+
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         ImGuiInit::init_imgui_frames();
         RenderTaskManager::getRenderManager()->add_thread_task(s);
-
         RenderTaskManager::getRenderManager()->run_all_tasks();
         ShaderManager::getShaderManager()->render_materials();
         InitGuiManager();

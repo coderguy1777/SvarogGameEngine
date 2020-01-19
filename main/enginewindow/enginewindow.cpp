@@ -87,6 +87,11 @@ void EngineWindow::SvarogAppLoop() {
                     KeyEvent evt(static_cast<int>(key));
                     evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
+                    if(key == SVAROG_KEY_W) {
+                        auto z_plus = key_evt_ptr->camera_pos->getComponentZ();
+                        key_evt_ptr->camera_pos->setComponentZ(z_plus + 1.0f);
+                        spdlog::info(key_evt_ptr->camera_pos->getComponentZ());
+                    }
                     break;
                 }
 

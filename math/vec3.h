@@ -25,11 +25,6 @@ class Vector3 {
         }
 
         Vector3(){};
-
-        void * operator new(size_t t) {
-            void * vec3mat = new Vector3(0.0f, 0.0f, 0.0f);
-            return vec3mat;
-        }
         
         Vector3 operator*(const Vector3& b) {
             Vector3 input(0.0f, 0.0f, 0.0f);

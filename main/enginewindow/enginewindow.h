@@ -2,8 +2,10 @@
 #ifdef APP_H
 #define APP_H
 #endif
+
 #include<glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "math/vec3.h"
 #include <iostream>
 #include "spdlog/spdlog.h"
 #include "core/ds-classes/function_list.h"
@@ -38,6 +40,8 @@ class EngineWindow {
         EngineWindow() { }
 
     public: 
+        Vector3 * camera_pos = new Vector3();
+    
         Window winA;
         static EngineWindow* getInstance();
         ~EngineWindow() {

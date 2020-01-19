@@ -6,6 +6,7 @@
 #include <boost/asio.hpp>
 #include <optional>
 #include <boost/thread.hpp>
+#include "math/vec3.h"
 #include "render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.h"
 #include "render-pipeline/shader/s_lab/shader_mg.h"
 #include "core/memory/gui_task_manager.h"
