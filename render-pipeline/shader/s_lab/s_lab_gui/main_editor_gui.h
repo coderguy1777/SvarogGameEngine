@@ -19,13 +19,13 @@ enum class S_LAB_STATE {
 
 class SLabEditorGUI {
     private:
+        bool is_active;
         struct ShaderValuePicker {
             private: 
                 float specular_value;
                 float roughness_value;
                 float metallic_scale;
-                
-
+            
             public: 
                 float get_specular() const {
                     return specular_value;
@@ -43,6 +43,7 @@ class SLabEditorGUI {
     
         struct ShaderColorPicker {
             private:
+                bool is_active;
                 COLOR_MODEL color_val;
                 String color_label_txt;
                 String curr_model = String("");
@@ -197,7 +198,12 @@ class SLabEditorGUI {
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
                            ImGui::SameLine();
+                           ImGui::PushID("R");
                            ImGui::SliderFloat("R", &r, 0.0f, 256.0f, "%.0f", 1.0f);
+                           if(ImGui::IsItemActive()) {
+                               is_active = true;
+                           }
+                           ImGui::PopID();
                            ImGui::PopItemWidth();
                            ImGui::NewLine();
                            ImGui::PushItemWidth(100.0f);
@@ -223,8 +229,6 @@ class SLabEditorGUI {
                                m_values.push_back(values[i]);
                            }
                            ShaderCache::getShaderCache()->updateColorValues(m_values);
-                           auto vec = ShaderCache::getShaderCache()->get_m_values();
-                           spdlog::info(vec[0]);
                        }
 
                        if(get_curr_model_enum() == COLOR_MODEL::HSV_MODEL && model_selected == 2) {
@@ -409,6 +413,9 @@ class SLabEditorGUI {
                         values[i] = color_vals[i];
                     }
                 }
+                bool get_active_state() const {
+                    return is_active;
+                }
         } slab_c_values;
         struct EditorGuiFrames {
             std::vector<SvarogGuiFrame>gui_frames;
@@ -432,7 +439,8 @@ class SLabEditorGUI {
         void init_editor();
         void switch_editor_state(S_LAB_STATE editor_window_to_open);
         void init_editor_window_gui_frames();
-        std::vector<float>get_current_color_values() const;
+        bool color_picker_is_active();
+        std::vector<float>get_current_color_values();
 };
 
 #endif

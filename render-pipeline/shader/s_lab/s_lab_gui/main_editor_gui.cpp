@@ -14,6 +14,15 @@ String SLabEditorGUI::get_color_label() const {
     return curr_color_label;
 }
 
+bool SLabEditorGUI::color_picker_is_active()  {
+    if(slab_c_values.get_active_state()) {
+        is_active = true;
+    } else {
+        is_active = false;
+    }
+    return is_active;
+}
+
 void SLabEditorGUI::color_model_selection(COLOR_MODEL model) {
     switch(model) {
         case COLOR_MODEL::RGB_MODEL: 
@@ -72,8 +81,14 @@ void SLabEditorGUI::init_editor_window_gui_frames() {
 
 }
 
-std::vector<float> SLabEditorGUI::get_current_color_values() const {
-    slab_c_values.get_color_values();
+std::vector<float> SLabEditorGUI::get_current_color_values() {
+    std::vector<float>temp;
+    if(color_picker_is_active()) {
+        temp = ShaderCache::getShaderCache()->get_m_values();
+    }
+
+    return temp;
 }
+
 
 SLabEditorGUI* SLabEditorGUI::slabeditor_instance  = 0;

@@ -134,7 +134,13 @@ void SvarogEngine::RunEngine() {
     mat_a.set_mesh(s);
     mat_a.set_material_roughness(0.5f);
     mat_a.set_material_specular(0.5f);
-  
+
+    if(SLabEditorGUI::getSlabEditor()->color_picker_is_active()) {
+        spdlog::info("Is active");
+        auto m_values = SLabEditorGUI::getSlabEditor()->get_current_color_values();
+        mat_a.set_color_values(m_values.data());
+    }
+    ShaderManager::getShaderManager()->add_new_material(mat_a);
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);

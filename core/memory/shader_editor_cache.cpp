@@ -16,7 +16,6 @@ void ShaderCache::updateSpecularState(float m_s) {
 
 void ShaderCache::updateColorValues(std::vector<float>m_v) {
     m_values = m_v;
-    spdlog::info(sizeof(m_values));
 }
 
 std::vector<float>ShaderCache::get_m_values() const {
