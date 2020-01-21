@@ -1,6 +1,7 @@
 #pragma once
 #ifndef MATRIX_H
 #define MATRIX_H
+#include "math/vec3.h"
 #include <cmath>
 #include "spdlog/spdlog.h"
 
@@ -66,7 +67,7 @@ class Matrix {
             return resultant_mat;
         }
 
-        void matrix_print_test(Matrix<T>const&mat_one, Matrix<T>const&mat_two);
+        Matrix vec3Mult(Vector3 init_vec);
         void set_matrix_value(uint r_spot, uint col_spot, T value);
         T get_matrix_value(uint r_spot, uint col_spot);
         uint get_row_size() const;
@@ -74,16 +75,8 @@ class Matrix {
 };
 
 template<typename T>
-void Matrix<T>::matrix_print_test(Matrix<T>const&mat_one, Matrix<T>const&mat_two) {
-    auto mat_one_col = 0;
-    auto mat_two_row = 0;
-    for(unsigned int i = 0; i < mat_one.get_row_size() - 1; i++) {
-        auto value_to_print = mat_one.get_matrix_value(i, mat_one_col);
-        spdlog::info(value_to_print);
-        if(i == mat_one.get_row_size() - 1 && mat_one_col < mat_one.get_col_size() - 1) {
-            mat_one_col = mat_one_col + 1;
-        }
-    }
+Matrix<T> Matrix<T>::vec3Mult(Vector3 init_vec) {
+    
 }
 
 template<typename T>
