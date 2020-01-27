@@ -2,41 +2,33 @@
 #ifdef CAMERA_H
 #define CAMERA_H
 #endif
+#include <glad/glad.h>
+#include "render-pipeline/shader/ShaderProgram.h"
 #include "math/vec3.h"
-#include "math/matrix4f.h"
-
-using namespace std;
+#include "math/matrix.h"
 class Camera {
-    public:
-        static Camera& instance() {
-            if(instance_ == NULL) {
-                instance_ = new Camera();
-            }
-        }
-        int cameraW, cameraH;
-        Vector3 upVector;
-        Vector3 camorigin;
-        Vector3 cameraTarget;
-        
-        // camera view stuff
-        int getCameraW();
-        int getCameraH();
-        void setCameraW(int w);
-        void setCameraH(int h);
-        void changeDimensions(int newW, int newH);
+    private:
+        int c_w;
+        int c_h;
+        Matrix<float>camera_matrix;
+        Vector3 cameraOrigin;
 
-        // change camera position
-        void setCameraPos(float x, float y, float z);
-        
-        // setting of up vectors
-        inline void setUpVector(Vector3 up) {
-            upVector = up;
+        ShaderProgram shader_prg;
+        void updateTranslation();
+    public: 
+        Camera() {
+            camera_matrix.set_matrix_value(0, 0, 1.0f);
+            camera_matrix.set_matrix_value(1, 2, 1.0f);
+            camera_matrix.set_matrix_value(2, 2, 1.0f);
+            camera_matrix.set_matrix_value(3, 3, 1.0f);
+            camera_matrix.set_matrix_value(0,3, 2.0f);
+            camera_matrix.set_matrix_value(1, 3, 2.0f);
+            cameraOrigin.setComponentX(0.0f);
+            cameraOrigin.setComponentY(0.0f);
+            cameraOrigin.setComponentZ(0.0f);
         }
-
-        inline Matrix4f lookAt(Matrix4f view, Matrix4f model) {
-            return Matrix4f(view * model);
-        }    
-    private: 
-        Camera() {}
-        static Camera* instance_;
+        void init_camera_dimensions(int m_w, int m_h);
+        void TranslateVector(std::vector<float>translation_factors, Vector3 translate_vec);
+        void setShaderPrg(const ShaderProgram& shader_pr);
+        
 };

@@ -80,6 +80,8 @@ void SvarogEngine::RunEngine() {
     ShaderProgram * test_prg = new ShaderProgram();
     test_prg->bind_shaders(vert_m, frag_m);
 
+    
+
     float vertices[] = {
         0.5f, 0.5f, -0.5f,
         0.5f, -0.5f, -0.5f,
@@ -128,8 +130,6 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_style(0);
     ImGuiInit::imgui_ini_use(false);
     SvarogMaterial mat_a(*test_prg);
-
-
     mat_a.set_material_name("Default");
     mat_a.set_mesh(s);
     mat_a.set_material_roughness(0.5f);
@@ -138,13 +138,26 @@ void SvarogEngine::RunEngine() {
         spdlog::info("Is active");
         auto m_values = SLabEditorGUI::getSlabEditor()->get_current_color_values();
     }
+    main_cam->setShaderPrg(*test_prg);
+    Matrix<float>mat_aa;
+    auto cam_vec = EngineWindow::getInstance()->getCameraPos();
+    spdlog::info(cam_vec->getComponentX());
     ShaderManager::getShaderManager()->add_new_material(mat_a);
+    for(uint i = 0; i < mat_aa.get_row_size(); i++) {
+        for(uint j = 0; j < mat_aa.get_col_size(); j++) {
+            mat_aa.set_matrix_value(i, j, 2.0f);
+        }
+    }
+    float** bs =mat_aa.matrix;    
+    
+    glUniform4fv(glGetUniformLocation(test_prg->get_shader_id(), "model"), 1, *bs);
 
     while(EngineWindow::getInstance()->get_state()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         ImGuiInit::init_imgui_frames();
+
         RenderTaskManager::getRenderManager()->add_thread_task(s);
         RenderTaskManager::getRenderManager()->run_all_tasks();
         ShaderManager::getShaderManager()->render_materials();

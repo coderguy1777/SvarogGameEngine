@@ -5,6 +5,7 @@
 #include<iostream>
 using namespace std;
 #include "core/Point.h"
+#include "math/matrix.h"
 #include <cmath>
 class Vector3 {
     public:
@@ -57,6 +58,8 @@ class Vector3 {
             divvec.initz = b.initz / this->initz;
             return divvec;
         }
+
+
 
         friend Vector3 operator*(const Vector3&b, const int &str) {
             Vector3 newVec(0.0f, 0.0f, 0.0f);
@@ -140,3 +143,31 @@ class Vector3 {
         float twoVecAngle(Vector3 a, Vector3 b);
         Vector3 unitVecAngles(Vector3 u, float iangle, float jangle, float kangle);
 };
+
+inline bool operator==(const Vector3&vec_a, const Vector3& vec_b) {
+    return (vec_a.initx == vec_b.initx) && (vec_a.inity == vec_b.inity) && (vec_a.initz == vec_b.initz);
+}
+
+inline bool operator!=(const Vector3&vec_a, const Vector3& vec_b) {
+    return (vec_a.initx != vec_b.initx) && (vec_a.inity != vec_b.inity) && (vec_a.initz != vec_b.initz);
+
+}
+
+inline Vector3 operator*(const Matrix<float>&mat_a, const Vector3 &trans_vec) {
+    Vector3 newVec(0.0f, 0.0f, 0.0f);
+    auto new_x = (mat_a.get_matrix_value(0, 0) *(trans_vec.initx)) + (mat_a.get_matrix_value(0, 1) * (trans_vec.inity)) + (mat_a.get_matrix_value(0, 2) * (trans_vec.initz)) + (mat_a.get_matrix_value(0, 3) * (1));
+    auto new_y = (mat_a.get_matrix_value(1, 0) * (trans_vec.initx)) + (mat_a.get_matrix_value(1, 1) * (trans_vec.inity)) + (mat_a.get_matrix_value(1, 2) * (trans_vec.initz)) + (mat_a.get_matrix_value(1, 3) * (1));
+    auto new_z = (mat_a.get_matrix_value(2, 0) * (trans_vec.initx)) + (mat_a.get_matrix_value(2, 1) * (trans_vec.initz)) + (mat_a.get_matrix_value(2, 2)) * (trans_vec.initz) + (mat_a.get_matrix_value(2, 3) * (1));
+    newVec.setComponentX(new_x);
+    newVec.setComponentY(new_y);
+    newVec.setComponentZ(new_z);
+    return newVec;
+}
+
+inline Vector3 operator+(const Matrix<float>&mat_a, const Vector3 &trans_vec) {
+    Vector3 newVec(0.0f, 0.0f, 0.0f);
+    auto new_x = mat_a.get_matrix_value(0, 3) + trans_vec.initx;
+    auto new_y = mat_a.get_matrix_value(1, 3) + trans_vec.inity;
+    auto new_z = mat_a.get_matrix_value(2, 3) + trans_vec.initz;
+    return newVec;
+}

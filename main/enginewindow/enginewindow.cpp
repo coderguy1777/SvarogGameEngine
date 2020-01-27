@@ -5,6 +5,14 @@ EngineWindow* EngineWindow::getInstance() {
     return winn;
 }
 
+Vector3* EngineWindow::getCameraPos() {
+    return camera_pos;
+}
+
+std::vector<float> EngineWindow::getTranslateFac() {
+    return translate_f;
+}
+
 void* EngineWindow::getWindow() {
     return appWindow;
 }
@@ -84,14 +92,29 @@ void EngineWindow::SvarogAppLoop() {
             case GLFW_PRESS:
                 { 
                     Event e(EVENT_TYPE::KeyEvt, 1, "key_press");
+                    
                     KeyEvent evt(static_cast<int>(key));
                     evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
+                    key_evt_ptr->translate_f.push_back(0.0f);
+                    key_evt_ptr->translate_f.push_back(0.0f);
+                    key_evt_ptr->translate_f.push_back(0.0f);
                     if(key == SVAROG_KEY_W) {
-                        auto z_plus = key_evt_ptr->camera_pos->getComponentZ();
-                        key_evt_ptr->camera_pos->setComponentZ(z_plus + 1.0f);
-                        spdlog::info(key_evt_ptr->camera_pos->getComponentZ());
+                        key_evt_ptr->translate_f[2] += 0.1f;
+                        key_evt_ptr->camera_pos->initz+= 1.0f;
                     }
+
+                    if(key == SVAROG_KEY_S) {
+                        key_evt_ptr->translate_f[2] -= 0.1f;
+                        key_evt_ptr->camera_pos->initz -= 1.0f;
+                    }
+
+                    if(key == SVAROG_KEY_D) {
+                        key_evt_ptr->camera_pos->initx += 1.0f;
+                        key_evt_ptr->translate_f[0] += 0.1f;
+                    } 
+
+                    
                     break;
                 }
 
@@ -103,6 +126,17 @@ void EngineWindow::SvarogAppLoop() {
                     evt->set_key_evt_event(e);
                     evt->set_key_evt_state(2);
                     evt->logKeyHeldEvent();
+                    if(key == SVAROG_KEY_W) {
+                        key_evt_ptr->translate_f[2] += 0.1f;
+                        key_evt_ptr->camera_pos->initz+= 1.0f;
+                    }
+
+                    if(key == SVAROG_KEY_S) {
+                        key_evt_ptr->translate_f[2] -= 0.1f;
+                        key_evt_ptr->camera_pos->initz -= 1.0f;
+                    }
+
+                    
                     break;
                 }
 

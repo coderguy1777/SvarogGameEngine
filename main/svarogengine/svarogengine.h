@@ -7,6 +7,7 @@
 #include <optional>
 #include <boost/thread.hpp>
 #include "math/vec3.h"
+#include "main/camera/camera.h"
 #include "render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.h"
 #include "render-pipeline/shader/s_lab/shader_mg.h"
 #include "core/memory/gui_task_manager.h"
@@ -36,8 +37,11 @@ class SvarogEngine {
        // EngineWindow* SvarogWindow;
         WindowMonitor* svarog_monitor;
     public:
+        Camera *main_cam;
 
         SvarogEngine() {
+            main_cam = new Camera();
+            main_cam->init_camera_dimensions(1920, 1080);
             svarog_monitor = new WindowMonitor();
         }
         static SvarogEngine* getInstanceEngine();

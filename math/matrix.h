@@ -8,7 +8,7 @@
 template<typename T>
 class Matrix {
     private: 
-        T** matrix;
+        
         uint row_size;
         uint col_size;
         void init_mat() {
@@ -19,12 +19,24 @@ class Matrix {
             }
         }
     public: 
+            T** matrix;
+
         Matrix(uint r_size, u_int c_size) {
             row_size = r_size;
             col_size = c_size;
             matrix = new T*[r_size];
             for(unsigned int i = 0; i < r_size; i++) {
                 matrix[i] = new T[c_size];
+            }
+            init_mat();
+        }
+
+        Matrix() {
+            row_size = 4;
+            col_size = 4;
+            matrix = new T*[row_size];
+            for(unsigned int i = 0; i < row_size; i++) {
+                matrix[i] = new T[col_size];
             }
             init_mat();
         }
@@ -66,18 +78,13 @@ class Matrix {
             }      
             return resultant_mat;
         }
-
-        Matrix vec3Mult(Vector3 init_vec);
+        
         void set_matrix_value(uint r_spot, uint col_spot, T value);
-        T get_matrix_value(uint r_spot, uint col_spot);
+        T get_matrix_value(uint r_spot, uint col_spot) const;
         uint get_row_size() const;
         uint get_col_size() const;
 };
 
-template<typename T>
-Matrix<T> Matrix<T>::vec3Mult(Vector3 init_vec) {
-    
-}
 
 template<typename T>
 void Matrix<T>::set_matrix_value(uint r_spot, uint c_spot, T value) {
@@ -94,7 +101,7 @@ void Matrix<T>::set_matrix_value(uint r_spot, uint c_spot, T value) {
 }
 
 template<typename T>
-T Matrix<T>::get_matrix_value(uint r_spot, uint c_spot) {
+T Matrix<T>::get_matrix_value(uint r_spot, uint c_spot) const {
     return matrix[r_spot][c_spot];
 }
 

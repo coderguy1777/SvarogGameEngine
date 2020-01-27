@@ -40,6 +40,8 @@ class EngineWindow {
         EngineWindow() { }
 
     public: 
+        std::vector<float>translate_f;
+
         Vector3 * camera_pos = new Vector3();
     
         Window winA;
@@ -63,4 +65,6 @@ class EngineWindow {
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();
+        Vector3* getCameraPos();
+        std::vector<float>getTranslateFac();
 };
