@@ -1,9 +1,5 @@
-#version 400
+#version 330 core
 out vec4 frag_color;
-uniform float specular_value;
-uniform float roughness_value;
-uniform vec4 color_v;
-
 void main() {
-    frag_color = vec4(1.0f, 0.0f + specular_value, 1.0f, 0.0f);
+    frag_color = vec4(1.0, 0.0, 1.0, 0.0);
 }

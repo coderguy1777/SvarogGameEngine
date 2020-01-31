@@ -7,6 +7,7 @@
 #include<glad/glad.h>
 #endif
 #include<experimental/optional>
+
 #include <boost/thread.hpp>
 SvarogEngine* SvarogEngine::getInstanceEngine() {
     if(!engine_instance) {
@@ -134,33 +135,27 @@ void SvarogEngine::RunEngine() {
     mat_a.set_mesh(s);
     mat_a.set_material_roughness(0.5f);
     mat_a.set_material_specular(-0.2f);
+
     if(SLabEditorGUI::getSlabEditor()->color_picker_is_active()) {
         spdlog::info("Is active");
         auto m_values = SLabEditorGUI::getSlabEditor()->get_current_color_values();
     }
-    main_cam->setShaderPrg(*test_prg);
-    Matrix<float>mat_aa;
-    auto cam_vec = EngineWindow::getInstance()->getCameraPos();
-    spdlog::info(cam_vec->getComponentX());
     ShaderManager::getShaderManager()->add_new_material(mat_a);
-    for(uint i = 0; i < mat_aa.get_row_size(); i++) {
-        for(uint j = 0; j < mat_aa.get_col_size(); j++) {
-            mat_aa.set_matrix_value(i, j, 2.0f);
-        }
-    }
-    float** bs =mat_aa.matrix;    
-    
-    glUniform4fv(glGetUniformLocation(test_prg->get_shader_id(), "model"), 1, *bs);
-
     while(EngineWindow::getInstance()->get_state()) {
+        float yz = sinf(45.0f) + -cosf(90.0f) * 0.25f * glfwGetTime() + 1.0f;
+        float x = 1.0f;
+        float z = 1.0f;
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         ImGuiInit::init_imgui_frames();
-
+        glUniform1f(glGetUniformLocation(test_prg->get_shader_id(), "x_fac"), x);
+        glUniform1f(glGetUniformLocation(test_prg->get_shader_id(), "y_fac"), yz);
+        glUniform1f(glGetUniformLocation(test_prg->get_shader_id(), "z_fac"), z);
         RenderTaskManager::getRenderManager()->add_thread_task(s);
         RenderTaskManager::getRenderManager()->run_all_tasks();
         ShaderManager::getShaderManager()->render_materials();
+
         InitGuiManager();
         //dbg_win->render_frames();
         ImGuiInit::init_imgui_render();

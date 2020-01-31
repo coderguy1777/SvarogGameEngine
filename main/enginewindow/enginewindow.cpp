@@ -100,21 +100,24 @@ void EngineWindow::SvarogAppLoop() {
                     key_evt_ptr->translate_f.push_back(0.0f);
                     key_evt_ptr->translate_f.push_back(0.0f);
                     if(key == SVAROG_KEY_W) {
-                        key_evt_ptr->translate_f[2] += 0.1f;
-                        key_evt_ptr->camera_pos->initz+= 1.0f;
+                        key_evt_ptr->camera_pos->initz+= 0.01f * glfwGetTime() * sinf(90.0f) + cosf(90.0f);
                     }
 
                     if(key == SVAROG_KEY_S) {
-                        key_evt_ptr->translate_f[2] -= 0.1f;
-                        key_evt_ptr->camera_pos->initz -= 1.0f;
+                        key_evt_ptr->camera_pos->initz -= 0.01f * glfwGetTime();
                     }
 
                     if(key == SVAROG_KEY_D) {
-                        key_evt_ptr->camera_pos->initx += 1.0f;
-                        key_evt_ptr->translate_f[0] += 0.1f;
-                    } 
+                        key_evt_ptr->camera_pos->initx += 0.01f * glfwGetTime();
+                    }
 
-                    
+                    if(key == SVAROG_KEY_SPACE) {
+                        key_evt_ptr->camera_pos->inity += 0.01f * glfwGetTime();
+                    }
+
+                    if(key == SVAROG_KEY_LFT_CTRL) {
+                        key_evt_ptr->camera_pos->inity -= 0.01f * glfwGetTime();
+                    }
                     break;
                 }
 
@@ -127,16 +130,20 @@ void EngineWindow::SvarogAppLoop() {
                     evt->set_key_evt_state(2);
                     evt->logKeyHeldEvent();
                     if(key == SVAROG_KEY_W) {
-                        key_evt_ptr->translate_f[2] += 0.1f;
-                        key_evt_ptr->camera_pos->initz+= 1.0f;
+                        key_evt_ptr->camera_pos->initz+= 0.01f * glfwGetTime();
                     }
 
                     if(key == SVAROG_KEY_S) {
-                        key_evt_ptr->translate_f[2] -= 0.1f;
-                        key_evt_ptr->camera_pos->initz -= 1.0f;
+                        key_evt_ptr->camera_pos->initz -= 0.01f * glfwGetTime();
                     }
 
-                    
+                    if(key == SVAROG_KEY_D) {
+                        key_evt_ptr->camera_pos->initx += 0.01f * glfwGetTime();
+                    }
+
+                    if(key == SVAROG_KEY_A) {
+                        key_evt_ptr->camera_pos->initx -= 0.01f * glfwGetTime();
+                    }
                     break;
                 }
 
