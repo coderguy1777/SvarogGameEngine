@@ -19,12 +19,14 @@ class Camera {
 
         struct camera_math {
             glm::mat4 camera_transform_mat;
-            
+            Vector3 translation_vec;
+            Vector3 camera_pos;
         } cam_mat;
 
     public:
         Camera();
         void set_camera_dimensions(const uint&w, const uint&h);
         void set_main_state(const bool&is_main);
-        void translate_camera()
+        void translate_camera();
+        void update_camera_vec(float c_x, float c_y, float c_z);
 };
