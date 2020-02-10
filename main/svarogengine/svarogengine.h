@@ -30,7 +30,9 @@
 #include "main/enginewindow/engine-gui/gui_window.h"
 #include "core/memory/svarog_thread_task.h"
 #include "core/memory/shader_editor_cache.h"
-
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 class SvarogEngine {
     private:
         static SvarogEngine* engine_instance;

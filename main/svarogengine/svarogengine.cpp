@@ -88,7 +88,7 @@ void SvarogEngine::RunEngine() {
         0.5f, -0.5f, -0.5f,
         -0.5f, -0.5f, -0.5f,
         -0.5f, 0.5f , -0.5f, 
-        1.0f, 1.5f, -1.5f,
+        0.5f, 0.5f, -0.5f,
     };        
     
     unsigned int poss[] = {  
@@ -125,8 +125,7 @@ void SvarogEngine::RunEngine() {
     RenderTaskManager::getRenderManager()->add_thread_task(s);
     RenderTaskManager::getRenderManager()->add_thread_task(y);
 
-    //RenderTaskManager::getRenderManager()->add_thread_task(s);
-    // debug im gui context
+4    // debug im gui context
     ImGuiInit::make_imgui_context(static_cast<GLFWwindow*>(EngineWindow::getInstance()->getWindow()), "#version 400");
     ImGuiInit::make_imgui_style(0);
     ImGuiInit::imgui_ini_use(false);
@@ -142,16 +141,14 @@ void SvarogEngine::RunEngine() {
     }
     ShaderManager::getShaderManager()->add_new_material(mat_a);
     while(EngineWindow::getInstance()->get_state()) {
-        float yz = sinf(45.0f) + -cosf(90.0f) * 0.25f * glfwGetTime() + 1.0f;
-        float x = 1.0f;
-        float z = 1.0f;
+        glm::mat4 trans = glm::mat4(1.0f);
+        trans = glm::rotate(trans, glm::radians(60.0f), glm::vec3(0.0, 0.0, 1.0));
+        trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5)); 
+        glUniformMatrix4fv(glGetUniformLocation(test_prg->get_shader_id(), "transform"), 1, GL_FALSE, glm::value_ptr(trans));
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         ImGuiInit::init_imgui_frames();
-        glUniform1f(glGetUniformLocation(test_prg->get_shader_id(), "x_fac"), x);
-        glUniform1f(glGetUniformLocation(test_prg->get_shader_id(), "y_fac"), yz);
-        glUniform1f(glGetUniformLocation(test_prg->get_shader_id(), "z_fac"), z);
         RenderTaskManager::getRenderManager()->add_thread_task(s);
         RenderTaskManager::getRenderManager()->run_all_tasks();
         ShaderManager::getShaderManager()->render_materials();

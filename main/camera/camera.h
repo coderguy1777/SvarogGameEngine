@@ -5,30 +5,26 @@
 #include <glad/glad.h>
 #include "render-pipeline/shader/ShaderProgram.h"
 #include "math/vec3.h"
-#include "math/matrix.h"
-class Camera {
-    private:
-        int c_w;
-        int c_h;
-        Matrix<float>camera_matrix;
-        Vector3 cameraOrigin;
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
-        ShaderProgram shader_prg;
-        void updateTranslation();
-    public: 
-        Camera() {
-            camera_matrix.set_matrix_value(0, 0, 1.0f);
-            camera_matrix.set_matrix_value(1, 2, 1.0f);
-            camera_matrix.set_matrix_value(2, 2, 1.0f);
-            camera_matrix.set_matrix_value(3, 3, 1.0f);
-            camera_matrix.set_matrix_value(0,3, 2.0f);
-            camera_matrix.set_matrix_value(1, 3, 2.0f);
-            cameraOrigin.setComponentX(0.0f);
-            cameraOrigin.setComponentY(0.0f);
-            cameraOrigin.setComponentZ(0.0f);
-        }
-        void init_camera_dimensions(int m_w, int m_h);
-        void TranslateVector(std::vector<float>translation_factors, Vector3 translate_vec);
-        void setShaderPrg(const ShaderProgram& shader_pr);
-        
+class Camera {
+    private: 
+        struct camera_info {
+            uint w, h; // camera width and height;
+            uint camera_val; // for identifying the camera;
+            std::string camera_name; // name for the camera;
+            bool is_main; // if the camera is a main camera, is set as the primary camera in scene;
+        } camera_data;
+
+        struct camera_math {
+            glm::mat4 camera_transform_mat;
+            
+        } cam_mat;
+
+    public:
+        Camera();
+        void set_camera_dimensions(const uint&w, const uint&h);
+        void set_main_state(const bool&is_main);
+        void translate_camera()
 };
