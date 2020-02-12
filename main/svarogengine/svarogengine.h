@@ -39,11 +39,8 @@ class SvarogEngine {
        // EngineWindow* SvarogWindow;
         WindowMonitor* svarog_monitor;
     public:
-        Camera *main_cam;
 
         SvarogEngine() {
-            main_cam = new Camera();
-            main_cam->init_camera_dimensions(1920, 1080);
             svarog_monitor = new WindowMonitor();
         }
         static SvarogEngine* getInstanceEngine();

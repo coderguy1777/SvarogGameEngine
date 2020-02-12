@@ -25,6 +25,7 @@ class Camera {
 
     public:
         Camera();
+        glm::mat4 get_cam_mat();
         void set_camera_dimensions(const uint&w, const uint&h);
         void set_main_state(const bool&is_main);
         void translate_camera();
