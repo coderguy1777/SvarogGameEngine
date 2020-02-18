@@ -142,7 +142,7 @@ void SvarogEngine::RunEngine() {
     ShaderManager::getShaderManager()->add_new_material(mat_a);
     Camera * engine_cam = new Camera();
     engine_cam->set_main_state(true);
-                engine_cam->update_camera_vec(0.0f, 1.0f, 0.0f);
+    engine_cam->update_camera_vec(0.0f, 1.0f, 0.0f);
 
     engine_cam->translate_camera();
 

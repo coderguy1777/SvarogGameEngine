@@ -2,7 +2,7 @@
 #ifdef APP_H
 #define APP_H
 #endif
-
+#include "main/camera/camera.h"
 #include<glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "math/vec3.h"
@@ -40,10 +40,8 @@ class EngineWindow {
         EngineWindow() { }
 
     public: 
-        std::vector<float>translate_f;
 
-        Vector3 * camera_pos = new Vector3();
-    
+        Camera init_cam; 
         Window winA;
         static EngineWindow* getInstance();
         ~EngineWindow() {
@@ -65,6 +63,5 @@ class EngineWindow {
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();
-        Vector3* getCameraPos();
-        std::vector<float>getTranslateFac();
+        Camera getMainCamera() const;
 };

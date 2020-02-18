@@ -5,13 +5,6 @@ EngineWindow* EngineWindow::getInstance() {
     return winn;
 }
 
-Vector3* EngineWindow::getCameraPos() {
-    return camera_pos;
-}
-
-std::vector<float> EngineWindow::getTranslateFac() {
-    return translate_f;
-}
 
 void* EngineWindow::getWindow() {
     return appWindow;
@@ -67,6 +60,10 @@ void EngineWindow::VSYNC_func() {
     }
 }
 
+Camera EngineWindow::getMainCamera() const {
+    return init_cam;
+}
+
 void EngineWindow::SvarogAppLoop() {
     set_bool_state();
     WindowContext::set_states(1, 3);
@@ -96,29 +93,15 @@ void EngineWindow::SvarogAppLoop() {
                     KeyEvent evt(static_cast<int>(key));
                     evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
-                    key_evt_ptr->translate_f.push_back(0.0f);
-                    key_evt_ptr->translate_f.push_back(0.0f);
-                    key_evt_ptr->translate_f.push_back(0.0f);
+                    Vector3 * trans_vec = new Vector3(0.0f, 0.0f, 0.0f);
                     if(key == SVAROG_KEY_W) {
-                        key_evt_ptr->camera_pos->initz+= 0.01f * glfwGetTime() * sinf(90.0f) + cosf(90.0f);
+                        trans_vec->initx += 0.1f;
                     }
 
                     if(key == SVAROG_KEY_S) {
-                        key_evt_ptr->camera_pos->initz -= 0.01f * glfwGetTime();
+                        trans_vec->initx -= 0.1f;
                     }
-
-                    if(key == SVAROG_KEY_D) {
-                        key_evt_ptr->camera_pos->initx += 0.01f * glfwGetTime();
-                    }
-
-                    if(key == SVAROG_KEY_SPACE) {
-                        key_evt_ptr->camera_pos->inity += 0.01f * glfwGetTime();
-                    }
-
-                    if(key == SVAROG_KEY_LFT_CTRL) {
-                        key_evt_ptr->camera_pos->inity -= 0.01f * glfwGetTime();
-                    }
-                    break;
+                    
                 }
 
             case GLFW_REPEAT:
@@ -129,21 +112,6 @@ void EngineWindow::SvarogAppLoop() {
                     evt->set_key_evt_event(e);
                     evt->set_key_evt_state(2);
                     evt->logKeyHeldEvent();
-                    if(key == SVAROG_KEY_W) {
-                        key_evt_ptr->camera_pos->initz+= 0.01f * glfwGetTime();
-                    }
-
-                    if(key == SVAROG_KEY_S) {
-                        key_evt_ptr->camera_pos->initz -= 0.01f * glfwGetTime();
-                    }
-
-                    if(key == SVAROG_KEY_D) {
-                        key_evt_ptr->camera_pos->initx += 0.01f * glfwGetTime();
-                    }
-
-                    if(key == SVAROG_KEY_A) {
-                        key_evt_ptr->camera_pos->initx -= 0.01f * glfwGetTime();
-                    }
                     break;
                 }
 

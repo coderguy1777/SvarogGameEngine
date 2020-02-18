@@ -26,8 +26,10 @@ class Camera {
     public:
         Camera();
         glm::mat4 get_cam_mat();
+        Vector3 get_cam_vec() const;
         void set_camera_dimensions(const uint&w, const uint&h);
         void set_main_state(const bool&is_main);
         void translate_camera();
         void update_camera_vec(float c_x, float c_y, float c_z);
+        void rotate_camera_vec(double r_fac, Vector3 cam_vec);
 };
