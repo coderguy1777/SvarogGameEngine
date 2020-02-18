@@ -142,12 +142,13 @@ void SvarogEngine::RunEngine() {
     ShaderManager::getShaderManager()->add_new_material(mat_a);
     Camera * engine_cam = new Camera();
     engine_cam->set_main_state(true);
-    engine_cam->update_camera_vec(0.0f, 1.0f, 0.0f);
 
-    engine_cam->translate_camera();
 
     auto cam_mat = engine_cam->get_cam_mat();
     while(EngineWindow::getInstance()->get_state()) {
+            engine_cam->update_camera_vec(0.0f, 1.0f, glfwGetTime());
+    engine_cam->translate_camera();
+
         glm::mat4 trans = cam_mat;
         glUniformMatrix4fv(glGetUniformLocation(test_prg->get_shader_id(), "transform"), 1, GL_FALSE, glm::value_ptr(trans));
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

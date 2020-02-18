@@ -60,6 +60,10 @@ void EngineWindow::VSYNC_func() {
     }
 }
 
+
+bool EngineWindow::get_state_two() const {
+    return state_2;
+}
 Camera EngineWindow::getMainCamera() const {
     return init_cam;
 }
@@ -93,14 +97,6 @@ void EngineWindow::SvarogAppLoop() {
                     KeyEvent evt(static_cast<int>(key));
                     evt.set_key_evt_state(1);
                     evt.logKeyPressEvent();
-                    Vector3 * trans_vec = new Vector3(0.0f, 0.0f, 0.0f);
-                    if(key == SVAROG_KEY_W) {
-                        trans_vec->initx += 0.1f;
-                    }
-
-                    if(key == SVAROG_KEY_S) {
-                        trans_vec->initx -= 0.1f;
-                    }
                     
                 }
 

@@ -40,7 +40,9 @@ class EngineWindow {
         EngineWindow() { }
 
     public: 
-
+        float x;
+        const int speed = 1.0f;
+        bool state_2;
         Camera init_cam; 
         Window winA;
         static EngineWindow* getInstance();
@@ -64,4 +66,6 @@ class EngineWindow {
         void createWindowContext();
         void SvarogAppLoop();
         Camera getMainCamera() const;
+        bool get_state_two() const;
+    
 };

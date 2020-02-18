@@ -39,8 +39,10 @@ class SvarogEngine {
        // EngineWindow* SvarogWindow;
         WindowMonitor* svarog_monitor;
     public:
-
+    float state_p;
         SvarogEngine() {
+        float state_p = 0.0f;
+
             svarog_monitor = new WindowMonitor();
         }
         static SvarogEngine* getInstanceEngine();
@@ -51,5 +53,15 @@ class SvarogEngine {
         void InitMaterialManager();
         void InitThreadManager();
         void RunEngine();
+        void run_back() {
+            state_p += 1.0f;
+        }
+        void run_forward() {
+            state_p -= 1.0f;
+        }
+
+        void stop() {
+            state_p = state_p * 1;
+        }
 };
 #endif
