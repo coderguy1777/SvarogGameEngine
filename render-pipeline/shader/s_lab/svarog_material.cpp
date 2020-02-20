@@ -33,16 +33,13 @@ void SvarogMaterial::set_material_name(const char* m_name) {
 
 void SvarogMaterial::set_material_roughness(float roughness_value) {
     roughness = roughness_value;
-    glUniform1f(glGetUniformLocation(mesh_prg.get_shader_id(), "roughness_value"), roughness);
 }
 
 void SvarogMaterial::set_material_specular(float spec_val) {
     specular = spec_val;
-    glUniform1f(glGetUniformLocation(mesh_prg.get_shader_id(), "specular_value"), spec_val);
 }
-
-const char* SvarogMaterial::get_material_name() const {
-    return material_name.c_str();
+std::string SvarogMaterial::get_material_name() const {
+    return material_name;
 }
 
 float SvarogMaterial::get_specular_value() const {

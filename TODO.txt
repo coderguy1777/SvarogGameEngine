@@ -1,0 +1,10 @@
+02/20/20:
+---------------------------------------
+When it comes to camera zoom, idea that can be applied is that having the zoom be based on mouse scroll.
+    ----------------------
+    When the event gets polled from glfw, event triggers either forward or backwards zoom, based on 
+    the scroll direction.
+    ----------------------
+    Backwards = -z 
+    Forwards = +z
+    ----------------------

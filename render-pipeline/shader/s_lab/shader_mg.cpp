@@ -23,23 +23,18 @@ void ShaderManager::pass_code(VertexShader vert_pt, FragmentShader frag_pt) {
 }
 
 void ShaderManager::add_new_material(SvarogMaterial m_material) {
+
     if(material_li.size() == 0) {
         material_li.emplace(m_material);
+        material_li.push(m_material);
+
     } else {
         material_li.push(m_material);
     }
 }
 
 SvarogMaterial ShaderManager::get_material(const char* m_name) const {
-    auto m_material = material_li.top();
-    while(!material_li.empty() && material_li.size() != 0) {
-        if(m_material.get_material_name() == m_name) {
-            break;
-        } else {
-            continue;
-        }
-    }
-    return m_material;
+    return material_li.top();
 }
 
 void ShaderManager::render_materials() {

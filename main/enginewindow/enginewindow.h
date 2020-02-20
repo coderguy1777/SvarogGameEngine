@@ -27,6 +27,7 @@
 #include "render-pipeline/window-initalization/window_monitor.h"
 #include "render-pipeline/window-initalization/glad_loader.h"
 #include "render-pipeline/shader/VertexShader.h"
+#include "render-pipeline/shader/s_lab/shader_mg.h"
 #include "core/Input/InputManager.h"
 class EngineWindow {    
     private:
@@ -37,9 +38,10 @@ class EngineWindow {
         bool isVsyncOn;
         int state;
         mutable bool engine_state;
-        EngineWindow() { }
+        EngineWindow() {}
 
     public: 
+        bool is_back;
         float x;
         const int speed = 1.0f;
         bool state_2;
@@ -66,6 +68,12 @@ class EngineWindow {
         void createWindowContext();
         void SvarogAppLoop();
         Camera getMainCamera() const;
-        bool get_state_two() const;
-    
+        float getX()  {
+            if(is_back) {
+                x = -1.0f;
+            } else {
+                x = 0.0f;
+            }
+            return x;
+        }    
 };

@@ -2,6 +2,7 @@
 EngineWindow* EngineWindow::getInstance() {
     if(!winn) 
         winn = new EngineWindow; 
+        winn->x = 0.0f;
     return winn;
 }
 
@@ -60,10 +61,6 @@ void EngineWindow::VSYNC_func() {
     }
 }
 
-
-bool EngineWindow::get_state_two() const {
-    return state_2;
-}
 Camera EngineWindow::getMainCamera() const {
     return init_cam;
 }
@@ -131,15 +128,9 @@ void EngineWindow::SvarogAppLoop() {
                     Event e(EVENT_TYPE::MouseEvt, 1, "mouse_press");
                     MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(1));
                     evt.logMousePressEvent();
-                    break;
-                }
+                    if(button == SVAROG_MOUSE_BUTTON_MIDDLE) {
 
-            // may need to delete, as glfw does not use repeat for mouse input.
-            case GLFW_REPEAT: 
-                {
-                    Event e(EVENT_TYPE::MouseEvt, 2, "mouse_held");
-                    MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(2));
-                    evt.logMouseHeldEvent();
+                    }
                     break;
                 }
             // ---------------------------------------------------------
@@ -149,9 +140,16 @@ void EngineWindow::SvarogAppLoop() {
                     Event e(EVENT_TYPE::MouseEvt, 3, "mouse_release");
                     MouseEvent evt(static_cast<int>(button), static_cast<unsigned int>(3));
                     evt.logMouseReleaseEvent();
+            
                     break;
                 }
         }
+    });
+
+
+    glfwSetScrollCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, double xoffset, double yoffset) {
+        EngineWindow* cursor_scroll_mg = (EngineWindow*)glfwGetWindowUserPointer(window);
+        cursor_scroll_mg->is_back = true;
     });
 
     glfwSetWindowCloseCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window) {

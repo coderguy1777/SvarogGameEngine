@@ -60,7 +60,7 @@ class SvarogMaterial {
         void set_material_name(const char* m_name);
         void set_mesh(RenderObj mesh_val);
         void set_primary_color_model(COLOR_MODEL model);
-        const char* get_material_name() const;
+        std::string get_material_name() const;
         std::vector<float> get_color_values() const;
         float get_metallic_scale() const;
         float get_specular_value() const;

@@ -6,9 +6,6 @@
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GLAD)
 #include<glad/glad.h>
 #endif
-#include<experimental/optional>
-
-#include <boost/thread.hpp>
 SvarogEngine* SvarogEngine::getInstanceEngine() {
     if(!engine_instance) {
         engine_instance = new SvarogEngine;
@@ -130,7 +127,7 @@ void SvarogEngine::RunEngine() {
     ImGuiInit::make_imgui_style(0);
     ImGuiInit::imgui_ini_use(false);
     SvarogMaterial mat_a(*test_prg);
-    mat_a.set_material_name("Default");
+    mat_a.set_material_name("test");
     mat_a.set_mesh(s);
     mat_a.set_material_roughness(0.5f);
     mat_a.set_material_specular(-0.2f);
@@ -139,18 +136,18 @@ void SvarogEngine::RunEngine() {
         spdlog::info("Is active");
         auto m_values = SLabEditorGUI::getSlabEditor()->get_current_color_values();
     }
+
     ShaderManager::getShaderManager()->add_new_material(mat_a);
     Camera * engine_cam = new Camera();
     engine_cam->set_main_state(true);
-
-
+    engine_cam->update_camera_vec(1.0f, 0.0f, 0.0f);
+    engine_cam->translate_camera();
     auto cam_mat = engine_cam->get_cam_mat();
     while(EngineWindow::getInstance()->get_state()) {
-            engine_cam->update_camera_vec(0.0f, 1.0f, glfwGetTime());
-    engine_cam->translate_camera();
-
         glm::mat4 trans = cam_mat;
         glUniformMatrix4fv(glGetUniformLocation(test_prg->get_shader_id(), "transform"), 1, GL_FALSE, glm::value_ptr(trans));
+        // glUniform1f(glGetUniformLocation(test_prg->get_shader_id(), "Z"), EngineWindow::getInstance()->getX());
+
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);
