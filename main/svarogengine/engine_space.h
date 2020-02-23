@@ -27,6 +27,11 @@
 #include "render-pipeline/shader/VertexShader.h"
 #include "render-pipeline/shader/s_lab/shader_mg.h"
 #include "core/Input/InputManager.h"
+#include "render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.h"
+#include "main/enginewindow/engine-gui/imgui_init.h"
+#include "main/enginewindow/engine-gui/gui_frames.h"
+#include "main/enginewindow/engine-gui/sidebar-components/button.h"
+#include "main/enginewindow/engine-gui/sidebar-components/label.h"
 
 class EngineSpace {
     private: 
