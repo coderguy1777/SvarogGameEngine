@@ -28,94 +28,62 @@
 #include "render-pipeline/shader/s_lab/shader_mg.h"
 #include "core/Input/InputManager.h"
 
-enum class VSYNC_STATES {
-    VSYNC_ON,
-    VSYNC_OFF
-};
-
-enum class ENGINE_STATES {
-    ENGINE_RUNNING,
-    ENGINE_STOPPED
-};
-
 class EngineSpace {
     private: 
-        struct EngineWindowStyle {
+        static struct EngineWindowStyle {
             private: 
                 std::string window_name;
                 uint w;
                 uint h;
 
             public:
-                
-                inline void set_window_width(const uint& width) {
-                    w = width;
-                }
-
-                inline void set_window_height(const uint& height) {
-                    h = height;
-                }
-
-                inline void set_window_name(const std::string&win_name) {
-                    window_name = win_name;
-                }
-
-                uint get_window_width() const {
-                    return w;
-                }
-
-                uint get_window_height() const {
-                    return h;
-                }
-
-                std::string get_window_name() const {
-                    return window_name;
-                }
+                inline void set_window_width(const uint& width) { w = width; }
+                inline void set_window_height(const uint& height) { h = height; }
+                inline void set_window_name(const std::string&win_name) { window_name = win_name; }
+                uint get_window_width() const { return w; }
+                uint get_window_height() const { return h; }
+                std::string get_window_name() const { return window_name; }
 
         } engine_style_settings;
+
         // settings for the window relating to vsync, etc.
         static struct EngineWindowSettings {
             private: 
                 bool isVsyncOn;
                 uint state;
                 bool engine_state;
+
             public: 
-                inline void setVsyncOn(uint state) {
-                    isVsyncOn = (state == 1) ? true : false;
-                }
+                inline void setVsyncOn(uint state) { isVsyncOn = (state == 1) ? true : false; }
+                inline void setState(bool run) { state = (run == true) ? 1 : 0; }
+                inline void setEngineState(uint state) { engine_state = (state == 1) ? true : false; } 
+                bool getVsyncState() const { return isVsyncOn; }
+                bool getEngineState() const { return engine_state; }
+                uint getState() const { return state; }
 
-                inline void setState(bool run) {
-                    state = (run == true) ? 1 : 0;
-                }
-
-                inline void setEngineState(uint state) {
-                    engine_state = (state == 1) ? true : false;
-                } 
-
-                bool getVsyncState() const {
-                    return isVsyncOn;
-                }
-
-                bool getEngineState() const {
-                    return engine_state;
-                }
-
-                uint getState() const {
-                    return state;
-                }
         } engine_settings;
 
-        struct GLFWEntities {
+        static struct GLFWEntities {
             private: 
                 GLFWmonitor* engine_glfw_mon;
                 GLFWwindow* engine_glfw_win;
+                std::shared_ptr<WindowMonitor>win_mon = std::make_shared<WindowMonitor>();
             public: 
-                inline void init_win_monitor_context() {
+                inline void* getEngineWin() { return engine_glfw_win; }
+                inline void* getEngineMonitor() { return engine_glfw_mon; }
+                inline void make_context_curr() { 
+                    WindowContext::make_curr_context(static_cast<GLFWwindow*>(getEngineWin())); 
+                }
 
+                inline void init_win_monitor_context() {
+                    win_mon->init_monitor();
                 }
 
                 inline void init_window_context() {
-
+                    WindowContext::set_states(1, 3);
+                    WindowContext::init_glfw();
+                    WindowContext::create_context(static_cast<GLFWwindow*>(getEngineWin()));
+                    engine_glfw_win = glfwCreateWindow((int)engine_style_settings.get_window_width(), (int)engine_style_settings.get_window_height(), (const char*)engine_style_settings.get_window_name().c_str(), NULL, NULL);
                 }
 
                 void runVSYNC() {
@@ -129,11 +97,17 @@ class EngineSpace {
                 
         } glfw_window_entities;
         static EngineSpace* engine;
-
         EngineSpace() {}
-
     public: 
         static EngineSpace* getEngineSpace();
+        inline void init_window_settings();
+        inline void run();
+        inline void pre_batch();
+        inline void load_gpu_data();
+        
+        ~EngineSpace() {
+            glfwDestroyWindow(static_cast<GLFWwindow*>(glfw_window_entities.getEngineWin()));
+        }
 
 };
 

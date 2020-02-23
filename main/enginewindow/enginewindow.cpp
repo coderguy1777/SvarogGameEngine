@@ -2,7 +2,6 @@
 EngineWindow* EngineWindow::getInstance() {
     if(!winn) 
         winn = new EngineWindow; 
-        winn->x = 0.0f;
     return winn;
 }
 

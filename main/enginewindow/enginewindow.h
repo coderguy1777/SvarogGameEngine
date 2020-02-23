@@ -67,13 +67,5 @@ class EngineWindow {
         void makeContextCurr();
         void createWindowContext();
         void SvarogAppLoop();
-        Camera getMainCamera() const;
-        float getX()  {
-            if(is_back) {
-                x = -1.0f;
-            } else {
-                x = 0.0f;
-            }
-            return x;
-        }    
+        Camera getMainCamera() const;  
 };

@@ -146,8 +146,6 @@ void SvarogEngine::RunEngine() {
     while(EngineWindow::getInstance()->get_state()) {
         glm::mat4 trans = cam_mat;
         glUniformMatrix4fv(glGetUniformLocation(test_prg->get_shader_id(), "transform"), 1, GL_FALSE, glm::value_ptr(trans));
-        // glUniform1f(glGetUniformLocation(test_prg->get_shader_id(), "Z"), EngineWindow::getInstance()->getX());
-
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);
@@ -155,9 +153,7 @@ void SvarogEngine::RunEngine() {
         RenderTaskManager::getRenderManager()->add_thread_task(s);
         RenderTaskManager::getRenderManager()->run_all_tasks();
         ShaderManager::getShaderManager()->render_materials();
-
         InitGuiManager();
-        //dbg_win->render_frames();
         ImGuiInit::init_imgui_render();
         EngineWindow::getInstance()->OnUpdate();
     }
