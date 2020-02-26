@@ -1,9 +1,13 @@
 #include "main/svarogengine/svarogengine.h"
 
 
+void loop() {
+	
+}
+
 int main() {
 	// SvarogEngine* engine = new SvarogEngine();
-	SvarogEngine::getInstanceEngine()->RunEngine();
+	SvarogEngine::getInstanceEngine()->RunEngine(loop);
 
 	return 0;
 }

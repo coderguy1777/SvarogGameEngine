@@ -2,8 +2,9 @@
 #ifdef VEC3_H
 #define VEC3_H
 #endif
-#include<iostream>
+
 using namespace std;
+#include<iostream>
 #include "core/Point.h"
 #include "math/matrix.h"
 #include <cmath>

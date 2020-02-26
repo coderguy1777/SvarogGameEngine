@@ -11,8 +11,6 @@
 #include "main/color/htmlcolors.h"
 #include "main/color/cmyk.h"
 #include "render-pipeline/mesh/svarog_renderobj.h"
-#include "render-pipeline/shader/glsl_shader_generation/shader_defs.h"
-#include "render-pipeline/shader/glsl_shader_generation/shader_gen.h"
 #include "render-pipeline/shader/FragmentShader.h"
 #include "render-pipeline/shader/VertexShader.h"
 #include "render-pipeline/shader/ShaderProgram.h"

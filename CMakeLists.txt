@@ -82,6 +82,7 @@ add_executable(SvarogGameEngine
         render-pipeline/shader/FragmentShader.cpp
         render-pipeline/shader/ShaderProgram.h
         render-pipeline/shader/ShaderProgram.cpp
+        render-pipeline/shader/ShaderGen.h
         render-pipeline/mesh/opengl_mesh_buffers/mesh_buffer.h
         render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.h
         render-pipeline/mesh/opengl_mesh_buffers/mesh_vao.cpp
@@ -93,9 +94,6 @@ add_executable(SvarogGameEngine
         render-pipeline/mesh/svarog_shape.cpp
         render-pipeline/mesh/svarog_renderobj.h
         render-pipeline/mesh/svarog_renderobj.cpp
-        render-pipeline/shader/glsl_shader_generation/shader_defs.h
-        render-pipeline/shader/glsl_shader_generation/shader_gen.h
-        render-pipeline/shader/glsl_shader_generation/shader_gen.cpp
         render-pipeline/shader/s_lab/shader_mg.h
         render-pipeline/shader/s_lab/shader_mg.cpp
         render-pipeline/shader/s_lab/svarog_material.h 
@@ -186,8 +184,6 @@ add_executable(SvarogGameEngine
         main/materials/material.h
         main/materials/shadergen.cpp
         main/materials/shadergen.h
-        main/svarogengine/engine_space.h
-        main/svarogengine/engine_space.cpp
         main/svarogengine/svarogengine.cpp
         main/svarogengine/svarogengine.h
         main/window/window.cpp

@@ -7,7 +7,6 @@
 #include "core/ds-classes/ArrayList.h"
 #include "core/String.h"
 #include "render-pipeline/shader/s_lab/svarog_material.h"
-#include "render-pipeline/shader/glsl_shader_generation/shader_defs.h"
 class SvarogMaterial;
 class ShaderManager {
     private:

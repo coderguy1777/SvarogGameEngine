@@ -1257,33 +1257,6 @@ main/materials/shadergen.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/materials/shadergen.cpp.s
 .PHONY : main/materials/shadergen.cpp.s
 
-main/svarogengine/engine_space.o: main/svarogengine/engine_space.cpp.o
-
-.PHONY : main/svarogengine/engine_space.o
-
-# target to build an object file
-main/svarogengine/engine_space.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/svarogengine/engine_space.cpp.o
-.PHONY : main/svarogengine/engine_space.cpp.o
-
-main/svarogengine/engine_space.i: main/svarogengine/engine_space.cpp.i
-
-.PHONY : main/svarogengine/engine_space.i
-
-# target to preprocess a source file
-main/svarogengine/engine_space.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/svarogengine/engine_space.cpp.i
-.PHONY : main/svarogengine/engine_space.cpp.i
-
-main/svarogengine/engine_space.s: main/svarogengine/engine_space.cpp.s
-
-.PHONY : main/svarogengine/engine_space.s
-
-# target to generate assembly for a file
-main/svarogengine/engine_space.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/main/svarogengine/engine_space.cpp.s
-.PHONY : main/svarogengine/engine_space.cpp.s
-
 main/svarogengine/svarogengine.o: main/svarogengine/svarogengine.cpp.o
 
 .PHONY : main/svarogengine/svarogengine.o
@@ -1716,33 +1689,6 @@ render-pipeline/shader/VertexShader.cpp.s:
 	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/VertexShader.cpp.s
 .PHONY : render-pipeline/shader/VertexShader.cpp.s
 
-render-pipeline/shader/glsl_shader_generation/shader_gen.o: render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.o
-
-.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.o
-
-# target to build an object file
-render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.o:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.o
-.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.o
-
-render-pipeline/shader/glsl_shader_generation/shader_gen.i: render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.i
-
-.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.i
-
-# target to preprocess a source file
-render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.i:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.i
-.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.i
-
-render-pipeline/shader/glsl_shader_generation/shader_gen.s: render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s
-
-.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.s
-
-# target to generate assembly for a file
-render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s:
-	$(MAKE) -f CMakeFiles/SvarogGameEngine.dir/build.make CMakeFiles/SvarogGameEngine.dir/render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s
-.PHONY : render-pipeline/shader/glsl_shader_generation/shader_gen.cpp.s
-
 render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.o: render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.cpp.o
 
 .PHONY : render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.o
@@ -2067,9 +2013,6 @@ help:
 	@echo "... main/materials/shadergen.o"
 	@echo "... main/materials/shadergen.i"
 	@echo "... main/materials/shadergen.s"
-	@echo "... main/svarogengine/engine_space.o"
-	@echo "... main/svarogengine/engine_space.i"
-	@echo "... main/svarogengine/engine_space.s"
 	@echo "... main/svarogengine/svarogengine.o"
 	@echo "... main/svarogengine/svarogengine.i"
 	@echo "... main/svarogengine/svarogengine.s"
@@ -2118,9 +2061,6 @@ help:
 	@echo "... render-pipeline/shader/VertexShader.o"
 	@echo "... render-pipeline/shader/VertexShader.i"
 	@echo "... render-pipeline/shader/VertexShader.s"
-	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.o"
-	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.i"
-	@echo "... render-pipeline/shader/glsl_shader_generation/shader_gen.s"
 	@echo "... render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.o"
 	@echo "... render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.i"
 	@echo "... render-pipeline/shader/s_lab/s_lab_gui/main_editor_gui.s"
