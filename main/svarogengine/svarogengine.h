@@ -12,7 +12,7 @@
 #include "render-pipeline/shader/s_lab/shader_mg.h"
 #include "core/memory/gui_task_manager.h"
 #include "math/matrix.h"
-#include "render-pipeline/mesh/cube.h"
+#include "render-pipeline/mesh/MeshGen.h"
 #include "main/enginewindow/engine-gui/sidebar-components/input_text.h"
 #include "render-pipeline/mesh/svarog_shape.h"
 #include "render-pipeline/mesh/svarog_renderobj.h"
