@@ -72,7 +72,7 @@ void SvarogEngine::RunEngine(void(*loop)()) {
     auto cam_mat = engine_cam->get_cam_mat();
     while(EngineWindow::getInstance()->get_state()) {
         glm::mat4 trans = cam_mat;
-        glUniformMatrix4fv(glGetUniformLocation(test_prg.get_shader_id(), "transform"), 1, GL_FALSE, glm::value_ptr(trans));
+        glUniformMatrix4fv(glGetUniformLocation(test_prg.get_shader_id(), "transform"), 1, GL_FALSE, glm::value_ptr(cam_mat));
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_LIGHTING | GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);

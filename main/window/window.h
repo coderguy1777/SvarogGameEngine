@@ -9,7 +9,7 @@
 struct WindowProp {
     int w, h;
     String title;
-    WindowProp(int width=800, int height=600, String winTitle="Svarog Game Engine") : w(width), h(height), title(winTitle){}
+    WindowProp(int width, int height, String winTitle="Svarog Game Engine") : w(width), h(height), title(winTitle){}
 };
 class Window {
     private:
@@ -21,8 +21,6 @@ class Window {
         // getter functions
         int getWidth();
         int getHeight();
-        int * get_ptrHeight() const;
-        int * get_ptrWidth() const;
         String getTitle();
         // setter functions
         void changeHeight(int h);
