@@ -69,7 +69,7 @@ void EngineWindow::SvarogAppLoop() {
     WindowContext::set_states(1, 3);
     WindowContext::init_glfw();
     WindowContext::create_context(appWindow);
-    appWindow = glfwCreateWindow((int)winA.getWidth(), (int)winA.getHeight(), (const char*)winA.getTitle().str, NULL, NULL);
+    appWindow = glfwCreateWindow((int)800, (int)600, (const char*)"Svarog Game Engine", NULL, NULL);
     WindowContext::make_curr_context(appWindow);
     GladLoader::load_glad();
     WindowContext::load_gpu_info();
@@ -148,7 +148,6 @@ void EngineWindow::SvarogAppLoop() {
 
     glfwSetScrollCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, double xoffset, double yoffset) {
         EngineWindow* cursor_scroll_mg = (EngineWindow*)glfwGetWindowUserPointer(window);
-        cursor_scroll_mg->is_back = true;
     });
 
     glfwSetWindowCloseCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window) {
@@ -159,8 +158,6 @@ void EngineWindow::SvarogAppLoop() {
     glfwSetWindowSizeCallback(static_cast<GLFWwindow*>(this->getWindow()), [](GLFWwindow* window, int w, int h) {
         EngineWindow* win_size_mg = (EngineWindow*)glfwGetWindowUserPointer(window);
         glViewport(0, 0, w, h);
-        win_size_mg->winA.changeHeight(h);
-        win_size_mg->winA.changeWidth(w);
         spdlog::info("WINDOW_RESIZE");
     });
 

@@ -22,7 +22,6 @@
 #include "core/events/event-dispatchers/EventDispatch.h"
 #include "main/window/window.h"
 #include "render-pipeline/window-initalization/window_context.h"
-#include "main/window/window.h"
 #include "render-pipeline/window-initalization/window_update.h"
 #include "render-pipeline/window-initalization/window_monitor.h"
 #include "render-pipeline/window-initalization/glad_loader.h"
@@ -32,19 +31,14 @@
 class EngineWindow {    
     private:
         static EngineWindow* winn;
-        WindowProp window;
-        GLFWwindow* appWindow;
+        Window win;
         GLFWmonitor* moni;
         bool isVsyncOn;
         int state;
-        mutable bool engine_state;
+        bool engine_state;
         EngineWindow() {}
-
+        GLFWwindow* appWindow;
     public: 
-        bool is_back;
-        float x;
-        const int speed = 1.0f;
-        bool state_2;
         Camera init_cam; 
         Window winA;
         static EngineWindow* getInstance();

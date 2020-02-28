@@ -13,19 +13,16 @@ struct WindowProp {
 };
 class Window {
     private:
-        WindowProp* prop;
+        uint width, height;
+        const char* title;
     public:
-        Window() {
-            prop = new WindowProp();
-        }
-        // getter functions
-        int getWidth();
-        int getHeight();
-        String getTitle();
-        // setter functions
-        void changeHeight(int h);
-        void changeWidth(int w);
-        void changeTitle(String newTitle);
-        void* getWindow();
+        GLFWwindow* m_window;
+
+        Window();
+        Window(uint w, uint h, const char* title);
+        void* get_window() const;
+        uint get_window_width() const;
+        uint get_win_height() const;
+        const char* get_win_title() const;
 };
 #endif

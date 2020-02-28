@@ -45,6 +45,7 @@ void SvarogEngine::RunEngine(void(*loop)()) {
     InitContext();  
     InitMonitor();
     InitRenderManager();
+    GladLoader::load_glad();
     loop();
     ShaderProgram test_prg = (PremadeShaders::shaderOne());
 

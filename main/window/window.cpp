@@ -1,28 +1,24 @@
 #include "window.h"
-int Window::getWidth() {
-    return prop->w;
+Window::Window() {
+    m_window = glfwCreateWindow((int)1280, (int)720, (const char*)"DEFAULT_WIN", NULL, NULL);
 }
 
-int Window::getHeight()  {
-    return prop->h;
+Window::Window(uint w, uint h, const char* title) : width(w), height(h), title(title) {
+    m_window = glfwCreateWindow((int)w,(int) h, (const char*)title, NULL, NULL);
 }
 
-String Window::getTitle()  {
-    return prop->title;
+void* Window::get_window() const {
+    return m_window;
 }
 
-void Window::changeWidth(int newW) {
-    prop->w = newW;
+const char* Window::get_win_title() const {
+    return title;
 }
 
-void Window::changeHeight(int newH) {
-    prop->h = newH;
+uint Window::get_window_width() const {
+    return width;
 }
 
-void Window::changeTitle(String newTitle) {
-    prop->title = newTitle;
-}
-
-void* Window::getWindow() {
-    return prop;
+uint Window::get_win_height() const {
+    return height;
 }
