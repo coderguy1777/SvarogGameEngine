@@ -1,14 +1,12 @@
-#include "main/svarogengine/svarogengine.h"
-
-
+#include "main/window/window.h"
+Window win;
 void loop() {
-	
+	win.run_window();
 }
 
 int main() {
 	// SvarogEngine* engine = new SvarogEngine();
-	SvarogEngine::getInstanceEngine()->RunEngine(loop);
-
+	loop();
 	return 0;
 }
 // camera trans idea, for on key trans, for the camera to move

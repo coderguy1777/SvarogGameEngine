@@ -9,7 +9,7 @@ using namespace std;
 class Vector2 {
     private:
     public:
-            float initx, inity;
+        float initx, inity;
 
         Vector2(float x, float y) {
             this->initx = x;
