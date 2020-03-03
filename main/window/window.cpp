@@ -1,6 +1,5 @@
 #include "window.h"
 Window::Window() {
-    is_running = true;
     WindowContext::set_states(1, 3);
     WindowContext::init_glfw();
     WindowContext::create_context(m_window);
@@ -20,18 +19,20 @@ Window::Window() {
     glfwSetInputMode(m_window, GLFW_STICKY_KEYS, 1);
     glfwSetKeyCallback(m_window, set_key_callback);
     glfwSetMouseButtonCallback(m_window, set_mouse_callback);
+    glfwSetWindowCloseCallback(m_window, set_window_close_callback);
 
 }
 
 
 void Window::run_window() {
-    while(true) {
+    while(!glfwWindowShouldClose(m_window)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_LIGHTING |  GL_COLOR_MATERIAL);
         glClearColor(1.0, 0.0, 0.0, 1.0);
         glfwPollEvents();
         glfwSwapBuffers(m_window);
     }
+    glfwTerminate();
 
 }
 
@@ -58,6 +59,7 @@ Window::Window(uint w, uint h, const char* title) : width(w), height(h), title(t
 void Window::set_key_callback(GLFWwindow* win, int key, int action, int scancode, int mods) {
     switch(scancode) {
         case GLFW_PRESS: 
+            spdlog::info("PRESS");
             spdlog::info("KEY: {}", key);
             break;
         case GLFW_RELEASE: 
@@ -71,10 +73,21 @@ void Window::set_mouse_callback(GLFWwindow* win, int button, int action, int mod
     switch(action) {
         case GLFW_PRESS:
             if(button == SVAROG_MOUSE_BUTTON_LEFT) {
-                spdlog::info("Mouse left pressed");
+                spdlog::info("Mouse left pressed.");
+            }
+
+            if(button == SVAROG_MOUSE_BUTTON_MIDDLE) {
+                spdlog::info("Mouse middle pressed.");
             }
             break;
+        case GLFW_RELEASE: 
+            break;
+    
     }
+}
+
+void Window::set_window_close_callback(GLFWwindow* win) {
+    glfwTerminate();
 }
 
 void* Window::get_window() const {

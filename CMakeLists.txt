@@ -25,7 +25,6 @@ include_directories(main/camera)
 include_directories(main/color)
 include_directories(main/enginewindow)
 include_directories(main/materials)
-include_directories(main/svarogengine)
 include_directories(main/window)
 include_directories(math)
 include_directories(render-pipeline)
@@ -181,8 +180,6 @@ add_executable(SvarogGameEngine
         main/materials/material.h
         main/materials/shadergen.cpp
         main/materials/shadergen.h
-        main/svarogengine/svarogengine.cpp
-        main/svarogengine/svarogengine.h
         main/window/window.cpp
         main/window/window.h
         math/camera_matrix.cpp

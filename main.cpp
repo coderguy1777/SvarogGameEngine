@@ -1,5 +1,5 @@
 #include "main/window/window.h"
-Window win;
+Window win(1280, 720, "Svarog Engine");
 void loop() {
 	win.run_window();
 }

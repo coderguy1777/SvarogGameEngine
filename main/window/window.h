@@ -12,7 +12,6 @@ class Window {
     private:
         uint width, height;
         const char* title;
-        bool is_running;
     public:
         GLFWwindow* m_window;
         GLFWmonitor* m_monitor;
@@ -27,5 +26,7 @@ class Window {
     private: 
         static void set_key_callback(GLFWwindow* win, int key, int action, int scancode, int mods);
         static void set_mouse_callback(GLFWwindow* win, int button, int actions, int mods);
+        static void set_window_close_callback(GLFWwindow* win);
 };
+
 #endif
